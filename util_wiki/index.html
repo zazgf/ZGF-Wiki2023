@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense) - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "rqt_image_view \u63d0\u793a ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)";
+    var mkdocs_page_input_path = "util_wiki.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rqt_image_view-imageviewcallback_image-could-not-convert-image-from-8uc3-to-rgb8-8uc3-is-not-a-color-format-but-rgb8-is-the-conversion-does-not-make-sense">rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)</h1>
+<p>解决办法:\
+- 首先在ｏｐｅｎｃｖ处把８ＵＣ３格式的ｍａｔ转化为ｒｇｂ格式</p>
+<p><code>cv::cvtColor(compoundFrame, compoundFrame, cv::COLOR_RGB2BGR);</code>
+- 然后cv_bridge编码格式改为sensor_msgs::image_encodings::RGB8</p>
+<p><code>img_bridge = cv_bridge::CvImage(headers, sensor_msgs::image_encodings::RGB8, compoundFrame);</code></p>
+<h1 id="rosmsg">Ros自定义ｍｓｇ编译时报错：缺少头文件</h1>
+<p>只需在CMakeLists.txt里添加\
+<code>add_dependencies(GetLaneExtDemo smart_eye_gencpp)</code>\
+smart_eye 可换成任意pkg 名称\
+GetLaneExtDemo　为节点名称</p>
+<h1 id="modulenotfounderror-no-module-named-rospkg">ModuleNotFoundError: No module named ‘rospkg’</h1>
+<pre><code>pip install rospkg                       //更新方式1
+sudo apt-get install python-rospkg           //更新方式2
+//网上说有的方式1能解决，有的方式2可以解决，用pip更新的前提是安装了pip
+</code></pre>
+<h1 id="importerror-no-module-named-genmsg">ImportError: No module named genmsg</h1>
+<p>命令：把sudo make 改为　make,就可以找到库，目前原因不明</p>
+<h1 id="ui_mainwindowh-no-such-file-or-directory">ui_mainwindow.h: No such file or directory</h1>
+<p><code>set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)</code></p>
+<h1 id="git">git的命令行应用</h1>
+<blockquote>
+<ol>
+<li>git status</li>
+<li>git add .</li>
+<li>git commit -m "q"</li>
+<li>git push</li>
+</ol>
+</blockquote>
+<h2 id="ros">虽然有不同的ｒｏｓ工作空间</h2>
+<p>但是最好不要有相同的节点名字。因为容易引起混乱，运行混乱等。。。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

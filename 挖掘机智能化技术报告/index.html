@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>挖掘机智能化技术方案报告 - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6316\u6398\u673a\u667a\u80fd\u5316\u6280\u672f\u65b9\u6848\u62a5\u544a";
+    var mkdocs_page_input_path = "\u6316\u6398\u673a\u667a\u80fd\u5316\u6280\u672f\u62a5\u544a.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>挖掘机智能化技术方案报告</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">挖掘机智能化技术方案报告</h1>
+<hr />
+<p><strong>随着智能化技术普及，为让挖掘机工作更加灵活、智能化以应对复杂多变的工作环境和任务，着手构建挖掘机智能化框架。</strong>\
+<img alt="1" src="../images/Screenshot%202021-01-15%2011_08_15%281%29.png" />\
+如图所示，挖掘机自主破碎系统包括：<strong>信息采集模块</strong>，<strong>场景分类模块</strong>，<strong>决策模块</strong>和<strong>执行模块</strong>。
+* 信息采集模块\
+  通过摄像头和雷达采集环境信息，用于场景分类，石块定位，反馈信号
+* 场景分类模块\
+  应用深度学习技术，根据信息采集数据，判断出目前的环境属于提前定义好的哪一类情况，针对不同情况，执行相应的动作
+* 决策模块\
+  通过分类模块了解了目前周围环境后，决策模块通过强化学习，做出最优的执行策略\
+  同时在石块较少的情况下执行定位破碎
+* 执行模块\
+  执行模块，负责执行决策模块发布的命令，包含速度控制，运动精度。</p>
+<p>目前我们已经实现了信息采集模块，执行模块的完整功能，场景分类模块完成了包含了图像的深度学习和稀疏点云的深度学习，决策模块完成了定位破碎。\
+后续工作：
+1. 场景分类需要更多的训练数据，增加训练数据进行模型训练可以增加分类的准确性\
+   <img alt="1" src="../images/Screenshot%202021-01-18%2010%3A41%3A35.png" />\
+   <img alt="1" src="../images/Screenshot%202020-12-14%2017_37_29.png" />
+2. 决策模块需要根据分类模块识别的场景做出策略，执行模块执行命令后，决策模块根据反馈信息，对策略进行奖励或惩罚。随着时间决策模块可以积累经验，实现自主学习，执行最优策略。决策模块搭建和验证还未完成。
+   <img alt="image" src="../images/Screenshot%202021-01-16%2017_44_20.png" />\
+   图示为强化学习走迷宫示例
+3. 执行模块，实现清理碎石过程的实现</p>
+<h3 id="_2">深度学习和强化学习的不同点</h3>
+<p><strong>深度学习</strong>，需要需要训练数据，需要模型，根据已知训练数据预测未知数据，学习过程即训练过程，在应用阶段不需要继续学习，是<strong>静态学习</strong>，更像人类大脑的认知功能\
+<img alt="image" src="../images/fneur-10-00869-g001.jpg" />
+<strong>强化学习</strong>不需要训练，不需要模型，但是需要提前划分策略，和奖励机制，应用过程就是学习过程，随着经验积累，实现性能的提升，是<strong>动态学习</strong>，更像人类大脑的决策功能。\
+<img alt="i" src="../images/1_4u2GtNnMa9xso1WkLh7hVA.png" />
+两者组合起来可实现挖掘机简单的智能化自主化能力．</p>
+<h3 id="_3">目前工作面对的挑战</h3>
+<p>能不能实现自主破碎整个流程，才是最终评判结果。目前的架构，理论上能够应对一些复杂的情况。决策模块和执行模块仍是整个挖掘机系统的重要模块，也是未知数较大模块，也是对整体运行效果影响较大模块．也是提升空间较大模块．需要结合实践进行优化．</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

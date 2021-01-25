@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python";
+    var mkdocs_page_input_path = "python.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Python</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Python</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="conda-the-following-packages-are-not-available-from-current-channels">conda The following packages are not available from current channels:</h2>
+<p><code>conda config --append channels conda-forge</code>\
+It tells conda to also look on the conda-forge channel when you search for packages. </p>
+<h2 id="conda">conda 创建环境</h2>
+<p><code>conda create -n xception_net python==3.6.5 numpy==1.17.4 scipy==1.3.3 h5py==2.10.0 Keras==2.3.1 tensorflow-gpu==1.15.0</code></p>
+<p>As the comment at the top indicates, the output of\
+<code>conda list -e &gt; requirements.txt</code></p>
+<p>can be used to create a conda virtual environment with\
+<code>conda create --name &lt;env&gt; --file requirements.txt</code></p>
+<h2 id="cudnn_status_internal_error-tensorflow">cudnn_status_internal_error tensorflow</h2>
+<p>You can try Allowing GPU memory growth with:</p>
+<pre><code>import tensorflow as tf
+gpu = tf.config.experimental.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(gpu[0], True)
+</code></pre>
+<h2 id="vscode-activate-conda-env">vscode activate conda env</h2>
+<pre><code>{
+    &quot;ros.distro&quot;: &quot;melodic&quot;,
+    &quot;python.autoComplete.extraPaths&quot;: [
+        &quot;/home/pmjd/Disk/anaconda3/envs/wjj/lib/python3.6/site-packages&quot;
+    ],
+    &quot;python.terminal.activateEnvInCurrentTerminal&quot;: true,
+    &quot;python.condaPath&quot;: &quot;/home/pmjd/Disk/anaconda3/bin/conda&quot;,
+    &quot;python.defaultInterpreterPath&quot;: &quot;/home/pmjd/Disk/anaconda3/envs/wjj/bin/python&quot;
+}
+</code></pre>
+<h2 id="nameerror-name-xrange-is-not-defined">NameError: name 'xrange' is not defined</h2>
+<pre><code>try:
+    # Python 2
+    xrange
+except NameError:
+    # Python 3, xrange is now named range
+    xrange = range
+</code></pre>
+<h2 id="tensorflow-valueerror-cannot-feed-value-of-shape-64-64-3-for-tensor-uplaceholder0-which-has-shape-64-64-3">TensorFlow ValueError: Cannot feed value of shape (64, 64, 3) for Tensor u'Placeholder:0', which has shape '(?, 64, 64, 3)'</h2>
+<p>image has a shape of (64,64,3).\
+Your input placeholder _x have a shape of (?, 64,64,3).\
+The problem is that you're feeding the placeholder with a value of a different shape.\
+You have to feed it with a value of (1, 64, 64, 3) = a batch of 1 image.\
+Just reshape your image value to a batch with size one.
+<code>np.expand_dims(img, axis=0)</code></p>
+<h2 id="opencv-conda">opencv conda</h2>
+<p>opencv is not compatible with python 3. I had to install opencv3 for python 3. The marked answer in how could we install opencv on anaconda? explains how to install opencv(3) for anaconda:</p>
+<p>Run the following command:</p>
+<p><code>conda install -c https://conda.binstar.org/menpo opencv</code></p>
+<p>I realized that opencv3 is also available now, run the following command:</p>
+<p><code>conda install -c https://conda.binstar.org/menpo opencv3</code></p>
+<p>Edit on Aug 18, 2016: You may like to add the "menpo" channel permanently by:</p>
+<p><code>conda config --add channels menpo</code></p>
+<p>And then opencv can be installed by:</p>
+<p><code>conda install opencv (or opencv3)</code></p>
+<p>Edit on Aug 14, 2017: "clinicalgraphics" channel provides relatively newer vtk version for very recent python3</p>
+<p><code>conda install -c clinicalgraphics vtk</code></p>
+<p>Edit on April 16, 2020 (based on @AMC's comment): OpenCV can be installed through conda-forge (details see here)</p>
+<p><code>conda install -c conda-forge opencv</code></p>
+<h2 id="pointcloud2-to-array">pointcloud2 to array</h2>
+<pre><code>def pointcloud2_to_array(cloud_msg, squeeze=True):
+    dtype_list = fields_to_dtype(cloud_msg.fields, cloud_msg.point_step)
+    cloud_arr = np.fromstring(cloud_msg.data, dtype_list)
+
+    cloud_arr = cloud_arr[
+        [fname for fname, _type in dtype_list if not (fname[:len(DUMMY_FIELD_PREFIX)] == DUMMY_FIELD_PREFIX)]]
+
+    if squeeze and cloud_msg.height == 1:
+        return np.reshape(cloud_arr, (cloud_msg.width,))
+    else:
+        return np.reshape(cloud_arr, (cloud_msg.height, cloud_msg.width)) 
+</code></pre>
+<h2 id="read-pcd-to-array">read pcd to array</h2>
+<pre><code>import numpy as np 
+import open3d as o3d
+
+pcd = o3d.io.read_point_cloud(&quot;pointcloud_path.pcd&quot;)
+out_arr = np.asarray(pcd.points)  
+print (&quot;output array from input list : &quot;, out_arr)  
+</code></pre>
+<h2 id="kitti">kitti 数据集下载</h2>
+<ol>
+<li>图片下载<blockquote>
+<p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip</p>
+</blockquote>
+</li>
+<li>点云下载<blockquote>
+<p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_velodyne.zip</p>
+</blockquote>
+</li>
+<li>标签下载<blockquote>
+<p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip</p>
+</blockquote>
+</li>
+<li>矫正文件下载<blockquote>
+<p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="python-operator">python "//" operator</h2>
+<p>In python 2.x</p>
+<pre><code>&gt;&gt;&gt; 10/3
+3
+&gt;&gt;&gt; # To get a floating point number from integer division:
+&gt;&gt;&gt; 10.0/3
+3.3333333333333335
+&gt;&gt;&gt; float(10)/3
+3.3333333333333335
+</code></pre>
+<p>In python 3.x</p>
+<pre><code>&gt;&gt;&gt; 10/3
+3.3333333333333335
+&gt;&gt;&gt; 10//3
+3
+</code></pre>
+<h2 id="python-super">python super()</h2>
+<p>内置的super()返回一个代理对象（超类的临时对象),该代理对象允许我们访问基类的方法。\
+在python中，super()有两个主要用例：
+* 让我们避免显示使用基类名称
+* 处理多重继承\</p>
+<h4 id="1super">示例１：具有单继承的super()</h4>
+<p>在单继承的情况下，它允许我们通过引用基类super()</p>
+<pre><code>class Mammal(object):
+  def __init__(self, mammalName):
+    print(mammalName, 'is a warm-blooded animal.')
+
+class Dog(Mammal):
+  def __init__(self):
+    print('Dog has four legs.')
+    super().__init__('Dog')
+
+d1 = Dog()
+</code></pre>
+<p>输出</p>
+<pre><code>Dog has four legs.
+Dog is a warm-blooded animal.
+</code></pre>
+<p>该super()内建返回一个代理对象，替代对象，可以通过委托调用基类的方法，这称为“间接"(使用引用基础对象的能力super())\
+由于间接是在运行时计算的，因此我们可以在不同的时间使用不同的基类（如果需要）</p>
+<h4 id="2super">示例２：具有多重继承的super()</h4>
+<pre><code>class Animal:
+  def __init__(self, Animal):
+    print(Animal, 'is an animal.');
+
+class Mammal(Animal):
+  def __init__(self, mammalName):
+    print(mammalName, 'is a warm-blooded animal.')
+    super().__init__(mammalName)
+
+class NonWingedMammal(Mammal):
+  def __init__(self, NonWingedMammal):
+    print(NonWingedMammal, &quot;can't fly.&quot;)
+    super().__init__(NonWingedMammal)
+
+class NonMarineMammal(Mammal):
+  def __init__(self, NonMarineMammal):
+    print(NonMarineMammal, &quot;can't swim.&quot;)
+    super().__init__(NonMarineMammal)
+
+class Dog(NonMarineMammal, NonWingedMammal):
+  def __init__(self):
+    print('Dog has 4 legs.');
+    super().__init__('Dog')
+
+d = Dog()
+print('')
+bat = NonMarineMammal('Bat')
+</code></pre>
+<p>输出</p>
+<pre><code>Dog has 4 legs.
+Dog can't swim.
+Dog can't flay.
+Dog is a warm-blooded animal.
+Dog is an animal.
+
+Bat can't swim.
+Bat is a warm-blooded animal.
+Bat is an animal.
+</code></pre>
+<h4 id="method-resolution-order-mro">Method Resolution Order方法解析顺序 (MRO)</h4>
+<pre><code>&gt;&gt;&gt; Dog.__mro__
+(&lt;class 'Dog'&gt;, 
+&lt;class 'NonMarineMammal'&gt;, 
+&lt;class 'NonWingedMammal'&gt;, 
+&lt;class 'Mammal'&gt;, 
+&lt;class 'Animal'&gt;, 
+&lt;class 'object'&gt;)
+</code></pre>
+<h2 id="split-method-in-python-is-outputing-an-index-error">Split method in python is outputing an index error</h2>
+<p><code>one of your lines must be empty</code></p>
+<h2 id="deque-in-python-python">deque in python ｐｙｔｈｏｎ中的双端队列</h2>
+<pre><code># Python code to demonstrate deque 
+from collections import deque 
+# Declaring deque 
+queue = deque(['name','age','DOB']) 
+print(queue) 
+=========================================================
+Output:
+deque(['name', 'age', 'DOB'])
+</code></pre>
+<ul>
+<li>append() :- This function is used to insert the value in its argument to the right end of deque.</li>
+<li>appendleft() :- This function is used to insert the value in its argument to the left end of deque.</li>
+<li>pop() :- This function is used to delete an argument from the right end of deque.</li>
+<li>popleft() :- This function is used to delete an argument from the left end of deque.</li>
+<li>index(ele, beg, end) :- This function returns the first index of the value mentioned in arguments, starting searching from beg till end index.</li>
+<li>insert(i, a) :- This function inserts the value mentioned in arguments(a) at index(i) specified in arguments.</li>
+<li>remove() :- This function removes the first occurrence of value mentioned in arguments.</li>
+<li>extend(iterable) :- This function is used to add multiple values at the right end of deque. The argument passed is an iterable.</li>
+<li>extendleft(iterable) :- This function is used to add multiple values at the left end of deque. The argument passed is an iterable. Order is reversed as a result of left appends.</li>
+<li>reverse() :- This function is used to reverse order of deque elements.</li>
+<li>rotate() :- This function rotates the deque by the number specified in arguments. If the number specified is negative, rotation occurs to left. Else rotation is to right.</li>
+</ul>
+<h3 id="numpyargmax">numpy.argmax</h3>
+<p>numpy.argmax(a, axis=None, out=None)[source]\
+Returns the indices of the maximum values along an axis.\
+<strong>parameters</strong>\
+- <strong>a: array_like</strong>,Input array.
+- <strong>axis:int, optional</strong>, By default, the index is into the flattened array, otherwise along the specified axis.
+- <strong>outarray, optional</strong>, If provided, the result will be inserted into this array. It should be of the appropriate shape and dtype.</p>
+<p><strong>Returns</strong>\
+<strong>index_array:ndarray of ints</strong>\
+Array of indices into the array. It has the same shape as a.shape with the dimension along axis removed.</p>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />\
+<img alt="1" src="../images/Screenshot%202021-01-22%2013%3A53%3A11.png" /></p>
+<h3 id="python-randomsample">python random.sample()</h3>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A57%3A52.png" /></p>
+<h3 id="numpyamax">numpy.amax()</h3>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2014%3A13%3A38.png" /></p>
+<h3 id="python-pip">python pip 不能用</h3>
+<p><code>PIP_NO_CACHE_DIR=off pip install gym</code></p>
+<h2 id="numlinspace-in-python">num.linspace() in Python</h2>
+<pre><code>import numpy as np
+print(&quot;B\n&quot;, np.linspace(2.0, 3.0, num=5, retstep=True),&quot;\n&quot;)
+
+x = np.linspace(0, 2, 10)
+print(&quot;A\n&quot;, np.sin(x))
+</code></pre>
+<p>Output</p>
+<pre><code>B
+ (array([ 2.  ,  2.25,  2.5 ,  2.75,  3.  ]), 0.25)
+
+A
+ [ 0.          0.22039774  0.42995636  0.6183698   0.77637192  0.8961922
+  0.9719379   0.99988386  0.9786557   0.90929743]
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ubuntu/" class="btn btn-neutral float-right" title="Ubuntu">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../c%2B%2B/" class="btn btn-neutral" title="C++"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../c%2B%2B/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ubuntu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

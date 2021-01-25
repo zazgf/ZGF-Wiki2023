@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ros建模 - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ros\u5efa\u6a21";
+    var mkdocs_page_input_path = "Ros\u5efa\u6a21.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Ros建模</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ros">Ros建模</h1>
+<p><a href="http://wiki.ros.org/robot_model/Tutorials">robot_model</a></p>
+<h2 id="create-your-own-urdf-file">Create your own urdf file</h2>
+<h3 id="description-in-this-tutorial-you-start-creating-your-own-urdf-robot-description-file">description: in this tutorial you start creating your own urdf robot description file.</h3>
+<ul>
+<li>Create the tree structure\
+  in this tutorial we will create the URDF description of the "robot" shown in the image below.
+<img alt="image" src="../images/link.png" />\
+The robot in the image is a tree structure.Let's start very simple,and create a description of that tree structure,without worrying about the dimensions etc.Fire up your favorite text editor,and create a file called my_robot.urdf:</li>
+</ul>
+<pre><code>   1 &lt;robot name=&quot;test_robot&quot;&gt;
+   2   &lt;link name=&quot;link1&quot; /&gt;
+   3   &lt;link name=&quot;link2&quot; /&gt;
+   4   &lt;link name=&quot;link3&quot; /&gt;
+   5   &lt;link name=&quot;link4&quot; /&gt;
+   6 
+   7   &lt;joint name=&quot;joint1&quot; type=&quot;continuous&quot;&gt;
+   8     &lt;parent link=&quot;link1&quot;/&gt;
+   9     &lt;child link=&quot;link2&quot;/&gt;
+  10   &lt;/joint&gt;
+  11 
+  12   &lt;joint name=&quot;joint2&quot; type=&quot;continuous&quot;&gt;
+  13     &lt;parent link=&quot;link1&quot;/&gt;
+  14     &lt;child link=&quot;link3&quot;/&gt;
+  15   &lt;/joint&gt;
+  16 
+  17   &lt;joint name=&quot;joint3&quot; type=&quot;continuous&quot;&gt;
+  18     &lt;parent link=&quot;link3&quot;/&gt;
+  19     &lt;child link=&quot;link4&quot;/&gt;
+  20   &lt;/joint&gt;
+  21 &lt;/robot&gt;
+</code></pre>
+<p>So,just creating the structure is very simple.Now let's see if can get this urdf file parsed.There is a simple command line tool that will parse a urdf file for you, and tell you if the syntax is correct.\
+you might need to install, urdfdom as an upstream,ROS independent package:\</p>
+<pre><code>sudo apt-get install liburdfdom-tools
+</code></pre>
+<p>Now run the check command:</p>
+<pre><code>rosmake urdfdom_model
+check_urdf my_robot.urdf   
+</code></pre>
+<h3 id="add-the-dimensions">Add the dimensions</h3>
+<p>So now that we have the basic tree structure.let's add the appropriate dimensions.As you notice in the robot image,the reference frame of each link (in green) is located at the bottom of the link.and is identical to the reference frame of the joint.So,to add dimensions to our tree,all we habe to specify is the offset from a link to the joint(s) of its children.To accomplish this,we will add the field<origin> to each of the joints.\
+Let's look at the second joint.Joint2 is offset in the Y-direction from link1,a little offset in the negative X-direction from link1, and it is rotated 90 degrees around the Z-axis.So,we need to add the following<origin> element:</p>
+<pre><code>&lt;origin xyz=&quot;-2 5 0&quot; rpy=&quot;0 0 1.57&quot;/&gt;
+</code></pre>
+<p>If you repeat this for all the elements our URDF will look like this:</p>
+<pre><code>   1 &lt;robot name=&quot;test_robot&quot;&gt;
+   2   &lt;link name=&quot;link1&quot; /&gt;
+   3   &lt;link name=&quot;link2&quot; /&gt;
+   4   &lt;link name=&quot;link3&quot; /&gt;
+   5   &lt;link name=&quot;link4&quot; /&gt;
+   6 
+   7 
+   8   &lt;joint name=&quot;joint1&quot; type=&quot;continuous&quot;&gt;
+   9     &lt;parent link=&quot;link1&quot;/&gt;
+  10     &lt;child link=&quot;link2&quot;/&gt;
+  11     &lt;origin xyz=&quot;5 3 0&quot; rpy=&quot;0 0 0&quot; /&gt;
+  12   &lt;/joint&gt;
+  13 
+  14   &lt;joint name=&quot;joint2&quot; type=&quot;continuous&quot;&gt;
+  15     &lt;parent link=&quot;link1&quot;/&gt;
+  16     &lt;child link=&quot;link3&quot;/&gt;
+  17     &lt;origin xyz=&quot;-2 5 0&quot; rpy=&quot;0 0 1.57&quot; /&gt;
+  18   &lt;/joint&gt;
+  19 
+  20   &lt;joint name=&quot;joint3&quot; type=&quot;continuous&quot;&gt;
+  21     &lt;parent link=&quot;link3&quot;/&gt;
+  22     &lt;child link=&quot;link4&quot;/&gt;
+  23     &lt;origin xyz=&quot;5 0 0&quot; rpy=&quot;0 0 -1.57&quot; /&gt;
+  24   &lt;/joint&gt;
+  25 &lt;/robot&gt;
+</code></pre>
+<h3 id="completing-the-kinematics">Completing the Kinematics</h3>
+<p>What we didn't specify yet is around which axis the points rotate.Once we add that,we actually have a full kinematic model of this robot!All we need to do is add the <axis> element to each joint.The axis specifies the rotational axis in the local frame.\
+So, If you look at joint2, you see it rotates around the positive Y-axis.So, simple add the following xml to the joint element:</p>
+<pre><code>&lt;axis xyz=&quot;0 1 0&quot; /&gt;
+</code></pre>
+<p>Similarly,joint1 is rotating around the following axis:</p>
+<pre><code>&lt;axis xyz=&quot;-0.707 0.707 0&quot;/&gt;
+</code></pre>
+<p>Note that it is a good idea to normalize the axis.
+If we add this to all the joints of the robot, our URDF looks like this:</p>
+<pre><code>   1 &lt;robot name=&quot;test_robot&quot;&gt;
+   2   &lt;link name=&quot;link1&quot; /&gt;
+   3   &lt;link name=&quot;link2&quot; /&gt;
+   4   &lt;link name=&quot;link3&quot; /&gt;
+   5   &lt;link name=&quot;link4&quot; /&gt;
+   6 
+   7   &lt;joint name=&quot;joint1&quot; type=&quot;continuous&quot;&gt;
+   8     &lt;parent link=&quot;link1&quot;/&gt;
+   9     &lt;child link=&quot;link2&quot;/&gt;
+  10     &lt;origin xyz=&quot;5 3 0&quot; rpy=&quot;0 0 0&quot; /&gt;
+  11     &lt;axis xyz=&quot;-0.9 0.15 0&quot; /&gt;
+  12   &lt;/joint&gt;
+  13 
+  14   &lt;joint name=&quot;joint2&quot; type=&quot;continuous&quot;&gt;
+  15     &lt;parent link=&quot;link1&quot;/&gt;
+  16     &lt;child link=&quot;link3&quot;/&gt;
+  17     &lt;origin xyz=&quot;-2 5 0&quot; rpy=&quot;0 0 1.57&quot; /&gt;
+  18     &lt;axis xyz=&quot;-0.707 0.707 0&quot; /&gt;
+  19   &lt;/joint&gt;
+  20 
+  21   &lt;joint name=&quot;joint3&quot; type=&quot;continuous&quot;&gt;
+  22     &lt;parent link=&quot;link3&quot;/&gt;
+  23     &lt;child link=&quot;link4&quot;/&gt;
+  24     &lt;origin xyz=&quot;5 0 0&quot; rpy=&quot;0 0 -1.57&quot; /&gt;
+  25     &lt;axis xyz=&quot;0.707 -0.707 0&quot; /&gt;
+  26   &lt;/joint&gt;
+  27 &lt;/robot&gt;
+</code></pre>
+<p>Update your file my_robot.urdf and run it through the parser.</p>
+<pre><code>check_urdf my_robot.urdf
+</code></pre>
+<p>That's it.you created your first URDF robot description!Now you can try to visualize the URDF using graphiz:</p>
+<pre><code>urdf_to_graphiz my_robot.urdf
+</code></pre>
+<p>and open the generated file with your favorite pdf viewer:</p>
+<pre><code>evince test_robot.pdf
+</code></pre>
+<p><img alt="image" src="../images/graphiz.png" /></p>
+<h2 id="parse-a-urdf-file">Parse a urdf file</h2>
+<h3 id="description-this-tutorial-teachs-you-how-to-use-the-urdf-parser">Description: This tutorial teachs you how to use the urdf parser</h3>
+<h3 id="reading-a-urdf-file">Reading a URDF file</h3>
+<p>This tutorial starts off where the previous one ended.You should still habe your my_robot.urdf file with a description of the robot shown before below.\
+Let's first create a package with a dependency on the urdf parser in our snadbox:</p>
+<pre><code>cd ~/catkin_ws/src
+catkin_create_pkg robot_description urdf roscpp rospy tf sensor_msgs std_msgs
+cd robot_description
+</code></pre>
+<p>Now create a /urdf folder to store the urdf file we just created:</p>
+<pre><code>mkdir urdf
+cd urdf
+</code></pre>
+<p>This follows the convention of always storing your robot's URDF file in a ROS package named MYROBOT_description and within a subfolder named /urdf.Other standard subfolders of your robot's description package include /meshes, /media and /cad,like so:\</p>
+<pre><code>/MYROBOT_description
+  package.xml
+  CMakeLists.txt
+  /urdf
+  /meshes
+  /materials
+  /cad
+</code></pre>
+<h2 id="using-the-robot-state-publisher-on-your-own-robot">Using the robot state publisher on your own robot</h2>
+<h3 id="description-this-tutorial-explains-how-you-can-publish-the-state-of-your-robot-to-tf-using-the-robot-state-publisher">Description: This tutorial explains how you can publish the state of your robot to tf, using the robot state publisher.</h3>
+<p>When you are working with a robot that has many relevant frames.it becomes quite a task to publish them all to tf.The robot state publisher is a tool that will do this job for you.\
+<img alt="frame2" src="../images/frames2.png" />\
+The robot state publisher helps you to broadcast the state of your robot to the tf transform library.The robot state publisher internally has a kinematic运动学 model of the robot; so given the joint positions of the robot,the robot state publisher can compute and broadcast the 3D pose of each link in the robot.
+You can use the robot state publisher as a standalone ROS node or as a library:</p>
+<h3 id="1running-as-a-ros-node">1.Running as a ROS node</h3>
+<h4 id="11-robot_state_pubisher">1.1 robot_state_pubisher</h4>
+<p>The easiest way to run the robot state publisher is as a node.For normal users,this is the recommanded usage.You need two things to run the robot state publisher:</p>
+<blockquote>
+<ul>
+<li>a urdf xml robot description loaded on the Parameter Server.</li>
+<li>A source that publishes the joint positions as a sensor_msgs/JointState</li>
+</ul>
+</blockquote>
+<h5 id="111-subscribed-topics">1.1.1 Subscribed topics</h5>
+<p>joint_states(Sensor_msgs/JointState)</p>
+<blockquote>
+<p>joint position information</p>
+</blockquote>
+<h5 id="112-parameters">1.1.2 Parameters</h5>
+<p>robot_description(urdf map)\
+tf_prefix(string)</p>
+<blockquote>
+<p>Set the tf prefix for namespace-aware publishing of transform
+publish_frequency(double)
+Publish frequency of state publisher,default:50Hz</p>
+</blockquote>
+<h4 id="12-example-launch-file">1.2 Example launch file</h4>
+<pre><code>&lt;launch&gt;
+  &lt;param name = &quot;robot_description&quot; textfile = &quot;$(find mypackage)/urdf/robotmodel.xml&quot;/&gt;
+  &lt;node pkg = &quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; name = &quot;rob_st_pub&quot;&gt;
+  &lt;remap from=&quot;robot_state_publisher&quot; to=&quot;my_robot_description&quot;/&gt;
+  &lt;remap from=&quot;joint_states&quot; to=&quot;different_joint_states&quot;/&gt;
+  &lt;/node&gt;
+&lt;/launch&gt;
+</code></pre>
+<h3 id="2runing-as-a-library">2.Runing as a library</h3>
+<p>Advanced users can also run the robot state publisher as a library,from within their own c++ code.After you include the header:
+<code>#include &lt;robot_state_publisher/robot_state_publisher.h&gt;</code>\
+all you need is the constructor which takes in a KDL tree\
+<code>RobotStatePublisher(const KDL::Tree&amp; tree);</code>\
+and now, everytime you want to publish the state of your robot, you call the publishTransforms functions:</p>
+<pre><code>//Publish moving joints
+void publishTransfroms(const std::map&lt;std::string, double&gt;&amp; joint_positions,
+  const ros::Time&amp; time);
+
+//publish fixed joints
+void publishFixedTransforms();
+</code></pre>
+<p>The first argument is a map with joint names and joint positions, and the second argument is the time at which the joint positions were recorded. It is okay if the map does not contain all the joint names. It is also okay if the map contains some joints names that are not part of the kinematic model. But note if you don't tell the joint state publisher about some of the joints in your kinematic model, then your tf tree will not be complete.</p>
+<h2 id="using-urdf-with-robot_state_publisher">Using urdf with robot_state_publisher</h2>
+<h3 id="create-the-urdf-file">Create the URDF File</h3>
+<h3 id="publishing-the-state">Publishing the State</h3>
+<blockquote>
+<p>cd %TOP_DIR_YOUR_CATKIN_WS%/src</p>
+</blockquote>
+<p>Then fire your favourite editor and paste the following code into the src/state_publisher.cpp file:</p>
+<pre><code>   1 #include &lt;string&gt;
+   2 #include &lt;ros/ros.h&gt;
+   3 #include &lt;sensor_msgs/JointState.h&gt;
+   4 #include &lt;tf/transform_broadcaster.h&gt;
+   5 
+   6 int main(int argc, char** argv) {
+   7     ros::init(argc, argv, &quot;state_publisher&quot;);
+   8     ros::NodeHandle n;
+   9     ros::Publisher joint_pub = n.advertise&lt;sensor_msgs::JointState&gt;(&quot;joint_states&quot;, 1);
+  10     tf::TransformBroadcaster broadcaster;
+  11     ros::Rate loop_rate(30);
+  12 
+  13     const double degree = M_PI/180;
+  14 
+  15     // robot state
+  16     double tilt = 0, tinc = degree, swivel=0, angle=0, height=0, hinc=0.005;
+  17 
+  18     // message declarations
+  19     geometry_msgs::TransformStamped odom_trans;
+  20     sensor_msgs::JointState joint_state;
+  21     odom_trans.header.frame_id = &quot;odom&quot;;
+  22     odom_trans.child_frame_id = &quot;axis&quot;;
+  23 
+  24     while (ros::ok()) {
+  25         //update joint_state
+  26         joint_state.header.stamp = ros::Time::now();
+  27         joint_state.name.resize(3);
+  28         joint_state.position.resize(3);
+  29         joint_state.name[0] =&quot;swivel&quot;;
+  30         joint_state.position[0] = swivel;
+  31         joint_state.name[1] =&quot;tilt&quot;;
+  32         joint_state.position[1] = tilt;
+  33         joint_state.name[2] =&quot;periscope&quot;;
+  34         joint_state.position[2] = height;
+  35 
+  36 
+  37         // update transform
+  38         // (moving in a circle with radius=2)
+  39         odom_trans.header.stamp = ros::Time::now();
+  40         odom_trans.transform.translation.x = cos(angle)*2;
+  41         odom_trans.transform.translation.y = sin(angle)*2;
+  42         odom_trans.transform.translation.z = .7;
+  43         odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(angle+M_PI/2);
+  44 
+  45         //send the joint state and transform
+  46         joint_pub.publish(joint_state);
+  47         broadcaster.sendTransform(odom_trans);
+  48 
+  49         // Create new robot state
+  50         tilt += tinc;
+  51         if (tilt&lt;-.5 || tilt&gt;0) tinc *= -1;
+  52         height += hinc;
+  53         if (height&gt;.2 || height&lt;0) hinc *= -1;
+  54         swivel += degree;
+  55         angle += degree/4;
+  56 
+  57         // This will adjust as needed per iteration
+  58         loop_rate.sleep();
+  59     }
+  60 
+  61 
+  62     return 0;
+  63 }
+</code></pre>
+<h3 id="launch-file">Launch File</h3>
+<p>This launch file assumes you are using the package name "r2d2" and node name "state_publisher" and you have saved this urdf to the "r2d2" package.</p>
+<pre><code>   1 &lt;launch&gt;
+   2         &lt;param name=&quot;robot_description&quot; command=&quot;cat $(find r2d2)/model.xml&quot; /&gt;
+   3         &lt;node name=&quot;robot_state_publisher&quot; pkg=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; /&gt;
+   4         &lt;node name=&quot;state_publisher&quot; pkg=&quot;robot_description&quot; type=&quot;state_publisher&quot; /&gt;
+   5 &lt;/launch&gt;
+</code></pre>
+<h3 id="viewing-the-reult">Viewing the Reult</h3>
+<p>First we have to edit the CMakeLists.txt in the package where we saved the above source code.Make sure to add the tf dependency in addition to the other dependencies:</p>
+<blockquote>
+<p>find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs tf)</p>
+</blockquote>
+<p>Notice that roscpp is used to parse the code that we wrote and generate the state_publisher node. We also have to add the following to the end of the CMakelists.txt in order to generate the state_publisher node:</p>
+<blockquote>
+<p>include_directories(include ${catkin_INCLUDE_DIRS})\
+add_executable(state_publisher src/state_publisher.cpp)\
+target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
+</blockquote>
+<p>Now we should go to the directory of the workspace and build it using:</p>
+<blockquote>
+<p>catkin_make</p>
+</blockquote>
+<p>Now launch the package (assuming that our launch file is named display.launch):</p>
+<blockquote>
+<p>roslaunch r2d2 display.launch</p>
+</blockquote>
+<p>Run rviz in a new terminal using:</p>
+<blockquote>
+<p>rosrun rviz rviz</p>
+</blockquote>
+<p>Choose odom as your fixed frame (under Global Options). Then choose "Add Display" and add a Robot Model Display and a TF Display\
+<img alt="image" src="../images/Screenshot%20from%202020-11-03%2008-14-44.png" /></p>
+<h2 id="building-a-visual-robot-model-with-urdf-from-scratch">Building a Visual Robot Model with URDF from Scratch</h2>
+<h3 id="descriptionlearn-how-to-build-a-visual-model-of-a-robot-that-you-can-view-in-rviz">Description:learn how to build a visual model of a robot that you can view in rviz</h3>
+<p>Before continuing,make sure you have the joint_state_publisher package installed.</p>
+<blockquote>
+<p>sudo apt-get install ros-melodic-joint-state-publisher</p>
+</blockquote>
+<h3 id="1one-shape">1.One Shape</h3>
+<p>First, we're just going to explore one simple shape.Here's about as simple as a urdf as you can make.</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;robot name=&quot;myfirst&quot;&gt;
+  &lt;link name=&quot;base_link&quot;&gt;
+    &lt;visual&gt;
+      &lt;geometry&gt;
+        &lt;cylinder length=&quot;0.6&quot; radius=&quot;0.2&quot;/&gt;
+      &lt;/geometry&gt;
+    &lt;/visual&gt;
+  &lt;/link&gt;
+&lt;/robot&gt;
+</code></pre>
+<p>To translate the XML into English, this is a robot with the name myfirst, that contains only one link (a.k.a. part), whose visual component is just a cylinder 0.6 meters long with a 0.2 meter radius. This may seem like a lot of enclosing tags for a simple “hello world” type example, but it will get more complicated, trust me.\</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

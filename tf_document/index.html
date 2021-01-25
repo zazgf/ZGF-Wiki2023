@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Tf document - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Tf document";
+    var mkdocs_page_input_path = "tf_document.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Tf document</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="tfcompatv1trainsaver">tf.compat.v1.train.Saver</h3>
+<blockquote>
+<p><strong>tf.compat.v1.train.Saver</strong>\
+Saves and restores还原 variables</p>
+</blockquote>
+<pre><code>tf.compat.v1.train.Saver(
+    var_list=None, 
+    reshape=False, 
+    sharded=False, 
+    max_to_keep=5,
+    keep_checkpoint_every_n_hours=10000.0, 
+    name=None, 
+    restore_sequentially=False,
+    saver_def=None, 
+    builder=None, 
+    defer_build=False, 
+    allow_empty=False,
+    write_version=tf.train.SaverDef.V2, pad_step_number=False,
+    save_relative_paths=False, 
+    filename=None
+)
+</code></pre>
+<blockquote>
+<p>The <strong>Saver</strong> class adds ops行动 to save and restore variables to and form checkpoints.It also provides convenience method to run these ops.</p>
+<p>Checkpoints are binary files in a proprietary所有权 format which map variable names to tensor values.Checkpoints 是专有格式的二进制文件，该文件将变量名映射到张量值.The best way to examine审查 the contents of a checkpoints is to load it using a <strong>Saver</strong></p>
+<p><strong>var_list</strong> A list of Variable/SaveableObject, or a dictionary mapping names to SaveableObjects.If None,defaults to the list of all saveable objects.</p>
+<p><strong>reshape</strong> If True,allows restoring恢复 parameters from a checkpoint where the variables have a different shape.</p>
+<p><strong>shareded</strong> If True,shard the checkpoints,one per device每个设备一个</p>
+<p><strong>max_to_keep</strong> Maximum number of recent checkpoints to keep,Default to 5</p>
+<p><strong>keep_checkpoint_every_n_hours</strong> How often to keep checkpoints,Defaults to 10,000 hours.</p>
+<p><strong>name</strong> String, Optional name to use as a prefix when adding operations.</p>
+<p><strong>restore_sequentially</strong> A Bool,which if true,causes restore of different variables to happen sequentially within each device.This can lower memory usage when restoring large models.</p>
+<p><strong>saver_def</strong> Optional SaverDef proto原型 to use instead of running the builder.This is only useful for specialty code that wants to recreate a Saver object for a previously built Graph that had a Saver.The saver_def proto should be the one returned by the as_saver_def() call of the Saver that was created for that Graph.</p>
+<p><strong>builder</strong> Optional SaverBuilder to use if a saver_def was not provided. Default to BuikSaverBuilder().</p>
+<p><strong>defer_build</strong> If True,defer adding the save and restore ops to the build() call. In that case build() should be called before finalizing定案 the graph or using the saver.</p>
+<p><strong>allow_empty</strong> If False(defalut) rasie an error if there are no variables in the graph.Otherwise, construct the saver anyway and make it a no-op.</p>
+<p><strong>write_version</strong> controls what format to use when saving checkpoints. It also affects certain filepath matching logic. The V2 format is the recommended choice: it is much more optimized than V1 in terms of memory required and latency incurred during restore. Regardless of this flag, the Saver is able to restore from both V2 and V1 checkpoints.</p>
+<p><strong>pad_step_number</strong> if True, pads the global step number in the checkpoint filepaths to some fixed width (8 by default). This is turned off by default.</p>
+<p><strong>save_relative_paths</strong> If True, will write relative paths to the checkpoint state file. This is needed if the user wants to copy the checkpoint directory and reload from the copied directory.</p>
+<p><strong>filename</strong>  If known at graph construction time, filename used for variable loading/saving.</p>
+</blockquote>
+<h3 id="tfcompatv1variable_scope">tf.compat.v1.variable_scope</h3>
+<blockquote>
+<p><strong>tf.compat.v1.variable_scope</strong>\
+A <strong>context manager</strong> for define ops that create variables(layers)用于定义创建变量（层）的操作的上下文管理器</p>
+</blockquote>
+<pre><code>tf.compat.v1.variable_scope(
+    name_or_scope, 
+    default_name=None, 
+    values=None, 
+    initializer=None,
+    regularizer=None, 
+    caching_device=None, 
+    partitioner=None, 
+    custom_getter=None,
+    reuse=None, 
+    dtype=None, 
+    use_resource=None, 
+    constraint=None,
+    auxiliary_name_scope=True
+)
+</code></pre>
+<blockquote>
+<p>This context manager validates验证 that the values are from the same graph,ensures that graph is the default graph,and pushes a name scope范围 and a variable scope.</p>
+<p>Variable scope allows you to create new variables and to share already created ones while providing checks to not create or share by accident.变量作用域允许您创建新变量并共享已创建的变量，同时提供检查以防止意外创建或共享.</p>
+<p>Keep in mind that the counters for default_name are discarded丢弃 once the parent scope is exited. Therefore when the code re-enters the scope (for instance by saving it), all nested嵌套的 default_name counters will be restarted.</p>
+<p>Note that <strong>reuse</strong> flag is inherited: if we open a resuing scope,then all its sub-scope become reusing as well.</p>
+</blockquote>
+<p>A note about name scoping:Setting <strong>reuse</strong> does not impact the naming of other ops such as mult.</p>
+<blockquote>
+<p><strong>reuse</strong> True,None,or tf.compat.v1.AUTO_REUSE;if True, we go into reuse mode for this scope as well as all sub-scopes; if tf.compat.v1.AUTO_REUSE, we create variables if they do not exist, and return them otherwise; if None, we inherit the parent scope's reuse flag. When eager execution is enabled, new variables are always created unless an EagerVariableStore or template is currently active.</p>
+</blockquote>
+<h3 id="tfcompatv1layersdense">tf.compat.v1.layers.dense</h3>
+<blockquote>
+<p><strong>tf.compat.v1.layers.dense</strong>\
+Functional interface for the densely-connected layer.</p>
+</blockquote>
+<pre><code>tf.compat.v1.layers.dense(
+    inputs, units, activation=None, use_bias=True, kernel_initializer=None,
+    bias_initializer=tf.zeros_initializer(), kernel_regularizer=None,
+    bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
+    bias_constraint=None, trainable=True, name=None, reuse=None
+)
+</code></pre>
+<blockquote>
+<p>The layer implement the operation:<code>output=activation(inputs * kernel + bias)</code> where activation is the activation function passed as the activation argument(if not <strong>Ｎone</strong>),kernel is a weights matrix created by the layer, and bias is a bias vector created by the layer(only if use_bias is True).</p>
+<p><strong>inputs</strong> Tensor input.</p>
+<p><strong>units</strong> Integer or Long, dimensionality of the output space.</p>
+<p><strong>activation</strong> Activation function(callable), Set it to None to maintain a linear activation.</p>
+<p><strong>use_bias</strong> Boolean, whether the layer uses a bias</p>
+<p><strong>kernel_initializer</strong> Initializer function for the weight matrix. If None (default), weights are initialized using the default initializer used by tf.compat.v1.get_variable.</p>
+<p><strong>bias_initializer</strong> Initializer function for the bias</p>
+<p><strong>kernel_regularizer</strong> Regularizer正则化器 function for the weight matrix</p>
+<p><strong>bias_regularizer</strong> Regularizer function for the bias.</p>
+<p><strong>activity_regularizer</strong> Regularizer function for the output.</p>
+<p><strong>kernel_constraint</strong> An optional projection function to be applied to the kernel after being updated by an Optimizer (e.g. used to implement norm constraints or value constraints for layer weights). The function must take as input the unprojected variable and must return the projected variable (which must have the same shape). Constraints约束条件 are not safe to use when doing asynchronous distributed training.</p>
+<p><strong>bias_constraint</strong> An optional projection function to be applied to the bias after being updated by an Optimizer.</p>
+<p><strong>trainable</strong> Boolean, if True also add variables to the graph collection GraphKeys.TRAINABLE_VARIABLES (see tf.Variable).</p>
+<p><strong>name</strong>  String, the name of the layer.</p>
+<p><strong>reuse</strong> Boolean, whether to reuse the weights of a previous layer by the same name.</p>
+</blockquote>
+<h3 id="tfcompatv1layersbatchnormalization">tf.compat.v1.layers.BatchNormalization</h3>
+<blockquote>
+<p><strong>tf.compat.v1.layers.BatchNormalization</strong>\
+Batch Normalization layer</p>
+</blockquote>
+<pre><code>tf.compat.v1.layers.BatchNormalization(
+    axis=-1, momentum=0.99, epsilon=0.001, center=True, scale=True,
+    beta_initializer=tf.zeros_initializer(),
+    gamma_initializer=tf.ones_initializer(),
+    moving_mean_initializer=tf.zeros_initializer(),
+    moving_variance_initializer=tf.ones_initializer(), beta_regularizer=None,
+    gamma_regularizer=None, beta_constraint=None, gamma_constraint=None,
+    renorm=False, renorm_clipping=None, renorm_momentum=0.99, fused=None,
+    trainable=True, virtual_batch_size=None, adjustment=None, name=None, **kwargs
+)
+</code></pre>
+<blockquote>
+<p><strong>fused</strong> if None or True, use a faster, fused implementation if possible. If False, use the system recommended implementation.</p>
+</blockquote>
+<h3 id="tfmathreduce_max">tf.math.reduce_max</h3>
+<blockquote>
+<p><strong>tf.math.reduce_max</strong>\
+Computes the maximum of elements across dimensions of a tensor</p>
+</blockquote>
+<pre><code>tf.math.reduce_max(
+    input_tensor, axis=None, keepdims=False, name=None
+)
+</code></pre>
+<blockquote>
+<p>Reduces input_tensor along the dimensions given in axis.Unless keepdims is true, the rank of the tensor is reduced by 1 for each of the entires in axis, which must be unique. If keepdims is true, the reduced dimensions are retained with length 1.</p>
+<p>If axis is None,all dimensions are reduced, and a tensor with a single element is returned.</p>
+<p><strong>input_tensor</strong> The tensor to reduce.Should have real numeric type</p>
+<p><strong>axis</strong> The dimensions to reduce.If None (the default),reduces all dimensions.Must be in range [-rank(input_tensor),rank(input_tensor)]</p>
+<p><strong>keepdims</strong> If true,retains reduced dimensions with length 1.</p>
+<p><strong>name</strong> A name for the operation(optional).</p>
+</blockquote>
+<h3 id="tftile">tf.tile</h3>
+<blockquote>
+<p><strong>tf.tile</strong>\
+Constructs构造 a tensor by tiling平铺 a given tensor</p>
+</blockquote>
+<pre><code>tf.tile(
+    input, multiples, name=None
+)
+</code></pre>
+<blockquote>
+<p>This operation creates a new tensor by replicating复制 <code>input</code> <code>multiples</code> times.The output tensor's i'th dimension has <code>input.dims(i)*multiples[i]</code> elements, and the values of <code>input</code> are replicated <code>multiples[i]</code> times along the i'th dimension.</p>
+<p><strong>input</strong> A tensor,1-D or higher</p>
+<p><strong>multiples</strong> A tensor. Must be one of the following types: int32, int64, 1-D Length must be the same as the number of dimensions in input.</p>
+<p><strong>name</strong> A name for the operation(optional).</p>
+</blockquote>
+<h3 id="tfconcat">tf.concat</h3>
+<blockquote>
+<p><strong>tf.concat</strong>\
+Concatenates tensors along one dimension.</p>
+</blockquote>
+<pre><code>tf.concat(
+    values, axis, name='concat'
+)
+</code></pre>
+<h3 id="tfcast">tf.cast</h3>
+<blockquote>
+<p><strong>tf.cast</strong>\
+Cast a tensor to a new type.</p>
+</blockquote>
+<pre><code>tf.cast(
+    x, dtype, name=None
+)
+</code></pre>
+<blockquote>
+<p>The operation supports data types (for x and dtype) of uint8, uint16, uint32, uint64, int8, int16, int32, int64, float16, float32, float64, complex64, complex128, bfloat16. In case of casting from complex types (complex64, complex128) to real types, only the real part of x is returned. In case of casting from real types to complex types (complex64, complex128), the imaginary part of the returned value is set to 0. The handling of complex types here matches the behavior of numpy.</p>
+</blockquote>
+<h3 id="tfwhere">tf.where</h3>
+<blockquote>
+<p>Return the elements where condition is True (multiplexing x and y).</p>
+</blockquote>
+<pre><code>tf.where(
+    condition, x=None, y=None, name=None
+)
+</code></pre>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2011%3A56%3A36.png" />\</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
