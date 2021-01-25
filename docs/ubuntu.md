@@ -1,4 +1,4 @@
-#### 更改mac地址
+# 更改mac地址
 * 使用ifconfig　查看网口
 * 安装macmanager\
   `sudo apt install macchanger`

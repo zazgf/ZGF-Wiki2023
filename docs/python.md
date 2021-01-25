@@ -1,4 +1,4 @@
-## conda The following packages are not available from current channels:
+# conda The following packages are not available from current channels:
 `conda config --append channels conda-forge`\
 It tells conda to also look on the conda-forge channel when you search for packages. 
 
