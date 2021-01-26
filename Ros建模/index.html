@@ -63,6 +63,84 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ros建模</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create-your-own-urdf-file">Create your own urdf file</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description-in-this-tutorial-you-start-creating-your-own-urdf-robot-description-file">description: in this tutorial you start creating your own urdf robot description file.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#add-the-dimensions">Add the dimensions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#completing-the-kinematics">Completing the Kinematics</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parse-a-urdf-file">Parse a urdf file</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description-this-tutorial-teachs-you-how-to-use-the-urdf-parser">Description: This tutorial teachs you how to use the urdf parser</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reading-a-urdf-file">Reading a URDF file</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-the-robot-state-publisher-on-your-own-robot">Using the robot state publisher on your own robot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description-this-tutorial-explains-how-you-can-publish-the-state-of-your-robot-to-tf-using-the-robot-state-publisher">Description: This tutorial explains how you can publish the state of your robot to tf, using the robot state publisher.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1running-as-a-ros-node">1.Running as a ROS node</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#11-robot_state_pubisher">1.1 robot_state_pubisher</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#12-example-launch-file">1.2 Example launch file</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2runing-as-a-library">2.Runing as a library</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-urdf-with-robot_state_publisher">Using urdf with robot_state_publisher</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create-the-urdf-file">Create the URDF File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#publishing-the-state">Publishing the State</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#launch-file">Launch File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#viewing-the-reult">Viewing the Reult</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#building-a-visual-robot-model-with-urdf-from-scratch">Building a Visual Robot Model with URDF from Scratch</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#descriptionlearn-how-to-build-a-visual-model-of-a-robot-that-you-can-view-in-rviz">Description:learn how to build a visual model of a robot that you can view in rviz</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1one-shape">1.One Shape</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gazebo">Gazebo 安装</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tf_document/">tf_document</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../caffe/">Caffe</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -412,10 +490,21 @@ target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
 &lt;/robot&gt;
 </code></pre>
 <p>To translate the XML into English, this is a robot with the name myfirst, that contains only one link (a.k.a. part), whose visual component is just a cylinder 0.6 meters long with a 0.2 meter radius. This may seem like a lot of enclosing tags for a simple “hello world” type example, but it will get more complicated, trust me.\</p>
+<h2 id="gazebo">Gazebo 安装</h2>
+<p><code>sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control</code></p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tf_document/" class="btn btn-neutral float-right" title="tf_document">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Ros/" class="btn btn-neutral" title="Ros"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -439,6 +528,10 @@ target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../Ros/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../tf_document/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

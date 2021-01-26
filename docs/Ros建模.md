@@ -320,3 +320,6 @@ First, we're just going to explore one simple shape.Here's about as simple as a 
 ```
 To translate the XML into English, this is a robot with the name myfirst, that contains only one link (a.k.a. part), whose visual component is just a cylinder 0.6 meters long with a 0.2 meter radius. This may seem like a lot of enclosing tags for a simple “hello world” type example, but it will get more complicated, trust me.\
 
+##　Gazebo 安装
+`sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control`
+

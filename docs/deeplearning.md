@@ -1,4 +1,4 @@
-## LeNet
+# LeNet
 > - use convolution to extract spatial features.
 > -  subsample using spatial average of maps.
 > -  non-linearity in the form of tanh or sigmoids.
