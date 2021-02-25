@@ -78,6 +78,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pip">pip 下载东西慢</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mkdocs">mkdocs</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -136,12 +138,12 @@
                 <h1 id="mac">更改mac地址</h1>
 <ul>
 <li>使用ifconfig　查看网口</li>
-<li>安装macmanager\
+<li>安装macmanager
   <code>sudo apt install macchanger</code></li>
-<li>随机生成一个mac地址\
-  <code>sudo macchanger -r enp60s0</code>\
+<li>随机生成一个mac地址
+  <code>sudo macchanger -r enp60s0</code>
   <code>enp60s0</code>是网口，<code>-r</code>代表的是随机<code>random</code>的意思，<code>macchanger</code>会帮我们修改成一个随机产生的<code>MAC</code>号</li>
-<li>修改为指定的mac地址\
+<li>修改为指定的mac地址
   <code>sudo macchanger -m AA:BB:CC:DD:EE:FF enp60s0</code>\</li>
 </ul>
 <h2 id="ubuntu1804">ubuntu18.04 网口创建网络共享</h2>
@@ -163,16 +165,20 @@
 <p>conda install jupyter</p>
 <h2 id="github">github下载提速</h2>
 <p><code>git clone https://github.com/Amritpal-001/Reinforcement-learning-projects.git</code>
-改为\
+改为
 <code>git clone http://hub.fastgit.org/Amritpal-001/Reinforcement-learning-projects.git</code></p>
 <h2 id="github_1">github 下载工具</h2>
 <p><a href="https://d.serctl.com/">https://d.serctl.com/</a></p>
 <h2 id="httpswwwpythonorgftp">https://www.python.org/ftp 下载慢</h2>
-<p><code>wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz</code>\
-改为\
+<p><code>wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz</code>
+改为
 <code>wget https://npm.taobao.org/mirrors/python/3.7.5/Python-3.7.5.tgz</code></p>
 <h2 id="pip">pip 下载东西慢</h2>
 <p><code>pip3.7.5 install -i http://mirrors.aliyun.com/pypi/simple/ psutil decorator numpy protobuf==3.11^C scipy sympy cffi grpcio grpcio-tools requests --user --trusted-host mirrors.aliyun.com</code></p>
+<h2 id="mkdocs">mkdocs</h2>
+<p>mkdocs build</p>
+<p>mkdocs serve</p>
+<p>push sites folders</p>
               
             </div>
           </div>
