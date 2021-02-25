@@ -126,6 +126,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#gazebo">Gazebo 安装</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ros-link-gazebo">ros link 提示没有包含在gazebo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#denavit-hartenberg-parameters">Denavit-Hartenberg parameters</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -492,6 +496,16 @@ target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
 <p>To translate the XML into English, this is a robot with the name myfirst, that contains only one link (a.k.a. part), whose visual component is just a cylinder 0.6 meters long with a 0.2 meter radius. This may seem like a lot of enclosing tags for a simple “hello world” type example, but it will get more complicated, trust me.\</p>
 <h2 id="gazebo">Gazebo 安装</h2>
 <p><code>sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control</code></p>
+<h2 id="ros-link-gazebo">ros link 提示没有包含在gazebo</h2>
+<p>可能有两个原因，一个是它自身没有物理属性，另外一个是它的连接对象没有物理属性</p>
+<h2 id="denavit-hartenberg-parameters">Denavit-Hartenberg parameters</h2>
+<p>In mechanical engineering, the Denavit-Hartenberg parameters(also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain or robot manipulator.</p>
+<p>Jacques Denavit and Richard Hartenberg introduced this convention in 1955 in order to standardlize the coordinate frames for spatial linkages.</p>
+<p><strong>Denavit-Hartenberg convention</strong>\
+A commonly used convention for selecting frames of reference in robotics applications is Denavit and Hartenberg(D-H) convention. In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint,[Z], and the second is associated with the link,[X]. The coordinate transformations along a serial robot consisting of n links from the kinematics equations of the robot.</p>
+<p><img alt="1" src="../images/Screenshot%202021-02-03%2011%3A50%3A47.png" /></p>
+<p>where [T] is the transformation locating the end-link.</p>
+<p>In order to determine the coordinate transformations [Z] and [X], the joints connecting the links are modeled as either hinged or sliding joints, each of which have a unique line S in space that forms the joint axis and define the relative movement of the two links.A typical serial robot is characterized by a sequence of six lines Si,i=1,......6, one for each joint in the robot.For each sequence of lines Si and Si+1, there is a common normal line Ai,j+1.The system of six joint axes Si</p>
               
             </div>
           </div>

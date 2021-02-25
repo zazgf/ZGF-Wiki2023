@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ubuntu - ZGF Wiki</title>
+  <title>Atlas200验收报告 - ZGF Wiki</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ubuntu";
-    var mkdocs_page_input_path = "ubuntu.md";
+    var mkdocs_page_name = "Atlas200\u9a8c\u6536\u62a5\u544a";
+    var mkdocs_page_input_path = "Atlas200\u9a8c\u6536\u62a5\u544a.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,26 +59,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ubuntu</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#ubuntu1804">ubuntu18.04 网口创建网络共享</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#xvfb-ssh">xvfb　ssh</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#x-forward">x forward</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vscode-remote-ssh">vscode 插件　Remote-ssh</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github">github下载提速</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github_1">github 下载工具</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#httpswwwpythonorgftp">https://www.python.org/ftp 下载慢</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pip">pip 下载东西慢</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
                     </li>
                 </ul>
                 <ul>
@@ -122,7 +104,7 @@
     
       
     
-    <li>Ubuntu</li>
+    <li>Atlas200验收报告</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -133,59 +115,67 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mac">更改mac地址</h1>
-<ul>
-<li>使用ifconfig　查看网口</li>
-<li>安装macmanager\
-  <code>sudo apt install macchanger</code></li>
-<li>随机生成一个mac地址\
-  <code>sudo macchanger -r enp60s0</code>\
-  <code>enp60s0</code>是网口，<code>-r</code>代表的是随机<code>random</code>的意思，<code>macchanger</code>会帮我们修改成一个随机产生的<code>MAC</code>号</li>
-<li>修改为指定的mac地址\
-  <code>sudo macchanger -m AA:BB:CC:DD:EE:FF enp60s0</code>\</li>
-</ul>
-<h2 id="ubuntu1804">ubuntu18.04 网口创建网络共享</h2>
-<ul>
-<li>终端输入nm-connection-editor打开网络连接
-  <img alt="1" src="../images/20201224204459506.png" /></li>
-<li>创建以太网链接
-  <img alt="1" src="../images/20201224211150665.png" /></li>
-<li>配置网络链接
-  <img alt="1" src="../images/20201224210017800.png" />
-  <img alt="1" src="../images/20201224210814984.png" /></li>
-<li>将其他需要上网的设备通过网线链接到共享网络即可</li>
-</ul>
-<h2 id="xvfb-ssh">xvfb　ssh</h2>
-<p><code>xvfb-run -s "-screen 0 1400x900x24" python &lt;your_script.py&gt;</code></p>
-<h2 id="x-forward">x forward</h2>
-<p>ssh -X username@ip</p>
-<h2 id="vscode-remote-ssh">vscode 插件　Remote-ssh</h2>
-<p>conda install jupyter</p>
-<h2 id="github">github下载提速</h2>
-<p><code>git clone https://github.com/Amritpal-001/Reinforcement-learning-projects.git</code>
-改为\
-<code>git clone http://hub.fastgit.org/Amritpal-001/Reinforcement-learning-projects.git</code></p>
-<h2 id="github_1">github 下载工具</h2>
-<p><a href="https://d.serctl.com/">https://d.serctl.com/</a></p>
-<h2 id="httpswwwpythonorgftp">https://www.python.org/ftp 下载慢</h2>
-<p><code>wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz</code>\
-改为\
-<code>wget https://npm.taobao.org/mirrors/python/3.7.5/Python-3.7.5.tgz</code></p>
-<h2 id="pip">pip 下载东西慢</h2>
-<p><code>pip3.7.5 install -i http://mirrors.aliyun.com/pypi/simple/ psutil decorator numpy protobuf==3.11^C scipy sympy cffi grpcio grpcio-tools requests --user --trusted-host mirrors.aliyun.com</code></p>
+                <h2 id="atlas200">Atlas200验收报告</h2>
+<hr />
+<p><strong>在线支持</strong>
+- <a href="https://www.huaweicloud.com/ascend/home.html">晟腾学院</a>
+- <a href="https://support.huaweicloud.com/twp-atlas200dkappc32/atlasug_02_0003.html">Atlas 200 DK</a></p>
+<p><strong>性能特点</strong>
+- 可提供16TOPS (INT8) 的峰值计算能力。
+- 支持两路Camera输入，两路ISP图像处理，支持HDR10高动态范围技术标准
+- 支持1000M以太网对外提供高速网络连接，匹配强劲计算能力
+- 通用的40-pin扩展接口，方便产品原型设计
+- 支持5v~28v宽范围直流电源输入</p>
+<p><strong>需要配件</strong>
+- micro sd卡 32G
+- typeC usb 线
+- 网线
+- 读卡器
+- Ubuntu服务器</p>
+<p><strong>制作Usb系统启动盘</strong>
+- 将SD卡放入读卡器，将读卡器与Ubuntu服务器的USB连接，然后通过制卡脚本进行SD卡的制作
+- 软件包准备
+  - 制卡入口脚本  <a href="https://www.huaweicloud.com/ascend/resource/Software">make_sd_card.py</a>
+  - 制作SD卡操作系统脚本 <a href="https://www.huaweicloud.com/ascend/resource/Software">make_ubuntu_sd.sh</a>
+    - 请选择配套的CANN版本：20.1。
+    - “产品系列”请选择“Atlas 200 DK”。
+    - “产品型号”请选择“Atlas 200 DK 开发者套件”。
+  - <a href="http://releases.ubuntu.com/releases/">Ubuntu操作系统镜像包</a>
+    - ubuntu-18.04.xx-server-arm64.iso
+  - <a href="https://www.huaweicloud.com/ascend/resource/Software">开发者板驱动包</a>
+    - A200dk-npu-driver-{software version}-ubuntu18.04-aarch64-minirc.tar.gz
+    - 请选择配套的CANN版本：20.1。
+    - “产品系列”请选择“Atlas 200 DK”。
+    - “产品型号”请选择“Atlas 200 DK 开发者套件”。
+  - <a href="https://www.huaweicloud.com/ascend/cann-download">开发者板运行包</a>
+    - Ascend-cann-minirc_{software version}_ubuntu18.04-aarch64.zip
+    - 请从“CANN软件包”中选择对应版本的软件包下载。</p>
+<p><strong>操作步骤</strong>
+1. 请将SD卡放入读卡器，并将读卡器与Ubuntu服务器的USB接口连接。
+2. <code>sudo apt-get install qemu-user-static binfmt-support python3-yaml gcc-aarch64-linux-gnu g++-aarch64-linux-gnu</code>
+3. 把准备好的文件包放在/home/username/mksd目录下，<code>cd /home/username/mksd</code>
+4. 执行<code>fdisk -l</code>查看sd卡所在usb设备名称为“/dev/sda”，可通过插拔SD卡的方式确定设备名称。
+5. 运行SD制卡脚本“make_sd_card.py”。
+   1. <code>python3 make_sd_card.py local /dev/sda</code>
+   2. “local”表示使用本地方式制作SD卡。
+   3. “/dev/sda”为SD卡所在的USB设备名称。</p>
+<p><strong>遇到问题</strong>：制作sd卡不成功，经过反复协助华为方技术人员，发现华为官方提供的脚本文件<code>make_ubuntu_sd.sh</code>有bug。使用体验差。华为方解决问题周期长，这个问题用了两天才解决。后期应用过程中华为atlas平台也会存在一些bug，开发速度受限于华为方解决atlas产品bug的速度。遇到Atlas平台问题，只能在华为云论坛上进行提问，解决问题周期长。</p>
+<ol>
+<li>获得修正后的<code>make_ubuntu_sd.sh</code>脚本文件安装成功。</li>
+</ol>
+<p>Atlas200 开机启动成功，进入系统。\
+<strong>进行服务器ip设置</strong>：\
+ip:192.168.0.3\
+netmask:255.255.0.0\
+gateway:192.168.0.1\
+<strong>ssh登入Atlas200</strong>:\
+<code>ssh HwHiAiUser@192.168.0.2</code>\
+密码:\
+<code>Mind@123</code>\</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Ros/" class="btn btn-neutral float-right" title="Ros">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../python/" class="btn btn-neutral" title="Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -209,10 +199,6 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../python/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../Ros/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
