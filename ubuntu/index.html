@@ -80,6 +80,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mkdocs">mkdocs</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vscode-python-ros-debug">vscode python ros debug</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -179,6 +181,15 @@
 <p>mkdocs build</p>
 <p>mkdocs serve</p>
 <p>push sites folders</p>
+<h2 id="vscode-python-ros-debug">vscode python ros debug</h2>
+<p>首先</p>
+<pre><code class="language-bash">catkin_make -DCMAKE_BUILD_TYPE=DEBUG
+</code></pre>
+<p>其次点击debug按钮，选择生成新的launch文件。</p>
+<p>ｄebug时遇到路径问题,例如rosmsg路径，最好在文件属性里复制路径，不然容易出错</p>
+<pre><code class="language-python">import sys
+sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
+</code></pre>
               
             </div>
           </div>
