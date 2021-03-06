@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ros - ZGF Wiki</title>
+  <title>Atlas200验收报告 - ZGF Wiki</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ros";
-    var mkdocs_page_input_path = "Ros.md";
+    var mkdocs_page_name = "Atlas200\u9a8c\u6536\u62a5\u544a";
+    var mkdocs_page_input_path = "Atlas200\u9a8c\u6536\u62a5\u544a.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -63,10 +63,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Ubuntu</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ros</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
                     </li>
                 </ul>
                 <ul>
@@ -106,7 +104,7 @@
     
       
     
-    <li>Ros</li>
+    <li>Atlas200验收报告</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -117,67 +115,67 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="msg">引用其他包的ｍｓｇ</h3>
-<p>首先cmakelists.txt</p>
-<pre><code>find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  pcl_ros
-  roscpp
-  rospy
-  std_msgs
-  wjj
-)
-
-catkin_package(
- INCLUDE_DIRS include
- CATKIN_DEPENDS message_runtime pcl_ros roscpp rospy std_msgs wjj
-)
-
-add_dependencies(teaching 
-${catkin_EXPORTED_TARGETS}
-wjj_gencpp)
-</code></pre>
-<p>再者package.xml</p>
-<pre><code> &lt;build_depend&gt;wjj&lt;/build_depend&gt;
- &lt;exec_depend&gt;wjj&lt;/exec_depend&gt;
-</code></pre>
-<p>最后使用</p>
-<pre><code>#include &lt;wjj/SaeJ1939.h&gt;
-</code></pre>
-<h1 id="sudo-rosdep-init-rosdep-update">sudo rosdep init &amp;rosdep update失败</h1>
-<p>该解决方案是针对由于以下两个无法正常访问，但可以ping通，于是修改hosts文件，加入以下两个网址的IP地址实现访问。</p>
-<p>'sudo gedit /etc/hosts'</p>
-<p>添加</p>
-<pre><code class="language-bash">199.232.28.133  raw.githubusercontent.com
-151.101.228.133  raw.github.com
-
-</code></pre>
-<p>修改完成后，在终端执行</p>
-<pre><code class="language-bash">sudo rosdep init
-redep update
-</code></pre>
-<h1 id="vscode-python-ros-debug">vscode python ros debug</h1>
-<p>首先</p>
-<pre><code class="language-bash">catkin_make -DCMAKE_BUILD_TYPE=DEBUG
-</code></pre>
-<p>其次点击debug按钮，选择生成新的launch文件。</p>
-<p>ｄebug时遇到路径问题,例如rosmsg路径，最好在文件属性里复制路径，不然容易出错</p>
-<pre><code class="language-python">import sys
-sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
-</code></pre>
+                <h2 id="atlas200">Atlas200验收报告</h2>
+<hr />
+<p><strong>在线支持</strong>
+- <a href="https://www.huaweicloud.com/ascend/home.html">晟腾学院</a>
+- <a href="https://support.huaweicloud.com/twp-atlas200dkappc32/atlasug_02_0003.html">Atlas 200 DK</a></p>
+<p><strong>性能特点</strong>
+- 可提供16TOPS (INT8) 的峰值计算能力。
+- 支持两路Camera输入，两路ISP图像处理，支持HDR10高动态范围技术标准
+- 支持1000M以太网对外提供高速网络连接，匹配强劲计算能力
+- 通用的40-pin扩展接口，方便产品原型设计
+- 支持5v~28v宽范围直流电源输入</p>
+<p><strong>需要配件</strong>
+- micro sd卡 32G
+- typeC usb 线
+- 网线
+- 读卡器
+- Ubuntu服务器</p>
+<p><strong>制作Usb系统启动盘</strong>
+- 将SD卡放入读卡器，将读卡器与Ubuntu服务器的USB连接，然后通过制卡脚本进行SD卡的制作
+- 软件包准备
+  - 制卡入口脚本  <a href="https://www.huaweicloud.com/ascend/resource/Software">make_sd_card.py</a>
+  - 制作SD卡操作系统脚本 <a href="https://www.huaweicloud.com/ascend/resource/Software">make_ubuntu_sd.sh</a>
+    - 请选择配套的CANN版本：20.1。
+    - “产品系列”请选择“Atlas 200 DK”。
+    - “产品型号”请选择“Atlas 200 DK 开发者套件”。
+  - <a href="http://releases.ubuntu.com/releases/">Ubuntu操作系统镜像包</a>
+    - ubuntu-18.04.xx-server-arm64.iso
+  - <a href="https://www.huaweicloud.com/ascend/resource/Software">开发者板驱动包</a>
+    - A200dk-npu-driver-{software version}-ubuntu18.04-aarch64-minirc.tar.gz
+    - 请选择配套的CANN版本：20.1。
+    - “产品系列”请选择“Atlas 200 DK”。
+    - “产品型号”请选择“Atlas 200 DK 开发者套件”。
+  - <a href="https://www.huaweicloud.com/ascend/cann-download">开发者板运行包</a>
+    - Ascend-cann-minirc_{software version}_ubuntu18.04-aarch64.zip
+    - 请从“CANN软件包”中选择对应版本的软件包下载。</p>
+<p><strong>操作步骤</strong>
+1. 请将SD卡放入读卡器，并将读卡器与Ubuntu服务器的USB接口连接。
+2. <code>sudo apt-get install qemu-user-static binfmt-support python3-yaml gcc-aarch64-linux-gnu g++-aarch64-linux-gnu</code>
+3. 把准备好的文件包放在/home/username/mksd目录下，<code>cd /home/username/mksd</code>
+4. 执行<code>fdisk -l</code>查看sd卡所在usb设备名称为“/dev/sda”，可通过插拔SD卡的方式确定设备名称。
+5. 运行SD制卡脚本“make_sd_card.py”。
+   1. <code>python3 make_sd_card.py local /dev/sda</code>
+   2. “local”表示使用本地方式制作SD卡。
+   3. “/dev/sda”为SD卡所在的USB设备名称。</p>
+<p><strong>遇到问题</strong>：制作sd卡不成功，经过反复协助华为方技术人员，发现华为官方提供的脚本文件<code>make_ubuntu_sd.sh</code>有bug。使用体验差。华为方解决问题周期长，这个问题用了两天才解决。后期应用过程中华为atlas平台也会存在一些bug，开发速度受限于华为方解决atlas产品bug的速度。遇到Atlas平台问题，只能在华为云论坛上进行提问，解决问题周期长。</p>
+<ol>
+<li>获得修正后的<code>make_ubuntu_sd.sh</code>脚本文件安装成功。</li>
+</ol>
+<p>Atlas200 开机启动成功，进入系统。\
+<strong>进行服务器ip设置</strong>：\
+ip:192.168.0.3\
+netmask:255.255.0.0\
+gateway:192.168.0.1\
+<strong>ssh登入Atlas200</strong>:\
+<code>ssh HwHiAiUser@192.168.0.2</code>\
+密码:\
+<code>Mind@123</code>\</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Ros%E5%BB%BA%E6%A8%A1/" class="btn btn-neutral float-right" title="Ros建模">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../ubuntu/" class="btn btn-neutral" title="Ubuntu"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -201,10 +199,6 @@ sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-pa
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../ubuntu/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../Ros%E5%BB%BA%E6%A8%A1/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
