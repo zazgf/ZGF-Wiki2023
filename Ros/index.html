@@ -119,7 +119,7 @@
               
                 <h3 id="msg">引用其他包的ｍｓｇ</h3>
 <p>首先cmakelists.txt</p>
-<pre><code>find_package(catkin REQUIRED COMPONENTS
+<pre><code class="language-css">find_package(catkin REQUIRED COMPONENTS
   message_generation
   pcl_ros
   roscpp
@@ -164,6 +164,34 @@ redep update
 <p>ｄebug时遇到路径问题,例如rosmsg路径，最好在文件属性里复制路径，不然容易出错</p>
 <pre><code class="language-python">import sys
 sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
+</code></pre>
+<h1 id="error-package-teleop_twist_keyboard-not-found">Error: package 'teleop_twist_keyboard' not found</h1>
+<p>You need to download the teleop_twist_keyboard from the github to your ~/catkin_ws/src folder. Steps:</p>
+<p>1) <code>cd ~/catkin_ws/src</code>
+2) <code>git clone https://github.com/ros-teleop/teleop_twist_keyboard</code></p>
+<h1 id="_1"></h1>
+<h1 id="spawn-service-failed-exiting">Spawn service failed. Exiting.</h1>
+<pre><code class="language-bash">export ROS_MASTER_URI=http://promote-OMEN-by-HP-Laptop-17-cb1xxx:11311/
+</code></pre>
+<h2 id="createquaternionfromrpy">createQuaternionFromRPY</h2>
+<p>static geometry_msgs::Quaternion createQuaternionFromRPY(double roll, double pitch, double yaw) {
+geometry_msgs::Quaternion q;
+double t0 = cos(yaw * 0.5);
+double t1 = sin(yaw * 0.5);
+double t2 = cos(roll * 0.5);
+double t3 = sin(roll * 0.5);
+double t4 = cos(pitch * 0.5);
+double t5 = sin(pitch * 0.5);
+q.w = t0 * t2 * t4 + t1 * t3 * t5;
+q.x = t0 * t3 * t4 - t1 * t2 * t5;
+q.y = t0 * t2 * t5 + t1 * t3 * t4;
+q.z = t1 * t2 * t4 - t0 * t3 * t5;
+return q;
+}</p>
+<h2 id="launch-rviz">launch 启动 rviz</h2>
+<pre><code class="language-bash">&lt;launch&gt;
+  &lt;node type=&quot;rviz&quot; name=&quot;rviz&quot; pkg=&quot;rviz&quot; args=&quot;-d $(find package_name)/rviz/config_file.rviz&quot; /&gt;
+&lt;/launch&gt;
 </code></pre>
               
             </div>

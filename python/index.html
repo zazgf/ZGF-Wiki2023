@@ -106,6 +106,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pip">pip 下载提速</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pilimageopencv">PIL.Image转换成OpenCV格式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#opencvpilimage">OpenCV转换成PIL.Image格式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#python">添加python路径</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -166,13 +172,13 @@
             <div class="section">
               
                 <h1 id="conda-the-following-packages-are-not-available-from-current-channels">conda The following packages are not available from current channels:</h1>
-<p><code>conda config --append channels conda-forge</code>\
-It tells conda to also look on the conda-forge channel when you search for packages. </p>
+<p><code>conda config --append channels conda-forge</code>
+It tells conda to also look on the conda-forge channel when you search for packages.</p>
 <h2 id="conda">conda 创建环境</h2>
-<p><code>conda create -n xception_net python==3.6.5 numpy==1.17.4 scipy==1.3.3 h5py==2.10.0 Keras==2.3.1 tensorflow-gpu==1.15.0</code> </p>
-<p>As the comment at the top indicates, the output of\
+<p><code>conda create -n xception_net python==3.6.5 numpy==1.17.4 scipy==1.3.3 h5py==2.10.0 Keras==2.3.1 tensorflow-gpu==1.15.0</code></p>
+<p>As the comment at the top indicates, the output of
 <code>conda list -e &gt; requirements.txt</code></p>
-<p>can be used to create a conda virtual environment with\
+<p>can be used to create a conda virtual environment with
 <code>conda create --name &lt;env&gt; --file requirements.txt</code></p>
 <h2 id="cudnn_status_internal_error-tensorflow">cudnn_status_internal_error tensorflow</h2>
 <p>You can try Allowing GPU memory growth with:</p>
@@ -200,10 +206,10 @@ except NameError:
     xrange = range
 </code></pre>
 <h2 id="tensorflow-valueerror-cannot-feed-value-of-shape-64-64-3-for-tensor-uplaceholder0-which-has-shape-64-64-3">TensorFlow ValueError: Cannot feed value of shape (64, 64, 3) for Tensor u'Placeholder:0', which has shape '(?, 64, 64, 3)'</h2>
-<p>image has a shape of (64,64,3).\
-Your input placeholder _x have a shape of (?, 64,64,3).\
-The problem is that you're feeding the placeholder with a value of a different shape.\
-You have to feed it with a value of (1, 64, 64, 3) = a batch of 1 image.\
+<p>image has a shape of (64,64,3).
+Your input placeholder _x have a shape of (?, 64,64,3).
+The problem is that you're feeding the placeholder with a value of a different shape.
+You have to feed it with a value of (1, 64, 64, 3) = a batch of 1 image.
 Just reshape your image value to a batch with size one.
 <code>np.expand_dims(img, axis=0)</code></p>
 <h2 id="opencv-conda">opencv conda</h2>
@@ -243,23 +249,29 @@ print (&quot;output array from input list : &quot;, out_arr)
 </code></pre>
 <h2 id="kitti">kitti 数据集下载</h2>
 <ol>
-<li>图片下载<blockquote>
+<li>图片下载</li>
+</ol>
+<blockquote>
 <p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip</p>
 </blockquote>
-</li>
-<li>点云下载<blockquote>
+<ol>
+<li>点云下载</li>
+</ol>
+<blockquote>
 <p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_velodyne.zip</p>
 </blockquote>
-</li>
-<li>标签下载<blockquote>
+<ol>
+<li>标签下载</li>
+</ol>
+<blockquote>
 <p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip</p>
 </blockquote>
-</li>
-<li>矫正文件下载<blockquote>
+<ol>
+<li>矫正文件下载</li>
+</ol>
+<blockquote>
 <p>https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip</p>
 </blockquote>
-</li>
-</ol>
 <h2 id="python-operator">python "//" operator</h2>
 <p>In python 2.x</p>
 <pre><code>&gt;&gt;&gt; 10/3
@@ -277,10 +289,11 @@ print (&quot;output array from input list : &quot;, out_arr)
 3
 </code></pre>
 <h2 id="python-super">python super()</h2>
-<p>内置的super()返回一个代理对象（超类的临时对象),该代理对象允许我们访问基类的方法。\
-在python中，super()有两个主要用例：
-* 让我们避免显示使用基类名称
-* 处理多重继承\</p>
+<p>内置的super()返回一个代理对象（超类的临时对象),该代理对象允许我们访问基类的方法。在python中，super()有两个主要用例：</p>
+<ul>
+<li>让我们避免显示使用基类名称</li>
+<li>处理多重继承\</li>
+</ul>
 <h4 id="1super">示例１：具有单继承的super()</h4>
 <p>在单继承的情况下，它允许我们通过引用基类super()</p>
 <pre><code>class Mammal(object):
@@ -298,7 +311,7 @@ d1 = Dog()
 <pre><code>Dog has four legs.
 Dog is a warm-blooded animal.
 </code></pre>
-<p>该super()内建返回一个代理对象，替代对象，可以通过委托调用基类的方法，这称为“间接"(使用引用基础对象的能力super())\
+<p>该super()内建返回一个代理对象，替代对象，可以通过委托调用基类的方法，这称为“间接"(使用引用基础对象的能力super())
 由于间接是在运行时计算的，因此我们可以在不同的时间使用不同的基类（如果需要）</p>
 <h4 id="2super">示例２：具有多重继承的super()</h4>
 <pre><code>class Animal:
@@ -375,16 +388,16 @@ deque(['name', 'age', 'DOB'])
 <li>rotate() :- This function rotates the deque by the number specified in arguments. If the number specified is negative, rotation occurs to left. Else rotation is to right.</li>
 </ul>
 <h3 id="numpyargmax">numpy.argmax</h3>
-<p>numpy.argmax(a, axis=None, out=None)[source]\
-Returns the indices of the maximum values along an axis.\
-<strong>parameters</strong>\
-- <strong>a: array_like</strong>,Input array.
-- <strong>axis:int, optional</strong>, By default, the index is into the flattened array, otherwise along the specified axis.
-- <strong>outarray, optional</strong>, If provided, the result will be inserted into this array. It should be of the appropriate shape and dtype.</p>
-<p><strong>Returns</strong>\
-<strong>index_array:ndarray of ints</strong>\
+<p>numpy.argmax(a, axis=None, out=None)[source]Returns the indices of the maximum values along an axis.<strong>parameters</strong>\</p>
+<ul>
+<li><strong>a: array_like</strong>,Input array.</li>
+<li><strong>axis:int, optional</strong>, By default, the index is into the flattened array, otherwise along the specified axis.</li>
+<li><strong>outarray, optional</strong>, If provided, the result will be inserted into this array. It should be of the appropriate shape and dtype.</li>
+</ul>
+<p><strong>Returns</strong>
+<strong>index_array:ndarray of ints</strong>
 Array of indices into the array. It has the same shape as a.shape with the dimension along axis removed.</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />\
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />
 <img alt="1" src="../images/Screenshot%202021-01-22%2013%3A53%3A11.png" /></p>
 <h3 id="python-randomsample">python random.sample()</h3>
 <p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A57%3A52.png" /></p>
@@ -410,15 +423,40 @@ A
 <h2 id="pip">pip 下载提速</h2>
 <p>国内源：
 新版ubuntu要求使用https源，要注意。
-清华：https://pypi.tuna.tsinghua.edu.cn/simple\
-阿里云：http://mirrors.aliyun.com/pypi/simple\
-中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple\
-华中理工大学：http://pypi.hustunique.com\
-山东理工大学：http://pypi.sdutlinux.org \
-豆瓣：http://pypi.douban.com/simple\
-临时使用：\
-可以在使用pip的时候加参数\
+清华：https://pypi.tuna.tsinghua.edu.cn/simple
+阿里云：http://mirrors.aliyun.com/pypi/simple
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple
+华中理工大学：http://pypi.hustunique.com
+山东理工大学：http://pypi.sdutlinux.org
+豆瓣：http://pypi.douban.com/simple
+临时使用：
+可以在使用pip的时候加参数
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple</p>
+<h2 id="pilimageopencv">PIL.Image转换成OpenCV格式</h2>
+<pre><code class="language-python">import cv2
+from PIL import Image
+import numpy
+
+image = Image.open(&quot;plane.jpg&quot;)
+image.show()
+img = cv2.cvtColor(numpy.asarray(image),cv2.COLOR_RGB2BGR)
+cv2.imshow(&quot;OpenCV&quot;,img)
+cv2.waitKey()
+</code></pre>
+<h2 id="opencvpilimage">OpenCV转换成PIL.Image格式</h2>
+<pre><code class="language-python">import cv2
+from PIL import Image
+import numpy
+
+img = cv2.imread(&quot;plane.jpg&quot;)
+cv2.imshow(&quot;OpenCV&quot;,img)
+image = Image.fromarray(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
+image.show()
+cv2.waitKey()
+</code></pre>
+<h2 id="python">添加python路径</h2>
+<pre><code class="language-bash">xport PYTHONPATH=$PYTHONPATH:/home/dell/Deep/DeepSpeech/training
+</code></pre>
               
             </div>
           </div>

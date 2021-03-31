@@ -54,24 +54,6 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">C++</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">得到当前时间</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#append">写入文件append</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#float-to-string">float to string</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#string-to-float">string to float</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">读取文档每一行内容</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">文件清空</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#split">字符串ｓｐｌｉｔ</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cmakeliststxt-boost">CMakeLists.txt 引入ｂｏｏｓｔ</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#explicit">explicit</a>
-    </li>
     </ul>
                     </li>
                 </ul>
@@ -137,19 +119,19 @@
               
                 <h1 id="string">string 前补零</h1>
 <blockquote>
-<p>#include <iostream>\
-#include <sstream>\
-#include <iomanip>\
-using namespace std;\
-void main()\
-{\
-  int num = 1024;\
-  stringstream ss;\
-  ss &lt;&lt; setw(5) &lt;&lt; setfill('0') &lt;&lt; num ;\
-  string str;\
-  ss &gt;&gt; str;         //将字符流传给 str\
-  //str = ss.str();  //也可以\
-  cout &lt;&lt; str;\
+<h1 id="include">include <iostream></h1>
+<h1 id="include_1">include <sstream></h1>
+<h1 id="include_2">include <iomanip></h1>
+<p>using namespace std;
+void main()
+{
+int num = 1024;
+stringstream ss;
+ss &lt;&lt; setw(5) &lt;&lt; setfill('0') &lt;&lt; num ;
+string str;
+ss &gt;&gt; str;         //将字符流传给 str
+//str = ss.str();  //也可以
+cout &lt;&lt; str;
 }</p>
 </blockquote>
 <h2 id="_1">得到当前时间</h2>
@@ -253,8 +235,8 @@ int main()
     return 0; 
 } 
 </code></pre>
-<p>程序输出　<code>Same</code>\
-在C ++中，如果类具有可以用单个参数调用的构造函数，则此构造函数将成为转换构造函数，因为这样的构造函数允许将单个参数转换为正在构造的类。\
+<p>程序输出　<code>Same</code>
+在C ++中，如果类具有可以用单个参数调用的构造函数，则此构造函数将成为转换构造函数，因为这样的构造函数允许将单个参数转换为正在构造的类。
 我们可以避免这种隐式转换，因为它们可能导致意外的结果。我们可以在explicit关键字的帮助下使构造函数显式化。\</p>
 <pre><code>using namespace std; 
 
@@ -285,6 +267,14 @@ int main()
        cout &lt;&lt; &quot;Not Same&quot;; 
      return 0; 
 } 
+</code></pre>
+<h2 id="use-eigen-in-cmake-program">Use Eigen in cmake program</h2>
+<pre><code>```bash
+find_package(Eigen3 3.3 REQUIRED)
+...
+include_directories(${EIGEN3_INCLUDE_DIR})
+...
+target_link_libraries(example Eigen3::Eigen)
 </code></pre>
               
             </div>

@@ -82,6 +82,14 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#vscode-python-ros-debug">vscode python ros debug</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tilix-doesnt-open-in-the-folder-from-where-it-is-split">Tilix doesnt open in the folder from where it is split</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sudo-dist-upgrade-cuda">sudo dist-upgrade 是毁灭性的，会升级cuda</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github-init">github init</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">命令行打开文件管理器</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -190,6 +198,25 @@
 <pre><code class="language-python">import sys
 sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
 </code></pre>
+<h2 id="tilix-doesnt-open-in-the-folder-from-where-it-is-split">Tilix doesnt open in the folder from where it is split</h2>
+<p>Update <code>~.bashrc</code> (or <code>~.zshrc</code> if you are using zsh) to execute vte.sh directly, this involves adding the following line at the end of the file.</p>
+<pre><code>if [[ $TILIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
+</code></pre>
+<p>On Ubuntu (18.04), a symlink is probably missing. You can create it with:</p>
+<pre><code>ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+</code></pre>
+<h2 id="sudo-dist-upgrade-cuda">sudo dist-upgrade 是毁灭性的，会升级cuda</h2>
+<h2 id="github-init">github init</h2>
+<pre><code class="language-bash">git config --global user.email &quot;you@example.com&quot;
+git config --global user.name &quot;Your Name&quot;
+git add .
+git commit -m &quot;1&quot;
+git push
+</code></pre>
+<h2 id="_1">命令行打开文件管理器</h2>
+<p><code>nautilus --browser ~/文档</code></p>
               
             </div>
           </div>
