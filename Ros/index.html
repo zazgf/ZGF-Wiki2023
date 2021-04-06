@@ -117,7 +117,7 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="msg">引用其他包的ｍｓｇ</h3>
+                <h2 id="msg">引用其他包的ｍｓｇ</h2>
 <p>首先cmakelists.txt</p>
 <pre><code class="language-css">find_package(catkin REQUIRED COMPONENTS
   message_generation
@@ -144,7 +144,7 @@ wjj_gencpp)
 <p>最后使用</p>
 <pre><code>#include &lt;wjj/SaeJ1939.h&gt;
 </code></pre>
-<h1 id="sudo-rosdep-init-rosdep-update">sudo rosdep init &amp;rosdep update失败</h1>
+<h2 id="sudo-rosdep-init-rosdep-update">sudo rosdep init &amp;rosdep update失败</h2>
 <p>该解决方案是针对由于以下两个无法正常访问，但可以ping通，于是修改hosts文件，加入以下两个网址的IP地址实现访问。</p>
 <p>'sudo gedit /etc/hosts'</p>
 <p>添加</p>
@@ -156,7 +156,7 @@ wjj_gencpp)
 <pre><code class="language-bash">sudo rosdep init
 redep update
 </code></pre>
-<h1 id="vscode-python-ros-debug">vscode python ros debug</h1>
+<h2 id="vscode-python-ros-debug">vscode python ros debug</h2>
 <p>首先</p>
 <pre><code class="language-bash">catkin_make -DCMAKE_BUILD_TYPE=DEBUG
 </code></pre>
@@ -165,12 +165,11 @@ redep update
 <pre><code class="language-python">import sys
 sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
 </code></pre>
-<h1 id="error-package-teleop_twist_keyboard-not-found">Error: package 'teleop_twist_keyboard' not found</h1>
+<h2 id="error-package-teleop_twist_keyboard-not-found">Error: package 'teleop_twist_keyboard' not found</h2>
 <p>You need to download the teleop_twist_keyboard from the github to your ~/catkin_ws/src folder. Steps:</p>
 <p>1) <code>cd ~/catkin_ws/src</code>
 2) <code>git clone https://github.com/ros-teleop/teleop_twist_keyboard</code></p>
-<h1 id="_1"></h1>
-<h1 id="spawn-service-failed-exiting">Spawn service failed. Exiting.</h1>
+<h2 id="spawn-service-failed-exiting">Spawn service failed. Exiting.</h2>
 <pre><code class="language-bash">export ROS_MASTER_URI=http://promote-OMEN-by-HP-Laptop-17-cb1xxx:11311/
 </code></pre>
 <h2 id="createquaternionfromrpy">createQuaternionFromRPY</h2>
@@ -192,6 +191,66 @@ return q;
 <pre><code class="language-bash">&lt;launch&gt;
   &lt;node type=&quot;rviz&quot; name=&quot;rviz&quot; pkg=&quot;rviz&quot; args=&quot;-d $(find package_name)/rviz/config_file.rviz&quot; /&gt;
 &lt;/launch&gt;
+</code></pre>
+<h2 id="rosdep">rosdep失败</h2>
+<p>首先<code>sudo rosdep init</code></p>
+<p>这一步会在<code>/etc/ros/rosdep/sources.list.d/</code>目录下新建<code>20-default.list</code></p>
+<pre><code class="language-bash"># os-specific listings first
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+
+# generic
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
+
+# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+
+</code></pre>
+<p>我们需要依次下载<code>osx-homebrew.yaml</code>等这几个<code>yaml</code>文件,<a href="https://d.serctl.com/">下载工具</a>, 存放在/home/promote/Downloads目录下</p>
+<p>然后更改<code>20-default.list</code>为</p>
+<pre><code class="language-bash"># os-specific listings first
+yaml file:///home/promote/Downloads/2021-04-01-14-01-21-master-osx-homebrew.yaml osx
+
+# generic
+yaml file:///home/promote/Downloads/2021-04-01-14-02-25-master-base.yaml
+yaml file:///home/promote/Downloads/2021-04-01-14-05-35-master-python.yaml
+yaml file:///home/promote/Downloads/2021-04-01-14-06-50-master-ruby.yaml
+gbpdistro file:///home/promote/Downloads/2021-04-01-14-07-41-master-fuerte.yaml fuerte
+
+# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+
+</code></pre>
+<p>还需要使用<code>mate-search-tool</code> 在<code>/usr/lib/</code>目录下找到包含<code>DEFAULT_INDEX_URL</code> 的<code>py</code>文件。<code>/usr/lib/python2.7/dist-packages/rosdistro/__init__.py</code></p>
+<p>找到代码行</p>
+<pre><code class="language-python">DEFAULT_INDEX_URL = 'https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
+</code></pre>
+<p>同样我们下载<code>index-v4.yaml</code>文件至<code>/home/promote/Downloads</code>，把此行代码改为</p>
+<pre><code class="language-python"># DEFAULT_INDEX_URL = 'https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
+DEFAULT_INDEX_URL = 'file:/home/promote/Downloads/2021-04-01-14-51-42-rosdistro-index-v4.yaml'
+
+</code></pre>
+<p>这时再运行<code>rosdep update</code></p>
+<p>会提示<code>No such file or directory: '/home/promote/Downloads/dashing/distribution.yaml'</code></p>
+<p>我们需要下载<code>https://raw.githubusercontent.com/ros/rosdistro/master/dashing/distribution.yaml</code></p>
+<p>在<code>/home/promote/Downloads</code>目录下新建文件夹<code>dashing</code>，并把下载的<code>yaml</code>文件放入<code>dashing</code>文件夹下重命名为<code>distribution.yaml</code></p>
+<p>重复上一步，依次下载完<code>dashing, kinetic, melodic, rolling, noetic, foxy</code>等</p>
+<p>再运行<code>rosdep update</code>就成功了</p>
+<h2 id="ros-node">ros node 打包</h2>
+<h3 id="_1">安装依赖</h3>
+<p>Install <a href="http://ros-infrastructure.github.io/bloom/">bloom</a>:</p>
+<pre><code class="language-shell">sudo apt-get install python-bloom
+</code></pre>
+<p>or (recommended)</p>
+<pre><code class="language-shell">sudo pip install -U bloom
+</code></pre>
+<p>Install fakeroot:</p>
+<pre><code class="language-shell">sudo apt-get install fakeroot
+</code></pre>
+<h3 id="_2">准备</h3>
+<p>To make a debian folder structure from the ROS package you must cd into the package to be in the same folder where <code>package.xml</code> file is.</p>
+<h3 id="debian">生成debian包</h3>
+<pre><code class="language-bash">bloom-generate rosdebian --os-name ubuntu --os-version trusty --ros-distro indigo
 </code></pre>
               
             </div>

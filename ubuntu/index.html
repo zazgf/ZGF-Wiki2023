@@ -62,34 +62,6 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Ubuntu</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#ubuntu1804">ubuntu18.04 网口创建网络共享</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#xvfb-ssh">xvfb　ssh</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#x-forward">x forward</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vscode-remote-ssh">vscode 插件　Remote-ssh</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github">github下载提速</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github_1">github 下载工具</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#httpswwwpythonorgftp">https://www.python.org/ftp 下载慢</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pip">pip 下载东西慢</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mkdocs">mkdocs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vscode-python-ros-debug">vscode python ros debug</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tilix-doesnt-open-in-the-folder-from-where-it-is-split">Tilix doesnt open in the folder from where it is split</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#sudo-dist-upgrade-cuda">sudo dist-upgrade 是毁灭性的，会升级cuda</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github-init">github init</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_1">命令行打开文件管理器</a>
-    </li>
     </ul>
                     </li>
                 </ul>
@@ -145,7 +117,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mac">更改mac地址</h1>
+                <h2 id="mac">****更改mac地址</h2>
 <ul>
 <li>使用ifconfig　查看网口</li>
 <li>安装macmanager
@@ -217,6 +189,114 @@ git push
 </code></pre>
 <h2 id="_1">命令行打开文件管理器</h2>
 <p><code>nautilus --browser ~/文档</code></p>
+<h2 id="_2">安装汉语输入法</h2>
+<p>先在设置里设置language里添加Chinese</p>
+<pre><code class="language-bash">sudo apt-get install ibus-libpinyin ibus-clutter
+</code></pre>
+<h2 id="docker">Docker创建容器</h2>
+<h3 id="ubuntu1804_1">构建ubuntu18.04映像</h3>
+<h4 id="_3">安装依赖</h4>
+<pre><code class="language-bash">sudo apt-get install debootstrap
+sudo apt install docker.io
+sudo chmod 666 /var/run/docker.sock
+</code></pre>
+<h4 id="ubuntu-1804">创建ubuntu 18.04 镜像</h4>
+<pre><code class="language-bash">sudo debootstrap bionic bionic &gt; /dev/null
+sudo tar -C bionic -c . | docker import - bionic/smart_eye
+</code></pre>
+<h4 id="_4">测试</h4>
+<pre><code class="language-bash">docker run bionic cat /etc/lsb-release
+</code></pre>
+<p>查看镜像</p>
+<pre><code class="language-bash">docker images
+</code></pre>
+<p>删除镜像</p>
+<pre><code class="language-bash">docker rmi [IMAGE ID]
+</code></pre>
+<p>查看容器运行情况</p>
+<pre><code class="language-bash">sudo docker ps -a
+</code></pre>
+<p>退出容器</p>
+<pre><code class="language-bash">sudo docker stop 容器id
+</code></pre>
+<p>删除容器</p>
+<pre><code class="language-bash">sudo docker rm 容器id
+</code></pre>
+<p>启动镜像</p>
+<pre><code class="language-bash">docker run -it bionic/smart_eye  /bin/bash
+</code></pre>
+<p>退出镜像</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<p>文件传递</p>
+<p>从本地至docker</p>
+<pre><code class="language-bash">docker cp FILE_PATH 容器ID:/root
+</code></pre>
+<p>从docker 至本地</p>
+<pre><code class="language-bash">docker cp 容器ID:/root/data.tar /home/user
+</code></pre>
+<h4 id="docker-image">更改docker image存放路径</h4>
+<pre><code class="language-bash">sudo service docker stop
+sudo touch /etc/docker/daemon.json
+</code></pre>
+<p>daemon.json</p>
+<pre><code class="language-json">{
+    &quot;data-root&quot;:&quot;/home/pmjd/docker&quot;
+}
+</code></pre>
+<pre><code class="language-bash">sudo service docker start
+</code></pre>
+<h2 id="dockerapt-sourcelist">Docker更新apt source.list</h2>
+<pre><code class="language-bash">sudo nano /etc/apt/sources.list
+</code></pre>
+<p>添加</p>
+<pre><code class="language-bash">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+</code></pre>
+<h2 id="docker_1">Docker 启动容器</h2>
+<pre><code class="language-bash">docker start 容器ID
+docker attach 容器ID
+</code></pre>
+<p>导出容器快照</p>
+<pre><code class="language-bash">docker export c91c33f28594 &gt; smart_eye_docker.tar
+</code></pre>
+<p>容器快照导入为镜像</p>
+<pre><code class="language-bash">cat smart_eye_docker.tar | docker import - test/smart_eye:v1
+</code></pre>
+<p>再保存此镜像</p>
+<pre><code class="language-bash"> docker save -o smart_eye_image_docker.tar test/smart_eye
+</code></pre>
+<p>再加载镜像</p>
+<pre><code class="language-bash">docker load --input samrt_eye_image_docker.tar
+</code></pre>
+<p>启动</p>
+<pre><code class="language-bash">docker run -it test/smart_eye:v1 /bin/bash
+</code></pre>
+<p>docker 启动bash</p>
+<pre><code class="language-bash">docker start c91c33f28594
+docker exec -it c91c33f28594 /home/run.sh
+docker exec mycontainer /bin/sh -c &quot;cmd1;cmd2;...;cmdn&quot;
+</code></pre>
+<p>docker bash file example</p>
+<pre><code class="language-bash">#!/bin/sh
+docker run -it --net host --add-host in_release_docker:127.0.0.1 --add-host localhost:127.0.0.1 --hostname in_release_docker --rm promote/smart_eye:v1 /bin/bash -c &quot;/home/run.sh&quot;
+</code></pre>
+<p>启动快捷方式</p>
+<p>1.desktop</p>
+<pre><code class="language-bash">[Desktop Entry]
+Name=Smart_eye
+GenericName=3D modeler
+Keywords=3d;cg;modeling;animation;painting;sculpting;texturing;video editing;video tracking;rendering;render engine;cycles;game engine;python;
+Exec=/bin/bash -c '/home/promote/run.sh'
+#Icon=/home/pmjd/Disk/blender-2.90.1-linux64/blender.svg
+Terminal=true
+Type=Application
+Categories=Graphics;3DGraphics;
+MimeType=application/x-blender;
+</code></pre>
               
             </div>
           </div>
