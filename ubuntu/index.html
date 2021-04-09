@@ -301,6 +301,49 @@ MimeType=application/x-blender;
 <pre><code class="language-bash">xhost +
 -e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X11-unix
 </code></pre>
+<h2 id="nvidia-container-toolkit">安装NVIDIA Container Toolkit</h2>
+<pre><code class="language-bash">distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   &amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   &amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+</code></pre>
+<pre><code class="language-bash">curl -s -L https://nvidia.github.io/nvidia-container-runtime/experimental/$distribution/nvidia-container-runtime.list | sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+</code></pre>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+</code></pre>
+<p>这个时候<code>/etc/docker/daemon.json</code> 内容修改为</p>
+<pre><code class="language-bash">{
+    &quot;runtimes&quot;: {
+        &quot;nvidia&quot;: {
+            &quot;path&quot;: &quot;nvidia-container-runtime&quot;,
+            &quot;runtimeArgs&quot;: []
+        }
+    },
+    &quot;data-root&quot;:&quot;/home/pmjd/docker&quot;
+}
+</code></pre>
+<p>重启docker</p>
+<pre><code class="language-bash">sudo systemctl restart docker
+</code></pre>
+<p>下载运行：</p>
+<pre><code class="language-bash">sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+sudo docker run --rm --gpus all nvidia/cuda:10.1-base nvidia-smi
+</code></pre>
+<p>下载运行tensorflow:</p>
+<pre><code class="language-bash">docker run --gpus all --runtime=nvidia -it tensorflow/tensorflow:2.3.0-gpu bash
+</code></pre>
+<p>docker配置网络</p>
+<pre><code class="language-bash">--net=host 
+</code></pre>
+<p>docker 支持麦克,汉语</p>
+<pre><code class="language-bash">docker run -it --volume=/run/user/1000/pulse:/run/user/1000/pulse --user promote --gpus all --runtime=nvidia --name=xiaomeng -e LANG=C.UTF-8 --device /dev/snd promote/xiaomeng:v1.6 /bin/bash
+</code></pre>
+<h2 id="nano">Nano 删除行</h2>
+<pre><code class="language-bash">ctrl+k
+</code></pre>
+<p>Nano显示行号</p>
+<pre><code class="language-bash">alt+shift+3
+</code></pre>
               
             </div>
           </div>
