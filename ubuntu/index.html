@@ -344,6 +344,46 @@ sudo docker run --rm --gpus all nvidia/cuda:10.1-base nvidia-smi
 <p>Nano显示行号</p>
 <pre><code class="language-bash">alt+shift+3
 </code></pre>
+<h3 id="python">修改默认python版本</h3>
+<p>删除/usr/bin 下的Python链接</p>
+<pre><code class="language-bash">sudo rm /usr/bin/python
+</code></pre>
+<p>用下面命令建立新的链接</p>
+<pre><code class="language-bash">sudo ln -s /usr/bin/python3.6 /usr/bin/python
+</code></pre>
+<p>用下面的命令还原2版本</p>
+<pre><code class="language-bash">sudo ln -s /usr/bin/python2.7 /usr/bin/python
+</code></pre>
+<p>更科学的做法是：</p>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+
+sudo update-alternatives --config python 选择要使用的版本，回车，搞定
+</code></pre>
+<h3 id="pip_1">设置默认pip版本</h3>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip2 1
+
+sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 2
+
+sudo update-alternatives --config pip
+</code></pre>
+<h3 id="pip_2">pip升级</h3>
+<pre><code class="language-bash">sudo pip install --upgrade pip
+</code></pre>
+<h3 id="_5">桌面快捷方式</h3>
+<pre><code class="language-bash">[Desktop Entry]
+Name=smart_view
+GenericName=3D modeler
+Keywords=python;
+Exec=/bin/bash -c 'source /opt/ros/melodic/setup.bash;rosrun image_view image_view image:=/smart_eye_view'
+#Icon=/home/pmjd/Disk/blender-2.90.1-linux64/blender.svg
+Terminal=false
+Type=Application
+Categories=Graphics;3DGraphics;
+MimeType=application/x-blender;
+Name[en_US]=smart_view
+</code></pre>
               
             </div>
           </div>
