@@ -1,23 +1,25 @@
 # string 前补零
 
-> #include <iostream>
-> #include <sstream>
-> #include <iomanip>
-> using namespace std;
-> void main()
-> {
-> int num = 1024;
-> stringstream ss;
-> ss << setw(5) << setfill('0') << num ;
-> string str;
-> ss >> str;         //将字符流传给 str
-> //str = ss.str();  //也可以
-> cout << str;
-> }
+```cpp
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+using namespace std;
+void main()
+{
+int num = 1024;
+stringstream ss;
+ss << setw(5) << setfill('0') << num ;
+string str;
+ss >> str;         //将字符流传给 str
+//str = ss.str();  //也可以
+cout << str;
+}
+```
 
 ## 得到当前时间
 
-```
+```cpp
 #include <iostream>
 #include <ctime>
 
@@ -41,7 +43,7 @@ int main ()
 
 ## 写入文件append
 
-```
+```cpp
 #include <fstream>
 
 int main() {  
@@ -63,7 +65,7 @@ int main() {
 
 ## 读取文档每一行内容
 
-```
+```cpp
 fstream newfile;
 newfile.open(learning_file,ios::in);
 if (newfile.is_open())
@@ -87,7 +89,7 @@ newfile.close();
 
 ## 字符串ｓｐｌｉｔ
 
-```
+```cpp
 #include <boost/algorithm/string.hpp>
 
 std::string text = "Let me split this into words";
@@ -107,7 +109,7 @@ target_link_libraries(learning ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 ## explicit
 
-```
+```cpp
 #include <iostream> 
 
 using namespace std; 
@@ -145,7 +147,7 @@ int main()
 在C ++中，如果类具有可以用单个参数调用的构造函数，则此构造函数将成为转换构造函数，因为这样的构造函数允许将单个参数转换为正在构造的类。
 我们可以避免这种隐式转换，因为它们可能导致意外的结果。我们可以在explicit关键字的帮助下使构造函数显式化。\
 
-```
+```cpp
 using namespace std; 
   
 class Complex 
