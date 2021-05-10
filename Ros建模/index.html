@@ -70,66 +70,6 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Ros建模</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#create-your-own-urdf-file">Create your own urdf file</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#description-in-this-tutorial-you-start-creating-your-own-urdf-robot-description-file">description: in this tutorial you start creating your own urdf robot description file.</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#add-the-dimensions">Add the dimensions</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#completing-the-kinematics">Completing the Kinematics</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#parse-a-urdf-file">Parse a urdf file</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#description-this-tutorial-teachs-you-how-to-use-the-urdf-parser">Description: This tutorial teachs you how to use the urdf parser</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reading-a-urdf-file">Reading a URDF file</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#using-the-robot-state-publisher-on-your-own-robot">Using the robot state publisher on your own robot</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#description-this-tutorial-explains-how-you-can-publish-the-state-of-your-robot-to-tf-using-the-robot-state-publisher">Description: This tutorial explains how you can publish the state of your robot to tf, using the robot state publisher.</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#1running-as-a-ros-node">1.Running as a ROS node</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#11-robot_state_pubisher">1.1 robot_state_pubisher</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#12-example-launch-file">1.2 Example launch file</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2runing-as-a-library">2.Runing as a library</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#using-urdf-with-robot_state_publisher">Using urdf with robot_state_publisher</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#create-the-urdf-file">Create the URDF File</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#publishing-the-state">Publishing the State</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#launch-file">Launch File</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#viewing-the-reult">Viewing the Reult</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#building-a-visual-robot-model-with-urdf-from-scratch">Building a Visual Robot Model with URDF from Scratch</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#descriptionlearn-how-to-build-a-visual-model-of-a-robot-that-you-can-view-in-rviz">Description:learn how to build a visual model of a robot that you can view in rviz</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#1one-shape">1.One Shape</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#gazebo">Gazebo 安装</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ros-link-gazebo">ros link 提示没有包含在gazebo</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#denavit-hartenberg-parameters">Denavit-Hartenberg parameters</a>
-    </li>
     </ul>
                     </li>
                 </ul>
@@ -143,6 +83,10 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
                     </li>
                 </ul>
       </div>
@@ -177,15 +121,15 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ros">Ros建模</h1>
+                <h2 id="ros">Ros建模</h2>
 <p><a href="http://wiki.ros.org/robot_model/Tutorials">robot_model</a></p>
 <h2 id="create-your-own-urdf-file">Create your own urdf file</h2>
 <h3 id="description-in-this-tutorial-you-start-creating-your-own-urdf-robot-description-file">description: in this tutorial you start creating your own urdf robot description file.</h3>
 <ul>
-<li>Create the tree structure\
+<li>Create the tree structure
   in this tutorial we will create the URDF description of the "robot" shown in the image below.
-<img alt="image" src="../images/link.png" />\
-The robot in the image is a tree structure.Let's start very simple,and create a description of that tree structure,without worrying about the dimensions etc.Fire up your favorite text editor,and create a file called my_robot.urdf:</li>
+  <img alt="image" src="../images/link.png" />
+  The robot in the image is a tree structure.Let's start very simple,and create a description of that tree structure,without worrying about the dimensions etc.Fire up your favorite text editor,and create a file called my_robot.urdf:</li>
 </ul>
 <pre><code>   1 &lt;robot name=&quot;test_robot&quot;&gt;
    2   &lt;link name=&quot;link1&quot; /&gt;
@@ -209,7 +153,7 @@ The robot in the image is a tree structure.Let's start very simple,and create a 
   20   &lt;/joint&gt;
   21 &lt;/robot&gt;
 </code></pre>
-<p>So,just creating the structure is very simple.Now let's see if can get this urdf file parsed.There is a simple command line tool that will parse a urdf file for you, and tell you if the syntax is correct.\
+<p>So,just creating the structure is very simple.Now let's see if can get this urdf file parsed.There is a simple command line tool that will parse a urdf file for you, and tell you if the syntax is correct.
 you might need to install, urdfdom as an upstream,ROS independent package:\</p>
 <pre><code>sudo apt-get install liburdfdom-tools
 </code></pre>
@@ -218,7 +162,7 @@ you might need to install, urdfdom as an upstream,ROS independent package:\</p>
 check_urdf my_robot.urdf   
 </code></pre>
 <h3 id="add-the-dimensions">Add the dimensions</h3>
-<p>So now that we have the basic tree structure.let's add the appropriate dimensions.As you notice in the robot image,the reference frame of each link (in green) is located at the bottom of the link.and is identical to the reference frame of the joint.So,to add dimensions to our tree,all we habe to specify is the offset from a link to the joint(s) of its children.To accomplish this,we will add the field<origin> to each of the joints.\
+<p>So now that we have the basic tree structure.let's add the appropriate dimensions.As you notice in the robot image,the reference frame of each link (in green) is located at the bottom of the link.and is identical to the reference frame of the joint.So,to add dimensions to our tree,all we habe to specify is the offset from a link to the joint(s) of its children.To accomplish this,we will add the field<origin> to each of the joints.
 Let's look at the second joint.Joint2 is offset in the Y-direction from link1,a little offset in the negative X-direction from link1, and it is rotated 90 degrees around the Z-axis.So,we need to add the following<origin> element:</p>
 <pre><code>&lt;origin xyz=&quot;-2 5 0&quot; rpy=&quot;0 0 1.57&quot;/&gt;
 </code></pre>
@@ -250,7 +194,7 @@ Let's look at the second joint.Joint2 is offset in the Y-direction from link1,a 
   25 &lt;/robot&gt;
 </code></pre>
 <h3 id="completing-the-kinematics">Completing the Kinematics</h3>
-<p>What we didn't specify yet is around which axis the points rotate.Once we add that,we actually have a full kinematic model of this robot!All we need to do is add the <axis> element to each joint.The axis specifies the rotational axis in the local frame.\
+<p>What we didn't specify yet is around which axis the points rotate.Once we add that,we actually have a full kinematic model of this robot!All we need to do is add the <axis> element to each joint.The axis specifies the rotational axis in the local frame.
 So, If you look at joint2, you see it rotates around the positive Y-axis.So, simple add the following xml to the joint element:</p>
 <pre><code>&lt;axis xyz=&quot;0 1 0&quot; /&gt;
 </code></pre>
@@ -300,7 +244,7 @@ If we add this to all the joints of the robot, our URDF looks like this:</p>
 <h2 id="parse-a-urdf-file">Parse a urdf file</h2>
 <h3 id="description-this-tutorial-teachs-you-how-to-use-the-urdf-parser">Description: This tutorial teachs you how to use the urdf parser</h3>
 <h3 id="reading-a-urdf-file">Reading a URDF file</h3>
-<p>This tutorial starts off where the previous one ended.You should still habe your my_robot.urdf file with a description of the robot shown before below.\
+<p>This tutorial starts off where the previous one ended.You should still habe your my_robot.urdf file with a description of the robot shown before below.
 Let's first create a package with a dependency on the urdf parser in our snadbox:</p>
 <pre><code>cd ~/catkin_ws/src
 catkin_create_pkg robot_description urdf roscpp rospy tf sensor_msgs std_msgs
@@ -321,8 +265,8 @@ cd urdf
 </code></pre>
 <h2 id="using-the-robot-state-publisher-on-your-own-robot">Using the robot state publisher on your own robot</h2>
 <h3 id="description-this-tutorial-explains-how-you-can-publish-the-state-of-your-robot-to-tf-using-the-robot-state-publisher">Description: This tutorial explains how you can publish the state of your robot to tf, using the robot state publisher.</h3>
-<p>When you are working with a robot that has many relevant frames.it becomes quite a task to publish them all to tf.The robot state publisher is a tool that will do this job for you.\
-<img alt="frame2" src="../images/frames2.png" />\
+<p>When you are working with a robot that has many relevant frames.it becomes quite a task to publish them all to tf.The robot state publisher is a tool that will do this job for you.
+<img alt="frame2" src="../images/frames2.png" />
 The robot state publisher helps you to broadcast the state of your robot to the tf transform library.The robot state publisher internally has a kinematic运动学 model of the robot; so given the joint positions of the robot,the robot state publisher can compute and broadcast the 3D pose of each link in the robot.
 You can use the robot state publisher as a standalone ROS node or as a library:</p>
 <h3 id="1running-as-a-ros-node">1.Running as a ROS node</h3>
@@ -340,8 +284,7 @@ You can use the robot state publisher as a standalone ROS node or as a library:<
 <p>joint position information</p>
 </blockquote>
 <h5 id="112-parameters">1.1.2 Parameters</h5>
-<p>robot_description(urdf map)\
-tf_prefix(string)</p>
+<p>robot_description(urdf map)tf_prefix(string)</p>
 <blockquote>
 <p>Set the tf prefix for namespace-aware publishing of transform
 publish_frequency(double)
@@ -358,9 +301,9 @@ Publish frequency of state publisher,default:50Hz</p>
 </code></pre>
 <h3 id="2runing-as-a-library">2.Runing as a library</h3>
 <p>Advanced users can also run the robot state publisher as a library,from within their own c++ code.After you include the header:
-<code>#include &lt;robot_state_publisher/robot_state_publisher.h&gt;</code>\
-all you need is the constructor which takes in a KDL tree\
-<code>RobotStatePublisher(const KDL::Tree&amp; tree);</code>\
+<code>#include &lt;robot_state_publisher/robot_state_publisher.h&gt;</code>
+all you need is the constructor which takes in a KDL tree
+<code>RobotStatePublisher(const KDL::Tree&amp; tree);</code>
 and now, everytime you want to publish the state of your robot, you call the publishTransforms functions:</p>
 <pre><code>//Publish moving joints
 void publishTransfroms(const std::map&lt;std::string, double&gt;&amp; joint_positions,
@@ -472,7 +415,7 @@ target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
 <blockquote>
 <p>rosrun rviz rviz</p>
 </blockquote>
-<p>Choose odom as your fixed frame (under Global Options). Then choose "Add Display" and add a Robot Model Display and a TF Display\
+<p>Choose odom as your fixed frame (under Global Options). Then choose "Add Display" and add a Robot Model Display and a TF Display
 <img alt="image" src="../images/Screenshot%20from%202020-11-03%2008-14-44.png" /></p>
 <h2 id="building-a-visual-robot-model-with-urdf-from-scratch">Building a Visual Robot Model with URDF from Scratch</h2>
 <h3 id="descriptionlearn-how-to-build-a-visual-model-of-a-robot-that-you-can-view-in-rviz">Description:learn how to build a visual model of a robot that you can view in rviz</h3>
@@ -501,7 +444,7 @@ target_link_libraries(state_publisher ${catkin_LIBRARIES})</p>
 <h2 id="denavit-hartenberg-parameters">Denavit-Hartenberg parameters</h2>
 <p>In mechanical engineering, the Denavit-Hartenberg parameters(also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain or robot manipulator.</p>
 <p>Jacques Denavit and Richard Hartenberg introduced this convention in 1955 in order to standardlize the coordinate frames for spatial linkages.</p>
-<p><strong>Denavit-Hartenberg convention</strong>\
+<p><strong>Denavit-Hartenberg convention</strong>
 A commonly used convention for selecting frames of reference in robotics applications is Denavit and Hartenberg(D-H) convention. In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint,[Z], and the second is associated with the link,[X]. The coordinate transformations along a serial robot consisting of n links from the kinematics equations of the robot.</p>
 <p><img alt="1" src="../images/Screenshot%202021-02-03%2011%3A50%3A47.png" /></p>
 <p>where [T] is the transformation locating the end-link.</p>

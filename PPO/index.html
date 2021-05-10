@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ros openai - ZGF Wiki</title>
+  <title>PPO - ZGF Wiki</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ros openai";
-    var mkdocs_page_input_path = "ros openai.md";
+    var mkdocs_page_name = "PPO";
+    var mkdocs_page_input_path = "PPO.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -108,7 +108,7 @@
     
       
     
-    <li>Ros openai</li>
+    <li>PPO</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -119,47 +119,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="ubuntu18-melodic">ubuntu18 melodic</h2>
-<blockquote>
-<p>sudo apt-get install
-python-pip python3-vcstool python3-pyqt4
-pyqt5-dev-tools
-libbluetooth-dev libspnav-dev
-pyqt4-dev-tools libcwiid-dev
-cmake gcc g++ qt4-qmake libqt4-dev
-libusb-dev libftdi-dev
-python3-defusedxml python3-vcstool
-ros-melodic-octomap-msgs
-ros-melodic-joy
-ros-melodic-geodesy
-ros-melodic-octomap-ros
-ros-melodic-control-toolbox
-ros-melodic-pluginlib
-ros-melodic-trajectory-msgs
-ros-melodic-control-msgs
-ros-melodic-std-srvs
-ros-melodic-nodelet
-ros-melodic-urdf
-ros-melodic-rviz
-ros-melodic-kdl-conversions
-ros-melodic-eigen-conversions
-ros-melodic-tf2-sensor-msgs
-ros-melodic-pcl-ros
-ros-melodic-navigation
-ros-melodic-sophus</p>
-<p>sudo pip install gym
-sudo apt-get install python-skimage
-sudo pip install h5py
-pip install tensorflow-gpu (if you have a gpu if not then just pip install tensorflow)
-sudo pip install keras</p>
-<p>cd ~
-git clone https://github.com/erlerobot/gym-gazebo
-cd gym-gazebo
-sudo pip install -e .</p>
-<p>cd gym-gazebo/gym_gazebo/envs/installation
-bash setup_melodic.bash</p>
-</blockquote>
-<h3 id="tensorflow">Tensorflow 算法功能</h3>
+                <h2 id="tensorflow">Tensorflow 算法功能</h2>
 <ol>
 <li>记录仪设置</li>
 <li>随机种子设置</li>
@@ -199,12 +159,10 @@ bash setup_melodic.bash</p>
 <li>PPO的Spinningup实现支持与MPI并行化</li>
 </ul>
 <p>PPO更新策略公式</p>
-<p>$$
-\theta_{k+1}=arg\underset{\theta}{max}\underset{s,\alpha\sim\pi\theta_k}{E}[L(s,\alpha,\theta_k,\theta)]</p>
-<p>$$</p>
+<p><img alt="" src="https://latex.codecogs.com/svg.latex?\Large&space;\theta_{k+1}=arg\underset{\theta}{max}\underset{s,\alpha\sim\pi\theta_k}{E}[L(s,\alpha,\theta_k,\theta)]" /></p>
 <p>通常采取多个步骤（通常是小批量）SGD来最大化目标</p>
 <p>$$
-L(s,\alpha,\theta_k,\theta)=min(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alpha|s)}A^{\pi\theta_k}(s,\alpha),clip(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alpha|s)},1-\epsilon,1+\epsilon)A^{\pi\theta_k}(s,\alpha))</p>
+L(s,\alpha,\theta_k,\theta)=min\left(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alpha|s)}A^{\pi\theta_k}(s,\alpha),clip(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alpha|s)},1-\epsilon,1+\epsilon)A^{\pi\theta_k}(s,\alpha)\right)</p>
 <p>$$</p>
 <p>$\epsilon$是一个超参数粗略地说出新政策被允许与旧政策相距多远</p>
 <p>这是一个很复杂的方程式，第一眼很难说明白它在做什么，或者它如何帮助新策略靠近旧策略。事实证明有一个相当简化的版本，较容易理解，也是我们在代码中实现的版本</p>
@@ -242,8 +200,8 @@ L(s,\alpha,\theta,\theta_k)=max\left(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(
 \theta_{k+1}=arg\ \underset{\theta}{max}\frac{1}{|D_k|T}\sum_{\tau\in D_k}\sum^T_{t=0}min\left(\frac{\pi_\theta(\alpha_t|s_t)}{\pi_{\theta_k}(\alpha_t|s_t)}A^{\pi\theta_k}(s_t,\alpha_t),g(\epsilon,A^{\pi\theta_k}(s_t,\alpha_t))\right)</p>
 <p>$$</p>
 <p>通常通过与Adam一起的随机梯度上升</p>
-<p>通过均方误差回归拟合value function</p>
-<p>$$
+<p>通过均方误差回归拟合value function
+$$
 \phi_{k+1}=arg\ \underset{\phi}{min}\frac{1}{|D_k|T}\sum_{\tau\in D_k}\sum^T_{t=0}(V_\phi(s_t)-\hat{R}_t)^2</p>
 <p>$$</p>
 <p>特别是通过一些梯度下降算法</p>
