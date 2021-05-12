@@ -87,6 +87,10 @@
                     <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -149,7 +153,9 @@ roslaunch ars_40X ars_40X.launch
 <pre><code class="language-bash">cansend can0 200#F8000000089C0000 // Objects detection with all extended properties
 cansend can0 200#F8000000109C0000 // Clusters detection with all extended properties
 </code></pre>
-<p>这两条指令分别启动radar的 Cluster模式和Object模式，我们使用Object模式</p>
+<p>这两条指令分别启动radar的 Cluster模式和Object模式，我们使用Object模式，（cluster模式）</p>
+<p><img alt="" src="../images/Screenshot2021-05-1108%3A48%3A39.png" /></p>
+<p><em>毫米波雷达数据是二维数据，只有x, y 坐标信息， 显示如上图</em></p>
 <p>毫米波雷达数据读取，我们使用<code>ars_40X</code>程序</p>
 <p>数据显示和图像显示，我们使用<code>ros2qt</code> 程序</p>
 <p>图像物体识别，我们使用<code>vision_darknet_detect</code> 程序</p>
@@ -158,7 +164,7 @@ cansend can0 200#F8000000109C0000 // Clusters detection with all extended proper
 <li>首先对摄像头进行标定</li>
 <li>获取内参矩阵</li>
 <li>通过内参矩阵把毫米波数据映射到图像上</li>
-<li>通过yolo识别，并筛选出物体距离，如下图</li>
+<li>通过yolo识别，并提取出物体距离，如下图</li>
 </ul>
 <p><img alt="" src="../images/Screenshot2021-05-1013%3A48%3A30.png" /></p>
 <h2 id="_4">摄像头标定</h2>
@@ -202,14 +208,13 @@ cansend can0 200#F8000000109C0000 // Clusters detection with all extended proper
 <p>加载待标定的图像</p>
 <p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNjMwMzEy.png" /></p>
 <p>填写棋盘格每个格子边长的真实值</p>
-<p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNjM5MDk0.png" /></p>
+<p><img alt="" src="../images/33.png" /></p>
 <p>可以预览成功检测出棋盘格的图像，然后开始标定，点击Calibrate</p>
 <p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNjQ3MzU5.png" /></p>
 <p>平均误差小于0.5即可</p>
-<p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNjUzODQ0.png" /></p>
+<p><img alt="" src="../images/31.png" /></p>
 <p>导出相机标定参数</p>
-<p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNzExMDE2.png" /></p>
-<p><img alt="" src="../images/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwMzMxMTAxNzMzMzQ0.png" /></p>
+<p><img alt="" src="../images/32.png" /></p>
 <p>我们只需要用到 <strong>IntrinsicMatrix</strong></p>
 <pre><code class="language-cpp">cv::Point World2Image(Eigen::Vector3d Pw)
 {
@@ -225,9 +230,23 @@ cansend can0 200#F8000000109C0000 // Clusters detection with all extended proper
 <p>通过world2image函数把毫米波坐标系转换到图像坐标系</p>
 <p>这样在图像中，我们就有了深度信息。</p>
 <p>然后再通过yolo的darknet进行物体识别，就可得到，障碍物的类别和距离信息。</p>
+<p>这里需要注意的是，我们的摄像头和毫米波安装位置关系，由于毫米波只有x，y信息，没有高度信息，所以我们尽量保持摄像头和毫米波竖直方向上中心线重合。</p>
+<p>备注，如果想要更改摄像头和毫米波的相对位置，只需通过刚性变换矩阵，进行坐标系转换</p>
+<p>$\begin{bmatrix}cos(\theta)&amp;-sin(\theta)&amp;0.0&amp;x\sin(\theta)&amp;cos(\theta)&amp;0.0&amp;y\0.0&amp;0.0&amp;1.0&amp;z\0.0&amp;0.0&amp;0.0&amp;1.0\end{bmatrix}$</p>
+<p>变换矩阵里$\begin{bmatrix}cos(\theta)&amp;-sin(\theta)&amp;0.0\sin(\theta)&amp;cos(\theta)&amp;0.0\0.0&amp;0.0&amp;1.0\end{bmatrix}$是3x3旋转矩阵，xyz是平移矩阵。</p>
+<p>只需更改对应的旋转平移参数，即可进行坐标系转换。</p>
 <h2 id="darknet">darknet</h2>
 <p><a href="https://pjreddie.com/darknet/yolo/">Yolo物体检测</a></p>
 <p>我们在程序里使用了yolo v3进行物体识别</p>
+<p><img alt="" src="../images/Screen_Shot_2018-03-24_at_10.48.42_PM.png" /></p>
+<h2 id="_5">如何提取出距离信息</h2>
+<p>我们已经把毫米波的距离信息投影到了图片上，同时，我们用yolo对障碍物进行了识别分类，画出了边界框。</p>
+<p>我们只需要把边界框内部的距离信息提取出来即可。由于毫米波有误差，所以我们需要对这些边界框里的信息进行筛选。在一般情况下，摄像头可以直接检测到的物体，说明此物体前面没有障碍物，因为光是直线传播的。也就是说如果障碍物前方还有有障碍物，摄像头很大可能就看不到后面那一个，但是毫米波可能通过漫反射看到了，产生多个距离信息。所以，我们就可以提取边界框里的最小距离当做识别障碍物的距离。这同样是出于安全考虑，需要选择距离最近的距离。</p>
+<p><em>我们可以根据性能要求，提出更好的提取深度信息方法。</em></p>
+<p><img alt="" src="../images/Screenshot2021-05-1108%3A42%3A10.png" /></p>
+<p><em>图中灰色的点是毫米波投射到图像上的点，黄色的框是yolo识别的边界框</em></p>
+<p>整个算法的具体实现逻辑可以阅读程序包里完整的程序。</p>
+<p><strong>预测碰撞时间，udp。</strong></p>
               
             </div>
           </div>
