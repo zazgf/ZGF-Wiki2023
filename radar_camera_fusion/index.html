@@ -92,6 +92,16 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#_1">视锥体关联机制</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#smoke-approach">Smoke approach</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#backbone">backbone</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3d-detection-network">3D detection network</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#regression-branch">Regression Branch</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -127,15 +137,13 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="radar-camera-fusion">radar camera fusion</h2>
+                <h1 id="radar-camera-fusion">radar camera fusion</h1>
 <p>我们的方法称为CenterFusion，它首先使用中心点检测网络通过在图像上识别对象的中心点来检测对象。</p>
 <p>然后它使用一种新颖的基于视锥的方法来解决关键数据关联问题，从而将雷达检测结果与相对应对象的中心点相关联。</p>
 <p>相关的radar检测用于生成基于radar的特征图以补充图像特征，并回归到诸如深度，旋转和速度之类的对象属性。</p>
 <p>radar使用多普勒效应快速准确的确定物体的速度。</p>
-<p><img alt="" src="images/Screenshot2021-04-1910:50:57.png" /></p>
 <h3 id="_1">视锥体关联机制</h3>
 <p>使用对象的2d边框极其估计的深度和大小，为该对象创建3d兴趣区域，视锥体。</p>
-<p><img alt="" src="images/Screenshot2021-04-1911:53:55.png" /></p>
 <p>在roi内离图像中心点最近的点，关联。</p>
 <p>$$
 Y_{qc}=\underset{i}{max}\quad exp(-\frac{(p_i-q)^2}{2\delta^2_i})</p>
@@ -146,6 +154,44 @@ Y_{qc}=\underset{i}{max}\quad exp(-\frac{(p_i-q)^2}{2\delta^2_i})</p>
 <p>Because the modalities share a single output representation,they can be easily aggregated 汇总to produce a fused output.In this work we predict short-term semantic grids but the framework can be extended to other tasks.This approach offers a simple, extensible , end to end approach for multi-modal perception and prediction.</p>
 <p>The benifits of a shared top-down representation across modalities are threefold. First, it is an interpretable representation that better facilities促进 debugging调试 and reasoning推理 about inherent固有 failure modes故障模式 of each modality.Second it is independent of any particular sensors characteristics and so is easily extensible for adding new modalities.Finally , it simplifies the task of late fusion by sharing a spatial空间的 representation in a succinct manner.</p>
 <p>In this work we present a novel end-to-end framework that predicts the top-down view of the current scene($t_0$) as well as multiple timesteps into the future.The pipleline consists of a convolutional neural network for each of three sensor modalities : lidar, radar , camera.Each sensor modality predicts a sequence of top-down semantic grids, then these outputs are fused to produce a single output grid.We explore fusing using two different aggregation mechanisms.</p>
+<p>Estimating 3D orientation and translation of objects is essential for infrastructure-less .In case of monocular vision, successful methods have been mainly based on two ingredients因素: （1）a network generating 2D region proposals(2D区域提案)。(2) a R-CNN structure predicting 3D object pose by utilizing the acquired regions of interest. We argue that the 2D detection network is redundant多余的 and introduces non-negligible 不可忽略的 noise for 3D detection.Hence,we propose a novel 3D object detection method, named SMOKE, in this paper that predicts a 3D bounding box for each detected object by combining a single keypoint estimate with regressed 3D   variables.As a second contribution, we propose a multi-step disentangling approach for constructing the 3D bounding box ,which significantly improves both training convergence收敛 and detection accuracy. In constract to previous 3D detection techniques, our method does not require complicated pre/post-processing.extra data, and a refinement细化 stage. Despite of its structural结构 simplicity， our proposed SMOKE network outperforms all existing monocular 3D detection methods on the KITTI dataset , giving the best state-of-the-art result on both 3D objection dection and bird's eye view evaluation . The code will be made publicly available.</p>
+<p>Vison based object detection is an essential ingredient成分 of autonomous vehicle perception 洞察力 of autonomous vehicle perception and infrastructure基础设施 less robot navigation in general. This type of detection methods are used to perceive 感知 the surrounding environment by detecting and classifying object instances实例 into categories 类别 and identifying their locations and orientations. Recent developments in 2D object detection have achieved promising performance有前途的 on both detection accuracy and speed. In constract, 3D object detection have proven to be a more challenging task as it aims to estimate pose and location for each object simulataneously.</p>
+<p>Currently,the most successful 3D object detection methods heavily depend on Lidar point cloud.<img alt="" src="../images/Screenshot2021-05-1211%3A01%3A06.png" /></p>
+<p>or LIDAR-Image fusion information.(features learned from the point cloud are key components of the detection network).However , LIDAR sensors are extremely expensive , have a short service life time and too heavy for autonomous robots. Hence LIdars are currently not considered to be econnomical流行的 to support autonomous vehicle operations . Alternatively , cameras are cost-effective, easily mountable and light-weight solutions for 3D object detection with long expected service time. Unlike lidar senors , a single camera in itself cannot obtain sufficient spatial information for the whole environment as single RGB images can not supply object location information or dimensional contour 轮廓 in the real world. While binocular 双目 vision restores the missing spatial information. in many robot applications, especially UAVs , it is difficult to realize biocular vision. Hence , it is desirable to perform 3D detection on a monocular  image even if it is a more difficult and chanllenging task.</p>
+<p>To enhance performance, geometry reasoning 几何推理 synthetic data 综合数据 and post 3D-2D processing have also been used to improve 3D object detection on single image.By the knowledge of the authors , no reliable monocular 3D detection method has been introduced so far to learn 3D information directly from image plane avoiding the performance decrease that is inevitable不可避免的 with multi-stage method.</p>
+<p><img alt="" src="../images/Screenshot2021-05-1211%3A38%3A32.png" /></p>
+<p>In this paper we propose an innovative创新 single-stage 3D object detection method that pairs each object with a single keypoint. We argue and later show that a 2D detection, which introduces nonnegligible noise in 3D parameter estimation, is redundant多余的 to perform 3D object detection.Furthermore 2D information can be naturally obtained if 3D variables and camera instrinsic matrix are already known.Consequently, our designed network eliminate 排除 the 2D detection branch and estimates the projected 3D points on the image plane instead.A 3d parameter regression branch is added in parallel.This design results in a simple network structure with two estimation threads.Rather than regressing variables  in a separate method by use multiple loss functions, we transform these variables together with projected keypoint to 8 corner representation of 3D boxes and regress them with a unified统一的 loss function. As in most single state 2D object detection algorithms, our 3D detection approach only contains one classification and regression branch.Benefiting from the simple structure , the network exhibits 展示 improved accuracy in learning 3D variables, has better convergence and less overall computional needs.</p>
+<p>Second constribution of our work is a multi-step disentanglement 纠缠 approach for 3D bounding box regression. Since all the geometry information is grouped  into the parameter, it is difficult for the network to learn each variable accurately n a unified way.Our proposed method isolates分离 the contribution of each parameter in both the 3D bounding box ecoding phase and regression loss function , which significantly helps to train the whole network effectively.</p>
+<p>Our contribution is summarized as follows:</p>
+<ul>
+<li>We propose a one-stage monocular 3D object detection with a simple architecture that can precisely learn 3D geometry in an end-to-end fashion.</li>
+<li>We provide a multistep distanglement approach to improve the convergence收敛 of 3D parameters and detection accuracy.</li>
+<li>The result method outperforms all existing state-of-art monocular 3D object detection algorithms on the chanllenging KITTI dataset at the submission date November 2019.</li>
+</ul>
+<p><img alt="" src="../images/Screenshot2021-05-1213%3A52%3A21.png" /></p>
+<p>We formulate定义 the monocular 3D object detection problem as follow:</p>
+<p>given a single RGB image $I\in\mathbb{R}^{W\times H\times 3}$ ,with $W$ the width and $H$ the height of the image, find for each present object its category类别 label C and its 3D bounding box B, where the latter is parameterized by 7 variables $(h,\omega,l,x,y,z,\theta)$ .Here, $(h,\omega,l)$ represent the height, width and length of each object in meters , and $(x,y,z)$ is the coordinates (in meters) of the object center in the camera coordinate frame. Variable $\theta$ is the yaw orientation of the corresponding cubic box. The roll and pitch angles are set to zero by following the Kitti annotation .Additionally , we take the mild温和 assumption that the camera instrinsic matrix $K$ is known for both training and inference.</p>
+<h2 id="smoke-approach">Smoke approach</h2>
+<p>In this section, we describe the smoke network that directly estimates 3D bounding boxes for detected object instances  from monocular imagery. In constrast to previous techniques that leverage 杠杆作用 2D proposals to prediect 3D bounding box, our method can detect 3D information with a simple single stage.The propose method can be divided into three parts:(1) backbone,(2) 3D detection (3) loss function.First , we briefly discuss the backbone  for feature extraction , followed by the instruction of the the 3D detection network consisting of two separated branches. Finallly,we discuss the loss function design and the multi-step disentanglement to compute the regression loss.The overview of the network structure is depicted in Fig.2</p>
+<h3 id="backbone">backbone</h3>
+<p>We use a hierarchical layer fusion network DLA-34 as the backbone to extract features since it can aggregate information across different layers.Following the same structure as in [], all the hierarchical aggregation connections are replaced by a Deformable可变形的 convolution network (DCN) The output feature map is downsample 4 times with respect to the original image.Compared with the original implementation, we replace all BatchNorm(BN) operation with GroupNorm(GN) since it has been proven to be less sensitive to batch size and more robust to training noise.We also use this technique in the two prediction branches.</p>
+<p><img alt="" src="../images/Screenshot2021-05-1215%3A31%3A41.png" /></p>
+<p>which will be discussed later.This adjustment not only improve detection accuracy , but it also reduces considerably the training time. Later ,we provide performance comparison of BN and GN to demonstrate  these properties.</p>
+<h3 id="3d-detection-network">3D detection network</h3>
+<p>Keypoint branch: We define the keypoint estimation network similar to such that each object is represented by one specific keypoint. Instead of identifying the center of a 2D bounding box , the key point is defined as the projected 3D center of the object on the image plane. The comparison between 2D center points and 3D projected points is visualized in Fig3.The projected keypoints allow to fully recover 3D location for each object with camera parameters. Let $[x,y,z]^T$ represent the 3D center of each object in the camera frame.The projection of 3D points of points $[x_c,y_c]^T$ on the image plane can be obtained with the camera instrinsic matrix K in a homogeneous form:</p>
+<p>$\begin{bmatrix}z.x_c\z.y_c\z\end{bmatrix}=K_{3\times3}\begin{bmatrix}x\y\z\end{bmatrix}$       (1)</p>
+<p>For each ground truth keypoint, its corresponding downsampled location on the feature map is computed and distributed using a Gaussian Kernel following.The standard deviation is allocated based on the 3D bounding boxes of the ground truth projected to the image plane.Each 3D box on the image is represented by 8 2D points $[x_{b,1\sim8},y_{b,1/sim8}]^T$ and the standard deviation ia computed by the smallest 2D box with ${x^{min}_b,y^{min}_b,x^{max}_b,y^{max}_b} $ that encircles the 3D box.</p>
+<h3 id="regression-branch">Regression Branch</h3>
+<p>\logeach key point on the heatmap. Similar to other monocular 3D detection framework.The 3D information is encoded as an 8-tuple元组 $\tau=\begin{bmatrix}\delta_z&amp;\delta_{x_c}&amp;\delta_{y_c}&amp;\delta_h&amp;\delta_w&amp;\delta_l&amp;sin(a)&amp;cos(a)\end{bmatrix}^T$</p>
+<p>Here $\delta_z$ denotes the depth offset , $\delta_{x_c}, \delta_{y_c}$ is the discretization离散化 offset due to downsampling.$\delta_h, \delta_w, \delta_l$ denotes the resdual 剩余 dimension. $sin(a), cos(a)$ is the vectorial representation of the rotational angle $\alpha$ . We encode all variables to be learnt in residual残差 representation to reduce the learning interval and ease the training task . The size of feature map for regression results in $S_r\in\mathbb{R}^{\frac{H}{R}\times\frac{W}{R}\times 8}$ . Inspired by the lifting transformation提升转型 described  in [],we introduce a similar operation $F$ that converts projected 3D points to a 3D bounding box $B=F(\tau)\in\mathbb{R}^{3\times 8}$ .For each object, its depth $z$ can be recovered by pre-defined scale and shift parameters $\sigma_z$ and $\mu_z$ as $z=\mu_z+\delta_z\sigma_z$</p>
+<p>Given the object depth $z$ , the location for each object in the camera frame can be recovered by using its discretized离散的 projected centroid $[x_c, y_c]^T$ on the image plane and the downsampling offset 
+$[\delta_{x_c} \delta_{y_c}]^T$:
+$$\begin{bmatrix}
+    x\y\z
+\end{bmatrix} = K^{-1}<em>{3\times 3}\begin{bmatrix}
+    z\cdot(x_c+\delta</em>{x_c})\z\cdot(y_c+\delta_{y_c})\z
+\end{bmatrix}$$ </p>
+<p>This equation is inverse of Eq.(1)</p>
               
             </div>
           </div>
