@@ -216,7 +216,7 @@ L(s,\alpha,\theta_k,\theta)=min(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alph
 L(s,\alpha,\theta_k,\theta) = min\left(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(\alpha|s)}A^{\pi\theta_k}(s,\alpha), g\left(\epsilon,A^{\pi\theta_k}(s,\alpha)\right)\right)</p>
 <p>$$</p>
 <p>$$
-g(\epsilon,A)=\left{\begin{matrix}(1+\epsilon)A\quad A\geq0&amp;\(1-\epsilon)A\quad A&lt;0\end{matrix}\right.</p>
+g(\epsilon,A)=\left{<script type="math/tex; mode=display">\begin{matrix}(1+\epsilon)A\quad A\geq0&\\(1-\epsilon)A\quad A<0\end{matrix}</script>\right.</p>
 <p>$$</p>
 <p>为了弄清楚从中得到的直觉，让我看一下单个的 状态—动作 对，并考虑案例</p>
 <p><strong>优势是积极</strong>的，假设该状态—动作 对的优势为正，在这种情况下，它对目标的贡献减小为：</p>
@@ -285,6 +285,8 @@ L(s,\alpha,\theta,\theta_k)=max\left(\frac{\pi_\theta(\alpha|s)}{\pi_{\theta_k}(
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

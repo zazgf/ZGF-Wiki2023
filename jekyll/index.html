@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>github不显示图片 - ZGF Wiki</title>
+  <title>Jekyll - ZGF Wiki</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "github\u4e0d\u663e\u793a\u56fe\u7247";
-    var mkdocs_page_input_path = "github\u7f51\u9875\u4e0d\u663e\u793a\u56fe\u7247.md";
+    var mkdocs_page_name = "Jekyll";
+    var mkdocs_page_input_path = "jekyll.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -112,7 +112,7 @@
     
       
     
-    <li>github不显示图片</li>
+    <li>Jekyll</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -123,30 +123,16 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="github">github不显示图片</h1>
-<p>修改/etc/hosts，放入下面内容：</p>
-<pre><code># GitHub Start 
-140.82.113.3    github.com
-140.82.113.3    gist.github.com
-185.199.108.153    assets-cdn.github.com
-199.232.68.133    raw.githubusercontent.com
-199.232.68.133    gist.githubusercontent.com
-199.232.68.133    cloud.githubusercontent.com
-199.232.68.133    camo.githubusercontent.com
-199.232.68.133    avatars0.githubusercontent.com
-199.232.68.133    avatars1.githubusercontent.com
-199.232.68.133    avatars2.githubusercontent.com
-199.232.68.133    avatars3.githubusercontent.com
-151.101.184.133    avatars4.githubusercontent.com
-151.101.184.133    avatars5.githubusercontent.com
-151.101.184.133    avatars6.githubusercontent.com
-151.101.184.133    avatars7.githubusercontent.com
-151.101.184.133    avatars8.githubusercontent.com
-
- # GitHub End
-
+                <pre><code class="language-bash">sudo apt -y install ruby ruby-dev
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+source ~/.bashrc
+gem install jekyll bundler 
+jekyll new my-awesome-site 
+cd my-awesome-site 
+bundle install 
+bundle exec jekyll serve
 </code></pre>
-<p>其中各个ｉｐ需要从<a href="https://www.ipaddress.com/">网站查找</a></p>
               
             </div>
           </div>

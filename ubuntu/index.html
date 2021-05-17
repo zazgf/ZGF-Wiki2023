@@ -398,9 +398,29 @@ Name[en_US]=smart_view
 <p><code>![](https://latex.codecogs.com/svg.latex?\Large&amp;space;\theta_{k+1}=arg\quad\underset{\theta}{max})</code></p>
 <p><img alt="" src="https://latex.codecogs.com/svg.latex?\Large&space;\theta_{k+1}=arg\quad\underset{\theta}{max}" /></p>
 <p><code>&lt;img src="https://latex.codecogs.com/svg.image?\&amp;space;\begin{bmatrix}x\\y\\z\end{bmatrix}=K^{-1}_{3\times 3}\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}"/&gt;</code></p>
-<p><img src="https://latex.codecogs.com/svg.image?\&space;\begin{bmatrix}x\\y\\z\end{bmatrix}=K^{-1}_{3\times 3}\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}"/></p>
+<p><img src="https://latex.codecogs.com/svg.image?\&space;<script type="math/tex; mode=display">\begin{bmatrix}x\\y\\z\end{bmatrix}</script>=K^{-1}_{3\times 3}<script type="math/tex; mode=display">\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}</script>"/></p>
 <h3 id="md_2">md添加行内公式</h3>
 <p><code>$\theta$</code> $\theta$</p>
+<h2 id="mkdocs_1">mkdocs 显示公式</h2>
+<pre><code class="language-bash">pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+</code></pre>
+<p>在<code>config.yaml</code>中添加</p>
+<pre><code class="language-bash">extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    - mathjaxhelper.js
+markdown_extensions:
+    - mdx_math
+</code></pre>
+<p>在docs文件夹下新建<code>mathjaxhelper.js</code></p>
+<pre><code>MathJax.Hub.Config({
+  &quot;tex2jax&quot;: { inlineMath: [ [ '$', '$' ] ] }
+});
+MathJax.Hub.Config({
+  config: [&quot;MMLorHTML.js&quot;],
+  jax: [&quot;input/TeX&quot;, &quot;output/HTML-CSS&quot;, &quot;output/NativeMML&quot;],
+  extensions: [&quot;MathMenu.js&quot;, &quot;MathZoom.js&quot;]
+});
+</code></pre>
               
             </div>
           </div>
@@ -446,6 +466,8 @@ Name[en_US]=smart_view
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

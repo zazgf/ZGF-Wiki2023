@@ -100,6 +100,10 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#regression-branch">Regression Branch</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loss-function">Loss function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#regression-loss">Regression Loss</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -177,17 +181,61 @@
 <p>which will be discussed later.This adjustment not only improve detection accuracy , but it also reduces considerably the training time. Later ,we provide performance comparison of BN and GN to demonstrate  these properties.</p>
 <h3 id="3d-detection-network">3D detection network</h3>
 <p>Keypoint branch: We define the keypoint estimation network similar to such that each object is represented by one specific keypoint. Instead of identifying the center of a 2D bounding box , the key point is defined as the projected 3D center of the object on the image plane. The comparison between 2D center points and 3D projected points is visualized in Fig3.The projected keypoints allow to fully recover 3D location for each object with camera parameters. Let <img src="https://latex.codecogs.com/svg.image?[x,y,z]^T"/>  represent the 3D center of each object in the camera frame.The projection of 3D points of points <img src="https://latex.codecogs.com/svg.image?[x_c,y_c]^T"/> on the image plane can be obtained with the camera instrinsic matrix K in a homogeneous form:</p>
-<p><img src="https://latex.codecogs.com/svg.image?&space;\begin{bmatrix}z\cdot x_c\\z\cdot y_c\\z\end{bmatrix}=K_{3\times 3}\begin{bmatrix}x\\y\\z\end{bmatrix}\quad\quad\quad\(1\)"/></p>
+<p>
+<script type="math/tex; mode=display">\begin{bmatrix}z\cdot x_c\\z\cdot y_c\\z\end{bmatrix}=K_{3\times 3}\begin{bmatrix}x\\y\\z\end{bmatrix}\quad\quad\quad(1)</script>
+</p>
 <p>For each ground truth keypoint, its corresponding downsampled location on the feature map is computed and distributed using a Gaussian Kernel following.The standard deviation is allocated based on the 3D bounding boxes of the ground truth projected to the image plane.Each 3D box on the image is represented by 8 2D points <img src="https://latex.codecogs.com/svg.image?[x_{b,1\sim8},y_{b,1\sim8}]^T"/> and the standard deviation ia computed by the smallest 2D box with <img src="https://latex.codecogs.com/svg.image?\{x^{min}_b,y^{min}_b,x^{max}_b,y^{max}_b\}"/> that encircles the 3D box.</p>
 <h3 id="regression-branch">Regression Branch</h3>
 <p>\logeach key point on the heatmap. Similar to other monocular 3D detection framework.The 3D information is encoded as an 8-tuple元组 </p>
-<p><img src="https://latex.codecogs.com/svg.image?\tau=\begin{bmatrix}\delta_z&\delta_{x_c}&\delta_{y_c}&\delta_h&\delta_w&\delta_l&sin(a)&cos(a)\end{bmatrix}^T"/> </p>
+<p><img src="https://latex.codecogs.com/svg.image?\tau=<script type="math/tex; mode=display">\begin{bmatrix}\delta_z&\delta_{x_c}&\delta_{y_c}&\delta_h&\delta_w&\delta_l&sin(a)&cos(a)\end{bmatrix}</script>^T"/> </p>
 <p>Here <img src="https://latex.codecogs.com/svg.image?\delta_z"/>  denotes the depth offset , <img src="https://latex.codecogs.com/svg.image?\delta_{x_c}, \delta_{y_c}"/> is the discretization离散化 offset due to downsampling.<img src="https://latex.codecogs.com/svg.image?\delta_h,\delta_w,\delta_l"/> denotes the resdual 剩余 dimension. <img src="https://latex.codecogs.com/svg.image?sin(a), cos(a)"/> is the vectorial representation of the rotational angle <img src="https://latex.codecogs.com/svg.image?\alpha"/> . We encode all variables to be learnt in residual残差 representation to reduce the learning interval and ease the training task . The size of feature map for regression results in <img src="https://latex.codecogs.com/svg.image?S_r\in\mathbb{R}^{\frac{H}{R}\times\frac{W}{R}\times 8}"/> . Inspired by the lifting transformation提升转型 described  in [],we introduce a similar operation F that converts projected 3D points to a 3D bounding box <img src="https://latex.codecogs.com/svg.image?B=F(\tau)\in\mathbb{R}^{3\times 8}"/> .For each object, its depth $z$ can be recovered by pre-defined scale and shift parameters <img src="https://latex.codecogs.com/svg.image?\sigma_z"/> and <img src="https://latex.codecogs.com/svg.image?\mu_z"/> as <img src="https://latex.codecogs.com/svg.image?z=\mu_z+\delta_z\sigma_z"/></p>
 <p>Given the object depth $z$ , the location for each object in the camera frame can be recovered by using its discretized离散的 projected centroid $[x_c, y_c]^T$ on the image plane and the downsampling offset </p>
-<p><img src="https://latex.codecogs.com/svg.image?&space;\begin{bmatrix}x\\y\\z\end{bmatrix}=K^{-1}_{3\times 3}\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}"/></p>
+<p>
+<script type="math/tex; mode=display">\begin{bmatrix}x\\y\\z\end{bmatrix}=K^{-1}_{3\times 3}\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}</script>
+</p>
 <p>This equation is inverse of Eq.(1) In order to retrieve取回 object dimensions <img src="https://latex.codecogs.com/svg.image?&space;[h,w,l]^T"/> , we use a pre-calculated category-wise按类别 average dimension <img src="https://latex.codecogs.com/svg.image?[\overline{h},\overline{w},\overline{l}]^T"/> computed over the whole dataset. Each object dimension can be recovered by using the residual dimension offset <img src="https://latex.codecogs.com/svg.image?[\delta_h,\delta_w,\delta_l]^T"/> :</p>
-<p><img src="https://latex.codecogs.com/svg.image?\begin{bmatrix}h\\w\\l\end{bmatrix}=\begin{bmatrix}\overline{h}\cdot e^{\delta_h}\\\overline{w}\cdot e^{\delta_w}\\\overline{l}\cdot e^{\delta_l}\end{bmatrix}\quad\quad\quad\quad\(4\)"/></p>
-<p>Inspired by </p>
+<p>
+<script type="math/tex; mode=display">\begin{bmatrix}h\\w\\l\end{bmatrix}=\begin{bmatrix}\overline{h}\cdot e^{\delta_h}\\\overline{w}\cdot e^{\delta_w}\\\overline{l}\cdot e^{\delta_l}\end{bmatrix}\quad\quad\quad(4)</script>
+</p>
+<p>Inspired by [],we choose to regress the observation angle &alpha; instead of the yaw rotation &theta; for each object. We further change the observation angle with respect to the object head <img src="https://latex.codecogs.com/svg.image?\alpha_x"/> ,instead of the commonly used observation angle value <img src="https://latex.codecogs.com/svg.image?\alpha_z"/>, by simply adding <img src="https://latex.codecogs.com/svg.image?\frac{\pi}{2}"/>. The difference between these two angles is shown in Figure4.Moreover,each <img src="https://latex.codecogs.com/svg.image?\alpha"/> is encoded as the vector $[sin(a)\quad cos(a)]^T$ The yaw angle $\theta$ can be obtained by utilizing $\alpha_z$ and the object location:
+<script type="math/tex; mode=display">
+\theta=\alpha + arctan\left(\frac{x}{z}\right)
+</script>
+Finally,we can construct the 8 corners of the 3D bounding box in the camera frame by using the yaw rotation matrix $R_\theta$, object dimensions $[h\quad w\quad l]^T$ and location $[x\quad y\quad z]^T$:
+<script type="math/tex; mode=display">B=R_\theta\begin{bmatrix}
+    \pm h/2\\\pm w/2\\\pm l/x
+\end{bmatrix}+\begin{bmatrix}
+    x\\y\\z
+\end{bmatrix}\qquad\qquad(6)</script>
+</p>
+<h3 id="loss-function">Loss function</h3>
+<p>We employ the penalty-reduce focal loss惩罚减少焦点损失  [] in a point-wise manner on the downsampled heatmap.Let $s_{i,j}$ be the predicted score at the heatmap location $(i,j)$ and $y_{i,j}$ be the ground-truth value of each point assigned by Gaussian Kernel. Define $\breve{y}<em>{i,j}$ and $\breve{s}</em>{i,j}$ as :
+<script type="math/tex; mode=display">
+\breve{y}_{i,j}=\left\{\begin{matrix}
+    0,\qquad if\quad y_{i,j} =1\\y_{i,j}
+,\qquad otherwise\end{matrix}\right.
+</script>
+<script type="math/tex; mode=display">\breve{s}_{i,j}=\left\{\begin{matrix}
+    s_{i,j},\qquad if\quad y_{i,j}=1\\1-s_{i,j},\qquad otherwise
+\end{matrix}\right.</script>
+</p>
+<p>For simplicity,we only consider a single object class here.Then , the classification loss function is constructed as
+<script type="math/tex; mode=display">L_{cls}=-\frac{1}{N}\sum^{h,w}_{i,j=1}(1-\breve{y}_{i,j})^\beta(1-\breve{s}_{i,j})^\alpha log(\breve{s}_{i,j})\qquad(7)</script>
+where $\alpha$ and $\beta$ are tunable hyper-parameters and N is the number of keypoints per image.The term $(1-y_{i,j})$ corresponds to penalty reduction for points around the groundtruth location.</p>
+<h3 id="regression-loss">Regression Loss</h3>
+<p>We regardless the 8D tuple $\tau$ to construct the 3D bounding box for each object. We also add channel-wise action to the regressed parameters of dimension and orientation at each feature map location to preserve保存 consistency一致性 . The activation functions for the dimension and the orientation are chosen to be the sigmoid function $\sigma$ and the $l_2$ norm ,respectively:
+<script type="math/tex; mode=display">\begin{bmatrix}
+    \delta_h\\\delta_w\\\delta_l
+\end{bmatrix}=\sigma\left(\begin{bmatrix}
+    O_h\\O_w\\O_l
+\end{bmatrix}\right)-\frac{1}{2},\quad\begin{bmatrix}
+    sin(a)\\cos(a)
+\end{bmatrix}=\begin{bmatrix}
+    O_{sin}/\sqrt{O^2_{sin}+O^2_{cos}}\\O_{cos}/\sqrt{O^2_{sin}+O^2_{cos}}
+\end{bmatrix}</script>
+Here $o$ stands for the specific output of network. By adopting the keypoint lifting transformation introduced in Sec.4.2.we define the 3D bounding box regression loss as the $l_1$ distance between the predicted transform $\hat{B}$ and the ground truth B:
+<script type="math/tex; mode=display">L_{reg}=\frac{\lambda}{N}||\hat{B}-B||_1</script>
+where $\lambda$ is the scaling factor.This is used to ensure that neither the classification, nor the regression dominates主导 the other.The disentangling transformation of loss has been proven to be an effective dynamic method to optimize 3D regression loss functions in [31] . Following this design , we extend the concept of loss disentanglement into a multi-step form. in Eq(3) , we use the projected 3D groundtruth points on the image plane $[x_c\quad y_c]^T$ with the network predicted discretization offset $[\hat{\delta_{x_c}}\quad \hat{\delta_{y_c}}]^T$ and depth $\hat{z}$ to retrieve the location $[\hat{x}\quad \hat{y}\quad \hat{z}]^T$ of each object.</p>
               
             </div>
           </div>
@@ -229,6 +277,8 @@
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

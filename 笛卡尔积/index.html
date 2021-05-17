@@ -124,12 +124,14 @@
             <div class="section">
               
                 <p>${X_i|i\in I}$</p>
-<p>$$
-\prod_{x\in I}X_i={f:I\rightarrow\bigcup_{x\in I}X_i|(\forall_i)(f(i)\in X_i)}
-$$
-$$
+<p>
+<script type="math/tex; mode=display">
+\prod_{x\in I}X_i=\{f:I\rightarrow\bigcup_{x\in I}X_i|(\forall_i)(f(i)\in X_i)\}
+</script>
+<script type="math/tex; mode=display">
 \pi_j(f)=f(j)
-$$</p>
+</script>
+</p>
 <p>第j投影映射</p>
 <p>$$
 \pi_j:\prod_{i\in I}X_i\rightarrow X_j</p>
@@ -190,84 +192,86 @@ L(\theta|y_1,y_2,\cdots,y_{10})=\frac{e^{-10\theta}\theta\sum_{i=1}^{10}y_i}{\pr
 <p>未知参数$\theta$的极大似然估计，是使这种可能性最大化的值。</p>
 <p><strong>对数似然函数</strong></p>
 <p>在实际中，联合分配函数难以使用，一般用$ln$似然函数代替。在我们的泊松数据里对数似然函数是：
-$$ln(L(\theta|y)=-n\theta+ln\sum_{i=1}^{n}y_i-ln\theta\sum_{i=1}^{n}y_i!=-10\theta+20ln(\theta)-ln(207360)$$</p>
+<script type="math/tex; mode=display">ln(L(\theta|y)=-n\theta+ln\sum_{i=1}^{n}y_i-ln\theta\sum_{i=1}^{n}y_i!=-10\theta+20ln(\theta)-ln(207360)</script>
+</p>
 <p>在线性回归，我们假设模型的残差是独特的完全正态分布。
-$$\epsilon=y-\hat{\beta}x\quad\sim N(0,\delta^2)$$
+<script type="math/tex; mode=display">\epsilon=y-\hat{\beta}x\quad\sim N(0,\delta^2)</script>
 对于这种情况，未知参数向量$\theta={\beta,\delta^2}$,观察数据的条件y和x已知，对数似然函数是：
-$$lnL(\theta|y,x)=-\frac{1}{2}\sum_{i=1}^{n}\left[ln\delta^2+ln(2\pi)+\frac{y-\hat{\beta}x}{\delta^2}\right]$$
+<script type="math/tex; mode=display">lnL(\theta|y,x)=-\frac{1}{2}\sum_{i=1}^{n}\left[ln\delta^2+ln(2\pi)+\frac{y-\hat{\beta}x}{\delta^2}\right]</script>
 $\beta$和$\delta^2$的极大似然估计就是使可能最大化的值。
 <strong>极大似然估计和概率模型</strong>
-$$y^<em>=x\theta+\epsilon\quad\epsilon\sim N(0,1)$$
-$$y_i=\left{\begin{matrix}0\quad if\quad y^{</em>}<em>{i}\leqslant0 &amp;\1\quad if\quad y^{<em>}_i&gt;0\end{matrix}\right.$$
-$$P(y_i=1|X_i)=P(y^</em>_i&gt;0|X_i)=P(x\theta+\epsilon&gt;0|X_i)=P(\epsilon&gt;-x\theta|X_i)=1-\Phi(-\theta x)=\Phi(x\theta)$$
+<script type="math/tex; mode=display">y^*=x\theta+\epsilon\quad\epsilon\sim N(0,1)</script>
+<script type="math/tex; mode=display">y_i=\left\{\begin{matrix}0\quad if\quad y^{*}_{i}\leqslant0 &\\1\quad if\quad y^{*}_i>0\end{matrix}\right.</script>
+<script type="math/tex; mode=display">P(y_i=1|X_i)=P(y^*_i>0|X_i)=P(x\theta+\epsilon>0|X_i)=P(\epsilon>-x\theta|X_i)=1-\Phi(-\theta x)=\Phi(x\theta)</script>
 $\Phi$代表正态累计分布。
 每个$y_i$是独立的所以
-$$f(y=(y_1,y_2,\cdots,y_n|w)=f_1(y_1|w)f_2(y_2|w)\cdots f_n(y_n|w)$$
-$$log\pi</em>\theta(\alpha|s)=log[P_\theta(s)]<em>\alpha$$
+<script type="math/tex; mode=display">f(y=(y_1,y_2,\cdots,y_n|w)=f_1(y_1|w)f_2(y_2|w)\cdots f_n(y_n|w)</script>
+<script type="math/tex; mode=display">log\pi_\theta(\alpha|s)=log[P_\theta(s)]_\alpha</script>
 <strong>采样</strong>
-已知mean action $\mu</em>\theta(s)$和标准偏差$\delta_\theta(s)$和球形高斯噪音的向量z（$z\sim N(0,1)$）可以计算出一个action sample
-$$\alpha=\mu_\theta(s)+\delta_\theta(s)\bigodot z$$
+已知mean action $\mu_\theta(s)$和标准偏差$\delta_\theta(s)$和球形高斯噪音的向量z（$z\sim N(0,1)$）可以计算出一个action sample
+<script type="math/tex; mode=display">\alpha=\mu_\theta(s)+\delta_\theta(s)\bigodot z</script>
 $\bigodot$代表两个向量元素乘积。</p>
 <p>对于均值$\mu=\mu_\theta(s),标准偏差$$\delta=\delta_\theta(s)$的对角高斯，$k$维action $\alpha$ 的对数似然由以下给出：
-$$log\pi_\theta(\alpha|s)=-\frac{1}{2}\left(\sum_{i=1}^{k}\left(\frac{(\alpha_i-\mu_i)^2}{\delta^2_i}+2log\delta_i\right)+klog2\pi\right)$$
+<script type="math/tex; mode=display">log\pi_\theta(\alpha|s)=-\frac{1}{2}\left(\sum_{i=1}^{k}\left(\frac{(\alpha_i-\mu_i)^2}{\delta^2_i}+2log\delta_i\right)+klog2\pi\right)</script>
 <strong>Trajectories</strong>
 一个轨迹$\tau$是world里一系列状态和action。
-$$\tau=(s_0,\alpha_0,s_1,\alpha_1,\cdots)$$
-$$s_{t+1}=f(s_t,\alpha_t)$$
+<script type="math/tex; mode=display">\tau=(s_0,\alpha_0,s_1,\alpha_1,\cdots)</script>
+<script type="math/tex; mode=display">s_{t+1}=f(s_t,\alpha_t)</script>
 Or 
-$$s_{t+1}\sim P(\cdot|s_t,\alpha_t)$$
+<script type="math/tex; mode=display">s_{t+1}\sim P(\cdot|s_t,\alpha_t)</script>
 actions是代理通过策略产生的
 <strong>奖励和反馈</strong>
 奖励取决于当前world的状态，刚刚采取的action和world的下一个状态
-$$r_t=R(s_t,a_t,s_{t+1})$$
+<script type="math/tex; mode=display">r_t=R(s_t,a_t,s_{t+1})</script>
 有时会简化为$r_t=R(s_t)$或者state-action $r_t=R(s_t,a_t)$
 代理的目标是使某个轨迹上的某个概念的累计奖励最大化。
 我们将通过以下方式记录所有的情况$R(\tau)$</p>
 <p>一种反馈是有限水平的无折现反馈，就是所有奖励的和
-$$R(\tau)=\sum_{t=0}^{T}r_t$$
+<script type="math/tex; mode=display">R(\tau)=\sum_{t=0}^{T}r_t</script>
 另一种反馈是有限水平的折现反馈，代理获得的奖励之和，折现将来代理获得的how far off.这个方程式的奖励包含一个折现因子$\gamma\in(0,1)$
-$$R(\tau)=\sum_{t=o}^{\infty}\gamma^t\tau_t$$
+<script type="math/tex; mode=display">R(\tau)=\sum_{t=o}^{\infty}\gamma^t\tau_t</script>
 为什么我们想要一个折现的反馈，而不是所有的反馈？我们的确想要所有反馈，但是折现因子在直观上即吸引人，数学实现起来又方便。一种直觉：现在的现金比以后的现金好。数学上：无限水平的奖励之和可能不会收敛到有限的值，并且很难用方程式处理。但是在有折现因子的情况下，并在合理的条件下，无穷大是收敛的。</p>
 <p>Deep RL 练习往往会使这条线模糊不清，例如，我们经常设置算法以优化未折现的反馈，但在评价value function 的时候使用折现因子。</p>
 <p>无论选择哪种反馈方法，选择哪种策略，RL的目标是选择一个策略使代理运行此策略使期望的反馈最大化。
 要讨论期望的反馈，我们先来讨论一下轨迹上的概率分布。</p>
 <p>让我假设环境转变和策略都是随机的。在这种情况下，轨迹T-step的概率是：
-$$P(T|\pi)=\rho_0(s_0)\prod_{t=0}^{T-1}P(s_{t+1}|s_t,\alpha_t)\pi(s_t,\alpha_t)$$
+<script type="math/tex; mode=display">P(T|\pi)=\rho_0(s_0)\prod_{t=0}^{T-1}P(s_{t+1}|s_t,\alpha_t)\pi(s_t,\alpha_t)</script>
 期望的反馈表示为
-$$J(\pi)=\int_{r}P(\tau|\pi)R(\tau)=\underset{\tau\sim\pi}{E}[R(\tau)]$$
+<script type="math/tex; mode=display">J(\pi)=\int_{r}P(\tau|\pi)R(\tau)=\underset{\tau\sim\pi}{E}[R(\tau)]</script>
 RL中的集中优化问题可以表示为：
-$$\pi^<em>=arg\quad\underset{\pi}{max}J(\pi)$$
-$\pi^</em>$是最佳策略。
-<strong>Value Function</strong>
+<script type="math/tex; mode=display">\pi^*=arg\quad\underset{\pi}{max}J(\pi)</script>
+$\pi^<em>$是最佳策略。
+</em><em>Value Function</em><em>
 知道value of state 或者 state-action 通常是有用的。
 这里有四种value function.
 1. 基于策略的value function.$V^\pi(s)$,当state s,执行策略$\pi$时，
-$$V^\pi(s)=\underset{\tau\in\pi}{E}[R(\tau)|s_0=s]$$
+<script type="math/tex; mode=display">V^\pi(s)=\underset{\tau\in\pi}{E}[R(\tau)|s_0=s]</script>
 2. 基于策略的 action-value function. $Q^\pi(s,\alpha)$,
-$$Q^\pi(s,\alpha)=\underset{\tau\in\pi}{E}[R(\tau)|s_0=s,a_0=a]$$
-3. 最优value function， $V^<em>(s)$
-$$V^</em>(s)=\underset{\pi}{max}\underset{\tau\in\pi}{E}[R(\tau)|s_0=s]$$
+<script type="math/tex; mode=display">Q^\pi(s,\alpha)=\underset{\tau\in\pi}{E}[R(\tau)|s_0=s,a_0=a]</script>
+3. 最优value function， $V^</em>(s)$
+<script type="math/tex; mode=display">V^*(s)=\underset{\pi}{max}\underset{\tau\in\pi}{E}[R(\tau)|s_0=s]</script>
 4. 最佳action-value function, $Q^*(s,\alpha)$</p>
-<p>$$Q^<em>(s,\alpha)=\underset{\pi}{max}\underset{\tau\in\pi}{E}[R(\tau)|s_0=s,\alpha_0=\alpha]$$
+<p>
+<script type="math/tex; mode=display">Q^*(s,\alpha)=\underset{\pi}{max}\underset{\tau\in\pi}{E}[R(\tau)|s_0=s,\alpha_0=\alpha]</script>
 在value function 和 action-value function 之间有两个关键的链接
-$$V^\pi(s)=\underset{\alpha\sim\pi}{E}[Q^\pi(s,\alpha)]$$
+<script type="math/tex; mode=display">V^\pi(s)=\underset{\alpha\sim\pi}{E}[Q^\pi(s,\alpha)]</script>
 和
-$$V^</em>(s)=\underset{\alpha}{max}Q^<em>(s,\alpha)$$
-$$\alpha^</em>(s)=arg\quad\underset{\alpha}{max}Q^<em>(s,\alpha)$$
-</em><em>贝尔曼方程</em>*
+<script type="math/tex; mode=display">V^*(s)=\underset{\alpha}{max}Q^*(s,\alpha)</script>
+<script type="math/tex; mode=display">\alpha^*(s)=arg\quad\underset{\alpha}{max}Q^*(s,\alpha)</script>
+<strong>贝尔曼方程</strong>
 这4个value function都遵循的特殊自治方程,称为Bellman equations
 Bellman equation后面的基本思想是：
     起点处的value，是你期望从那里得到的reward，再加上下一步到达地方的value。</p>
 <p>基于策略的value function 的Bellman equations
-$$V^\pi(s)=\underset{s'\sim P}{\underset{\alpha\sim\pi}{E}}[\tau(s,\alpha)+\gamma V^\pi(s')]$$
-$$Q^\pi(s,\alpha)=\underset{s'\sim P}{E}\left[\tau(s,\alpha)+\gamma\underset{a'\sim\pi}{E}[Q^\pi(s',\alpha')]\right]$$
+<script type="math/tex; mode=display">V^\pi(s)=\underset{s'\sim P}{\underset{\alpha\sim\pi}{E}}[\tau(s,\alpha)+\gamma V^\pi(s')]</script>
+<script type="math/tex; mode=display">Q^\pi(s,\alpha)=\underset{s'\sim P}{E}\left[\tau(s,\alpha)+\gamma\underset{a'\sim\pi}{E}[Q^\pi(s',\alpha')]\right]</script>
 $s'\sim P$是$s'\sim P(\cdot|s,\alpha)$的缩写，指示下一状态$s'$从环境的过度规则中采样；$\alpha\sim\pi$是$\alpha\sim\pi(\cdot|s)$的缩写；$\alpha'\sim\pi$是$\alpha'\sim\pi(\cdot|s')$的缩写。</p>
 <p>最佳value function的Bellman equation是
-$$V^<em>(s)=\underset{\alpha}{max}\quad\underset{s'\sim P}{E}[\tau(s,\alpha)+\gamma V^</em>(s')]$$
-$$Q^<em>(s,\alpha)=\underset{s'\sim P}{E}\left[\tau(s,\alpha)+\gamma\underset{\alpha'}{max}Q^</em>(s',\alpha')\right]$$
+<script type="math/tex; mode=display">V^*(s)=\underset{\alpha}{max}\quad\underset{s'\sim P}{E}[\tau(s,\alpha)+\gamma V^*(s')]</script>
+<script type="math/tex; mode=display">Q^*(s,\alpha)=\underset{s'\sim P}{E}\left[\tau(s,\alpha)+\gamma\underset{\alpha'}{max}Q^*(s',\alpha')\right]</script>
 Bellman equation:  reward-plus-next-value</p>
 <p><strong>Advantage Functions</strong>
-$$A^\pi(s,\alpha)=Q^\pi(s,\alpha)-V^\pi(s)$$
+<script type="math/tex; mode=display">A^\pi(s,\alpha)=Q^\pi(s,\alpha)-V^\pi(s)</script>
 <strong>Markov Decision Processes</strong>
 An MDP is a 5-tuple,$(S,A,R,P,\rho_0)$
 S is the set of all valid states.
@@ -307,6 +311,8 @@ $\rho_0$ is the starting state distribution.</p>
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

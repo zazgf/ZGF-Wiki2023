@@ -232,8 +232,8 @@ cansend can0 200#F8000000109C0000 // Clusters detection with all extended proper
 <p>然后再通过yolo的darknet进行物体识别，就可得到，障碍物的类别和距离信息。</p>
 <p>这里需要注意的是，我们的摄像头和毫米波安装位置关系，由于毫米波只有x，y信息，没有高度信息，所以我们尽量保持摄像头和毫米波竖直方向上中心线重合。</p>
 <p>备注，如果想要更改摄像头和毫米波的相对位置，只需通过刚性变换矩阵，进行坐标系转换</p>
-<p>$\begin{bmatrix}cos(\theta)&amp;-sin(\theta)&amp;0.0&amp;x\sin(\theta)&amp;cos(\theta)&amp;0.0&amp;y\0.0&amp;0.0&amp;1.0&amp;z\0.0&amp;0.0&amp;0.0&amp;1.0\end{bmatrix}$</p>
-<p>变换矩阵里$\begin{bmatrix}cos(\theta)&amp;-sin(\theta)&amp;0.0\sin(\theta)&amp;cos(\theta)&amp;0.0\0.0&amp;0.0&amp;1.0\end{bmatrix}$是3x3旋转矩阵，xyz是平移矩阵。</p>
+<p>$<script type="math/tex; mode=display">\begin{bmatrix}cos(\theta)&-sin(\theta)&0.0&x\\sin(\theta)&cos(\theta)&0.0&y\\0.0&0.0&1.0&z\\0.0&0.0&0.0&1.0\end{bmatrix}</script>$</p>
+<p>变换矩阵里$<script type="math/tex; mode=display">\begin{bmatrix}cos(\theta)&-sin(\theta)&0.0\\sin(\theta)&cos(\theta)&0.0\\0.0&0.0&1.0\end{bmatrix}</script>$是3x3旋转矩阵，xyz是平移矩阵。</p>
 <p>只需更改对应的旋转平移参数，即可进行坐标系转换。</p>
 <h2 id="darknet">darknet</h2>
 <p><a href="https://pjreddie.com/darknet/yolo/">Yolo物体检测</a></p>
@@ -279,6 +279,8 @@ cansend can0 200#F8000000109C0000 // Clusters detection with all extended proper
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
