@@ -114,7 +114,27 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#our-method">Our Method</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#radar-data-background">Radar Data background</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cnn-architecture">CNN architecture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#noise-filtering-module">Noise filtering module</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loss-function_1">Loss Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-details">Implementation details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a>
+    </li>
+        </ul>
+    </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
                     </li>
                 </ul>
       </div>
@@ -274,12 +294,79 @@ for LiDAR data and images to the new fusion problem between Radar data and image
 <p><strong>Fusion of images and radar Data.</strong></p>
 <p>There are already works that fuse RGB images and Radar.given the fact that they are very much complementary补充.The line of work mainly focus on object detection and tracking.For instance,C fused融合 Radar data and images to detect small objects at a large distance. In [] and [] the authors enhance current 2D object detection networks by fusing camera data and projected sparse radar data in the network layers，while [] also performs free space semantic segmentation jointly.Both methods learn at which level the fusion of the sensor data is more beneficial for the task. There are also other datasets proposed for object detection with Radar data such as [].Exemplary示范性的 works on semantic segmentation with Radar point cloud have been conducted as well. For instance, in [] the authors have studied how the challenging task can be performed and provide results on a dataset with manually labeled radar reflections.Similar to these works for object detection and semantic segmentation, our work aims to study how the challenging task of dense depth estimation with radar data can be addressed with the popular deep neural network architectures.</p>
 <p>In the line of increasing the robustness of depth estimation, Vasudevan, et al. [] have proposed a novel method to estimate depth maps based on binaural双耳 sounds.</p>
+<h2 id="our-method">Our Method</h2>
+<p>Our whole method are divided into multiple main components. In the following section, we will go through each component in detail.</p>
+<h3 id="radar-data-background">Radar Data background</h3>
+<p>Different from well established depth completion or depth estimation tasks.There is no prior research works on RGB + radar depth estimation task.Therefore, we provide a brief introduction to the task formulation and some key differences between Radar and LiDAR measurements,which will help readers to understand the motivations behind the components of our method.</p>
+<p><strong>Data format.</strong> similar to LiDAR data, Radar measurements are recorded as sparse point clouds. The main difference is that , in addition to $x,y,z$,and $reflectance$, Radar data consist of additional measurements including the velocity along x and y direction, the standard deviation of the location and velocity measurements.and information such as the dynamic states of the measured object (encoded as discrete离散的 numbers).</p>
+<p><img alt="" src="../images/Screenshot2021-05-1714%3A10%3A41.png" /></p>
+<p><strong>Limitation</strong> . While it seems that the radar data provide more information, it also introduces the following limitations compared with LiDAR data:
+* sparseness:In nuScenes dataset , there are more than 3000 LiDAR points after projection to the camera.However, there are less than 100 Radar points after the projection.
+* Limited vertical field of view.Because of the limitation of the sensor,Radar measurements mainly concentrate in the central horizontal bin (similar heights) as shwon in Fig.2.
+* Noisy measurements:Due to multiple reflections (Radar multipath problem) or other reasons , we have many noisy measurements as shown in Fig.2.
+* Inconsistency前后不一致 with LiDAR data:Apart from noisy measurements, which are considered as outliers, the 3D points of Radar and LiDAR representing the same object can also be different.Since we typically use LiDAR measurements as ground truth, even noise-free  Radar measurements are not perfect on the evaluation metrics.</p>
+<p>As we will show in Section IV, using Radar depth maps directly as the input of off-the-shelf现成的 RGB+LiDAR depth completion /prediction models resulted in marginal边缘 improvements.</p>
+<p><strong>Problem formulation</strong>. In our RGB+ Radar formulation,each data sample from the dataset contains</p>
+<p>(1) an RGB image $x_{RGB}$</p>
+<p>(2) a set of Radar measurements $R={r_n}^N_{n=1}$ from 3 nearest timestamps </p>
+<p>(3) a set of Lidar measurements $L={l_m}^M_{m=1}$ </p>
+<p>Radar measurements $R$ can be further projected to a single-channel 2D depth map $x_{Radar}$ using the perspective projection.Similarly,LiDAR measurements can be objected to 2D map y, which is treated as ground truth depth map in our experiments(section IV).Our model takes both $x_{RGB}$ and $x_{Radar}$ as inputs and predicts dense 2D depth map $\tilde{y}$ which minimizes the metrics errors. Same as all the depth estimation /completion tasks, loss and metric error are computed over the pixels with ground truth measurements.</p>
+<p><img alt="" src="../images/Screenshot2021-05-1715%3A05%3A07.png" /></p>
+<h3 id="cnn-architecture">CNN architecture</h3>
+<p><strong>Backbone</strong>. Since our goal is to perform a comprehensive综合的 study on different fusion methods, we need to choose an efficient and widely-used backbone. Thus, we fixed our backbone to Resnet18 , and explored different fusion methods based on it as a pilot飞行员 experiment. As illustrated in Fig.3, we apply different encoder fusion methods to the simple encoder-decoder architecture proposed by Ma, and compare their performance. According to the experiment (Section IV-C), late fusion and multi-layer fusion model have comparable performance.Therefore, we adopt采纳 late fusion as our main encoder backbone design in the following experiments for simplicity.</p>
+<p><strong>Two-Stage architecture</strong> As shown by the pilot experiments(section IV-C) , a simple encoder-decoder architecture have some improvements on RGB  + Radar depth prediction task if we can remove most of the noisy measurements. However, we don't have LiDAR ground truth to help us performing the filtering in real applications.and it's hard to perform outlier rejections异常剔除 without information on the 3D structure or objects of the scene.Therefore, we come up with a 2-stage design to address the noisy measurement issue.</p>
+<p>As shown in Fig.1, our whole method contains two stages. The stage 1 model $f_{stage1}$ takes both RGB image $x_{RGB}$ and the radar depth map $x_{Radar}$ as inputs and predicts a coarse粗 depth map $\tilde{y}_{stage1}$ ,which gives us a dense 3D structure of the scene:</p>
+<p>
+<script type="math/tex; mode=display">\tilde{y}_{stage1}=f_{stage1}(x_{RGB},x_{Radar})\qquad\quad(1)
+</script>
+</p>
+<p>Then we compare the Radar depth map with the coarse prediction $\tilde{y}<em>{stage1}$ to reject some outliers (most details in next subsection) and obtain the filtered Radar depth map $\tilde{x}</em>{Radar}$. The assumption假设 here is that although the predictions from stage 1 is not perfect, they are smooth and locally consistent. Therefore, they are suitable to reject outliner noises produced by Radar Multipath, which typically have certain margins with the correct depth values.</p>
+<p>The stage2 model $f_{stage2}$ takes $x_{RGB}$ , $\tilde{x}<em>{Radar}$ , and the prediction from stage1 $\tilde{y}</em>{stage1}$ to predict the final result $\tilde{y}$:</p>
+<p>
+<script type="math/tex; mode=display">
+\tilde{y} = f_{stage_2}(x_{RGB},\tilde{x}_{Radar},\tilde{y}_{stage1})\qquad(2)
+</script>
+</p>
+<h3 id="noise-filtering-module">Noise filtering module</h3>
+<p>Since Radar measurements are not exactly consistent with the LiDAR measurements as we mentioned in Section III-A .we need to have some tolerance公差 in the filtering process.Otherwise ,  we will end up discarding丢弃 all the measurements in the set $R$.</p>
+<p>Instead of setting a fixed distance tolerance threshold $\tau$,we empirically凭经验 found that an adaptive threshold gives us better results. We design the threshold to be a function of depth value $\tau(d)$ : We have larger tolerance for larger depth values, which is similar to the space-increasing disrectization (SID) from Huan et al.[2]:</p>
+<p>
+<script type="math/tex; mode=display">
+\tau(d)=exp\left(\frac{d*log(\frac{\beta}{\alpha})}{K}+log(\alpha)\right)\qquad(3)
+</script>
+</p>
+<p>here we heuristically启发式的 set $\alpha=5$ and $\beta=18$.</p>
+<p>Let $P$ denote the set pixel coordinates $(u,v)$ of the Radar measurements projected by the perspective projection function $proj(.)$ : $P={p_n}^N_{n=1}={proj(r_n)^N_{n=1}}$. The noise filtering module will keep the point $p_n$ if it satisfies the following constraint约束:</p>
+<p>
+<script type="math/tex; mode=display">
+|x_{Radar}(p_n)-\tilde{y}_{stage1}(p_n)|\leq\tau(p_n),for\quad p_n\quad in\quad P\qquad(4)
+</script>
+</p>
+<h3 id="loss-function_1">Loss Function</h3>
+<p>By design, each component of our model is differentiable. Thus, our whole model is end-to-end trainable.Following the setting from [7] ,We apply $L1$ loss to both the predictions of stage1 ($\tilde{y}<em>{stage1}$) and stage2 ($\tilde{y}$). Considering that the main purpose of $\tilde{y}</em>{stage1}$ is to filter outlier noises in $x_{Radar}$, we futher add edge-aware smoothness constraint to it . To effectively balance multiple loss terms, we follow the method proposed by Kendall</p>
+<p>
+<script type="math/tex; mode=display">
+L_{total} = e^{-w1}*(L1(\tilde{y}_{stage1},y)+10^{-3}*L_{smooth})+e^{-w2}*L1(\tilde{y},y) + \sum_{i}w_i\qquad(6)
+</script>
+</p>
+<p>where $w1$ and $w2$ are optimized variables ,and $L_{smooth}$ is defined as :
+<script type="math/tex; mode=display">
+L_{smooth}=|\triangledown_u(\tilde{y}_{stage1})|e^{-|\triangledown_u(x_{RGB})|} + |\triangledown_v(\tilde{y}_{stage1})|e^{-|\triangledown_v(x_{RGB})|}\qquad(8)
+</script>
+</p>
+<p>$\triangledown_u$ and $\triangledown_v$ denote the gradient along 2D height and width directions sperately.</p>
+<h3 id="implementation-details">Implementation details</h3>
+<p>Unless stated otherwise, all the models are trained using a batch size of 16 and SGD optimizer with a learning rate of $0.001$ and a momentum势头  of $0.9$ for 20 epochs. The learning rate is multiplied by 0.1 alter every 5 epochs.All the models we used in experiment action are implemented in PyTorch.The experiments are conducted on the desktop computers/clusters with Nvidia GTX1080Ti and TeslaV100 GPUs.</p>
+<p>All of our encoder network architectures (section III-B) are modified from the standard Reset18. For early fusion, we simply modified the input channels to 4 and randomly initialized the weights (weights of other layers were initialized from pre-trained models on Imagenet dataset). For mid, late, and multi-layer fusion , the depth branch has a similar architecture as the RGB branch.The only difference is that we change the number of channels to 1/4 of the original one. Fusion operations happened only on feature maps with same spatial resolution (width and height) . Regarding the decoder part, we kept the section from [] by using UpProj module as our upsampling operation.</p>
+<h3 id="experiment">Experiment</h3>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/" class="btn btn-neutral float-right" title="python有用的函数(一)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../voxelnet/" class="btn btn-neutral" title="voxelnet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -310,6 +397,8 @@ for LiDAR data and images to the new fusion problem between Radar data and image
       
         <span><a href="../voxelnet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

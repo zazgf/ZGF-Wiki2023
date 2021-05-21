@@ -92,11 +92,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#deque-in-python-python">deque in python ｐｙｔｈｏｎ中的双端队列</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#numpyargmax">numpy.argmax</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#python-randomsample">python random.sample()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#numpyamax">numpy.amax()</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#python-pip">python pip 不能用</a>
     </li>
@@ -111,6 +107,60 @@
     <li class="toctree-l2"><a class="reference internal" href="#opencvpilimage">OpenCV转换成PIL.Image格式</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#python">添加python路径</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#numpy">Numpy</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#numpyamax">numpy.amax()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#numpyargmax">numpy.argmax</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#npsqueeze">np.squeeze</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">提取文件和不同格式文件</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">根据文件名继续提取文件</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">确保文件名不为空</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">返回完整路径</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">查看是否属于已知类</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pkl-file">.pkl file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">判断文件是否存在</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#h5-file-open">h5 file Open</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#numpyrandomuniform">numpy.random.uniform</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#isinstance">isinstance()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">判断图像格式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pil">PIL图像亮度调整</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contrast-adjusted-image">Contrast adjusted image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#saturation-adjusted-image">Saturation adjusted image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hue-adjusted-image">Hue adjusted image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adjust-gamma-on-img">Adjust gamma on IMG</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#npclipimg-0-255">np.clip(img, 0, 255)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convert-npndarray-img-to-tensor">Convert np.ndarray img to tensor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mathfloor">math.floor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unsqueeze">unsqueeze</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nptranspose">np.transpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what-does-axis0-do-in-numpys-sum-function">What does axis=0 do in Numpy's sum function</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -145,6 +195,10 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
                     </li>
                 </ul>
       </div>
@@ -395,22 +449,8 @@ deque(['name', 'age', 'DOB'])
 <li>reverse() :- This function is used to reverse order of deque elements.</li>
 <li>rotate() :- This function rotates the deque by the number specified in arguments. If the number specified is negative, rotation occurs to left. Else rotation is to right.</li>
 </ul>
-<h3 id="numpyargmax">numpy.argmax</h3>
-<p>numpy.argmax(a, axis=None, out=None)[source]Returns the indices of the maximum values along an axis.<strong>parameters</strong>\</p>
-<ul>
-<li><strong>a: array_like</strong>,Input array.</li>
-<li><strong>axis:int, optional</strong>, By default, the index is into the flattened array, otherwise along the specified axis.</li>
-<li><strong>outarray, optional</strong>, If provided, the result will be inserted into this array. It should be of the appropriate shape and dtype.</li>
-</ul>
-<p><strong>Returns</strong>
-<strong>index_array:ndarray of ints</strong>
-Array of indices into the array. It has the same shape as a.shape with the dimension along axis removed.</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />
-<img alt="1" src="../images/Screenshot%202021-01-22%2013%3A53%3A11.png" /></p>
 <h3 id="python-randomsample">python random.sample()</h3>
 <p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A57%3A52.png" /></p>
-<h3 id="numpyamax">numpy.amax()</h3>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2014%3A13%3A38.png" /></p>
 <h3 id="python-pip">python pip 不能用</h3>
 <p><code>PIP_NO_CACHE_DIR=off pip install gym</code></p>
 <h2 id="numlinspace-in-python">num.linspace() in Python</h2>
@@ -465,6 +505,406 @@ cv2.waitKey()
 <h2 id="python">添加python路径</h2>
 <pre><code class="language-bash">xport PYTHONPATH=$PYTHONPATH:/home/dell/Deep/DeepSpeech/training
 </code></pre>
+<h2 id="numpy">Numpy</h2>
+<h3 id="numpyamax">numpy.amax()</h3>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2014%3A13%3A38.png" /></p>
+<h3 id="numpyargmax">numpy.argmax</h3>
+<p>numpy.argmax(a, axis=None, out=None)[source]Returns the indices of the maximum values along an axis.<strong>parameters</strong>\</p>
+<ul>
+<li><strong>a: array_like</strong>,Input array.</li>
+<li><strong>axis:int, optional</strong>, By default, the index is into the flattened array, otherwise along the specified axis.</li>
+<li><strong>outarray, optional</strong>, If provided, the result will be inserted into this array. It should be of the appropriate shape and dtype.</li>
+</ul>
+<p><strong>Returns</strong>
+<strong>index_array:ndarray of ints</strong>
+Array of indices into the array. It has the same shape as a.shape with the dimension along axis removed.</p>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />
+<img alt="1" src="../images/Screenshot%202021-01-22%2013%3A53%3A11.png" /></p>
+<h3 id="npsqueeze">np.squeeze</h3>
+<p><strong>Function</strong></p>
+<p>Remove dimensions of size 1 from ndarray
+ You can use <code>numpy.squeeze()</code> to remove all dimensions of size 1 from the NumPy array <code>ndarray. squeeze()</code> is also provided as a method of <code>ndarray</code>.</p>
+<pre><code class="language-python">import numpy as np
+
+a = np.arange(6).reshape(1, 2, 1, 3, 1)
+print(a)
+# [[[[[0]
+#     [1]
+#     [2]]]
+# 
+# 
+#   [[[3]
+#     [4]
+#     [5]]]]]
+
+print(a.shape)
+# (1, 2, 1, 3, 1)
+
+a_s = np.squeeze(a)
+print(a_s)
+# [[0 1 2]
+#  [3 4 5]]
+
+print(a_s.shape)
+# (2, 3)
+</code></pre>
+<p>By default, all dimensions with size <code>1</code> are removed, as in the example above.</p>
+<p>You can specify the index of the dimension to be removed in the second argument <code>axis</code> of <code>numpy.squeeze()</code>. Dimensions that are not the specified index are not removed.</p>
+<pre><code class="language-python">print(a.shape)
+# (1, 2, 1, 3, 1)
+print(np.squeeze(a, 0))
+# [[[[0]
+#    [1]
+#    [2]]]
+# 
+# 
+#  [[[3]
+#    [4]
+#    [5]]]]
+
+print(np.squeeze(a, 0).shape)
+# (2, 1, 3, 1)
+</code></pre>
+<p>An error will occur if you specify a dimension whose size is not <code>1</code> or a dimension that does not exist.</p>
+<p>axis can also be specified as a negative value. <code>-1</code>corresponds to the last dimension and can be specified by the position from the back.</p>
+<pre><code class="language-python">print(np.squeeze(a, -1))
+# [[[[0 1 2]]
+# 
+#   [[3 4 5]]]]
+
+print(np.squeeze(a, -1).shape)
+# (1, 2, 1, 3)
+
+print(np.squeeze(a, -3))
+# [[[[0]
+#    [1]
+#    [2]]
+# 
+#   [[3]
+#    [4]
+#    [5]]]]
+
+print(np.squeeze(a, -3).shape)
+# (1, 2, 3, 1)
+</code></pre>
+<h3 id="_1">提取文件和不同格式文件</h3>
+<pre><code class="language-python">  # Get all filenames in the dataroot
+  filenames = os.listdir(dataset_root)
+  filenames = [_ for _ in filenames if _.endswith(&quot;.h5&quot;)]#提取h5文件
+</code></pre>
+<h3 id="_2">根据文件名继续提取文件</h3>
+<pre><code class="language-python">  ver1_ori = [&quot;front&quot;, &quot;back&quot;]
+  filenames = [_ for _ in filenames if os.path.splitext(_)[0].split(&quot;_&quot;)[-1] in ver1_ori]
+</code></pre>
+<h3 id="_3">确保文件名不为<code></code>空</h3>
+<pre><code class="language-python">  assert len(filenames) &gt; 0
+</code></pre>
+<h3 id="_4">返回完整路径</h3>
+<pre><code class="language-python">  # Add to full data path
+  filenames_original = [os.path.join(dataset_root, _) for _ in filenames]
+</code></pre>
+<h3 id="_5">查看是否属于已知类</h3>
+<pre><code class="language-python">  # Check modalities
+  avail_modality = [&quot;rgb&quot;, &quot;rgbd&quot;]
+  if not modality in avail_modality:
+      raise ValueError(&quot;[Error] Unsupported modality. Consider &quot;, avail_modality)
+</code></pre>
+<h3 id="pkl-file">.pkl file</h3>
+<p>Your <code>pkl</code> file is, in fact, a serialized pickle file, which means it has been dumped using Python's <code>pickle</code> module.</p>
+<pre><code class="language-python">import pickle
+with open('serialized.pkl', 'rb') as f:
+    data = pickle.load(f)
+</code></pre>
+<p>Note <code>gzip</code> is only needed if the file is compressed:</p>
+<pre><code class="language-python">import gzip
+import pickle
+with gzip.open('mnist.pkl.gz', 'rb') as f:
+    train_set, valid_set, test_set = pickle.load(f)
+</code></pre>
+<p>Where each set can be further divided <code>(i.e. for the training set)</code>:</p>
+<pre><code class="language-python">train_x, train_y = train_set
+</code></pre>
+<p>If you want to display the dataset</p>
+<pre><code class="language-python">import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+plt.imshow(train_x[0].reshape((28, 28)), cmap=cm.Greys_r)
+plt.show()
+</code></pre>
+<h3 id="_6">判断文件是否存在</h3>
+<pre><code class="language-python">if not os.path.exists(datapoint):
+  raise ValueError(&quot;[Error] File does not exist.&quot;)
+</code></pre>
+<h3 id="h5-file-open">h5 file Open</h3>
+<p>In order to open a HDF5 file with the <code>h5py</code> module you can use <code>h5py.File(filename)</code>. </p>
+<pre><code class="language-python">import h5py
+filename = &quot;vstoxx_data_31032014.h5&quot;
+h5 = h5py.File(filename,'r')
+futures_data = h5['futures_data']  # VSTOXX futures data
+options_data = h5['options_data']  # VSTOXX call option data
+h5.close()
+</code></pre>
+<h3 id="numpyrandomuniform">numpy.random.uniform</h3>
+<p>we can get the random samples from uniform distribution and returns the random samples as numpy array by using this method.</p>
+<pre><code class="language-python"># import numpy
+import numpy as np
+import matplotlib.pyplot as plt
+# Using uniform() method
+gfg = np.random.uniform(2.1, 5.5, 1000)
+plt.hist(gfg, bins = 100, density = True)
+plt.show()
+</code></pre>
+<h3 id="isinstance">isinstance()</h3>
+<p>The <code>isinstance()</code> function returns <code>True</code> if the specified object is of the specified type, otherwise <code>False</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td>Required, An Object</td>
+</tr>
+<tr>
+<td>type</td>
+<td>A type or class, or a tuple of types and/or classes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">判断图像格式</h3>
+<pre><code class="language-python">def _is_pil_image(img):
+    if accimage is not None:
+        return isinstance(img, (Image.Image, accimage.Image))
+    else:
+        return isinstance(img, Image.Image)
+</code></pre>
+<h3 id="pil">PIL图像亮度调整</h3>
+<pre><code class="language-python">def adjust_brightness(img, brightness_factor):
+    &quot;&quot;&quot;Adjust brightness of an Image.
+    Args:
+        img (PIL Image): PIL Image to be adjusted.
+        brightness_factor (float):  How much to adjust the brightness. Can be
+            any non negative number. 0 gives a black image, 1 gives the
+            original image while 2 increases the brightness by a factor of 2.
+    Returns:
+        PIL Image: Brightness adjusted image.
+    &quot;&quot;&quot;
+    if not _is_pil_image(img):
+        raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+
+    enhancer = ImageEnhance.Brightness(img)
+    img = enhancer.enhance(brightness_factor)
+    return img
+</code></pre>
+<h3 id="contrast-adjusted-image">Contrast adjusted image</h3>
+<pre><code class="language-python">def adjust_contrast(img, contrast_factor):
+    &quot;&quot;&quot;Adjust contrast of an Image.
+    Args:
+        img (PIL Image): PIL Image to be adjusted.
+        contrast_factor (float): How much to adjust the contrast. Can be any
+            non negative number. 0 gives a solid gray image, 1 gives the
+            original image while 2 increases the contrast by a factor of 2.
+    Returns:
+        PIL Image: Contrast adjusted image.
+    &quot;&quot;&quot;
+    if not _is_pil_image(img):
+        raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+
+    enhancer = ImageEnhance.Contrast(img)
+    img = enhancer.enhance(contrast_factor)
+    return img
+</code></pre>
+<h3 id="saturation-adjusted-image">Saturation adjusted image</h3>
+<pre><code class="language-python">def adjust_saturation(img, saturation_factor):
+    &quot;&quot;&quot;Adjust color saturation of an image.
+    Args:
+        img (PIL Image): PIL Image to be adjusted.
+        saturation_factor (float):  How much to adjust the saturation. 0 will
+            give a black and white image, 1 will give the original image while
+            2 will enhance the saturation by a factor of 2.
+    Returns:
+        PIL Image: Saturation adjusted image.
+    &quot;&quot;&quot;
+    if not _is_pil_image(img):
+        raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+
+    enhancer = ImageEnhance.Color(img)
+    img = enhancer.enhance(saturation_factor)
+    return img
+</code></pre>
+<h3 id="hue-adjusted-image">Hue adjusted image</h3>
+<pre><code class="language-python">def adjust_hue(img, hue_factor):
+  &quot;&quot;&quot;Adjust hue of an image.
+  The image hue is adjusted by converting the image to HSV and
+  cyclically shifting the intensities in the hue channel (H).
+  The image is then converted back to original image mode.
+  `hue_factor` is the amount of shift in H channel and must be in the
+  interval `[-0.5, 0.5]`.
+  See https://en.wikipedia.org/wiki/Hue for more details on Hue.
+  Args:
+      img (PIL Image): PIL Image to be adjusted.
+      hue_factor (float):  How much to shift the hue channel. Should be in
+          [-0.5, 0.5]. 0.5 and -0.5 give complete reversal of hue channel in
+          HSV space in positive and negative direction respectively.
+          0 means no shift. Therefore, both -0.5 and 0.5 will give an image
+          with complementary colors while 0 gives the original image.
+  Returns:
+      PIL Image: Hue adjusted image.
+  &quot;&quot;&quot;
+  if not(-0.5 &lt;= hue_factor &lt;= 0.5):
+      raise ValueError('hue_factor is not in [-0.5, 0.5].'.format(hue_factor))
+
+  if not _is_pil_image(img):
+      raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+
+  input_mode = img.mode
+  if input_mode in {'L', '1', 'I', 'F'}:
+      return img
+
+  h, s, v = img.convert('HSV').split()
+
+  np_h = np.array(h, dtype=np.uint8)
+  # uint8 addition take cares of rotation across boundaries
+  with np.errstate(over='ignore'):
+      np_h += np.uint8(hue_factor * 255)
+  h = Image.fromarray(np_h, 'L')
+
+  img = Image.merge('HSV', (h, s, v)).convert(input_mode)
+  return img
+</code></pre>
+<h3 id="adjust-gamma-on-img">Adjust gamma on IMG</h3>
+<pre><code class="language-python">def adjust_gamma(img, gamma, gain=1):
+  &quot;&quot;&quot;Perform gamma correction on an image.
+  Also known as Power Law Transform. Intensities in RGB mode are adjusted
+  based on the following equation:
+      I_out = 255 * gain * ((I_in / 255) ** gamma)
+  See https://en.wikipedia.org/wiki/Gamma_correction for more details.
+  Args:
+      img (PIL Image): PIL Image to be adjusted.
+      gamma (float): Non negative real number. gamma larger than 1 make the
+          shadows darker, while gamma smaller than 1 make dark regions
+          lighter.
+      gain (float): The constant multiplier.
+  &quot;&quot;&quot;
+  if not _is_pil_image(img):
+      raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+
+  if gamma &lt; 0:
+      raise ValueError('Gamma should be a non-negative real number')
+
+  input_mode = img.mode
+  img = img.convert('RGB')
+
+  np_img = np.array(img, dtype=np.float32)
+  np_img = 255 * gain * ((np_img / 255) ** gamma)
+  np_img = np.uint8(np.clip(np_img, 0, 255))
+
+  img = Image.fromarray(np_img, 'RGB').convert(input_mode)
+  return img
+</code></pre>
+<h3 id="npclipimg-0-255">np.clip(img, 0, 255)</h3>
+<p>Given an interval, values outside the interval are clipped to the interval edges. For example, if an interval of [0, 1] is specified, values smaller than 0 become 0, and values larger than 1 become 1.</p>
+<h3 id="convert-npndarray-img-to-tensor">Convert np.ndarray img to tensor</h3>
+<pre><code class="language-python">class ToTensor(object):
+  &quot;&quot;&quot;Convert a ``numpy.ndarray`` to tensor.
+  Converts a numpy.ndarray (H x W x C) to a torch.FloatTensor of shape (C x H x W).
+  &quot;&quot;&quot;
+
+  def __call__(self, img):
+      &quot;&quot;&quot;Convert a ``numpy.ndarray`` to tensor.
+      Args:
+          img (numpy.ndarray): Image to be converted to tensor.
+      Returns:
+          Tensor: Converted image.
+      &quot;&quot;&quot;
+      if not(_is_numpy_image(img)):
+          raise TypeError('img should be ndarray. Got {}'.format(type(img)))
+
+      if isinstance(img, np.ndarray):
+          # handle numpy array
+          if img.ndim == 3:
+              img = torch.from_numpy(img.transpose((2, 0, 1)).copy())
+          elif img.ndim == 2:
+              img = torch.from_numpy(img.copy())
+          else:
+              raise RuntimeError('img should be ndarray with 2 or 3 dimensions. Got {}'.format(img.ndim))
+
+          # backward compatibility
+          # return img.float().div(255)
+          return img.float()
+</code></pre>
+<h3 id="mathfloor">math.floor</h3>
+<p>Round numbers down to the nearest integer</p>
+<pre><code class="language-python">#Import math library
+import math
+# Round numbers down to the nearest integer
+print(math.floor(0.6))
+print(math.floor(1.4))
+print(math.floor(5.3))
+print(math.floor(-5.3))
+print(math.floor(22.6))
+print(math.floor(10.0))
+​
+# 0
+# 1
+# 5
+# -6
+# 22
+# 10
+</code></pre>
+<h3 id="unsqueeze">unsqueeze</h3>
+<p>If you look at the shape of the array before and after, you see that before it was (4,) and after it is (1, 4) <code>(when second parameter is 0)</code> and (4, 1) <code>(when second parameter is 1)</code>. So a 1 was inserted in the shape of the array at axis 0 or 1, depending on the value of the second parameter.</p>
+<p>That is opposite of <code>np.squeeze()</code> (nomenclature borrowed from MATLAB) which removes axes of size 1 (singletons).</p>
+<pre><code class="language-python">&gt;&gt;&gt; x = torch.tensor([1, 2, 3, 4])
+&gt;&gt;&gt; torch.unsqueeze(x, 0)
+tensor([[ 1,  2,  3,  4]])
+&gt;&gt;&gt; torch.unsqueeze(x, 1)
+tensor([[ 1],
+        [ 2],
+        [ 3],
+        [ 4]])
+</code></pre>
+<h3 id="nptranspose">np.transpose</h3>
+<p>The transpose() function is used to permute置换 the dimensions of an array.</p>
+<pre><code class="language-python">import numpy as np
+a = np.ones((2,3,4))
+print(a.shape)
+print(&quot;--------------------------------&quot;)
+print(np.transpose(a,(2,0,1)).shape)
+print(&quot;--------------------------------&quot;)
+print(np.transpose(a,(2,1,0)).shape)
+
+# (2, 3, 4)
+# --------------------------------
+# (4, 2, 3)
+# --------------------------------
+# (4, 3, 2)
+# transpose里的 0代表第一维案例中是2， 1代表第二维案例中是3， 2代表第三维案例中是4.
+</code></pre>
+<h3 id="what-does-axis0-do-in-numpys-sum-function">What does axis=0 do in Numpy's sum function</h3>
+<p><img alt="" src="../images/Screenshot2021-05-2008%3A10%3A43.png" /></p>
+<pre><code class="language-python">a = np.array([[1, 2, 3], [4, 5, 6]])
+np.sum(a, axis = 0)
+# result array([5, 7, 9])
+
+a = np.array([1, 2, 3])
+np.sum(a, axis = 0)
+#result 6
+</code></pre>
+<h1 id="pad-the-points-to-512">Pad the points to 512</h1>
+<pre><code class="language-python">  num_points = points.shape[0]
+  target_size = 512
+  output_points = np.repeat(points[-1, :][None, ...], target_size, axis=0)
+  output_points[:num_points, :] = points
+  output_labels = np.repeat(labels[-1, :][None, ...], target_size, axis=0)
+  output_labels[:num_points, :] = labels
+</code></pre>
+<h3 id="numpyrandomshuffle">numpy.random.shuffle()</h3>
+<p>With the help of <code>numpy.random.shuffle()</code> method, we can get the random positioning of different integer values in the numpy array or we can say that all the values in an array will be shuffled randomly.</p>
+<h3 id="ordereddict">OrderedDict</h3>
+<p>An OrderedDict is a dictionary subclass that remembers the <strong>order</strong> that keys were first <strong>inserted</strong>. </p>
               
             </div>
           </div>

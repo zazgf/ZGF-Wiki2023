@@ -99,6 +99,10 @@
                     <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -1213,6 +1217,8 @@ Activation of the hidden layer takes place in the same way as for the output lay
 <p><code>conda install -c anaconda pytorch-gpu</code> </p>
 <p>version:1.8.0</p>
 <p><code>conda install -c conda-forge pytorch-gpu</code></p>
+<h3 id="_2">减少内存占用的一种方法</h3>
+<p>The projected depth values in the original depth maps are float32 and the unit is meter (m). However, we don't want to save float32 because it took too much storage. A common technique is that we can convert it to uint16 by int(depth * 256). This keeps certain degree of accuracy but takes less storage. That's why we need to divide the value by 256.</p>
               
             </div>
           </div>

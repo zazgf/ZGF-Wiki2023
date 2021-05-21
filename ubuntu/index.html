@@ -93,6 +93,10 @@
                     <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -423,6 +427,32 @@ MathJax.Hub.Config({
 });
 </code></pre>
 <p>这样就可以直接使用<code>$公式$</code> 和<code>$$公式$$</code></p>
+<h3 id="wget">wget 断网重连</h3>
+<pre><code class="language-bash">  wget -t 0 -c &lt; 文件地址&gt;
+  -c 表示断点续连
+  -t 表示 断了会每经过几秒重新连接连接一次，0表示一直不断重连，有最大连接次数的。
+  注意： 记得在原来的目录下执行这个命令，才会接着上文下载，找不到文件直接重新下载
+</code></pre>
+<h3 id="_6">指令查看硬盘存储情况</h3>
+<p><code>df -h</code></p>
+<h3 id="_7">查看所有硬盘</h3>
+<p><code>lsblk</code></p>
+<h3 id="_8">挂载硬盘</h3>
+<pre><code class="language-bash">sudo fdisk -l #查看磁盘信息
+sudo blkid #查看分区
+mkdir NeDisk # 创建挂载点
+df -kh #查看已有挂载，确定是否已挂载
+sudo umount /dev/sda5 #卸载已挂载
+sudo nano /etc/fstab
+sudo blkid /dev/sda5 # 找到其UUID
+#然后,我们按照/etc/fstab文件中的格式添加一行如下内容:
+UUID=0001D3CE0001E53B /home/ubuntu/NewDisk ntfs defaults 0 2
+#其中第一列为UUID, 第二列为挂载目录（该目录必须为空目录），第三列为文件系统类型，第四列为参数，第五列0表示不备份，最后一列必须为２或0(除非引导分区为1)
+sudo mount -a
+</code></pre>
+<h3 id="_9">查看文件夹的大小</h3>
+<pre><code class="language-bash">du * -sh 
+</code></pre>
               
             </div>
           </div>
