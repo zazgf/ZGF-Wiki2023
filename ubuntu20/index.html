@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense) - ZGF Wiki</title>
+  <title>Ubuntu20 - ZGF Wiki</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "rqt_image_view \u63d0\u793a ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)";
-    var mkdocs_page_input_path = "util_wiki.md";
+    var mkdocs_page_name = "Ubuntu20";
+    var mkdocs_page_input_path = "ubuntu20.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -63,8 +63,10 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ubuntu18/">Ubuntu18</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu20/">Ubuntu20</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ubuntu20</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
                 <ul>
@@ -120,7 +122,7 @@
     
       
     
-    <li>rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)</li>
+    <li>Ubuntu20</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -131,42 +133,67 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="rqt_image_view-imageviewcallback_image-could-not-convert-image-from-8uc3-to-rgb8-8uc3-is-not-a-color-format-but-rgb8-is-the-conversion-does-not-make-sense">rqt_image_view 提示 ImageView.callback_image() could not convert image from '8UC3' to 'rgb8' ([8UC3] is not a color format. but [rgb8] is. The conversion does not make sense)</h1>
-<p>解决办法:\
-- 首先在ｏｐｅｎｃｖ处把８ＵＣ３格式的ｍａｔ转化为ｒｇｂ格式</p>
-<p><code>cv::cvtColor(compoundFrame, compoundFrame, cv::COLOR_RGB2BGR);</code>
-- 然后cv_bridge编码格式改为sensor_msgs::image_encodings::RGB8</p>
-<p><code>img_bridge = cv_bridge::CvImage(headers, sensor_msgs::image_encodings::RGB8, compoundFrame);</code></p>
-<h1 id="rosmsg">Ros自定义ｍｓｇ编译时报错：缺少头文件</h1>
-<p>只需在CMakeLists.txt里添加\
-<code>add_dependencies(GetLaneExtDemo smart_eye_gencpp)</code>\
-smart_eye 可换成任意pkg 名称\
-GetLaneExtDemo　为节点名称</p>
-<h1 id="modulenotfounderror-no-module-named-rospkg">ModuleNotFoundError: No module named ‘rospkg’</h1>
-<pre><code>pip install rospkg                       //更新方式1
-sudo apt-get install python-rospkg           //更新方式2
-//网上说有的方式1能解决，有的方式2可以解决，用pip更新的前提是安装了pip
+                <h3 id="apt">更改apt镜像源</h3>
+<pre><code class="language-bash">sudo nano /etc/apt/sources.list
 </code></pre>
-<h1 id="importerror-no-module-named-genmsg">ImportError: No module named genmsg</h1>
-<p>命令：把sudo make 改为　make,就可以找到库，目前原因不明</p>
-<h1 id="ui_mainwindowh-no-such-file-or-directory">ui_mainwindow.h: No such file or directory</h1>
-<p><code>set(CMAKE_AUTOUIC ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)</code></p>
-<h1 id="git">git的命令行应用</h1>
-<blockquote>
-<ol>
-<li>git status</li>
-<li>git add .</li>
-<li>git commit -m "q"</li>
-<li>git push</li>
-</ol>
-</blockquote>
-<h2 id="ros">虽然有不同的ｒｏｓ工作空间</h2>
-<p>但是最好不要有相同的节点名字。因为容易引起混乱，运行混乱等。。。</p>
+<pre><code class="language-bash"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+
+</code></pre>
+<p><a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">源网址</a></p>
+<h3 id="ubuntu20-gcc">ubuntu20 gcc 版本</h3>
+<p>ubuntu20 默认gcc版本为9.3.0 </p>
+<p>cuda 10.0仅支持 gcc &lt;8,所以我们可以安装gcc7
+需要在镜像源里添加
+<code>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</code></p>
+<p>然后， <code>sudo apt-get update</code> ,再 <code>sudo apt-get install gcc-7</code></p>
+<p>gcc 版本 控制</p>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 7
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 7
+
+</code></pre>
+<h3 id="ubuntu20-cuda100">ubuntu20安装 cuda10.0</h3>
+<ul>
+<li>切换gcc到版本7</li>
+<li>在Cuda官网，下载cuda10.0 Linux -&gt; x86_64 -&gt; ubuntu -&gt; 18.04 -&gt; runfile(local)</li>
+<li><code>sudo sh cuda***.run</code></li>
+<li>按<code>q</code>键，输入<code>accept</code>， 在选择是否安装驱动处，选择<code>no</code></li>
+<li>安装完成，修改<code>nano ~/.bashrc</code> 在末尾添加</li>
+</ul>
+<pre><code class="language-bash">export CUDA_HOME=/usr/local/cuda-10.0
+export PATH=$PATH:$CUDA_HOME/bin
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+</code></pre>
+<p>安装cudnn
+下载 cuDNN v7.6.5 for Cuda10 runtime library for ubuntu18.04 deb
+<code>sudo dpkg -i libcudnnxxxxxxxxxxxxxxxxxx.deb</code></p>
+<h3 id="pytorch-131-cuda-100">安装pytorch 1.3.1 cuda 10.0</h3>
+<pre><code class="language-bash">pip install torch==1.3.1+cu100 torchvision==0.4.2+cu100 -f https://download.pytorch.org/whl/torch_stable.html
+</code></pre>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Ros/" class="btn btn-neutral float-right" title="Ros">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ubuntu18/" class="btn btn-neutral" title="Ubuntu18"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -190,6 +217,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)</code></p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../ubuntu18/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Ros/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

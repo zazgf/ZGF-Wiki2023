@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ubuntu18 - ZGF Wiki</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ubuntu18";
+    var mkdocs_page_input_path = "ubuntu18.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ubuntu18</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu20/">Ubuntu20</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Ros%E5%BB%BA%E6%A8%A1/">Ros建模</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tf_document/">tf_document</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../caffe/">Caffe</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Ubuntu18</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="mac">更改mac地址</h2>
+<ul>
+<li>使用ifconfig　查看网口</li>
+<li>安装macmanager
+  <code>sudo apt install macchanger</code></li>
+<li>随机生成一个mac地址
+  <code>sudo macchanger -r enp60s0</code>
+  <code>enp60s0</code>是网口，<code>-r</code>代表的是随机<code>random</code>的意思，<code>macchanger</code>会帮我们修改成一个随机产生的<code>MAC</code>号</li>
+<li>修改为指定的mac地址
+  <code>sudo macchanger -m AA:BB:CC:DD:EE:FF enp60s0</code>\</li>
+</ul>
+<h2 id="ubuntu1804">ubuntu18.04 网口创建网络共享</h2>
+<ul>
+<li>终端输入nm-connection-editor打开网络连接
+  <img alt="1" src="../images/20201224204459506.png" /></li>
+<li>创建以太网链接
+  <img alt="1" src="../images/20201224211150665.png" /></li>
+<li>配置网络链接
+  <img alt="1" src="../images/20201224210017800.png" />
+  <img alt="1" src="../images/20201224210814984.png" /></li>
+<li>将其他需要上网的设备通过网线链接到共享网络即可</li>
+</ul>
+<h2 id="xvfb-ssh">xvfb　ssh</h2>
+<p><code>xvfb-run -s "-screen 0 1400x900x24" python &lt;your_script.py&gt;</code></p>
+<h2 id="x-forward">x forward</h2>
+<p>ssh -X username@ip</p>
+<h2 id="vscode-remote-ssh">vscode 插件　Remote-ssh</h2>
+<p>conda install jupyter</p>
+<h2 id="github">github下载提速</h2>
+<p><code>git clone https://github.com/Amritpal-001/Reinforcement-learning-projects.git</code>
+改为
+<code>git clone http://hub.fastgit.org/Amritpal-001/Reinforcement-learning-projects.git</code></p>
+<h2 id="github_1">github 下载工具</h2>
+<p><a href="https://d.serctl.com/">https://d.serctl.com/</a></p>
+<h2 id="httpswwwpythonorgftp">https://www.python.org/ftp 下载慢</h2>
+<p><code>wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz</code>
+改为
+<code>wget https://npm.taobao.org/mirrors/python/3.7.5/Python-3.7.5.tgz</code></p>
+<h2 id="pip">pip 下载东西慢</h2>
+<p><code>pip3.7.5 install -i http://mirrors.aliyun.com/pypi/simple/ psutil decorator numpy protobuf==3.11^C scipy sympy cffi grpcio grpcio-tools requests --user --trusted-host mirrors.aliyun.com</code></p>
+<h2 id="mkdocs">mkdocs</h2>
+<p>mkdocs build</p>
+<p>mkdocs serve</p>
+<p>push sites folders</p>
+<h2 id="vscode-python-ros-debug">vscode python ros debug</h2>
+<p>首先</p>
+<pre><code class="language-bash">catkin_make -DCMAKE_BUILD_TYPE=DEBUG
+</code></pre>
+<p>其次点击debug按钮，选择生成新的launch文件。</p>
+<p>ｄebug时遇到路径问题,例如rosmsg路径，最好在文件属性里复制路径，不然容易出错</p>
+<pre><code class="language-python">import sys
+sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
+</code></pre>
+<h2 id="tilix-doesnt-open-in-the-folder-from-where-it-is-split">Tilix doesnt open in the folder from where it is split</h2>
+<p>Update <code>~.bashrc</code> (or <code>~.zshrc</code> if you are using zsh) to execute vte.sh directly, this involves adding the following line at the end of the file.</p>
+<pre><code>if [[ $TILIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
+</code></pre>
+<p>On Ubuntu (18.04), a symlink is probably missing. You can create it with:</p>
+<pre><code>ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+</code></pre>
+<h2 id="sudo-dist-upgrade-cuda">sudo dist-upgrade 是毁灭性的，会升级cuda</h2>
+<h2 id="github-init">github init</h2>
+<pre><code class="language-bash">git config --global user.email &quot;you@example.com&quot;
+git config --global user.name &quot;Your Name&quot;
+git add .
+git commit -m &quot;1&quot;
+git push
+</code></pre>
+<h2 id="_1">命令行打开文件管理器</h2>
+<p><code>nautilus --browser ~/文档</code></p>
+<h2 id="_2">安装汉语输入法</h2>
+<p>先在设置里设置language里添加Chinese</p>
+<pre><code class="language-bash">sudo apt-get install ibus-libpinyin ibus-clutter
+</code></pre>
+<h2 id="docker">Docker创建容器</h2>
+<h3 id="ubuntu1804_1">构建ubuntu18.04映像</h3>
+<h4 id="_3">安装依赖</h4>
+<pre><code class="language-bash">sudo apt-get install debootstrap
+sudo apt install docker.io
+sudo chmod 666 /var/run/docker.sock
+</code></pre>
+<h4 id="ubuntu-1804">创建ubuntu 18.04 镜像</h4>
+<pre><code class="language-bash">sudo debootstrap bionic bionic &gt; /dev/null
+sudo tar -C bionic -c . | docker import - bionic/smart_eye
+</code></pre>
+<h4 id="_4">测试</h4>
+<pre><code class="language-bash">docker run bionic cat /etc/lsb-release
+</code></pre>
+<p>查看镜像</p>
+<pre><code class="language-bash">docker images
+</code></pre>
+<p>删除镜像</p>
+<pre><code class="language-bash">docker rmi [IMAGE ID]
+</code></pre>
+<p>查看容器运行情况</p>
+<pre><code class="language-bash">sudo docker ps -a
+</code></pre>
+<p>退出容器</p>
+<pre><code class="language-bash">sudo docker stop 容器id
+</code></pre>
+<p>删除容器</p>
+<pre><code class="language-bash">sudo docker rm 容器id
+</code></pre>
+<p>启动镜像</p>
+<pre><code class="language-bash">docker run -it bionic/smart_eye  /bin/bash
+</code></pre>
+<p>退出镜像</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<p>文件传递</p>
+<p>从本地至docker</p>
+<pre><code class="language-bash">docker cp FILE_PATH 容器ID:/root
+</code></pre>
+<p>从docker 至本地</p>
+<pre><code class="language-bash">docker cp 容器ID:/root/data.tar /home/user
+</code></pre>
+<h4 id="docker-image">更改docker image存放路径</h4>
+<pre><code class="language-bash">sudo service docker stop
+sudo touch /etc/docker/daemon.json
+</code></pre>
+<p>daemon.json</p>
+<pre><code class="language-json">{
+    &quot;data-root&quot;:&quot;/home/pmjd/docker&quot;
+}
+</code></pre>
+<pre><code class="language-bash">sudo service docker start
+</code></pre>
+<h2 id="dockerapt-sourcelist">Docker更新apt source.list</h2>
+<pre><code class="language-bash">sudo nano /etc/apt/sources.list
+</code></pre>
+<p>添加</p>
+<pre><code class="language-bash">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+</code></pre>
+<h2 id="docker_1">Docker 启动容器</h2>
+<pre><code class="language-bash">docker start 容器ID
+docker attach 容器ID
+</code></pre>
+<p>导出容器快照</p>
+<pre><code class="language-bash">docker export c91c33f28594 &gt; smart_eye_docker.tar
+</code></pre>
+<p>容器快照导入为镜像</p>
+<pre><code class="language-bash">cat smart_eye_docker.tar | docker import - test/smart_eye:v1
+</code></pre>
+<p>再保存此镜像</p>
+<pre><code class="language-bash"> docker save -o smart_eye_image_docker.tar test/smart_eye
+</code></pre>
+<p>再加载镜像</p>
+<pre><code class="language-bash">docker load --input samrt_eye_image_docker.tar
+</code></pre>
+<p>启动</p>
+<pre><code class="language-bash">docker run -it test/smart_eye:v1 /bin/bash
+</code></pre>
+<p>docker 启动bash</p>
+<pre><code class="language-bash">docker start c91c33f28594
+docker exec -it c91c33f28594 /home/run.sh
+docker exec mycontainer /bin/sh -c &quot;cmd1;cmd2;...;cmdn&quot;
+</code></pre>
+<p>docker bash file example</p>
+<pre><code class="language-bash">#!/bin/sh
+docker run -it --net host --add-host in_release_docker:127.0.0.1 --add-host localhost:127.0.0.1 --hostname in_release_docker --rm promote/smart_eye:v1 /bin/bash -c &quot;/home/run.sh&quot;
+</code></pre>
+<p>启动快捷方式</p>
+<p>1.desktop</p>
+<pre><code class="language-bash">[Desktop Entry]
+Name=Smart_eye
+GenericName=3D modeler
+Keywords=3d;cg;modeling;animation;painting;sculpting;texturing;video editing;video tracking;rendering;render engine;cycles;game engine;python;
+Exec=/bin/bash -c '/home/promote/run.sh'
+#Icon=/home/pmjd/Disk/blender-2.90.1-linux64/blender.svg
+Terminal=true
+Type=Application
+Categories=Graphics;3DGraphics;
+MimeType=application/x-blender;
+</code></pre>
+<p>界面显示</p>
+<pre><code class="language-bash">xhost +
+-e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X11-unix
+</code></pre>
+<h2 id="nvidia-container-toolkit">安装NVIDIA Container Toolkit</h2>
+<pre><code class="language-bash">distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   &amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   &amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+</code></pre>
+<pre><code class="language-bash">curl -s -L https://nvidia.github.io/nvidia-container-runtime/experimental/$distribution/nvidia-container-runtime.list | sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+</code></pre>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+</code></pre>
+<p>这个时候<code>/etc/docker/daemon.json</code> 内容修改为</p>
+<pre><code class="language-bash">{
+    &quot;runtimes&quot;: {
+        &quot;nvidia&quot;: {
+            &quot;path&quot;: &quot;nvidia-container-runtime&quot;,
+            &quot;runtimeArgs&quot;: []
+        }
+    },
+    &quot;data-root&quot;:&quot;/home/pmjd/docker&quot;
+}
+</code></pre>
+<p>重启docker</p>
+<pre><code class="language-bash">sudo systemctl restart docker
+</code></pre>
+<p>下载运行：</p>
+<pre><code class="language-bash">sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+sudo docker run --rm --gpus all nvidia/cuda:10.1-base nvidia-smi
+</code></pre>
+<p>下载运行tensorflow:</p>
+<pre><code class="language-bash">docker run --gpus all --runtime=nvidia -it tensorflow/tensorflow:2.3.0-gpu bash
+</code></pre>
+<p>docker配置网络</p>
+<pre><code class="language-bash">--net=host 
+</code></pre>
+<p>docker 支持麦克,汉语</p>
+<pre><code class="language-bash">docker run -it --volume=/run/user/1000/pulse:/run/user/1000/pulse --user promote --gpus all --runtime=nvidia --name=xiaomeng -e LANG=C.UTF-8 --device /dev/snd promote/xiaomeng:v1.6 /bin/bash
+</code></pre>
+<h3 id="bash-ssh">bash 登入ssh</h3>
+<pre><code class="language-bash">#!/usr/bin/expect             
+
+set timeout 3                       
+spawn ssh -X promote@192.168.1.2 
+expect &quot;*password*&quot; {send &quot;123456\r&quot;}
+expect &quot;$ &quot; { send &quot;bash /home/username/1.sh\r&quot; }
+interact   
+</code></pre>
+<h2 id="nano">Nano 删除行</h2>
+<pre><code class="language-bash">ctrl+k
+</code></pre>
+<p>Nano显示行号</p>
+<pre><code class="language-bash">alt+shift+3
+</code></pre>
+<h3 id="python">修改默认python版本</h3>
+<p>删除/usr/bin 下的Python链接</p>
+<pre><code class="language-bash">sudo rm /usr/bin/python
+</code></pre>
+<p>用下面命令建立新的链接</p>
+<pre><code class="language-bash">sudo ln -s /usr/bin/python3.6 /usr/bin/python
+</code></pre>
+<p>用下面的命令还原2版本</p>
+<pre><code class="language-bash">sudo ln -s /usr/bin/python2.7 /usr/bin/python
+</code></pre>
+<p>更科学的做法是：</p>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+
+sudo update-alternatives --config python 选择要使用的版本，回车，搞定
+</code></pre>
+<h3 id="pip_1">设置默认pip版本</h3>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip2 1
+
+sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 2
+
+sudo update-alternatives --config pip
+</code></pre>
+<h3 id="pip_2">pip升级</h3>
+<pre><code class="language-bash">sudo pip install --upgrade pip
+</code></pre>
+<h3 id="_5">桌面快捷方式</h3>
+<pre><code class="language-bash">[Desktop Entry]
+Name=smart_view
+GenericName=3D modeler
+Keywords=python;
+Exec=/bin/bash -c 'source /opt/ros/melodic/setup.bash;rosrun image_view image_view image:=/smart_eye_view'
+#Icon=/home/pmjd/Disk/blender-2.90.1-linux64/blender.svg
+Terminal=false
+Type=Application
+Categories=Graphics;3DGraphics;
+MimeType=application/x-blender;
+Name[en_US]=smart_view
+</code></pre>
+<h3 id="md">md公式里添加空格</h3>
+<p><code>\quad</code>或者<code>\+空格</code> 或者<code>&amp;nbsp</code></p>
+<h3 id="md_1">md添加多行公式</h3>
+<p><code>![](https://latex.codecogs.com/svg.latex?\Large&amp;space;\theta_{k+1}=arg\quad\underset{\theta}{max})</code></p>
+<p><img alt="" src="https://latex.codecogs.com/svg.latex?\Large&space;\theta_{k+1}=arg\quad\underset{\theta}{max}" /></p>
+<p><code>&lt;img src="https://latex.codecogs.com/svg.image?\&amp;space;\begin{bmatrix}x\\y\\z\end{bmatrix}=K^{-1}_{3\times 3}\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}"/&gt;</code></p>
+<p><img src="https://latex.codecogs.com/svg.image?\&space;<script type="math/tex; mode=display">\begin{bmatrix}x\\y\\z\end{bmatrix}</script>=K^{-1}_{3\times 3}<script type="math/tex; mode=display">\begin{bmatrix}z\cdot(x_c+\delta_{x_c})\\z\cdot(y_c+\delta_{y_c})\\z\end{bmatrix}</script>"/></p>
+<h3 id="md_2">md添加行内公式</h3>
+<p><code>$\theta$</code> $\theta$</p>
+<h2 id="mkdocs_1">mkdocs 显示公式</h2>
+<pre><code class="language-bash">pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+</code></pre>
+<p>在<code>config.yaml</code>中添加</p>
+<pre><code class="language-bash">extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    - mathjaxhelper.js
+markdown_extensions:
+    - mdx_math
+</code></pre>
+<p>在docs文件夹下新建<code>mathjaxhelper.js</code></p>
+<pre><code>MathJax.Hub.Config({
+  &quot;tex2jax&quot;: { inlineMath: [ [ '$', '$' ] ] }
+
+});
+MathJax.Hub.Config({
+  config: [&quot;MMLorHTML.js&quot;],
+  jax: [&quot;input/TeX&quot;, &quot;output/HTML-CSS&quot;, &quot;output/NativeMML&quot;],
+  extensions: [&quot;MathMenu.js&quot;, &quot;MathZoom.js&quot;]
+});
+</code></pre>
+<p>这样就可以直接使用<code>$公式$</code> 和<code>$$公式$$</code></p>
+<h3 id="wget">wget 断网重连</h3>
+<pre><code class="language-bash">  wget -t 0 -c &lt; 文件地址&gt;
+  -c 表示断点续连
+  -t 表示 断了会每经过几秒重新连接连接一次，0表示一直不断重连，有最大连接次数的。
+  注意： 记得在原来的目录下执行这个命令，才会接着上文下载，找不到文件直接重新下载
+</code></pre>
+<h3 id="_6">指令查看硬盘存储情况</h3>
+<p><code>df -h</code></p>
+<h3 id="_7">查看所有硬盘</h3>
+<p><code>lsblk</code></p>
+<h3 id="_8">挂载硬盘</h3>
+<pre><code class="language-bash">sudo fdisk -l #查看磁盘信息
+sudo blkid #查看分区
+mkdir NeDisk # 创建挂载点
+df -kh #查看已有挂载，确定是否已挂载
+sudo umount /dev/sda5 #卸载已挂载
+sudo nano /etc/fstab
+sudo blkid /dev/sda5 # 找到其UUID
+#然后,我们按照/etc/fstab文件中的格式添加一行如下内容:
+UUID=0001D3CE0001E53B /home/ubuntu/NewDisk ntfs defaults 0 2
+#其中第一列为UUID, 第二列为挂载目录（该目录必须为空目录），第三列为文件系统类型，第四列为参数，第五列0表示不备份，最后一列必须为２或0(除非引导分区为1)
+sudo mount -a
+</code></pre>
+<h3 id="_9">查看文件夹的大小</h3>
+<pre><code class="language-bash">du * -sh 
+</code></pre>
+<h3 id="ubuntu-vscode">ubuntu vscode 终端空白</h3>
+<pre><code>File -&gt; Preferences -&gt; Setting -&gt; Features -&gt; Terminal -&gt; Inherit Env
+</code></pre>
+<h3 id="ubuntu">ubuntu 查看显卡</h3>
+<p><code>lspci -vnn |grep VGA -A 12</code></p>
+<h3 id="vscode-python-debug">vscode python debug 带参</h3>
+<pre><code class="language-bash">{
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Python: Current File&quot;,
+            &quot;type&quot;: &quot;python&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${file}&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;args&quot;: [
+                &quot;--evaluate&quot;,&quot;/home/promote/NeDisk/radar_depth/pretrained/resnet18_multistage.pth.tar&quot;,
+                &quot;--data&quot;,&quot;nuscenes&quot;
+            ]
+        }
+    ]
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ubuntu20/" class="btn btn-neutral float-right" title="Ubuntu20">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../python/" class="btn btn-neutral" title="Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../python/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ubuntu20/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
