@@ -63,12 +63,6 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ubuntu18/">Ubuntu18</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ubuntu20</a>
-    <ul class="current">
-    </ul>
-                    </li>
-                </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
                     </li>
@@ -133,7 +127,37 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="apt">更改apt镜像源</h3>
+                <h3 id="vscode-debug-cpp-ros-node">vscode Debug cpp Ros node</h3>
+<ul>
+<li>catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo</li>
+<li>对于intelliSenseEngine自动完成功能正确设置 "C_Cpp.intelliSenseEngine": "Tag Parser"</li>
+<li>Debuge-&gt;add_Configuration-&gt;{} ROS:Launch</li>
+</ul>
+<p><strong>launch.json</strong></p>
+<pre><code class="language-python">{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+
+        {
+            &quot;name&quot;: &quot;ROS: Launch&quot;,
+            &quot;type&quot;: &quot;ros&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;target&quot;: &quot;/home/pmjd/Disk/radar/src/ars_40X/launch/ars_40X.launch&quot;
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li>起一个roscore</li>
+<li>就可以debug了</li>
+<li>也可以 debug ros 节点， Debuge-&gt;add_Configuration-&gt;{} ROS:Attach</li>
+<li>启动terminal ， rosrun ars_40 deal_img</li>
+<li>开始debug, 选择c++ 和节点名字</li>
+</ul>
+<h3 id="apt">更改apt镜像源</h3>
 <pre><code class="language-bash">sudo nano /etc/apt/sources.list
 </code></pre>
 <pre><code class="language-bash"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
@@ -186,15 +210,6 @@ export LD_LIBRARY_PATH=${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Ros/" class="btn btn-neutral float-right" title="Ros">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../ubuntu18/" class="btn btn-neutral" title="Ubuntu18"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
@@ -217,10 +232,6 @@ export LD_LIBRARY_PATH=${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../ubuntu18/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../Ros/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
