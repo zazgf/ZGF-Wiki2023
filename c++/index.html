@@ -75,6 +75,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#use-eigen-in-cmake-program">Use Eigen in cmake program</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#double-to-string-1">double to string 保留小数点后1位</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">读取网口信息</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">判断字符串是否含有某字符</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -326,6 +332,66 @@ target_link_libraries(example Eigen3::Eigen)
 
     return str;
 
+}
+</code></pre>
+<h3 id="_4">读取网口信息</h3>
+<pre><code class="language-cpp">#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;ifaddrs.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;linux/if_link.h&gt;
+#include &lt;iostream&gt;
+
+std::string my_get_WIP()
+{
+    struct ifaddrs *ifaddr, *ifa;
+    int family, s, n;
+    char host[NI_MAXHOST];
+    if (getifaddrs(&amp;ifaddr) == -1) {
+        perror(&quot;getifaddrs&quot;);
+        exit(EXIT_FAILURE);
+    }
+    std::string result;
+    for (ifa = ifaddr, n = 0; ifa != NULL; ifa = ifa-&gt;ifa_next, n++) {
+        if (ifa-&gt;ifa_addr == NULL)
+            continue;
+        family = ifa-&gt;ifa_addr-&gt;sa_family;
+
+        if (family == AF_INET || family == AF_INET6) {
+            s = getnameinfo(ifa-&gt;ifa_addr,
+                    (family == AF_INET) ? sizeof(struct sockaddr_in) :
+                                            sizeof(struct sockaddr_in6),
+                    host, NI_MAXHOST,
+                    NULL, 0, NI_NUMERICHOST);
+            if (s != 0) {
+                printf(&quot;getnameinfo() failed: %s\n&quot;, gai_strerror(s));
+                exit(EXIT_FAILURE);
+            }
+
+        } else if (family == AF_PACKET &amp;&amp; ifa-&gt;ifa_data != NULL) {
+            struct rtnl_link_stats *stats = (struct rtnl_link_stats *)ifa-&gt;ifa_data;
+        }
+        std::string host_str = std::string(host);
+        if(host_str.find(&quot;192.168.1.&quot;) != std::string::npos)
+        {
+            result = std::string(ifa-&gt;ifa_name) +  &quot;:&quot; + host_str;
+        }
+    }
+
+    freeifaddrs(ifaddr);
+    return result;
+    exit(EXIT_SUCCESS);
+
+}
+</code></pre>
+<h3 id="_5">判断字符串是否含有某字符</h3>
+<pre><code class="language-cpp">std::size_t find = str.find(&quot;:&quot;);
+if(find != std::string::npos)
+{
+    std::cout &lt;&lt; “find” &lt;&lt; std::endl;
 }
 </code></pre>
               

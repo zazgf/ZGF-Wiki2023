@@ -905,6 +905,13 @@ np.sum(a, axis = 0)
 <p>With the help of <code>numpy.random.shuffle()</code> method, we can get the random positioning of different integer values in the numpy array or we can say that all the values in an array will be shuffled randomly.</p>
 <h3 id="ordereddict">OrderedDict</h3>
 <p>An OrderedDict is a dictionary subclass that remembers the <strong>order</strong> that keys were first <strong>inserted</strong>. </p>
+<h3 id="image-to-array-array-to-image">Image to Array &amp; Array to Image</h3>
+<pre><code class="language-python">from PIL import Image
+import numpy as np
+im = Image.open('1.jpg')
+im2arr = np.array(im) # im2arr.shape: height x width x channel
+arr2im = Image.fromarray(im2arr)
+</code></pre>
               
             </div>
           </div>
