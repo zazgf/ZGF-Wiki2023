@@ -267,6 +267,86 @@ DEFAULT_INDEX_URL = 'file:/home/promote/Downloads/2021-04-01-14-51-42-rosdistro-
 <h3 id="rosanaconda">ros总是链接anaconda下的库文件</h3>
 <pre><code class="language-bash">export LD_LIBRARY_PATH=&quot;&quot;
 </code></pre>
+<h3 id="use-parent-frame_id-display">Use parent frame_id Display</h3>
+<ul>
+<li>在launch文件里添加</li>
+</ul>
+<pre><code class="language-xml">&lt;node pkg=&quot;tf&quot;  type=&quot;static_transform_publisher&quot; name=&quot;base_to_map&quot; args=&quot;1000 0 0 0 0 0 /base_link /map 50&quot; &gt;
+
+&lt;node pkg=&quot;ros2qt&quot; type=&quot;ros2qt&quot; name=&quot;ros2qt&quot; &gt;
+    &lt;rosparam&gt;
+        use_sim_time: true
+    &lt;/rosparam&gt;
+&lt;/node&gt;
+&lt;node pkg=&quot;ros2qt&quot; type=&quot;myclock.py&quot; name =&quot;myclock&quot;/&gt;
+</code></pre>
+<p>myclock.py</p>
+<pre><code class="language-python">#!/usr/bin/python
+import rospy
+from rosgraph_msgs.msg import Clock
+import time
+
+def simtime_talker():
+    rospy.set_param('use_sim_time',False)
+    pub1 = rospy.Publisher('clock',Clock, queue_size=10)
+    rospy.init_node('talker', anonymous=True)
+    rate = rospy.Rate(10) # 10hz
+    sim_speed_multiplier = 10    
+    sim_clock = Clock()
+    zero_time = rospy.get_time()
+    while not rospy.is_shutdown():
+        sim_clock.clock = rospy.Time.from_sec(sim_speed_multiplier*(rospy.get_time() - zero_time))
+        rospy.loginfo(sim_clock)
+        pub1.publish(sim_clock)
+        rate.sleep()
+if __name__ == '__main__':
+    try:
+        simtime_talker()
+    except rospy.ROSInterruptException:
+        pass
+</code></pre>
+<ul>
+<li>在终端建立父子关系</li>
+</ul>
+<pre><code class="language-bash">rosrun tf stat_transform_publisher 0 0 1 0 0 0 1 base_link rslidar 50
+</code></pre>
+<ul>
+<li>即可在rviz里设置<code>fixed frame</code> 为 <code>base_link</code>,观看点云数据</li>
+</ul>
+<h3 id="tf">如何发布tf转换关系</h3>
+<ul>
+<li>Use <strong>static_transform_publisher</strong> -- this one is a ready to use node, that you can run from command line.</li>
+</ul>
+<pre><code class="language-bash">rosrun tf stat_transform_publisher 0 0 1 0 0 0  world rslidar 50
+</code></pre>
+<ul>
+<li>Use <a href="https://wiki.ros.org/tf/Tutorials/Writing%20a%20tf%20broadcaster%20(C++)">tf::TransformBroadcaster</a> -- to create transforms in a code.</li>
+</ul>
+<h3 id="roslaunch-roslaunch">roslaunch 包含 roslaunch文件</h3>
+<pre><code class="language-xml">&lt;include file=&quot;$(find robot_description)/launch/urdf_test.launch&quot; /&gt; 
+</code></pre>
+<h3 id="roslaunch-yaml">roslaunch 包含yaml 文件</h3>
+<pre><code class="language-xml">&lt;rosparam file=&quot;$(find ldtest)/config/para.yaml&quot; command=&quot;load&quot; /&gt;
+</code></pre>
+<p>para.yaml</p>
+<pre><code class="language-python">x_offset: -1.45
+y_offset: 0.56
+z_offset: 2.95
+x_jiaodu: -1.5
+y_jiaodu: 44.3
+z_jiaodu: 4.0
+stone2car_x: -1.25
+stone2car_y: 5.35
+stone2car_z: -1.0
+dipan_init_jiaodu: 91.4
+remote: true
+</code></pre>
+<h3 id="roslaunch-py-node">roslaunch py node</h3>
+<pre><code class="language-xml">&lt;node name=&quot;LidarTool&quot; pkg=&quot;ldtest&quot;
+          type=&quot;LidarTool.py&quot; required=&quot;false&quot;
+          output=&quot;screen&quot;
+    /&gt;
+</code></pre>
               
             </div>
           </div>
