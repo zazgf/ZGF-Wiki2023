@@ -129,7 +129,102 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="msg">引用其他包的ｍｓｇ</h2>
+                <h3 id="ros-create-msg">Ros create msg</h3>
+<ul>
+<li>在node节点文件夹下创建msg文件夹</li>
+<li>在msg文件夹下创建 **.msg文件</li>
+</ul>
+<p>detect.msg</p>
+<pre><code class="language-python">bool begin
+string first_name
+string last_name
+uint8 age
+uint32 score
+int64 stateLabel
+int64 CIPV
+int64 trackID
+int64 trackFrameNum
+int64 obstacleType
+float32 real3DRightX
+float32 real3DLeftX
+float32 width
+float32 real3DLowY
+float32 real3DUpY
+float32 height
+float32 HMW
+float32 fuzzyCollisionTimeZ
+float32 longitudinalZ
+float32 speedOfLongitudinal
+float32 lateralX
+float32 speedOfLateral
+float32 currentSpeed
+</code></pre>
+<p>detect_array.msg</p>
+<pre><code class="language-python">dectect []
+</code></pre>
+<p>package.xml</p>
+<pre><code class="language-xml">&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+<p>CMakelists.txt</p>
+<pre><code class="language-python">find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+   message_generation
+)
+
+catkin_package(
+  ...
+  CATKIN_DEPENDS message_runtime ...
+  ...)
+
+add_message_files(
+  FILES
+  detect.msg
+  detect_array.msg
+)
+
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+
+</code></pre>
+<ul>
+<li>包含头文件</li>
+</ul>
+<pre><code class="language-cpp">#include &quot;smart_eye/detect.h&quot;
+#include &quot;smart_eye/detect_array.h&quot;
+
+msg_pub = nh_.advertise&lt;smart_eye::detect_array&gt;(&quot;detect_array&quot;, 10);
+
+smart_eye::detect msg;
+smart_eye::detect_array msg_array;
+msg.stateLabel = stateLabel;
+msg.CIPV = CIPV;
+msg.trackID = trackID;
+msg.trackFrameNum = trackFrameNum;
+msg.obstacleType = obstacleType;
+msg.real3DRightX = real3DRightX;
+msg.real3DLeftX = real3DLeftX;
+msg.width = width;
+msg.real3DLowY = real3DLowY;
+msg.real3DUpY = real3DUpY;
+msg.height = height;
+msg.HMW = HMW;
+msg.fuzzyCollisionTimeZ = fuzzyCollisionTimeZ;
+msg.longitudinalZ = longitudinalZ;
+msg.speedOfLongitudinal = speedOfLongitudinal;
+msg.lateralX = lateralX;
+msg.speedOfLateral = speedOfLateral;
+msg.currentSpeed = currentSpeed;
+msg_array.push(msg);
+msg_pub.publish(msg_array);
+</code></pre>
+<h3 id="msg">引用其他包的ｍｓｇ</h3>
 <p>首先cmakelists.txt</p>
 <pre><code class="language-css">find_package(catkin REQUIRED COMPONENTS
   message_generation
@@ -172,7 +267,27 @@ redep update
 <p>首先</p>
 <pre><code class="language-bash">catkin_make -DCMAKE_BUILD_TYPE=DEBUG
 </code></pre>
-<p>其次点击debug按钮，选择生成新的launch文件。</p>
+<p>其次点击debug按扭,再点击`create a launch.json file</p>
+<p><img alt="" src="../images/Screenshot2021-06-0316%3A44%3A55.png" /></p>
+<p>选择<code>Show</code></p>
+<p><img alt="" src="../images/Screenshot2021-06-0316%3A36%3A37.png" /></p>
+<p>选择 <code>Add Configuration..</code></p>
+<p><img alt="" src="../images/Screenshotfrom2021-06-0316-39-03.png" /></p>
+<p>再添加 <code>Ros Attach</code> 
+<img alt="" src="../images/Screensho2021-06-036-47-03.png" /></p>
+<p><code>launch.json</code></p>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;ROS: Attach&quot;,
+            &quot;type&quot;: &quot;ros&quot;,
+            &quot;request&quot;: &quot;attach&quot;
+        }
+
+    ]
+}
+</code></pre>
 <p>ｄebug时遇到路径问题,例如rosmsg路径，最好在文件属性里复制路径，不然容易出错</p>
 <pre><code class="language-python">import sys
 sys.path.append(&quot;/home/pmjd/Downloads/catkin_ws/devel/lib/python2.7/dist-packages&quot;)
@@ -322,6 +437,19 @@ if __name__ == '__main__':
 <ul>
 <li>Use <a href="https://wiki.ros.org/tf/Tutorials/Writing%20a%20tf%20broadcaster%20(C++)">tf::TransformBroadcaster</a> -- to create transforms in a code.</li>
 </ul>
+<pre><code class="language-cpp">
+void QNode::biaodingCallback(const PointCloud::ConstPtr&amp; msg)
+{
+    frame_name = msg-&gt;header.frame_id;
+    static tf::TransformBroadcaster br;
+    tf::Transform transform;
+    transform.setOrigin( tf::Vector3(x_pianyi, y_pianyi, z_pianyi) );
+    tf::Quaternion q;
+    q.setRPY(x_xuanzhuan, y_xuanzhuan, z_xuanzhuan);
+    transform.setRotation(q);
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), &quot;base_link&quot;, frame_name));
+}
+</code></pre>
 <h3 id="roslaunch-roslaunch">roslaunch 包含 roslaunch文件</h3>
 <pre><code class="language-xml">&lt;include file=&quot;$(find robot_description)/launch/urdf_test.launch&quot; /&gt; 
 </code></pre>
@@ -343,9 +471,9 @@ remote: true
 </code></pre>
 <h3 id="roslaunch-py-node">roslaunch py node</h3>
 <pre><code class="language-xml">&lt;node name=&quot;LidarTool&quot; pkg=&quot;ldtest&quot;
-          type=&quot;LidarTool.py&quot; required=&quot;false&quot;
-          output=&quot;screen&quot;
-    /&gt;
+    type=&quot;LidarTool.py&quot; required=&quot;false&quot;
+    output=&quot;screen&quot;
+/&gt;
 </code></pre>
               
             </div>
