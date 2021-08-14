@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>PCL - ZGF Wiki</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "PCL";
+    var mkdocs_page_input_path = "PCL.md";
+    var mkdocs_page_url = "/PCL/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Atlas200验收报告/">Atlas200验收报告</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Autoware.auto/">Autoware.auto</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../OpenCV/">OpenCV</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">PCL</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#pca">PCA</a></li>
+    
+
+    <li class="toctree-l2"><a href="#normal-estimation-set-number-of-threads">Normal estimation set number of threads</a></li>
+    
+
+    <li class="toctree-l2"><a href="#fpfh-setnumberofthreads">fpfh setNumberOfThreads</a></li>
+    
+
+    <li class="toctree-l2"><a href="#vector">定义Vector 并初始化</a></li>
+    
+
+    <li class="toctree-l2"><a href="#thrust">thrust</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#vectors">Vectors</a></li>
+        
+            <li><a class="toctree-l3" href="#algorithm">Algorithm</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#reduction">reduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#prefix-sums">Prefix-Sums</a></li>
+        
+            <li><a class="toctree-l3" href="#reodering">Reodering</a></li>
+        
+            <li><a class="toctree-l3" href="#sorting">Sorting</a></li>
+        
+            <li><a class="toctree-l3" href="#fancy-iterators">Fancy Iterators</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#__shared__">__shared__</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PPO/">PPO</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Qt/">Qt</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../README/">README</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../RL/">RL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ROS2/">ROS2</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros/">Ros</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros建模/">Ros建模</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../agx/">Agx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../arm_docker/">Arm docker</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../c++/">C++</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caffe/">Caffe</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cmake/">Cmake</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cuda/">Cuda</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning/">Deeplearning</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning_work_station/">Deeplearning work station</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jekyll/">Jekyll</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../lidar_demo教程/">Lidar demo教程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../make/">Make</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python/">Python</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python有用的函数/">Python有用的函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pytorch/">Pytorch</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../radar_camera_fusion/">Radar camera fusion</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ros openai/">Ros openai</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../tf_document/">Tf document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu18/">Ubuntu18</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu20/">Ubuntu20</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../util_wiki/">Util wiki</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../vision360/">Vision360</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../voxelnet/">Voxelnet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../摄像机和毫米波坐标系关系/">摄像机和毫米波坐标系关系</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../毫米波和摄像机融合/">毫米波和摄像机融合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../激光雷达算法盒子/">激光雷达算法盒子</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../笛卡尔积/">笛卡尔积</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>PCL</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="pca">PCA</h3>
+<ol>
+<li>Use the PCA principal component analysis method to obtain the three main directions of the point cloud, obtain the centroid, calculate the covariance协方差, obtain the coveriance matrix, and obtain the eigenvalues and feature vectors of the covariance matrix. The eigenvector is the main direction.</li>
+</ol>
+<pre><code class="language-cpp">Eigen::vector4f pcaCentroid;
+pcl::compute3DCentroid(*cloud, pcaCentroid);
+Eigen::Matrix3f covariance;
+pcl::computeCovarianceMatrixNormalized(*cloud, pcaCentroid, covariance);
+Eigen::SelfAdjointEigenSolver&lt;Eigen::Matrix3f&gt; eigen_solver(covariance, Eigen::ComputeEigenVectors);
+Eigen::Matrix3f eigenVectorsPCA = eigen_solver.eigenvectors();
+Eigen::Vector3f eigenValuesPCA = eigen_solver.eigenvalues();
+eigenVectorsPCA.col(2) = eigenVectorsPCA.col(0).cross(eigenVectorsPCA.col(1));
+eigenVectorsPCA.col(0) = eigenVectorsPCA.col(1).cross(eigenVectorsPCA.col(2));
+eigenVectorsPCA.col(1) = eigenVectorsPCA.col(2).cross(eigenVectorsPCA.col(0));
+</code></pre>
+<ol>
+<li>
+<p>Using the main direction and centroid obtained in 1.convert the input point cloud to the origin.and the main direction and the coordinate system direction return to establish the bounding box of the point cloud transformed to the origin.</p>
+</li>
+<li>
+<p>Set the main direction and bounding box for the input point cloud through the inverse transformation of the input point cloud to the original point cloud.</p>
+</li>
+<li>
+<p>Complete code </p>
+</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;vtkAutoInit.h&gt;
+VTK_MODULE_INIT(vtkRenderingOpenGL);
+VTK_MODULE_INIT(vtkInteractionStyle);
+VTK_MODULE_INIT(vtkRenderingFreeType);
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;pcl/io/pcd_io.h&gt;
+#include &lt;pcl/point_cloud.h&gt;
+#include &lt;pcl/point_types.h&gt;
+#include &lt;Eigen/Core&gt;
+#include &lt;pcl/common/transforms.h&gt;
+#include &lt;pcl/common/common.h&gt;
+#include &lt;pcl/visualization/pcl_visualizer.h&gt;
+
+using namespace std;
+typedef pcl::PointXYZ PointType;
+int main(int argc, char **argv)
+{
+    pcl::PointCloud&lt;PointType&gt;::Ptr cloud(new pcl::PointCloud&lt;PointType&gt;());
+    std::cout &lt;&lt; &quot;Please enter the point cloud file name to be displayed.&quot;;
+    std::string fileName(&quot;rabbit&quot;);
+    getline(cin, fileName);
+    fileName += &quot;.pcd&quot;;
+    pcl::io::loadPCDFile(fileName, *cloud);
+    Eigen::Vector4f pcaCentroid;
+    pcl::compute3DCentroid(*cloud, pcaCentroid);
+    Eigen::Matrix3f covariance;
+    pcl::computeCovarianceMatrixNormalized(*cloud, pcaCentroid,covariance);
+    Eigen::SelfAdjointEigenSolver&lt;Eigen::Matrix3f&gt; eigen_solver (covariance, Eigen::ComputeEigenvectors);
+    Eigen::Matrix3f eigenVectorsPCA = eigen_solver.eigenvectors();
+    Eigen::Vector3f eigenValuesPCA = eigen_sovler.eigenvalues();
+    eigenVectorsPCA.col(2) = eigenVectorsPCA.col(0).cross(eigenVectorsPCA.col(1));
+    eigenVectorsPCA.col(0) = eigenVectorsPCA.col(1).cross(eigenVectorsPCA.col(2));
+    eigenVectorsPCA.col(1) = eigenVectorsPCA.col(2).cross(eigenVectorsPCA.col(0));
+
+    std::cout &lt;&lt; &quot;Eigenvalue va(3x1) :\n&quot; &lt;&lt; eigenValuesPCA &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Feature vector ve(3x3) :\n&quot; &lt;&lt; eigenVectorsPCA &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;centroid point (4x1) :\n&quot; &lt;&lt; pcaCentroid &lt;&lt; std::endl;
+
+    /** Another way to calculate the eigenvalues and eigenvectors of the point cloud covariance matrix: through the pca interface in PCL as follows
+     * pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloudPCAprojection (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+     * pcl::PCA&lt;pcl::PointXYZ&gt; pca;
+     * pca.setInputCloud(cloudSegmented);
+     * pca.project(*cloudSegmented, *cloudPCAprojection);
+     * std::cerr &lt;&lt; std::endl &lt;&lt; &quot;EigenVectors :&quot; &lt;&lt; pca.getEigenVectors() &lt;&lt; std::endl;
+     * std::cerr &lt;&lt; std::endl &lt;&lt; &quot;EigenValues :&quot; &lt;&lt; pca.getEigenValues() &lt;&lt;  std::endl;
+     **/
+
+    Eigen::Matrix4f tm = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f tm_inv = Eigen::Matrix4f::Identity();
+    tm.block&lt;3,3&gt;(0,0) = eigenVectorsPCA.transpose(); //R
+    tm.block&lt;3,1&gt;(0,3) = -0.1f * (eigenVectorsPCA.transpose())*(pcaCentroid.head&lt;3&gt;()); //-R*t
+    tm_inv = tm.inverse();
+    std::cout &lt;&lt; &quot;Transformation matrix tm(4x4): \n &quot; &lt;&lt; tm &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;inverter matrix tm'(4x4): \n&quot; &lt;&lt; tm_inv &lt;&lt; std::endl;
+    pcl::PointCloud&lt;PointType&gt;::Ptr transformedCloud(new pcl::PointCloud&lt;PointType&gt;);
+    pcl::transformPointCloud(*cloud, *transformedCloud, tm);
+    PointType min_p1, max_p1;
+    Eigen::Vector3f c1, c;
+    pcl::getMinMax3D (*transformedCloud, min_p1, max_p1);
+    c1 = 0.5f *(min_p1.getVector3fMap() + max_p1.getVector3fMap());
+    std::cout &lt;&lt; &quot;Centre c1(3x1):\n &quot; &lt;&lt; c1 &lt;&lt; std::endl;
+
+    Eigen::Affine3f tm_inv_aff(tm_inv);
+    pcl::transformPoint (c1, c, tm_inv_aff);
+
+    Eigen::vector3f whd, whd1;
+    whd1 = max_p1.getVector3fMap() - min_p1.getVector3fMap();
+    whd = whd1;
+    float sc1 = (whd1(0) + whd1(1) + whd1(2))/3; //the average scale of the point cloud, used to set the size of the main direction arrow
+
+    std::cout &lt;&lt; &quot;width1= &quot; &lt;&lt; whd1(0) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;heigth1 = &quot; &lt;&lt; whd1(1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;depth1 = &quot; &lt;&lt; whd1(2) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;scale1 = &quot; &lt;&lt; sc1 &lt;&lt; std::endl;
+
+    const Eigen::Quaternionf bboxQ1(Eigen::Quaternionf::Identity());
+    const Eigen::Vector3f bboxT1(c1);
+
+    const Eigen::Quaternionf bboxQ(tm_inv.block&lt;3,3&gt;(0,0));
+    const Eigen::Vector3f bboxT(c);
+
+    //the main direction of the point cloud transformed to the origin
+    PointType op;
+    op.x = 0.0;
+    op.y = 0.0;
+    op.z = 0.0;
+    Eigen::Vector3f px,py,pz;
+    Eigen::Affine3f tm_aff(tm);
+    pcl::transformVector(eigenVectorsPCA.col(0), px, tm_aff);
+    pcl::transformVector(eigenVectorsPCA.col(1), py, tm_aff);
+    pcl::transformVector(eigenVectorsPCA.col(2), pz, tm_aff);
+    PointType pcaX;
+    pcaX.x = sc1*px(0);
+    pcaX.y = sc1*px(1);
+    pcaX.z = sc1*px(2);
+    PointType pcaY;
+    pcaY.x = sc1*py(0);
+    pcaY.y = sc1*py(1);
+    pcaY.z = sc1*py(2);
+    PointType pcaZ;
+    pcaZ.x = sc1*pz(0);
+    pcaZ.y = sc1*pz(1);
+    pcaZ.z = sc1*pz(2);
+
+    //the main directio of the point cloud transformed to the origin
+
+    PointType cp;
+    cp.x = pcaCentroid(0);
+    cp.y = pcaCentroid(1);
+    cp.z = pcaCentroid(2);
+    PointType pcX;
+    pcX.x = sc1 * eigenVectorsPCA(0,0) + cp.x;
+    pcX.y = sc1 * eigenVectorsPCA(1,0) + cp.y;
+    pcX.z = sc1 * eigenVectorsPCA(2,0) + cp.z;
+    PointType pcY;
+    pcY.x = sc1* eigenVectorsPCA(0,1) + cp.x;
+    pcY.y = sc1* eigenVectorsPCA(1,1) + cp.y;
+    pcY.z = sc1* eigenVectorsPCA(2,1) + cp.z;
+    PointType pcZ;
+    pcZ.x = sc1* eigenVectorsPCA(0,2) + cp.x;
+    pcZ.y = sc1* eigenVectorsPCA(1,2) + cp.y;
+    pcZ.z = sc1* eigenVectorsPCA(2,2) + cp.z;
+
+    //pcl visualization
+    pcl::visualization::PCLVisualizer viewer;
+    pcl::visualization::PointCloudColorHandlerCustom&lt;PointType&gt; tc_handler(transformedCloud,0,255,0);
+
+    viewer.addPointCloud(transformedCloud, tc_handler, &quot;transformedCloud&quot;);
+    viewer.addCube(bboxT1, bboxQ1, whd1(0), whd1(1), whd1(2), &quot;bbox1&quot;);
+    viewer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, &quot;bbox1&quot;);
+    viewer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 1.0, 0.0, &quot;bbox1&quot;);
+
+    viewer.addArrow(pcaX, op, 1.0, 0.0, 0.0, false, &quot;arrow_X&quot;);
+    viewer.addArrow(pcaY, op, 0.0, 1.0, 0.0, false, &quot;arrow_Y&quot;);
+    viewer.addArrow(pcaZ, op, 0.0, 0.0, 1.0, false, &quot;arrow_Z&quot;);
+
+    pcl::visualization::PointCloudColorHandlerCustom&lt;PointType&gt; color_handler(cloud, 255,0,0);
+    viewer.addPointCloud(cloud, color_handler, &quot;cloud&quot;);
+    viewer.addCube(bboxT, bboxQ, whd(0), whd(1), whd(2), &quot;bbox&quot;);
+
+    viewer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION,pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, &quot;bbox&quot;);
+    viewer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 1.0, 0.0, 0.0);
+
+    viewer.addArrow(pcX, cp ,1.0, 0.0, 0.0, false, &quot;arrow_x&quot;);
+    viewer.addArrow(pcY, cp, 0.0, 1.0, 0.0, false, &quot;arrow_y&quot;);
+    viewer.addArrow(pcZ, cp, 0.0, 0.0, 1.0, false, &quot;arrow_z&quot;);
+    viewer.addCoordinateSystem(0.5f * sc1);
+    viewer.setBackgroundColor(1.0, 1.0, 1.0);
+    while(!viewer.wasStopped())
+    {
+        viewer.spinOnce(100);
+    }
+    return 0;
+}
+</code></pre>
+<p><img alt="" src="../images/c8a3ac378f0d5f3c6c4bf1a6322dc52d.png" /></p>
+<h3 id="normal-estimation-set-number-of-threads">Normal estimation set number of threads</h3>
+<h3 id="fpfh-setnumberofthreads">fpfh setNumberOfThreads</h3>
+<pre><code class="language-cpp">normal_estimation.setNumberOfThreads(in_ompnum_threads);
+...
+fpfh.setNumberOfThreads(in_ompnum_threads);
+</code></pre>
+<p>CMakeLists.txt</p>
+<pre><code class="language-cmake">find_package(OpenMP)
+if(OPENMP_FOUND)
+  set_target_properties(lidar_euclidean_cluster_detect PROPERTIES
+    COMPILE_FLAGS ${OpenMP_CXX_FLAGS}
+    LINK_FLAGS ${OpenMP_CXX_FLAGS}
+  )
+endif()
+</code></pre>
+<p>才可启动多线程</p>
+<h3 id="vector">定义Vector 并初始化</h3>
+<pre><code class="language-cpp">std::vector&lt;float&gt; cluster_fpfh_histogram(33, 0.0);
+</code></pre>
+<h3 id="thrust"><a href="https://docs.nvidia.com/cuda/thrust/index.html">thrust</a></h3>
+<p><img alt="" src="../images/Screenshot2021-06-0910:09:26.png" /></p>
+<p>thrust provides such a rich collection of data parallel primitives such as scan, sort, and reduce,which can be composed together to implent complex alogrithms with concise简洁 readable source code.By describing your computation in terms of these high-level abstractions you provide.Thrust with the freedom to select the most efficient implementation automatically. As a result, thrust can be utilized in rapid prototyping of cuda applications, where programmer productivity matters most, as well as in production, where robustness and absolute performance are crucial.</p>
+<h4 id="vectors">Vectors</h4>
+<p>Thrust provides two vector containers, <code>host_vector</code> and <code>device_vector</code>. As the names suggest, <code>host_vector</code> is stored in host memory while <code>device_vector</code> lives in GPU device memory. Thrust's vector containers are just like <code>std::vector</code> , <code>host_vector</code> are generic containers( able to store any data type) that can be resized dynamically.The following source code illustrates the use of Thrust's vector containers.</p>
+<pre><code class="language-cpp">#include &lt;thrust/host_vector.h&gt;
+#include &lt;thrust/device_vector.h&gt;
+#include &lt;iostream&gt;
+
+int main(void)
+{
+    //H has storage for 4 integers
+    thrust::host_vector&lt;int&gt; H(4);
+
+    //initialize individual elements
+    H[0] = 14;
+    H[1] = 20;
+    H[2] = 38;
+    H[3] = 46;
+
+    std::cout &lt;&lt; &quot;H has size &quot; &lt;&lt; H.size() &lt;&lt; std::endl;
+
+    for (int i=0; i&lt; H.size();i++)
+    {
+        std::cout &lt;&lt; &quot;[&quot; &lt;&lt; i &lt;&lt;&quot;] = &quot; &lt;&lt; H[i] &lt;&lt; endl;
+    }
+
+    H.resize(2);
+
+    thrust::device_vector&lt;int&gt; D=H;
+    D[0] = 99;
+    D[1] = 88;
+
+    for(int i=0; i &lt; D.size(); i++)
+    {
+        std::cout &lt;&lt; &quot;D[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; D[i] &lt;&lt; std::endl;
+    }
+    return 0;
+}
+
+</code></pre>
+<pre><code class="language-cpp">#include &lt;thrust/host_vector.h&gt;
+#include &lt;thrust/device_vector.h&gt;
+
+#include &lt;thrust/copy.h&gt;
+#include &lt;thrust/fill.h&gt;
+#include &lt;thrust/sequence.h&gt;
+
+#include &lt;iostream&gt;
+
+int main(void)
+{
+    //initial all ten integers of a device_vector to 1
+    thrust::device_vector&lt;int&gt; D(10,1);
+
+    //set the first seven elements of a vector to 9
+    thrust::fill(D.begin(), D.begin()+7, 9);
+
+    //initialize a host_vector with the first five elements of D
+    thrust::host_vector&lt;int&gt; H(D.begin(), D.begin() + 5);
+
+    //set the elements of H to 0, 1,2,3 ...
+    thrust::sequence (H.begin(), H.end());
+
+    //copy all of H back to the begining of D 
+    thrust::copy(H.begin(), H.end(), D.begin());
+
+    for (int i=0, i&lt; D.size(); i++)
+    {
+        std::cout &lt;&lt; &quot;D[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; D[i] &lt;&lt; std::endl;
+    }
+    return 0;
+}
+</code></pre>
+<p>Although vector iterators are similar to pointers they carry more information with them. Notice that we did not have to tell <code>thrust::fill</code> that it was operating on a <code>device_vector</code> iterator. This information is captured in the type of the iterator returned by <code>D.begin()</code> which is different than the type returned by <code>H.begin()</code>. When a Thrust function is called.it inspects the type of the iterator to determine whether to use a host or a device implementation. This process is known as static dispatching since the host/device dispatch is resolved at compile time.Note this implies that there is no runtime overhead to the dispatch process.</p>
+<p>You may wonder what happens when a "raw" pointer is used as an argument to a Thrust function .Like the STL, Thrust permits this usage and it will dispatch the host path of the algorithm. If the pointer in question is in fact a pointer to device memory then you'll need to wrap it with <code>thrust::device_ptr</code> before calling the function. For example</p>
+<pre><code class="language-cpp">size_t N = 10;
+
+//raw pointer to device memory 
+int * raw_ptr;
+cudaMalloc((void **) &amp;raw_ptr, N*sizeof(int));
+
+//wrap raw pointer with a device_ptr
+thrust::device_ptr&lt;int&gt; dev_ptr(raw_ptr);
+
+//use device_ptr in thrust algorithms
+thrust::fill(dev_ptr, dev_ptr+N, (int)0);
+</code></pre>
+<p>To extract a raw pointer from a <code>device_ptr</code> the <code>raw_pointer_cast</code> should be applied as follows:</p>
+<pre><code class="language-cpp">size_t N = 10;
+//create a device_ptr
+thrust::device_ptr&lt;int&gt; dev_ptr = thrust::device_malloc&lt;int&gt;(N);
+
+//extract raw pointer from device_ptr
+int *raw_ptr = thrust::raw_pointer_cast(dev_ptr);
+</code></pre>
+<p>Anther reason to distinguish between iterators and pointers is that iterators can be used to traverse遍历 many kinds of data structures. For example, the STL provides a linked list container (std::list) that provides bidirectional (but not random access) iterators. Although Thrust does not provide device implementations of such containers. It is compatible with them.</p>
+<pre><code class="language-cpp">#include &lt;thrust/device_vector.h&gt;
+#include &lt;thrust/copy.h&gt;
+#include &lt;list&gt;
+#include &lt;vector&gt;
+
+int main(void)
+{
+    //create an STL list with 4 values
+    std::list&lt;int&gt; stl_list;
+    stl_list.push_back(10);
+    stl_list.push_back(20);
+    stl_list.push_back(30);
+    stl_list.push_back(40);
+
+    //initialize a device_vector with the list
+    thrust::device_vector&lt;int&gt; D(stl_list.begin(),stl_list.end());
+
+    //copy a device_vector into a STL vector
+    std::vector&lt;int&gt; stl_vector(D.size());
+    thrust::copy(D.begin(),D.end(), stl_vector.begin());
+    return 0;
+}
+
+</code></pre>
+<h4 id="algorithm">Algorithm</h4>
+<p>All algorithms in Trust have implementations for both host and device.Specially, when a Thrust algorithm is invoked with a host iterator, then the host path is dispatched. Similarly, a device implementation is called when a device iterator is used to define a range.</p>
+<p>With the exception of <code>thrust::copy</code> , which can copy data between host and device, all iterator arguments to a Thrust algorithm should live in the same place; either all on the host or all on the device. When this requirement is violated the compiler will produce an error message.</p>
+<pre><code class="language-cpp">#include &lt;thrust/device_vector.h&gt;
+#include &lt;thrust/transform.h&gt;
+#include &lt;thrust/sequence.h&gt;
+#include &lt;thrust/copy.h&gt;
+#include &lt;thrust/fill.h&gt;
+#include &lt;thrust/replace.h&gt;
+#include &lt;thrust/functional.h&gt;
+#include &lt;iostream&gt;
+
+int main(void)
+{
+    //allocate three device_vectors with 10 elements
+    thrust::device_vector&lt;int&gt; X(10);
+    thrust::device_vector&lt;int&gt; Y(10);
+    thrust::device_vector&lt;int&gt; Z(10);
+
+    //initialize X to 0,1,2,3 ...
+    thrust::sequence(X.begin(), X.end());
+
+    //compute Y=-X
+    thrust::transform(X.begin(), X.end(), Y.begin(), thrust::negate&lt;int&gt;());
+
+    //fill z with twos
+    thrust::fill(Z.begin(), Z.end(), 2);
+
+    //compute Y = X mod 2
+    thrust::transform(X.begin(), X.end(), Z.begin(), Y.begin(), thrust::modulus&lt;int&gt;() );
+
+    //replace all the ones in Y with tens
+    thrust::replace(Y.begin(), Y.end(), 1, 10);
+
+    //print Y
+    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator&lt;int&gt; (std::cout, &quot;\n&quot;));
+    return 0;
+</code></pre>
+<p>For example , conside the vector operation <code>y&lt;-a*x+y</code> where <code>x</code> and <code>y</code> are vectors and <code>a</code> is a scalar constant. This is the well known SAXPY operation provided by BLAS library.</p>
+<p>If we want to implement SAXPY with Thrust we have a few options. The first is to use two transformations (one addition and one multiplication) and a temporary vector filled with the value <code>a</code>. A better choice is to use a single transformation with a user-define functor that does exactly what we want. We illustrate both approachs in the source code bellow.</p>
+<pre><code class="language-cpp">struct saxpy_functor
+{
+    const float a;
+    saxpy_functor(float _a):a(_a){}
+    __host__ __device__
+        float operator()(const float&amp; x, const float&amp; y) const {
+            return a*x +y;
+        }
+}
+
+void saxpy_fast(float A, thrust::device_vector&lt;float&gt; &amp; X , thrust::device_vector&lt;float&gt; &amp;Y)
+{
+    // Y &lt;- A * X + Y
+    thrust::transform(X.begin(), X.end(), Y.begin(), Y.end(),saxpy_functor(A));
+}
+
+void saxpy_slow(float A, thrust::device_vector&lt;float&gt;&amp; X, thrust::device_vector&lt;float&gt;&amp; Y)
+{
+    thrust::device_vector&lt;float&gt; temp(X.size());
+
+    //temp &lt;- A
+    thrust::fill(temp.begin(), temp.end(), A);
+
+    //temp &lt;- A* X
+    thrust::transform(X.begin(), X.end(), temp.begin(), temp.begin(), thrust::multiplies&lt;float&gt; ());
+
+    //Y &lt;- A*X +Y
+    thrust::transform(temp.begin(), temp.end(), Y.begin(), Y.begin(), thrust::plus&lt;float&gt;());
+
+}
+</code></pre>
+<p>Both <code>saxpy_fast</code> and <code>saxpy_slow</code> are valid SAXPY implementations, however <code>saxpy_fast</code> will be significantly faster than <code>saxpy_slow</code>. Ignoring the cost of allocating the temp vector and the arithmetic operations we have the following costs:</p>
+<p><code>saxpy_fast</code>: performs 2N reads and N writes.
+<code>saxpy_slow</code>: performs 4N reads and 3N writes.</p>
+<p>Since SAXPY is memory bound(its performance is limited by memory bandwidth, not floating point performance) the larger number of reads and writes makes <code>saxpy_slow</code> much more expensive. In contrast,<code>saxpy_fast</code> will perform about as fast as SAXPY in an optimized BLAS implementation. In memory bound algorithms like SAXPY it is generally worthwhile to apply kernel fusion (combining multiple operations into a single kernel) to minimize the number of memory transactions.</p>
+<p><code>trust::transform</code> only supports transformations with one or two input arguments (eg. $f(x)\rightarrow y\quad and\quad f(x,x)\rightarrow y$). When a transformation uses more than two input arguments it is necessary to use a different approach. The <code>arbitrary_transformation</code> example demonstrates a solution that uses <code>thrust::zip_iterator</code> and <code>thrust::for_each</code>.</p>
+<h3 id="reduction">reduction</h3>
+<p>A reduction algorithm uses a binary operation to reduce an input sequence to a single value. For example, the sum of an array of numbers is obtained by reducing the array with a plus operation. Similarly , the maximum of an array is obtained by reducing with an oeprator that takes two inputs and returns the maximum. The sum of an array is implemented with <code>thrust::reduce</code> as follows:</p>
+<pre><code class="language-cpp">int sum = thrust::reduce(D.begin(), D.end(), (int)0, thrust::plus&lt;int&gt;());
+</code></pre>
+<p>The first two arguments to <code>reduce</code> define the range of values while the third and fourth parameters provide the initial value and reduction operator respectively.Actually, this kind of reduction is so common that it is the default choice when no initial value or operator is provided. The following three lines are therefore equivalent:</p>
+<pre><code class="language-cpp">int sum = thrust::reduce(D.begin(), D.end(), (int)0, thrust::plus&lt;int&gt;());
+int sum = thrust::reduce(D.begin(), D.end(), (int)0);
+int sum = thrust::reduce(D.begin(), D.end());
+</code></pre>
+<p>Although <code>thrust::reduce</code> is sufficient to implement a wide variety of reduction, Thrust provides a few additional functions for convenience (like STL). for example <code>thrust::count</code> returns the number of instances of a specific value in a given sequence:</p>
+<pre><code class="language-cpp">#include &lt;thrust/count.h&gt;
+#include &lt;thrust/device_vector.h&gt;
+...// put three 1s in a device_vector
+
+thrust::device_vector&lt;int&gt; vec(5,0);
+vec[1] = 1;
+vec[3] = 1;
+vec[4] = 1;
+
+//count the 1s
+int result = thrust::count(vec.begin(), vec.end(), 1);
+//result is 3 
+</code></pre>
+<p>other reduction operations include <code>thrust::count_if</code>,<code>thrust::min_element</code>,<code>thrust::max_element</code>, <code>thrust::is_sorted</code>, <code>thrust::inner_product</code> and several others. </p>
+<p>The SAXPY example in the Transformations section showed how <em>kernel fusion</em> can be used to reduce the number of memory transfers used by a transformation kernel. With <code>thrust::transform_reduce</code> we can also apply kernel fusion to reduction kernels. Consider the following example which computes the norm of a vector.</p>
+<pre><code class="language-cpp">#include &lt;thrust/transform_reduce.h&gt;
+#include &lt;thrust/functional.h&gt;
+#include &lt;thrust/device_vector.h&gt;
+#include &lt;thrust/host_vector.h&gt;
+#include &lt;cmath&gt;
+
+// square&lt;T&gt; computes the square of a number f(x) -&gt; x*x
+template &lt;typename T&gt;
+struct square
+{
+    __host__ __device__
+        T operator()(const T&amp; x)const{
+            return x*x;
+        }
+}
+int main(void)
+{
+    //initialize host array
+    float x[4] = {1.0, 2.0, 3.0, 4.0};
+
+    //transfer to device
+    thrust::device_vector&lt;float&gt; d_x(x, x+4);
+
+    //setup arguments
+    square&lt;float&gt; unary_op;
+    thrust::plus&lt;float&gt; binary_op;
+    float init = 0;
+    //compute norm
+    float norm = std::sqrt(thrust::transform_reduce(d_x.begin(), d_x.end(), unary_op, init, binary_op));
+
+    std::cout &lt;&lt; norm &lt;&lt; std::endl;
+    return 0;
+}
+
+</code></pre>
+<p>Here we have a unary operator called <code>square</code> that squares each element of the input sequence. The sum of squares is then computed using a standard <code>plus</code> reduction. Like the slower version of SAXPY transformation.we could implement <code>norm</code> with multiple passes: first a <code>transform</code> using <code>square</code> or perhaps just <code>multiples</code> and then a <code>plus</code> reduction over a temporary array . However this would be unnecessarily wasteful and considerably slower. By fusing the square operation with the reduction kernel we again have a highly optimized implementation which offers the same performance as hand-written kernels.</p>
+<h4 id="prefix-sums">Prefix-Sums</h4>
+<p>Parrallel prefix-sums, or scan operations, are important building blocks in many parallel algorithms such as stream compaction and radix sort. Consider the following source code which illustrates an inclusive scan operation using the default <code>plus</code> oeprator.</p>
+<pre><code class="language-cpp">#include &lt;thrust/scan.h&gt;
+
+int data[6]  = {1, 0, 2, 2, 1, 3};
+thrust::inclusive_scan(data, data+6, data); //in-place scan
+//data is now { 1, 1, 3, 5, 6, 9}
+</code></pre>
+<p>In an inclusive scan each element of the output is the corresponding <code>partial sum</code> of the input range. For example , $data[2] = data[0] + data[1] + data[2]$ . An exclusive scan is similar, but shifted by one place to the right.</p>
+<pre><code class="language-cpp">#include &lt;thrust/scan.h&gt;
+int data[6] = {1, 0, 2, 2, 1, 3};
+thrust::exclusive_scan(data, data+6, data); //in-place scan
+//data is now {0, 1, 1, 3, 5, 6}
+</code></pre>
+<p>so now $data[2] = data[1] + data[2]$. As these examples show ，<code>inclusive_scan</code> and <code>exclusive_scan</code> are permitted to be performed in-place. Thrust also provides the functions <code>transform_inclusive_scan</code> and <code>transform_exclusive_scan</code> which apply a unary function to the input sequence before performing the scan. </p>
+<h4 id="reodering">Reodering</h4>
+<p>Thrust provides support for partitioning分区 and stream compaction流压缩 through the following algorithms.</p>
+<p><code>copy_if</code> copy elements that pass a predicate test</p>
+<p><code>partition</code> reorder elements according to predicate (true value precede false value)</p>
+<p><code>remove</code> and <code>remove_if</code>: remove elements that fail a predicate test</p>
+<p><code>unique</code> : remove consecutive duplicates within a sequence</p>
+<h4 id="sorting">Sorting</h4>
+<p>Thrust offers several functions to sort data or rearrange data according to a given criterion标准. The <code>thrust::sort</code> and <code>thrust::stable_sort</code> functions are direct analogs of <code>sort</code> and <code>stable_sort</code> in STL.</p>
+<pre><code class="language-cpp">#include &lt;thrust/sort.h&gt;
+...
+const int N=6;
+int A[N] = {1, 4, 2, 8, 5, 7};
+
+thrust::sort{A, A+N}
+//A is now {1, 2, 4, 5, 7, 8}
+</code></pre>
+<p>In addition, Thrust provides <code>thrust::sort_by_key</code> and <code>thrust::stable_sort_by_key</code> , which sort key-value pairs stored in separate places.</p>
+<pre><code class="language-cpp">#include &lt;thrust/sort.h&gt;
+...
+const int N = 6;
+int keys[N] = {1, 4, 2, 8, 5, 7};
+char values[N] = {'a', 'b', 'c', 'd', 'e', 'f'}
+thrust::sort_by_key(keys, keys+N, values);
+//keys is now {1, 2, 4, 5, 7, 8}
+//value is now {'a', 'c', 'b', 'e', 'f', 'd'}
+</code></pre>
+<h4 id="fancy-iterators">Fancy Iterators</h4>
+<p>Fancy iterators perform a variety of valuabe purposes.</p>
+<p><strong>Constant iterator</strong></p>
+<p>Arguably the simplest of the bunch, <code>constant_iterator</code> is simply an iterator that returns the same value whenever we access it. In the following example we initialize a constant iterator with the value 10.</p>
+<pre><code class="language-cpp">#include &lt;thrust/iterator/constant_iterator.h&gt;
+...
+//create iterators
+thrust::constant_iterator&lt;int&gt; first(10);
+thrust::constant_iterator&lt;int&gt; last = first+3;
+
+first[0]; //returns 10
+first[1]; //returns 10
+first[100]; //returns 10
+
+//sum of [first, last)
+thrust::reduce(first, last); //return 30(i.e. 3*10)
+
+</code></pre>
+<p><strong>Counting iterator</strong></p>
+<p>If a sequence of increasing value is required. the <code>counting_iterator</code> is the appropriate choice. Here we initialize a <code>counting_iterator</code> with the value 10 and access it like an array.</p>
+<pre><code class="language-cpp">#include &lt;thrust/iterator/counting_iterator.h&gt;
+...
+// create iterators
+thrust::counting_iterator&lt;int&gt; first(10);
+thrust::counting_iterator&lt;int&gt; last = first + 3;
+
+first[0]   // returns 10
+first[1]   // returns 11
+first[100] // returns 110
+
+// sum of [first, last)
+thrust::reduce(first, last);   // returns 33 (i.e. 10 + 11 + 12)
+</code></pre>
+<p>while <code>constant_iterator</code> and <code>counting_iterator</code> act as array, they don't actually require any memory storage.Whenever we dereference one of these iterators it generates the appropriate value on-the-fly and returns it to the calling function.</p>
+<p><strong>transform_iterator</strong></p>
+<pre><code class="language-cpp">#include &lt;thrust/iterator/transform_iterator.h&gt;
+// initialize vector
+thrust::device_vector&lt;int&gt; vec(3);
+vec[0] = 10; vec[1] = 20; vec[2] = 30;
+
+// create iterator (type omitted)
+...
+first = thrust::make_transform_iterator(vec.begin(), negate&lt;int&gt;());
+...
+last  = thrust::make_transform_iterator(vec.end(),   negate&lt;int&gt;());
+
+first[0]   // returns -10
+first[1]   // returns -20
+first[2]   // returns -30
+
+// sum of [first, last)
+thrust::reduce(first, last);   // returns -60 (i.e. -10 + -20 + -30)
+</code></pre>
+<p>avoid creating a variable to store <code>first</code> and <code>last</code></p>
+<pre><code class="language-cppp">// sum of [first, last)
+thrust::reduce(thrust::make_transform_iterator(vec.begin(), negate&lt;int&gt;()),
+               thrust::make_transform_iterator(vec.end(),   negate&lt;int&gt;()));
+</code></pre>
+<p><strong>permutation_iterator</strong></p>
+<p><code>permutation_iterator</code> is similar: it allows us to fuse gather and scatter operations with Thrust algorithms, or even other fancy iterators. The following example shows how to fuse a gather operation with a reduction.</p>
+<pre><code class="language-cpp">#include &lt;thrust/iterator/permutation_iterator.h&gt;
+
+...
+
+// gather locations
+thrust::device_vector&lt;int&gt; map(4);
+map[0] = 3;
+map[1] = 1;
+map[2] = 0;
+map[3] = 5;
+
+// array to gather from
+thrust::device_vector&lt;int&gt; source(6);
+source[0] = 10;
+source[1] = 20;
+source[2] = 30;
+source[3] = 40;
+source[4] = 50;
+source[5] = 60;
+
+// fuse gather with reduction: 
+//   sum = source[map[0]] + source[map[1]] + ...
+int sum = thrust::reduce(thrust::make_permutation_iterator(source.begin(), map.begin()),
+                         thrust::make_permutation_iterator(source.begin(), map.end()));
+</code></pre>
+<p>Here we have used the <code>make_permutation_iterator</code> function to simplify the construction of the <code>permutation_iterators</code>. The first argument to <code>make_permutation_iterator</code> is the source array of the gather operation and the second is the list of map indices. Note that we pass in <code>source.begin()</code> for the first argument in both cases, but vary the second argument to define the beginning and end of the sequence.</p>
+<p><strong>zip_iterator</strong></p>
+<p>Keep reading, we’ve saved the best iterator for last! The <code>zip_iterator</code> is an extremely useful gadget: it takes multiple input sequences and yields a sequence of tuples. In this example we “zip” together a sequence of int and a sequence of char into a sequence of <code>tuple&lt;int,char&gt;</code> and compute the tuple with the maximum value.</p>
+<pre><code class="language-cpp">#include &lt;thrust/iterator/zip_iterator.h&gt;
+...
+// initialize vectors
+thrust::device_vector&lt;int&gt;  A(3);
+thrust::device_vector&lt;char&gt; B(3);
+A[0] = 10;  A[1] = 20;  A[2] = 30;
+B[0] = 'x'; B[1] = 'y'; B[2] = 'z';
+
+// create iterator (type omitted)
+first = thrust::make_zip_iterator(thrust::make_tuple(A.begin(), B.begin()));
+last  = thrust::make_zip_iterator(thrust::make_tuple(A.end(),   B.end()));
+
+first[0]   // returns tuple(10, 'x')
+first[1]   // returns tuple(20, 'y')
+first[2]   // returns tuple(30, 'z')
+
+// maximum of [first, last)
+thrust::maximum&lt; tuple&lt;int,char&gt; &gt; binary_op;
+thrust::tuple&lt;int,char&gt; init = first[0];
+thrust::reduce(first, last, init, binary_op); // returns tuple(30, 'z')
+</code></pre>
+<p>What makes <code>zip_iterator</code> so useful is that most algorithms accept either one, or occasionally two, input sequences. The <code>zip_iterator</code> allows us to combine many independent sequences into a single sequence of tuples, which can be processed by a broad set of algorithms.</p>
+<p>Refer to the <code>arbitrary_transformation</code> example to see how to implement a ternary transformation with <code>zip_iterator</code> and <code>for_each</code>. A simple extension of this example would allow you to compute transformations with multiple output sequences as well.</p>
+<p>In addition to convenience, <code>zip_iterator</code> allows us to implement programs more efficiently. For example, storing 3d points as an array of <code>float3</code> in CUDA is generally a bad idea, since array accesses are not properly coalesced. With <code>zip_iterator</code> we can store the three coordinates in three separate arrays, which does permit coalesced memory access. In this case, we use <code>zip_iterator</code> to create a virtual array of 3d vectors which we can feed in to Thrust algorithms. Refer to the <code>dot_products_with_zip</code> example for additional details.</p>
+<h3 id="__shared__">__shared__</h3>
+<pre><code class="language-cpp">__shared__ int local_offset[BLOCK_SIZE_X];
+</code></pre>
+<p>Think of shared memory as an explicitly managed cache - it's only useful if you need to access data more than once.either within the same thread or from different threads within the same block. If you're only accessing data once then shared memory isn't going to help you.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../PPO/" class="btn btn-neutral float-right" title="PPO">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../OpenCV/" class="btn btn-neutral" title="OpenCV"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../OpenCV/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../PPO/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../mathjaxhelper.js"></script>
+
+</body>
+</html>

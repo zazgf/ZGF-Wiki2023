@@ -7,26 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>radar_camera - ZGF Wiki</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+  <title>Radar camera fusion - ZGF Wiki</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "radar_camera";
+    var mkdocs_page_name = "Radar camera fusion";
     var mkdocs_page_input_path = "radar_camera_fusion.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/radar_camera_fusion/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -36,119 +34,235 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> ZGF Wiki</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu18/">Ubuntu18</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros%E5%BB%BA%E6%A8%A1/">Ros建模</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../tf_document/">tf_document</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../caffe/">Caffe</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">radar_camera</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">视锥体关联机制</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#smoke-approach">Smoke approach</a>
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Atlas200验收报告/">Atlas200验收报告</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Autoware.auto/">Autoware.auto</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../OpenCV/">OpenCV</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PCL/">PCL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PPO/">PPO</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Qt/">Qt</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../README/">README</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../RL/">RL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ROS2/">ROS2</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros/">Ros</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros建模/">Ros建模</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../agx/">Agx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../arm_docker/">Arm docker</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../c++/">C++</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caffe/">Caffe</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cmake/">Cmake</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cuda/">Cuda</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning/">Deeplearning</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning_work_station/">Deeplearning work station</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jekyll/">Jekyll</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../lidar_demo教程/">Lidar demo教程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../make/">Make</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python/">Python</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python有用的函数/">Python有用的函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pytorch/">Pytorch</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Radar camera fusion</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#radar-camera-fusion">radar camera fusion</a></li>
+    
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#backbone">backbone</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3d-detection-network">3D detection network</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#regression-branch">Regression Branch</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loss-function">Loss function</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#regression-loss">Regression Loss</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a>
-    </li>
+        
+            <li><a class="toctree-l3" href="#_1">视锥体关联机制</a></li>
+        
+            <li><a class="toctree-l3" href="#smoke-approach">Smoke approach</a></li>
+        
+            <li><a class="toctree-l3" href="#depth-estimation-from-monocular-images-and-sparse-radar-data">Depth Estimation from Monocular Images and Sparse Radar Data</a></li>
+        
+            <li><a class="toctree-l3" href="#our-method">Our Method</a></li>
+        
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#depth-estimation-from-monocular-images-and-sparse-radar-data">Depth Estimation from Monocular Images and Sparse Radar Data</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#related-works">RELATED WORKS</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#our-method">Our Method</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#radar-data-background">Radar Data background</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cnn-architecture">CNN architecture</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#noise-filtering-module">Noise filtering module</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loss-function_1">Loss Function</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#implementation-details">Implementation details</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#radar-point-cloud">Radar Point Cloud</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#centernet">CenterNet</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#related-work">Related work</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#preliminary">Preliminary</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#objects-as-points">Objects as Points</a>
-    </li>
-        </ul>
-    </li>
+    
+
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
-                    </li>
-                </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ros openai/">Ros openai</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../tf_document/">Tf document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu18/">Ubuntu18</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu20/">Ubuntu20</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../util_wiki/">Util wiki</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../vision360/">Vision360</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../voxelnet/">Voxelnet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../摄像机和毫米波坐标系关系/">摄像机和毫米波坐标系关系</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../毫米波和摄像机融合/">毫米波和摄像机融合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../激光雷达算法盒子/">激光雷达算法盒子</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../笛卡尔积/">笛卡尔积</a>
+	    </li>
+          
+        </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -168,12 +282,11 @@
     
       
     
-    <li>radar_camera</li>
+    <li>Radar camera fusion</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
   </ul>
-  
   <hr/>
 </div>
           <div role="main">
@@ -196,10 +309,10 @@
 <p>In this work we present a novel end-to-end framework that predicts the top-down view of the current scene($t_0$) as well as multiple timesteps into the future.The pipleline consists of a convolutional neural network for each of three sensor modalities : lidar, radar , camera.Each sensor modality predicts a sequence of top-down semantic grids, then these outputs are fused to produce a single output grid.We explore fusing using two different aggregation mechanisms.</p>
 <p>Estimating 3D orientation and translation of objects is essential for infrastructure-less .In case of monocular vision, successful methods have been mainly based on two ingredients因素: （1）a network generating 2D region proposals(2D区域提案)。(2) a R-CNN structure predicting 3D object pose by utilizing the acquired regions of interest. We argue that the 2D detection network is redundant多余的 and introduces non-negligible 不可忽略的 noise for 3D detection.Hence,we propose a novel 3D object detection method, named SMOKE, in this paper that predicts a 3D bounding box for each detected object by combining a single keypoint estimate with regressed 3D   variables.As a second contribution, we propose a multi-step disentangling approach for constructing the 3D bounding box ,which significantly improves both training convergence收敛 and detection accuracy. In constract to previous 3D detection techniques, our method does not require complicated pre/post-processing.extra data, and a refinement细化 stage. Despite of its structural结构 simplicity， our proposed SMOKE network outperforms all existing monocular 3D detection methods on the KITTI dataset , giving the best state-of-the-art result on both 3D objection dection and bird's eye view evaluation . The code will be made publicly available.</p>
 <p>Vison based object detection is an essential ingredient成分 of autonomous vehicle perception 洞察力 of autonomous vehicle perception and infrastructure基础设施 less robot navigation in general. This type of detection methods are used to perceive 感知 the surrounding environment by detecting and classifying object instances实例 into categories 类别 and identifying their locations and orientations. Recent developments in 2D object detection have achieved promising performance有前途的 on both detection accuracy and speed. In constract, 3D object detection have proven to be a more challenging task as it aims to estimate pose and location for each object simulataneously.</p>
-<p>Currently,the most successful 3D object detection methods heavily depend on Lidar point cloud.<img alt="" src="../images/Screenshot2021-05-1211%3A01%3A06.png" /></p>
+<p>Currently,the most successful 3D object detection methods heavily depend on Lidar point cloud.<img alt="" src="../images/Screenshot2021-05-1211:01:06.png" /></p>
 <p>or LIDAR-Image fusion information.(features learned from the point cloud are key components of the detection network).However , LIDAR sensors are extremely expensive , have a short service life time and too heavy for autonomous robots. Hence LIdars are currently not considered to be econnomical流行的 to support autonomous vehicle operations . Alternatively , cameras are cost-effective, easily mountable and light-weight solutions for 3D object detection with long expected service time. Unlike lidar senors , a single camera in itself cannot obtain sufficient spatial information for the whole environment as single RGB images can not supply object location information or dimensional contour 轮廓 in the real world. While binocular 双目 vision restores the missing spatial information. in many robot applications, especially UAVs , it is difficult to realize biocular vision. Hence , it is desirable to perform 3D detection on a monocular  image even if it is a more difficult and chanllenging task.</p>
 <p>To enhance performance, geometry reasoning 几何推理 synthetic data 综合数据 and post 3D-2D processing have also been used to improve 3D object detection on single image.By the knowledge of the authors , no reliable monocular 3D detection method has been introduced so far to learn 3D information directly from image plane avoiding the performance decrease that is inevitable不可避免的 with multi-stage method.</p>
-<p><img alt="" src="../images/Screenshot2021-05-1211%3A38%3A32.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1211:38:32.png" /></p>
 <p>In this paper we propose an innovative创新 single-stage 3D object detection method that pairs each object with a single keypoint. We argue and later show that a 2D detection, which introduces nonnegligible noise in 3D parameter estimation, is redundant多余的 to perform 3D object detection.Furthermore 2D information can be naturally obtained if 3D variables and camera instrinsic matrix are already known.Consequently, our designed network eliminate 排除 the 2D detection branch and estimates the projected 3D points on the image plane instead.A 3d parameter regression branch is added in parallel.This design results in a simple network structure with two estimation threads.Rather than regressing variables  in a separate method by use multiple loss functions, we transform these variables together with projected keypoint to 8 corner representation of 3D boxes and regress them with a unified统一的 loss function. As in most single state 2D object detection algorithms, our 3D detection approach only contains one classification and regression branch.Benefiting from the simple structure , the network exhibits 展示 improved accuracy in learning 3D variables, has better convergence and less overall computional needs.</p>
 <p>Second constribution of our work is a multi-step disentanglement 纠缠 approach for 3D bounding box regression. Since all the geometry information is grouped  into the parameter, it is difficult for the network to learn each variable accurately n a unified way.Our proposed method isolates分离 the contribution of each parameter in both the 3D bounding box ecoding phase and regression loss function , which significantly helps to train the whole network effectively.</p>
 <p>Our contribution is summarized as follows:</p>
@@ -208,14 +321,14 @@
 <li>We provide a multistep distanglement approach to improve the convergence收敛 of 3D parameters and detection accuracy.</li>
 <li>The result method outperforms all existing state-of-art monocular 3D object detection algorithms on the chanllenging KITTI dataset at the submission date November 2019.</li>
 </ul>
-<p><img alt="" src="../images/Screenshot2021-05-1213%3A52%3A21.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1213:52:21.png" /></p>
 <p>We formulate定义 the monocular 3D object detection problem as follow:</p>
 <p>given a single RGB image <img src="https://latex.codecogs.com/svg.image?&space;I\in\mathbb{R}^{W\times H\times 3}"/> ,with <img src="https://latex.codecogs.com/svg.image?W"/> the width and <img src="https://latex.codecogs.com/svg.image?H"/> the height of the image, find for each present object its category类别 label C and its 3D bounding box B, where the latter is parameterized by 7 variables <img src="https://latex.codecogs.com/svg.image?(h,\omega,l,x,y,z,\theta)"/> .Here, <img src="https://latex.codecogs.com/svg.image?(h,\omega,l)"/> represent the height, width and length of each object in meters , and <img src="https://latex.codecogs.com/svg.image?(x,y,z)"/> is the coordinates (in meters) of the object center in the camera coordinate frame. Variable <img src="https://latex.codecogs.com/svg.image?\theta"/> is the yaw orientation of the corresponding cubic box. The roll and pitch angles are set to zero by following the Kitti annotation .Additionally , we take the mild温和 assumption that the camera instrinsic matrix K is known for both training and inference.</p>
 <h2 id="smoke-approach">Smoke approach</h2>
 <p>In this section, we describe the smoke network that directly estimates 3D bounding boxes for detected object instances  from monocular imagery. In constrast to previous techniques that leverage 杠杆作用 2D proposals to prediect 3D bounding box, our method can detect 3D information with a simple single stage.The propose method can be divided into three parts:(1) backbone,(2) 3D detection (3) loss function.First , we briefly discuss the backbone  for feature extraction , followed by the instruction of the the 3D detection network consisting of two separated branches. Finallly,we discuss the loss function design and the multi-step disentanglement to compute the regression loss.The overview of the network structure is depicted in Fig.2</p>
 <h3 id="backbone">backbone</h3>
 <p>We use a hierarchical layer fusion network DLA-34 as the backbone to extract features since it can aggregate information across different layers.Following the same structure as in [], all the hierarchical aggregation connections are replaced by a Deformable可变形的 convolution network (DCN) The output feature map is downsample 4 times with respect to the original image.Compared with the original implementation, we replace all BatchNorm(BN) operation with GroupNorm(GN) since it has been proven to be less sensitive to batch size and more robust to training noise.We also use this technique in the two prediction branches.</p>
-<p><img alt="" src="../images/Screenshot2021-05-1215%3A31%3A41.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1215:31:41.png" /></p>
 <p>which will be discussed later.This adjustment not only improve detection accuracy , but it also reduces considerably the training time. Later ,we provide performance comparison of BN and GN to demonstrate  these properties.</p>
 <h3 id="3d-detection-network">3D detection network</h3>
 <p>Keypoint branch: We define the keypoint estimation network similar to such that each object is represented by one specific keypoint. Instead of identifying the center of a 2D bounding box , the key point is defined as the projected 3D center of the object on the image plane. The comparison between 2D center points and 3D projected points is visualized in Fig3.The projected keypoints allow to fully recover 3D location for each object with camera parameters. Let <img src="https://latex.codecogs.com/svg.image?[x,y,z]^T"/>  represent the 3D center of each object in the camera frame.The projection of 3D points of points <img src="https://latex.codecogs.com/svg.image?[x_c,y_c]^T"/> on the image plane can be obtained with the camera instrinsic matrix K in a homogeneous form:</p>
@@ -296,7 +409,7 @@ for LiDAR data and images to the new fusion problem between Radar data and image
 <p>The contributions of this work include: 1) a detailed study on the challenges of using Radar data for dense depth estimation; and 2) a novel and carefully motivated network architecture for depth estimation with monocular images and sparse Radar data.</p>
 <h3 id="related-works">RELATED WORKS</h3>
 <p>RGB-based Depth Estimation. Depth estimation from monocular or stereo camera is a popular research topic in both computer vision and robotics.Early works used either geometry-based algorithms on stereo images, or handcrafted features on single images.Recent years, convolutional neural networks(CNN) have demonstrated their ability in image understanding, dense predictions ,etc. given large scale datasets. Therefore, lots of research works of monocular depth estimation are conducted.In general , most of them used the encoder-decoder architecturres. Xie . futher introduced skip connection strategy which is a frequently used technique to multi-level features in dense prediction tasks. On the other hand, Huang achieve state-of-the-art performance by introducing space increasing discretization (SID) and ordinal regression. In some semi-/self-supervised formu loss is used.</p>
-<p><img alt="" src="../images/Screenshot2021-05-1416%3A49%3A35.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1416:49:35.png" /></p>
 <p>and the smoothness constraint约束 is further imposed to enhance local consistency一致性.Patil proposed a recurrent反复发作 network architecture to exploit the long-range spatiotemporal时空 structures across video frames to yeild more accurate depth maps.While good performance has been obtained with only RGB images, the methods still have difficulty in generalizing to new scenario and chanllenging weather and light conditions. This motivates the existing line of work that fuses camera data with Lidar data and our work that fuses camera data with radar data is cheaper to obtain.</p>
 <p><strong>Depth Estimation with Camera and Lidar data</strong></p>
 <p>while monocular depth estimation task attracts lots of attention, achieving more reliable and accurate predictions using multi-modality多模态 information is also a popular topic.Existing works either take the whole set of LiDAR points , (known as depth completion), or the downsampled set as model inputs.Ma first projected LiDAR points to 2D sparse depth map and then perform so called early fusion by direct concatenation with RGB images along channel, or concatenation feature maps after one shallow convolution block.J used a late fusion method to combine features from different modalities and improved the overall performance through multitask learning.Q proposed to predict dense depth map by combining predictions from RGB and surface normal pathways, where surface normal is treated as an intermediate representation. Moreover, confidence maps are predicted to down-weight mixed measurements from LiDAR caused by the displacement between camera and LiDAR. In this work our main focus is sensor fusion . Thus , we use the widely adopted encoder-decoder architecture and focus on the necessary extensions in order to effectively use Radar data instead.</p>
@@ -309,7 +422,7 @@ for LiDAR data and images to the new fusion problem between Radar data and image
 <h3 id="radar-data-background">Radar Data background</h3>
 <p>Different from well established depth completion or depth estimation tasks.There is no prior research works on RGB + radar depth estimation task.Therefore, we provide a brief introduction to the task formulation and some key differences between Radar and LiDAR measurements,which will help readers to understand the motivations behind the components of our method.</p>
 <p><strong>Data format.</strong> similar to LiDAR data, Radar measurements are recorded as sparse point clouds. The main difference is that , in addition to $x,y,z$,and $reflectance$, Radar data consist of additional measurements including the velocity along x and y direction, the standard deviation of the location and velocity measurements.and information such as the dynamic states of the measured object (encoded as discrete离散的 numbers).</p>
-<p><img alt="" src="../images/Screenshot2021-05-1714%3A10%3A41.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1714:10:41.png" /></p>
 <p><strong>Limitation</strong> . While it seems that the radar data provide more information, it also introduces the following limitations compared with LiDAR data:
 * sparseness:In nuScenes dataset , there are more than 3000 LiDAR points after projection to the camera.However, there are less than 100 Radar points after the projection.
 * Limited vertical field of view.Because of the limitation of the sensor,Radar measurements mainly concentrate in the central horizontal bin (similar heights) as shwon in Fig.2.
@@ -321,7 +434,7 @@ for LiDAR data and images to the new fusion problem between Radar data and image
 <p>(2) a set of Radar measurements $R={r_n}^N_{n=1}$ from 3 nearest timestamps </p>
 <p>(3) a set of Lidar measurements $L={l_m}^M_{m=1}$ </p>
 <p>Radar measurements $R$ can be further projected to a single-channel 2D depth map $x_{Radar}$ using the perspective projection.Similarly,LiDAR measurements can be objected to 2D map y, which is treated as ground truth depth map in our experiments(section IV).Our model takes both $x_{RGB}$ and $x_{Radar}$ as inputs and predicts dense 2D depth map $\tilde{y}$ which minimizes the metrics errors. Same as all the depth estimation /completion tasks, loss and metric error are computed over the pixels with ground truth measurements.</p>
-<p><img alt="" src="../images/Screenshot2021-05-1715%3A05%3A07.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-1715:05:07.png" /></p>
 <h3 id="cnn-architecture">CNN architecture</h3>
 <p><strong>Backbone</strong>. Since our goal is to perform a comprehensive综合的 study on different fusion methods, we need to choose an efficient and widely-used backbone. Thus, we fixed our backbone to Resnet18 , and explored different fusion methods based on it as a pilot飞行员 experiment. As illustrated in Fig.3, we apply different encoder fusion methods to the simple encoder-decoder architecture proposed by Ma, and compare their performance. According to the experiment (Section IV-C), late fusion and multi-layer fusion model have comparable performance.Therefore, we adopt采纳 late fusion as our main encoder backbone design in the following experiments for simplicity.</p>
 <p><strong>Two-Stage architecture</strong> As shown by the pilot experiments(section IV-C) , a simple encoder-decoder architecture have some improvements on RGB  + Radar depth prediction task if we can remove most of the noisy measurements. However, we don't have LiDAR ground truth to help us performing the filtering in real applications.and it's hard to perform outlier rejections异常剔除 without information on the 3D structure or objects of the scene.Therefore, we come up with a 2-stage design to address the noisy measurement issue.</p>
@@ -382,9 +495,9 @@ L_{smooth}=|\triangledown_u(\tilde{y}_{stage1})|e^{-|\triangledown_u(x_{RGB})|} 
 <p>
 <script type="math/tex; mode=display">Y_{qc} = \underset{i}{max}exp\left(-\frac{(p_i-q)^2}{2\sigma^2_i}\right)</script>
 </p>
-<p><img alt="" src="../images/Screenshot2021-05-2714%3A49%3A50.png" />
+<p><img alt="" src="../images/Screenshot2021-05-2714:49:50.png" />
 <em>Figure 3,Frustum视锥 association. An object detected using the image features(left),generating the ROI frustum based on object's 3D bounding box(middle), and the BEV of the ROI frustum showing radar detections inside the frustum (right).$\delta$ is used to increase the frustum size in the testing phase.$\hat{d}$ is the ground_truth depth in the training phase and the estimated object depth in the testing phase</em></p>
-<p><img alt="" src="../images/Screenshot2021-05-2715%3A03%3A44.png" />
+<p><img alt="" src="../images/Screenshot2021-05-2715:03:44.png" />
 <em>Expanding radar points to 3D pillars( top image). Directly mapping the pillars to the image and replacing with radar depth information results in poor association with object's center and many overlapping depth values(middle image),Frustum association accurately maps the radar detections to the center of objects and minimizes overlapping(bottom image). Radar detections are only associated to objects with a valid ground truth or detection box, and only if all or part of the radar detection pillar支柱 is inside the box.Frustum association also prevents associating radar detections caused by background objects such as buildings to foreground objects, as seen in the case of pedestrains on the right hand side of the image</em></p>
 <p>where $\sigma_i$ is a size-adaptive尺寸适应 standard deviation偏差,controlling the size of the heatmap for every object based on its size. A fully convolutional encode-decoder network is used to predict $\hat{Y}$.</p>
 <p>To generate 3D bounding boxes,sperate network heads are used to regress object's depth, dimensions and orientation directly from the detected center points.Depth is calculated as an additional output channel $\hat{D}\in [0,1]^{\frac{W}{R}\times\frac{H}{R}}$ after applying the inverse sigmoidal transformation used in Eigen et al. to the original depth domain. The object dimensions are directly regressed to their absoluate values in meter as three output channels $\hat{\Gamma}\in[0,1]^{\frac{W}{R}\times\frac{H}{R}\times3}$ .Orientation is encoded as two bins with 4 scalars in each bin, following the orientation representation in M. For each center point, a local offset is also predicted to compensate补偿 for the discretization离散化 error caused by the output strides in the backbone network.</p>
@@ -396,7 +509,7 @@ L_{smooth}=|\triangledown_u(\tilde{y}_{stage1})|e^{-|\triangledown_u(x_{RGB})|} 
 CenterNet, is end-to-end differnetiable, simpler,faster,and more accurate than corresponding bounding box based detectors.CenterNet achieves the best speed-accuracy trade-off on the MS COCO dataset, with 28.1% AP at 142 FPS. We use the same approach to estimate 3D bounding box in the KITTI benchmark and human pose on the COCO keypoint dataset. Our method performs competitively with sophisticated multi-stage methods and runs in real-time.</p>
 <p>Object detection powers many vision tasks like instance segmentation, pose estimation, tracking, and action recognition.It has down-stream applications in surveillance监视， autonomous driving, and visual question answering. Current object detectors represent each object through an axis-aligned bounding box, that tightly encompasses the object.They then reduce object detection to image classification of an extensive number of potential object bounding boxes.For each bounding box, the classifer determines if the image content is a specific object or background. One stage detectors, slide a complex arrangement of possible bounding boxes called anchors, over the image and classify them directly without specifying the box content.Two-stage detectors recompute image features for each potential box, then classify those features.Post-processing, namely non-maxima suppression, then removes duplicated detections for the same instance by computing bounding box IoU. This post-processing is hard to differentiate and train, hence most current detectors are not end-to-end trainable. Nonetheless, over the past five years, this idea has achieved good empirical success.Sliding window based object detectors are however a bit wasteful , as they need to enumerate all possible object locations and diemnsions.</p>
 <p>In this paper, we provide a much simpler and more efficient alternative. We represent objects by a single point at their bounding box center (see Fig 2), Other properties such as object size, dimension, 3D extent, orientation, and pose are then regressed directly from image features at the center location. Object detection is then a standard keypoint estimation problem.We simply feed the input image to a fully convolutional network that generates a heatmap.Peaks in this heatmap correspond to object centers.Image features at each peak predict the objects bounding box height and weight. The model trains using standard dense supervised监督 learning.Inference is a single network forward-pass, without non-maximal suppression for post-processing.</p>
-<p><img alt="" src="../images/Screenshot2021-05-2808%3A57%3A11.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-2808:57:11.png" /></p>
 <p><em>We model an object as the center point of its bounding box. The bounding box size and other object properties are inffered from the keypoint feature at the center.Best viewed in color</em></p>
 <p>Our method is general and can be extended to other tasks with minor effort. We provide experiments on 3D obect detection and multi-person human pose estimation, by predicting additional outputs at each center point (see Figure 4). For 3D bounding box estimation, we regress to the object absolute depth, 3D bounding box dimensions, and object orientation. For human pose estimation, we consider the 2D joint locations as offsets from the center and directly regress to them at the center point location.</p>
 <!-- ### CenterFusion
@@ -413,9 +526,9 @@ We adopt [34]  -->
 <p>Our approach is closely related to anchor-based one-stage approaches.A center point can be seen as a single shape-agnostic 不可知形状 anchor.(see Figure3) .However,there are a few important differences. First, our CenterNet assigns the "anchor" based solely肚子 on location, not box overlap. We have no manual thresholds for foreground and background classification. Second, we only have one positive "anchor" per object. and hence do not need NonMaximum Suppression(NMS). We simply extract local peaks in the keypoint heatmap. Third, CenterNet uses a larger output resolution (output stride of 4) compared to traditional object detectors(output stride of 16). This eliminates the need for multiple anchors.</p>
 <p><strong>Object detection by keypoint estimation</strong> We are not the first to use keypoint estimation for object detection. CornerNet detects two bounding box corners as keypoints, while ExtremeNet detects the top-,left-,bottom-,right-most, and center points of all objects. Both these methods build on the same robust keypoint estimation network as our CenterNet.However, they require a combinatorial组合 grouping stage after keypoint detection, which significantly slows down each algorithm. Our CenterNet , on the other hand,simply extracts a single center point per object without the need for grouping or post-processing.</p>
 <p><strong>Monocular 3D object detection</strong> 3D bounding box estimation powers autonomous driving . Deep3Dbox use a slow-RCNN style framework, by first detecting 2D objects and then feeding each object into a 3D estimation network. 3D RCNN adds an additional head to Faster-RCNN followed by a 3D projection. Deep Manta uses a coarse-to-fine从粗到细 Faster-RCNN trained on many tasks. Our method is similar to one-stage version of Deep3Box or 3DRCNN. As such, CenterNet is much simpler and faster than competing methods.</p>
-<p><img alt="" src="../images/Screenshot2021-05-2811%3A40%3A21.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-2811:40:21.png" /></p>
 <p><em>standard anchor based detection. Anchors count as positive with an overlap IoU&gt;0.7 to any object, negative with overlap IoU&lt;0.3, or are ignored otherwise</em></p>
-<p><img alt="" src="../images/Screenshot2021-05-281%3A41%3A50.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-281:41:50.png" /></p>
 <p><em>Center point based detection.The center pixel is assigned to the object. Nearby points have a reduced negative loss. Object size is regressed</em></p>
 <h3 id="preliminary">Preliminary</h3>
 <p>Let $I\in R^{W\times H\times3}$ be an input image of width $W$ and height $H$. Our aim is to produce a keypoint heatmap $\hat{Y}\in[0,1]^{\frac{W}{R}\times\frac{H}{R}\times C}$, where $R$ is the output stride and $C$ is the number of keypoint types. Keypoint types include $C=17$ human joints in human pose estimation, or $C=80$ object categorical in object detection. We use the default output stride of $R = 4$ in literature. The output stride downsamples the output prediction by a factor R. A prediction $\hat{Y}<em>{x,y,c}=1$ corresponds to a detected keypoint, while $\hat{Y}</em>{x,y,c} =0$ is background. We use serveral different fully-convolutional encoder-decoder networks to predict $\hat{Y}$ from an image $I$: A stacked hourglass network堆叠的沙漏网络 upconvolutional residual network (ResNet) and deep layer aggregation聚合 (DLA). </p>
@@ -444,7 +557,7 @@ We adopt [34]  -->
 At inference time, we first extract the peaks in the heatmap for each category independently. We detect all responses whose value is greater or equal to its 8-connected neighbors and keep the top 100 peaks. Let $\hat{P}<em>c$ be the set of $n$ detected center points $\hat{P} ={(\hat{x}_i,\hat{y}_i)}^n</em>{i=1}$ of class $c$. Each keypoint location is given by an integer coordinates $(x_i, y_i)$. We use the keypoint values $\hat{Y}_{x_iy_ic}$ as a measure of its detection confidence, and produce a bounding box at location.
 <script type="math/tex; mode=display">(\hat{x}_i+ \delta\hat{x}_i-\hat{w}_i/2, \hat{y}_i+\delta\hat{y}_i-\hat{h}_i/2,\hat{x}_i+\delta\hat{x}_i+\hat{w}_i/2,\hat{y}_i+\delta\hat{y}_i+\hat{h}_i/2)</script>
 </p>
-<p><img alt="" src="../images/Screenshot2021-05-2817%3A42%3A43.png" />
+<p><img alt="" src="../images/Screenshot2021-05-2817:42:43.png" />
 <em>Outputs of our network for different tasks: top for object detection, middle for 3D object detection,bottom for pose estimation. All modalities are produced from a common backbone, with a different 3x3 and 1x1 output convolutions separated by a ReLU. The number in brackets indicates the output channels. See section 4 for details</em></p>
 <p>where $(\delta\hat{x}<em>i,\delta\hat{y}_i)=\hat{O}</em>{\hat{x}<em>i,\hat{y}_i}$ is the offset prediction and $(\hat{w}_i,\hat{h}_i) = \hat{S}</em>{\hat{x}_i,\hat{y}_i}$ is the size prediction.</p>
               
@@ -454,10 +567,10 @@ At inference time, we first extract the peaks in the heatmap for each category i
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/" class="btn btn-neutral float-right" title="python有用的函数(一)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ros openai/" class="btn btn-neutral float-right" title="Ros openai">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../voxelnet/" class="btn btn-neutral" title="voxelnet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pytorch/" class="btn btn-neutral" title="Pytorch"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -469,37 +582,30 @@ At inference time, we first extract the peaks in the heatmap for each category i
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../voxelnet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../pytorch/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ros openai/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
-      <script src="../mathjaxhelper.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../mathjaxhelper.js"></script>
 
 </body>
 </html>

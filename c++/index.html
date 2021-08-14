@@ -7,26 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>C++ - ZGF Wiki</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "C++";
     var mkdocs_page_input_path = "c++.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/c++/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -36,97 +34,251 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> ZGF Wiki</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">C++</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">得到当前时间</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#append">写入文件append</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#float-to-string">float to string</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#string-to-float">string to float</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">读取文档每一行内容</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">文件清空</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#split">字符串ｓｐｌｉｔ</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cmakeliststxt-boost">CMakeLists.txt 引入ｂｏｏｓｔ</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#explicit">explicit</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-eigen-in-cmake-program">Use Eigen in cmake program</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#double-to-string-1">double to string 保留小数点后1位</a>
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Atlas200验收报告/">Atlas200验收报告</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Autoware.auto/">Autoware.auto</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../OpenCV/">OpenCV</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PCL/">PCL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PPO/">PPO</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Qt/">Qt</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../README/">README</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../RL/">RL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ROS2/">ROS2</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros/">Ros</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros建模/">Ros建模</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../agx/">Agx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../arm_docker/">Arm docker</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">C++</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#string">string 前补零</a></li>
+    
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">读取网口信息</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_5">判断字符串是否含有某字符</a>
-    </li>
+        
+            <li><a class="toctree-l3" href="#_1">得到当前时间</a></li>
+        
+            <li><a class="toctree-l3" href="#append">写入文件append</a></li>
+        
+            <li><a class="toctree-l3" href="#float-to-string">float to string</a></li>
+        
+            <li><a class="toctree-l3" href="#string-to-float">string to float</a></li>
+        
+            <li><a class="toctree-l3" href="#_2">读取文档每一行内容</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">文件清空</a></li>
+        
+            <li><a class="toctree-l3" href="#split">字符串ｓｐｌｉｔ</a></li>
+        
+            <li><a class="toctree-l3" href="#cmakeliststxt-boost">CMakeLists.txt 引入ｂｏｏｓｔ</a></li>
+        
+            <li><a class="toctree-l3" href="#explicit">explicit</a></li>
+        
+            <li><a class="toctree-l3" href="#eigen">Eigen 安装</a></li>
+        
+            <li><a class="toctree-l3" href="#use-eigen-in-cmake-program">Use Eigen in cmake program</a></li>
+        
+            <li><a class="toctree-l3" href="#double-to-string-1">double to string 保留小数点后1位</a></li>
+        
         </ul>
-    </li>
+    
+
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu18/">Ubuntu18</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros%E5%BB%BA%E6%A8%A1/">Ros建模</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../tf_document/">tf_document</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../caffe/">Caffe</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
-                    </li>
-                </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caffe/">Caffe</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cmake/">Cmake</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cuda/">Cuda</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning/">Deeplearning</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning_work_station/">Deeplearning work station</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jekyll/">Jekyll</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../lidar_demo教程/">Lidar demo教程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../make/">Make</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python/">Python</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python有用的函数/">Python有用的函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pytorch/">Pytorch</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../radar_camera_fusion/">Radar camera fusion</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ros openai/">Ros openai</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../tf_document/">Tf document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu18/">Ubuntu18</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu20/">Ubuntu20</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../util_wiki/">Util wiki</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../vision360/">Vision360</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../voxelnet/">Voxelnet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../摄像机和毫米波坐标系关系/">摄像机和毫米波坐标系关系</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../毫米波和摄像机融合/">毫米波和摄像机融合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../激光雷达算法盒子/">激光雷达算法盒子</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../笛卡尔积/">笛卡尔积</a>
+	    </li>
+          
+        </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -151,7 +303,6 @@
       
     </li>
   </ul>
-  
   <hr/>
 </div>
           <div role="main">
@@ -192,6 +343,23 @@ int main ()
   std::cout &lt;&lt; str;
 
   return 0;
+}
+
+
+std::string get_time()
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&amp;rawtime);
+    timeinfo = localtime(&amp;rawtime);
+
+    strftime(buffer,sizeof(buffer),&quot;%d%m%Y%H%M%S&quot;,timeinfo);
+    std::string str(buffer);
+
+    std::cout &lt;&lt; str;
+    return str;
 }
 </code></pre>
 <h2 id="append">写入文件append</h2>
@@ -307,6 +475,18 @@ int main()
      return 0; 
 } 
 </code></pre>
+<h2 id="eigen">Eigen 安装</h2>
+<p><a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">下载并解压</a></p>
+<pre><code class="language-bash">cd eigen-3.3.9/
+mkdir build
+cmake ..
+sudo make install
+</code></pre>
+<p>因为eigen3默认安装在/usr/local/include下面，所以需要创建软链接</p>
+<pre><code class="language-bash">cd /usr/local/include/
+sudo ln -sf eigen3/Eigen Eigen
+sudo ln -sf eigen3/unsupported unsupported
+</code></pre>
 <h2 id="use-eigen-in-cmake-program">Use Eigen in cmake program</h2>
 <pre><code>```bash
 find_package(Eigen3 3.3 REQUIRED)
@@ -394,6 +574,148 @@ if(find != std::string::npos)
     std::cout &lt;&lt; “find” &lt;&lt; std::endl;
 }
 </code></pre>
+<h3 id="char-to-string">char to string</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+
+std::string char_string(char c)
+{
+    std::string s;
+    std::stringstream ss;
+    ss &lt;&lt; c;
+    ss &gt;&gt; s;                // or, use `s = ss.str()`
+    std::cout &lt;&lt; s &lt;&lt; std::endl;
+    return s;
+}
+
+int main()
+{
+    char c = 'A';
+    char_string(c);
+    return 0;
+}
+</code></pre>
+<h3 id="get-current-executation-path">get current executation path</h3>
+<pre><code class="language-cpp">#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt; 
+#include&lt;stdlib.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+
+std::string char_string(char c)
+{
+    std::string s;
+    std::stringstream ss;
+    ss &lt;&lt; c;
+    ss &gt;&gt; s;                // or, use `s = ss.str()`
+    std::cout &lt;&lt; s &lt;&lt; std::endl;
+    return s;
+}
+
+std::string get_execute_path()
+{
+    char *buf;
+    buf=(char *)malloc(100*sizeof(char));
+    getcwd(buf,100);
+    return char_string(buf);
+}
+
+std::string get 
+
+main() {
+char *buf;
+buf=(char *)malloc(100*sizeof(char));
+getcwd(buf,100);
+printf(&quot;\n %s \n&quot;,buf);
+}
+
+</code></pre>
+<h3 id="get-current-working-directory">get current working directory</h3>
+<pre><code class="language-cpp">    printf(&quot;Current working dir: %s\n&quot;, get_current_dir_name());
+</code></pre>
+<h3 id="get-current-file-path">get current file path</h3>
+<pre><code class="language-cpp">std::string get_current_path()
+{
+    std::string path = __FILE__;
+    return path;
+}
+</code></pre>
+<h3 id="get-current-files-direct">get current file's direct</h3>
+<pre><code class="language-cpp">std::string get_current_folder()
+{
+    std::string pathfile = __FILE__;
+    std::size_t find = pathfile.find_last_of(&quot;/&quot;);
+    std::cout &lt;&lt; find &lt;&lt; std::endl;
+    pathfile = pathfile.substr(0,find);
+    return pathfile;
+}
+</code></pre>
+<h3 id="_6">获取目录下的文件</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;dirent.h&gt;
+
+bool get_filelist_from_dir(std::string _path, std::vector&lt;std::string&gt;&amp; _files)
+{
+    DIR* dir;   
+    dir = opendir(_path.c_str());
+    struct dirent* ptr;
+    std::vector&lt;std::string&gt; file;
+    while((ptr = readdir(dir)) != NULL)
+    {
+        if(ptr-&gt;d_name[0] == '.') {continue;}
+        file.push_back(ptr-&gt;d_name);
+    }
+    closedir(dir);
+    sort(file.begin(), file.end());
+    _files = file;
+}
+
+</code></pre>
+<h3 id="_7">写入文件</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+void main()
+{
+    ofstream in;
+    in.open(&quot;com.txt&quot;,ios::trunc); //ios::trunc表示在打开文件前将文件清空,由于是写入,文件不存在则创建
+    int i;
+    char a='a';
+    for(i=1;i&lt;=26;i++)//将26个数字及英文字母写入文件
+    {
+    if(i&lt;10)
+    {
+        in&lt;&lt;&quot;0&quot;&lt;&lt;i&lt;&lt;&quot;\t&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;
+        a++;
+    }
+    else
+    {
+        in&lt;&lt;i&lt;&lt;&quot;\t&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;
+        a++;
+    }
+    }
+    in.close();//关闭文件
+}
+</code></pre>
+<h3 id="_8">产生随机数</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+using namespace std;
+
+int main()
+{
+    srand((int)time(0));  // 产生随机种子  把0换成NULL也行
+    for (int i = 0; i &lt; 10; i++)
+    {
+        cout &lt;&lt; rand()%100&lt;&lt; &quot; &quot;;
+    }
+    return 0;
+}
+</code></pre>
               
             </div>
           </div>
@@ -401,10 +723,10 @@ if(find != std::string::npos)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/" class="btn btn-neutral float-right" title="Python">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../caffe/" class="btn btn-neutral float-right" title="Caffe">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../arm_docker/" class="btn btn-neutral" title="Arm docker"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -416,37 +738,30 @@ if(find != std::string::npos)
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../arm_docker/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../python/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../caffe/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
-      <script src="../mathjaxhelper.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../mathjaxhelper.js"></script>
 
 </body>
 </html>

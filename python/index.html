@@ -7,26 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Python - ZGF Wiki</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Python";
     var mkdocs_page_input_path = "python.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/python/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -36,173 +34,282 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> ZGF Wiki</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../c%2B%2B/">C++</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Python</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#conda">conda 创建环境</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cudnn_status_internal_error-tensorflow">cudnn_status_internal_error tensorflow</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vscode-activate-conda-env">vscode activate conda env</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#nameerror-name-xrange-is-not-defined">NameError: name 'xrange' is not defined</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tensorflow-valueerror-cannot-feed-value-of-shape-64-64-3-for-tensor-uplaceholder0-which-has-shape-64-64-3">TensorFlow ValueError: Cannot feed value of shape (64, 64, 3) for Tensor u'Placeholder:0', which has shape '(?, 64, 64, 3)'</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#opencv-conda">opencv conda</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pointcloud2-to-array">pointcloud2 to array</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#read-pcd-to-array">read pcd to array</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#kitti">kitti 数据集下载</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#python-operator">python "//" operator</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#python-super">python super()</a>
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Atlas200验收报告/">Atlas200验收报告</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Autoware.auto/">Autoware.auto</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../OpenCV/">OpenCV</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PCL/">PCL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../PPO/">PPO</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Qt/">Qt</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../README/">README</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../RL/">RL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ROS2/">ROS2</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros/">Ros</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros建模/">Ros建模</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../agx/">Agx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../arm_docker/">Arm docker</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../c++/">C++</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caffe/">Caffe</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cmake/">Cmake</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cuda/">Cuda</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning/">Deeplearning</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning_work_station/">Deeplearning work station</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jekyll/">Jekyll</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../lidar_demo教程/">Lidar demo教程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../make/">Make</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Python</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#conda-the-following-packages-are-not-available-from-current-channels">conda The following packages are not available from current channels:</a></li>
+    
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1super">示例１：具有单继承的super()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2super">示例２：具有多重继承的super()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-resolution-order-mro">Method Resolution Order方法解析顺序 (MRO)</a>
-    </li>
+        
+            <li><a class="toctree-l3" href="#conda">conda 创建环境</a></li>
+        
+            <li><a class="toctree-l3" href="#cudnn_status_internal_error-tensorflow">cudnn_status_internal_error tensorflow</a></li>
+        
+            <li><a class="toctree-l3" href="#vscode-activate-conda-env">vscode activate conda env</a></li>
+        
+            <li><a class="toctree-l3" href="#nameerror-name-xrange-is-not-defined">NameError: name 'xrange' is not defined</a></li>
+        
+            <li><a class="toctree-l3" href="#tensorflow-valueerror-cannot-feed-value-of-shape-64-64-3-for-tensor-uplaceholder0-which-has-shape-64-64-3">TensorFlow ValueError: Cannot feed value of shape (64, 64, 3) for Tensor u'Placeholder:0', which has shape '(?, 64, 64, 3)'</a></li>
+        
+            <li><a class="toctree-l3" href="#opencv-conda">opencv conda</a></li>
+        
+            <li><a class="toctree-l3" href="#pointcloud2-to-array">pointcloud2 to array</a></li>
+        
+            <li><a class="toctree-l3" href="#read-pcd-to-array">read pcd to array</a></li>
+        
+            <li><a class="toctree-l3" href="#kitti">kitti 数据集下载</a></li>
+        
+            <li><a class="toctree-l3" href="#python-operator">python "//" operator</a></li>
+        
+            <li><a class="toctree-l3" href="#python-super">python super()</a></li>
+        
+            <li><a class="toctree-l3" href="#split-method-in-python-is-outputing-an-index-error">Split method in python is outputing an index error</a></li>
+        
+            <li><a class="toctree-l3" href="#deque-in-python-python">deque in python ｐｙｔｈｏｎ中的双端队列</a></li>
+        
+            <li><a class="toctree-l3" href="#numlinspace-in-python">num.linspace() in Python</a></li>
+        
+            <li><a class="toctree-l3" href="#pip">pip 下载提速</a></li>
+        
+            <li><a class="toctree-l3" href="#pilimageopencv">PIL.Image转换成OpenCV格式</a></li>
+        
+            <li><a class="toctree-l3" href="#opencvpilimage">OpenCV转换成PIL.Image格式</a></li>
+        
+            <li><a class="toctree-l3" href="#python">添加python路径</a></li>
+        
+            <li><a class="toctree-l3" href="#numpy">Numpy</a></li>
+        
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#split-method-in-python-is-outputing-an-index-error">Split method in python is outputing an index error</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#deque-in-python-python">deque in python ｐｙｔｈｏｎ中的双端队列</a>
+    
+
+    <li class="toctree-l2"><a href="#pad-the-points-to-512">Pad the points to 512</a></li>
+    
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#python-randomsample">python random.sample()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#python-pip">python pip 不能用</a>
-    </li>
+        
+            <li><a class="toctree-l3" href="#numpyrandomshuffle">numpy.random.shuffle()</a></li>
+        
+            <li><a class="toctree-l3" href="#ordereddict">OrderedDict</a></li>
+        
+            <li><a class="toctree-l3" href="#image-to-array-array-to-image">Image to Array &amp; Array to Image</a></li>
+        
+            <li><a class="toctree-l3" href="#pyton-thread">pyton thread</a></li>
+        
+            <li><a class="toctree-l3" href="#python-wheel-arm">python wheel arm</a></li>
+        
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#numlinspace-in-python">num.linspace() in Python</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pip">pip 下载提速</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pilimageopencv">PIL.Image转换成OpenCV格式</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#opencvpilimage">OpenCV转换成PIL.Image格式</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#python">添加python路径</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#numpy">Numpy</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#numpyamax">numpy.amax()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#numpyargmax">numpy.argmax</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#npsqueeze">np.squeeze</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_1">提取文件和不同格式文件</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">根据文件名继续提取文件</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">确保文件名不为空</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">返回完整路径</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_5">查看是否属于已知类</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pkl-file">.pkl file</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_6">判断文件是否存在</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#h5-file-open">h5 file Open</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#numpyrandomuniform">numpy.random.uniform</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#isinstance">isinstance()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_7">判断图像格式</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pil">PIL图像亮度调整</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#contrast-adjusted-image">Contrast adjusted image</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#saturation-adjusted-image">Saturation adjusted image</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hue-adjusted-image">Hue adjusted image</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#adjust-gamma-on-img">Adjust gamma on IMG</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#npclipimg-0-255">np.clip(img, 0, 255)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#convert-npndarray-img-to-tensor">Convert np.ndarray img to tensor</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mathfloor">math.floor</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#unsqueeze">unsqueeze</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#nptranspose">np.transpose</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#what-does-axis0-do-in-numpys-sum-function">What does axis=0 do in Numpy's sum function</a>
-    </li>
-        </ul>
-    </li>
+    
+
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ubuntu18/">Ubuntu18</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros/">Ros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Ros%E5%BB%BA%E6%A8%A1/">Ros建模</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../tf_document/">tf_document</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../caffe/">Caffe</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../deeplearning/">deeplearning</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../voxelnet/">voxelnet</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../radar_camera_fusion/">radar_camera</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../python%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0/">python有用的函数(一)</a>
-                    </li>
-                </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python有用的函数/">Python有用的函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../pytorch/">Pytorch</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../radar_camera_fusion/">Radar camera fusion</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ros openai/">Ros openai</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../tf_document/">Tf document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu18/">Ubuntu18</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu20/">Ubuntu20</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../util_wiki/">Util wiki</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../vision360/">Vision360</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../voxelnet/">Voxelnet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../摄像机和毫米波坐标系关系/">摄像机和毫米波坐标系关系</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../毫米波和摄像机融合/">毫米波和摄像机融合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../激光雷达算法盒子/">激光雷达算法盒子</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../笛卡尔积/">笛卡尔积</a>
+	    </li>
+          
+        </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -227,7 +334,6 @@
       
     </li>
   </ul>
-  
   <hr/>
 </div>
           <div role="main">
@@ -275,6 +381,7 @@ You have to feed it with a value of (1, 64, 64, 3) = a batch of 1 image.
 Just reshape your image value to a batch with size one.
 <code>np.expand_dims(img, axis=0)</code></p>
 <h2 id="opencv-conda">opencv conda</h2>
+<p><code>pip install opencv-python</code></p>
 <p>opencv is not compatible with python 3. I had to install opencv3 for python 3. The marked answer in how could we install opencv on anaconda? explains how to install opencv(3) for anaconda:</p>
 <p>Run the following command:</p>
 <p><code>conda install -c https://conda.binstar.org/menpo opencv</code></p>
@@ -450,7 +557,7 @@ deque(['name', 'age', 'DOB'])
 <li>rotate() :- This function rotates the deque by the number specified in arguments. If the number specified is negative, rotation occurs to left. Else rotation is to right.</li>
 </ul>
 <h3 id="python-randomsample">python random.sample()</h3>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A57%3A52.png" /></p>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013:57:52.png" /></p>
 <h3 id="python-pip">python pip 不能用</h3>
 <p><code>PIP_NO_CACHE_DIR=off pip install gym</code></p>
 <h2 id="numlinspace-in-python">num.linspace() in Python</h2>
@@ -507,7 +614,7 @@ cv2.waitKey()
 </code></pre>
 <h2 id="numpy">Numpy</h2>
 <h3 id="numpyamax">numpy.amax()</h3>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2014%3A13%3A38.png" /></p>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2014:13:38.png" /></p>
 <h3 id="numpyargmax">numpy.argmax</h3>
 <p>numpy.argmax(a, axis=None, out=None)[source]Returns the indices of the maximum values along an axis.<strong>parameters</strong>\</p>
 <ul>
@@ -518,12 +625,12 @@ cv2.waitKey()
 <p><strong>Returns</strong>
 <strong>index_array:ndarray of ints</strong>
 Array of indices into the array. It has the same shape as a.shape with the dimension along axis removed.</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-22%2013%3A52%3A21.png" />
-<img alt="1" src="../images/Screenshot%202021-01-22%2013%3A53%3A11.png" /></p>
+<p><img alt="1" src="../images/Screenshot%202021-01-22%2013:52:21.png" />
+<img alt="1" src="../images/Screenshot%202021-01-22%2013:53:11.png" /></p>
 <h3 id="npsqueeze">np.squeeze</h3>
 <p><strong>Function</strong></p>
 <p>Remove dimensions of size 1 from ndarray
- You can use <code>numpy.squeeze()</code> to remove all dimensions of size 1 from the NumPy array <code>ndarray. squeeze()</code> is also provided as a method of <code>ndarray</code>.</p>
+You can use <code>numpy.squeeze()</code> to remove all dimensions of size 1 from the NumPy array <code>ndarray. squeeze()</code> is also provided as a method of <code>ndarray</code>.</p>
 <pre><code class="language-python">import numpy as np
 
 a = np.arange(6).reshape(1, 2, 1, 3, 1)
@@ -596,7 +703,7 @@ print(np.squeeze(a, -3).shape)
 <pre><code class="language-python">  ver1_ori = [&quot;front&quot;, &quot;back&quot;]
   filenames = [_ for _ in filenames if os.path.splitext(_)[0].split(&quot;_&quot;)[-1] in ver1_ori]
 </code></pre>
-<h3 id="_3">确保文件名不为<code></code>空</h3>
+<h3 id="_3">确保文件名不为 <code></code>空</h3>
 <pre><code class="language-python">  assert len(filenames) &gt; 0
 </code></pre>
 <h3 id="_4">返回完整路径</h3>
@@ -635,7 +742,7 @@ plt.show()
   raise ValueError(&quot;[Error] File does not exist.&quot;)
 </code></pre>
 <h3 id="h5-file-open">h5 file Open</h3>
-<p>In order to open a HDF5 file with the <code>h5py</code> module you can use <code>h5py.File(filename)</code>. </p>
+<p>In order to open a HDF5 file with the <code>h5py</code> module you can use <code>h5py.File(filename)</code>.</p>
 <pre><code class="language-python">import h5py
 filename = &quot;vstoxx_data_31032014.h5&quot;
 h5 = h5py.File(filename,'r')
@@ -846,7 +953,7 @@ print(math.floor(5.3))
 print(math.floor(-5.3))
 print(math.floor(22.6))
 print(math.floor(10.0))
-​
+
 # 0
 # 1
 # 5
@@ -884,7 +991,7 @@ print(np.transpose(a,(2,1,0)).shape)
 # transpose里的 0代表第一维案例中是2， 1代表第二维案例中是3， 2代表第三维案例中是4.
 </code></pre>
 <h3 id="what-does-axis0-do-in-numpys-sum-function">What does axis=0 do in Numpy's sum function</h3>
-<p><img alt="" src="../images/Screenshot2021-05-2008%3A10%3A43.png" /></p>
+<p><img alt="" src="../images/Screenshot2021-05-2008:10:43.png" /></p>
 <pre><code class="language-python">a = np.array([[1, 2, 3], [4, 5, 6]])
 np.sum(a, axis = 0)
 # result array([5, 7, 9])
@@ -904,7 +1011,7 @@ np.sum(a, axis = 0)
 <h3 id="numpyrandomshuffle">numpy.random.shuffle()</h3>
 <p>With the help of <code>numpy.random.shuffle()</code> method, we can get the random positioning of different integer values in the numpy array or we can say that all the values in an array will be shuffled randomly.</p>
 <h3 id="ordereddict">OrderedDict</h3>
-<p>An OrderedDict is a dictionary subclass that remembers the <strong>order</strong> that keys were first <strong>inserted</strong>. </p>
+<p>An OrderedDict is a dictionary subclass that remembers the <strong>order</strong> that keys were first <strong>inserted</strong>.</p>
 <h3 id="image-to-array-array-to-image">Image to Array &amp; Array to Image</h3>
 <pre><code class="language-python">from PIL import Image
 import numpy as np
@@ -912,6 +1019,25 @@ im = Image.open('1.jpg')
 im2arr = np.array(im) # im2arr.shape: height x width x channel
 arr2im = Image.fromarray(im2arr)
 </code></pre>
+<h3 id="pyton-thread">pyton thread</h3>
+<pre><code class="language-python">import threading
+class SubscribeThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def callback(self,data):
+        rospy.loginfo(rospy.get_caller_id() + &quot;I heard %s&quot;, data.data)
+
+    def run(self):
+        rospy.Subscriber(&quot;image_button&quot;, String, self.callback)
+        rospy.spin()
+
+subscribe_thread = SubscribeThread()
+subscribe_thread.setDaemon(True)
+subscribe_thread.start()
+</code></pre>
+<h2 id="python-wheel-arm">python wheel arm</h2>
+<p><a href="https://www.piwheels.org/">wheel</a></p>
               
             </div>
           </div>
@@ -919,10 +1045,10 @@ arr2im = Image.fromarray(im2arr)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ubuntu18/" class="btn btn-neutral float-right" title="Ubuntu18">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../python有用的函数/" class="btn btn-neutral float-right" title="Python有用的函数">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../c%2B%2B/" class="btn btn-neutral" title="C++"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../make/" class="btn btn-neutral" title="Make"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -934,37 +1060,30 @@ arr2im = Image.fromarray(im2arr)
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../c%2B%2B/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../make/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ubuntu18/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../python有用的函数/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
-      <script src="../mathjaxhelper.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../mathjaxhelper.js"></script>
 
 </body>
 </html>
