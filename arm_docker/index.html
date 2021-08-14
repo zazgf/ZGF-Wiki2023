@@ -358,6 +358,12 @@ pip install tensorflow_addons-0.13.0.dev0-cp36-cp36m-linux_aarch64.whl
 apt install llvm-9-dev
 
 ln -s /usr/bin/llvm-config-9 /usr/bin/llvm-config
+
+ pip install librosa
+
+pip install pypinyin
+
+pip install g2p-en -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 </code></pre>
 <h3 id="sklearn-cannot-allocate-memory-in-static-tls-block">Sklearn - cannot allocate memory in static TLS block</h3>
 <pre><code class="language-bash">export LD_PRELOAD=/usr/local/lib/python3.6/dist-packages/scikit_learn.libs/libgomp-d22c30c5.so.1.0.0
