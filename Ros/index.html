@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -150,6 +155,12 @@
             <li><a class="toctree-l3" href="#roslaunch-yaml">roslaunch 包含yaml 文件</a></li>
         
             <li><a class="toctree-l3" href="#roslaunch-py-node">roslaunch py node</a></li>
+        
+            <li><a class="toctree-l3" href="#ros">ros 更换中科大源</a></li>
+        
+            <li><a class="toctree-l3" href="#ros-clock">Ros clock</a></li>
+        
+            <li><a class="toctree-l3" href="#ros-topic">Ros 查看Topic</a></li>
         
         </ul>
     
@@ -469,11 +480,11 @@ redep update
 </code></pre>
 <p>其次点击debug按扭,再点击`create a launch.json file</p>
 <p><img alt="" src="../images/Screenshot2021-06-0316:44:55.png" /></p>
-<p>选择<code>Show</code></p>
+<p>选择 <code>Show</code></p>
 <p><img alt="" src="../images/Screenshot2021-06-0316:36:37.png" /></p>
 <p>选择 <code>Add Configuration..</code></p>
 <p><img alt="" src="../images/Screenshotfrom2021-06-0316-39-03.png" /></p>
-<p>再添加 <code>Ros Attach</code> 
+<p>再添加 <code>Ros Attach</code>
 <img alt="" src="../images/Screensho2021-06-036-47-03.png" /></p>
 <p><code>launch.json</code></p>
 <pre><code class="language-json">{
@@ -520,8 +531,8 @@ return q;
 &lt;/launch&gt;
 </code></pre>
 <h2 id="rosdep">rosdep失败</h2>
-<p>首先<code>sudo rosdep init</code></p>
-<p>这一步会在<code>/etc/ros/rosdep/sources.list.d/</code>目录下新建<code>20-default.list</code></p>
+<p>首先 <code>sudo rosdep init</code></p>
+<p>这一步会在 <code>/etc/ros/rosdep/sources.list.d/</code>目录下新建 <code>20-default.list</code></p>
 <pre><code class="language-bash"># os-specific listings first
 yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
 
@@ -534,8 +545,8 @@ gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte
 # newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
 
 </code></pre>
-<p>我们需要依次下载<code>osx-homebrew.yaml</code>等这几个<code>yaml</code>文件,<a href="https://d.serctl.com/">下载工具</a>, 存放在/home/promote/Downloads目录下</p>
-<p>然后更改<code>20-default.list</code>为</p>
+<p>我们需要依次下载 <code>osx-homebrew.yaml</code>等这几个 <code>yaml</code>文件,<a href="https://d.serctl.com/">下载工具</a>, 存放在/home/promote/Downloads目录下</p>
+<p>然后更改 <code>20-default.list</code>为</p>
 <pre><code class="language-bash"># os-specific listings first
 yaml file:///home/promote/Downloads/2021-04-01-14-01-21-master-osx-homebrew.yaml osx
 
@@ -548,21 +559,21 @@ gbpdistro file:///home/promote/Downloads/2021-04-01-14-07-41-master-fuerte.yaml 
 # newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
 
 </code></pre>
-<p>还需要使用<code>mate-search-tool</code> 在<code>/usr/lib/</code>目录下找到包含<code>DEFAULT_INDEX_URL</code> 的<code>py</code>文件。<code>/usr/lib/python2.7/dist-packages/rosdistro/__init__.py</code></p>
+<p>还需要使用 <code>mate-search-tool</code> 在 <code>/usr/lib/</code>目录下找到包含 <code>DEFAULT_INDEX_URL</code> 的 <code>py</code>文件。<code>/usr/lib/python2.7/dist-packages/rosdistro/__init__.py</code></p>
 <p>找到代码行</p>
 <pre><code class="language-python">DEFAULT_INDEX_URL = 'https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
 </code></pre>
-<p>同样我们下载<code>index-v4.yaml</code>文件至<code>/home/promote/Downloads</code>，把此行代码改为</p>
+<p>同样我们下载 <code>index-v4.yaml</code>文件至 <code>/home/promote/Downloads</code>，把此行代码改为</p>
 <pre><code class="language-python"># DEFAULT_INDEX_URL = 'https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
 DEFAULT_INDEX_URL = 'file:/home/promote/Downloads/2021-04-01-14-51-42-rosdistro-index-v4.yaml'
 
 </code></pre>
-<p>这时再运行<code>rosdep update</code></p>
-<p>会提示<code>No such file or directory: '/home/promote/Downloads/dashing/distribution.yaml'</code></p>
-<p>我们需要下载<code>https://raw.githubusercontent.com/ros/rosdistro/master/dashing/distribution.yaml</code></p>
-<p>在<code>/home/promote/Downloads</code>目录下新建文件夹<code>dashing</code>，并把下载的<code>yaml</code>文件放入<code>dashing</code>文件夹下重命名为<code>distribution.yaml</code></p>
-<p>重复上一步，依次下载完<code>dashing, kinetic, melodic, rolling, noetic, foxy</code>等</p>
-<p>再运行<code>rosdep update</code>就成功了</p>
+<p>这时再运行 <code>rosdep update</code></p>
+<p>会提示 <code>No such file or directory: '/home/promote/Downloads/dashing/distribution.yaml'</code></p>
+<p>我们需要下载 <code>https://raw.githubusercontent.com/ros/rosdistro/master/dashing/distribution.yaml</code></p>
+<p>在 <code>/home/promote/Downloads</code>目录下新建文件夹 <code>dashing</code>，并把下载的 <code>yaml</code>文件放入 <code>dashing</code>文件夹下重命名为 <code>distribution.yaml</code></p>
+<p>重复上一步，依次下载完 <code>dashing, kinetic, melodic, rolling, noetic, foxy</code>等</p>
+<p>再运行 <code>rosdep update</code>就成功了</p>
 <h2 id="ros-node">ros node 打包</h2>
 <h3 id="_1">安装依赖</h3>
 <p>Install <a href="http://ros-infrastructure.github.io/bloom/">bloom</a>:</p>
@@ -606,7 +617,7 @@ def simtime_talker():
     pub1 = rospy.Publisher('clock',Clock, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(10) # 10hz
-    sim_speed_multiplier = 10    
+    sim_speed_multiplier = 10  
     sim_clock = Clock()
     zero_time = rospy.get_time()
     while not rospy.is_shutdown():
@@ -626,7 +637,7 @@ if __name__ == '__main__':
 <pre><code class="language-bash">rosrun tf stat_transform_publisher 0 0 1 0 0 0 1 base_link rslidar 50
 </code></pre>
 <ul>
-<li>即可在rviz里设置<code>fixed frame</code> 为 <code>base_link</code>,观看点云数据</li>
+<li>即可在rviz里设置 <code>fixed frame</code> 为 <code>base_link</code>,观看点云数据</li>
 </ul>
 <h3 id="tf">如何发布tf转换关系</h3>
 <ul>
@@ -674,6 +685,62 @@ remote: true
     type=&quot;LidarTool.py&quot; required=&quot;false&quot;
     output=&quot;screen&quot;
 /&gt;
+</code></pre>
+<h3 id="ros">ros 更换中科大源</h3>
+<pre><code>sudo nano /etc/apt/sources.list.d/ros-latest.list
+</code></pre>
+<p>添加</p>
+<p><code>deb http://mirrors.ustc.edu.cn/ros/ubuntu/ bionic main</code></p>
+<h3 id="ros-clock">Ros clock</h3>
+<pre><code class="language-python">#!/usr/bin/python
+import rospy
+from rosgraph_msgs.msg import Clock
+import time
+
+def simtime_talker():
+    rospy.set_param('use_sim_time',False)
+    pub1 = rospy.Publisher('clock',Clock, queue_size=10)
+    rospy.init_node('talker', anonymous=True)
+    rate = rospy.Rate(10) # 10hz
+    sim_speed_multiplier = 10  
+    sim_clock = Clock()
+    zero_time = rospy.get_time()
+    while not rospy.is_shutdown():
+        sim_clock.clock = rospy.Time.from_sec(sim_speed_multiplier*(rospy.get_time() - zero_time))
+        rospy.loginfo(sim_clock)
+        pub1.publish(sim_clock)
+        rate.sleep()
+if __name__ == '__main__':
+    try:
+        simtime_talker()
+    except rospy.ROSInterruptException:
+        pass
+</code></pre>
+<p><strong>有些msg不显示，是因为时间落后问题。</strong></p>
+<pre><code class="language-xml">&lt;launch&gt;
+&lt;node pkg=&quot;ros2qt&quot; type=&quot;ros2qt&quot; name=&quot;ros2qt&quot; &gt;
+&lt;rosparam&gt;
+    use_sim_time: true
+&lt;/rosparam&gt;
+&lt;/node&gt;
+&lt;node pkg=&quot;ros2qt&quot; type=&quot;myclock.py&quot; name =&quot;myclock&quot;/&gt;
+&lt;include file=&quot;$(find rslidar_pointcloud)/launch/rs_lidar_16.launch&quot; /&gt;
+&lt;/launch&gt;
+</code></pre>
+<p>在开启一个Node之前，当把<code>use_sim_time</code>设置为<code>true</code>时，这个节点会从clock Topic获得时间。所以操作这个clock的发布者，可以实现一个让Node中得到ROS Time暂停、加速、减速的效果。同时下面这些方面都是跟Node透明的，所以非常适合离线的调试方式。当把ROSbag记下来以后重新play出来时，加两个横杠，--clock，它就会发布出这个消息。</p>
+<h3 id="ros-topic">Ros 查看Topic</h3>
+<pre><code class="language-c++">QMap&lt;QString,QString&gt; QNode::get_topic_list()
+{
+    ros::master::V_TopicInfo topic_list;
+    ros::master::getTopics(topic_list);
+    QMap&lt;QString,QString&gt; res;
+    for(auto topic:topic_list)
+    {
+        res.insert(QString::fromStdString(topic.name),QString::fromStdString(topic.datatype));
+    }
+    return res;
+}
+
 </code></pre>
               
             </div>

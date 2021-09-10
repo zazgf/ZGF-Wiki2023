@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -398,7 +403,7 @@ sudo apt-get autoclean
 sudo rm -rf /usr/local/cuda*
 </code></pre>
 <h2 id="steps-to-install-pytorch-with-cuda-100">Steps to Install PyTorch With CUDA 10.0</h2>
-<p><code>conda install pytorch torchvision cudatoolkit=10.0 -c pytorch</code>\
+<p><code>conda install pytorch torchvision cudatoolkit=10.0 -c pytorch</code>
 <code>pip install torchsummary</code></p>
 <h2 id="conda-install-matplotlib">conda install matplotlib</h2>
 <p><code>conda install -c conda-forge matplotlib</code></p>
@@ -926,7 +931,7 @@ if __name__ == '__main__':
 
 </code></pre>
 <h2 id="from-object_detection-import-evaluator">from object_detection import evaluator</h2>
-<p><strong>ImportError: cannot import name 'evaluator'</strong>\
+<p><strong>ImportError: cannot import name 'evaluator'</strong>
 <code>from object_detection.legacy import evaluator</code></p>
 <h2 id="control-trainning-steps">control trainning steps</h2>
 <p><code>num_steps:600</code></p>
@@ -1017,7 +1022,7 @@ print('model.outputs : ',model.outputs)
 <pre><code>model.inputs : [&lt;tf.Tensor 'input_1:0' shape=(?, 2600, 3) dtype=float32&gt;]
 model.outputs :  [&lt;tf.Tensor 'fc2/Softmax:0' shape=(?, 2) dtype=float32&gt;]
 </code></pre>
-<p>所以输入层是<code>input_1:0</code>输出层是<code>fc2/Softmax:0</code></p>
+<p>所以输入层是 <code>input_1:0</code>输出层是 <code>fc2/Softmax:0</code></p>
 <h2 id="tensorrt">安装ｔｅｎｓｏｒRT</h2>
 <ol>
 <li>下载与您使用的Ubuntu版本和CPU架构匹配的TensorRT本地repo文件。</li>
@@ -1028,22 +1033,22 @@ model.outputs :  [&lt;tf.Tensor 'fc2/Softmax:0' shape=(?, 2) dtype=float32&gt;]
    sudo apt-key add /var/nv-tensorrt-repo-${tag}/7fa2af80.pub
    sudo apt-get update
    sudo apt-get install tensorrt</code></li>
-<li>如果使用Python 2.7：\
-   <code>sudo apt-get install python-libnvinfer-dev</code>\
-   将安装以下附加软件包：\
-   <code>python-libnvinfer</code>\
-   如果使用Python 3.x：\
-   <code>sudo apt-get install python3-libnvinfer-dev</code>\
-   将安装以下附加软件包：\
-   <code>python3-libnvinfer</code>\
-   如果您打算将TensorRT与TensorFlow结合使用：\
-   <code>sudo apt-get install uff-converter-tf</code>\
-   如果您要运行需要ONNX的示例 图形外科医生 或将Python模块用于您自己的项目，运行：\
+<li>如果使用Python 2.7：
+   <code>sudo apt-get install python-libnvinfer-dev</code>
+   将安装以下附加软件包：
+   <code>python-libnvinfer</code>
+   如果使用Python 3.x：
+   <code>sudo apt-get install python3-libnvinfer-dev</code>
+   将安装以下附加软件包：
+   <code>python3-libnvinfer</code>
+   如果您打算将TensorRT与TensorFlow结合使用：
+   <code>sudo apt-get install uff-converter-tf</code>
+   如果您要运行需要ONNX的示例 图形外科医生 或将Python模块用于您自己的项目，运行：
    <code>sudo apt-get install onnx-graphsurgeon</code>\</li>
 </ol>
 <h2 id="anaconda-tensorrt">anaconda tensorRT</h2>
 <ol>
-<li>下载tar文件<code>TensorRT-7.0.0.11.Ubuntu-18.04.x86_64-gnu.cuda-10.0.cudnn7.6.tar.gz</code></li>
+<li>下载tar文件 <code>TensorRT-7.0.0.11.Ubuntu-18.04.x86_64-gnu.cuda-10.0.cudnn7.6.tar.gz</code></li>
 </ol>
 <pre><code>(wind1) star@xmatrix:~$ 
 (wind1) star@xmatrix:~$ 
@@ -1164,16 +1169,16 @@ WARNING:tensorflow:From /home/star/anaconda3/envs/wind1/lib/python3.6
 (wind1) star@xmatrix:~/TensorRT/TensorRT-7.0.0.11/uff$ 
 </code></pre>
 <h3 id="using-uff-converter-to-convert-the-frozen-tensorflow-model-to-a-uff-file">Using UFF converter to convert the frozen tensorflow model to a UFF file</h3>
-<p><code>conda activate wjj</code>\
-<code>pip install nvidia-pyindex</code>\
-<code>pip install uff</code>\
+<p><code>conda activate wjj</code>
+<code>pip install nvidia-pyindex</code>
+<code>pip install uff</code>
 you need to find your uff installed path. \</p>
 <pre><code>import uff
 print(uff.__path__)
 </code></pre>
-<p>And after locating it , in it’s bin folder there should be a script named as <strong>convert_to_uff.py</strong>. And now you need to open the terminal and simply type <strong>python3 convert_to_uff.py</strong> &lt;<strong>path to the saved model</strong>&gt;\
-In my case--&gt;\
-<strong>python3 convert_to_uff.py /home/models/catsAndDogs.pb</strong>\
+<p>And after locating it , in it’s bin folder there should be a script named as <strong>convert_to_uff.py</strong>. And now you need to open the terminal and simply type <strong>python3 convert_to_uff.py</strong> &lt;<strong>path to the saved model</strong>&gt;
+In my case--&gt;
+<strong>python3 convert_to_uff.py /home/models/catsAndDogs.pb</strong>
 And it will simply save the converted <strong>.uff</strong> in your <strong>.pb</strong> model location.
 And then this is how the next script should be done.</p>
 <h3 id="nvidia">NVIDIA深度学习框架</h3>
@@ -1199,41 +1204,43 @@ sess = tf.compat.v1.Session(config=config)
 <p><code>还有一种情况,减少batch size</code></p>
 <h3 id="anchor-boxes">Anchor boxes</h3>
 <p>One of the hardest concepts to grasp把握 when learning about Convolutional Neural Networks for object detection is the idea of anchor boxes.It is also one of the most important parameters you can tune for improved performance on your dataset.In fact,if anchor oxes are  not tuned correctly,your neural network will never even know that certain某些 small,large or irregular不规则 objects exist and will never have a chance to detect them.Luckily, there are some simple steps you can take to make sure you do not fall into this trap陷阱.</p>
-<p><strong>what are anchor boxes?</strong>\
-when you use a neural network like yolo or ssd to predict multiple objects in a picture, the network is actually making thousands of predictions and only showing the ones that it decided were an object.The multiple predictions are output the following format:\
-Prediction 1: (X,Y,Height,Width),Class\
-...\
+<p><strong>what are anchor boxes?</strong>
+when you use a neural network like yolo or ssd to predict multiple objects in a picture, the network is actually making thousands of predictions and only showing the ones that it decided were an object.The multiple predictions are output the following format:
+Prediction 1: (X,Y,Height,Width),Class
+...
 Prediction ~8000: (X,Y,Height,Width),Class</p>
 <p>Where the (X,Y,Height,Width) is called the "bounding box", or box surrounding the objects.This box and the object class are labelled manually by human annotators.</p>
-<p>In an extremely simplified example, imagine that we have a model that has two predictions and receives the following image:\
+<p>In an extremely simplified example, imagine that we have a model that has two predictions and receives the following image:
 <img alt="image" src="../images/1_wbQKcvM8UW7Wd1iuCsevbg.png" /></p>
-<p>We need to tell our network if each of its predictions is correct or not in order for it to be able to learn.But what do we tell the neural network it prediction should be? Should the predicted class be:\
-Prediction 1:Pear\
+<p>We need to tell our network if each of its predictions is correct or not in order for it to be able to learn.But what do we tell the neural network it prediction should be? Should the predicted class be:
+Prediction 1:Pear
 Prediction 2:Apple</p>
-<p>Or should it be:\
-Prediction 1:Apple\
+<p>Or should it be:
+Prediction 1:Apple
 Prediction 2:Pear</p>
-<p>What if the network predicts:\
-Prediction 1:Apple\
+<p>What if the network predicts:
+Prediction 1:Apple
 Prediction 2:Apple</p>
-<p>We need our network's two predictors to be able to tell whether it is their job to predict the pear or the apple.To do this there are a several tools.Predictors can specialize in certain size objects, objects with a certain aspect ratio(tall vs. wide),or objects in different parts of the image.Most networks use all three criteria标准.In our example of the pear/apple image,we could have Prediction 1 be for objects on the left and Prediction 2 for objects on the right side of the image.Then we would have our answer for what the network should be predict:\
-Prediction 1:Pear\
+<p>We need our network's two predictors to be able to tell whether it is their job to predict the pear or the apple.To do this there are a several tools.Predictors can specialize in certain size objects, objects with a certain aspect ratio(tall vs. wide),or objects in different parts of the image.Most networks use all three criteria标准.In our example of the pear/apple image,we could have Prediction 1 be for objects on the left and Prediction 2 for objects on the right side of the image.Then we would have our answer for what the network should be predict:
+Prediction 1:Pear
 Prediction 2:Apple</p>
-<p>Anchor Boxes in Practice\
-State of the art最先进的 object detection systems currently do the following:\
-1. Create thousands of "anchor boxes" or "prior boxes" for each predictor that represent the ideal location, shape and size of the object it specializes专 in predicting.
-2. For each anchor box,calculate which object's  bounding box has the highest overlap divided by non-overlap.This is called Intersection Over Union or IOU.
-3. If the highest IOU is greater than 50%, tell the anchor box that it should detect the object that gave the highest IOU.
-4. Otherwise if the IOU is greater than 40%, tell the neural network that the true detection is ambiguous and not to learn from that example.
-5. If the highest IOU is less than 40%,then the anchor box should predict that there is no object.</p>
+<p>Anchor Boxes in PracticeState of the art最先进的 object detection systems currently do the following:\</p>
+<ol>
+<li>Create thousands of "anchor boxes" or "prior boxes" for each predictor that represent the ideal location, shape and size of the object it specializes专 in predicting.</li>
+<li>For each anchor box,calculate which object's  bounding box has the highest overlap divided by non-overlap.This is called Intersection Over Union or IOU.</li>
+<li>If the highest IOU is greater than 50%, tell the anchor box that it should detect the object that gave the highest IOU.</li>
+<li>Otherwise if the IOU is greater than 40%, tell the neural network that the true detection is ambiguous and not to learn from that example.</li>
+<li>If the highest IOU is less than 40%,then the anchor box should predict that there is no object.</li>
+</ol>
 <p>This works well in practice and the thousands of predictors do a very good job of deciding whether their type of object apperars in an image.</p>
 <p>Using the default anchor box configuration can create predictors that are too specialized and ojects that appear in the image may not achieve an IOU of 50% with any of the anchor boxes.In this case, the neural network will never know these objects existed and will never learn to predict them. We can tweak调整 our anchor boxes to be much smaller</p>
 <p>In xx net configuration, the smallest anchor box size is 32x32.This means that many objects smaller than this will go undetected. We can fix this by changing our default anchor box configurations. Reducing the smallest anchor box size, all of the things line up with at least one of our anchor boxes and our neural network can learn to detect them!</p>
-<p><strong>Improving Anchor Box Configuration</strong>\
-As a general rule,you should ask yourself the following questions about your dataset before diving into training your model:
-1. What is the smallest size box I want to be able to detect?
-2. What is the largest size box I want to be able to detect?
-3. What are the shapes the box can take? For example, a car detector might have short and wide anchor boxes as long as there is no chance of the car or the camera being turned on its side.</p>
+<p><strong>Improving Anchor Box Configuration</strong>As a general rule,you should ask yourself the following questions about your dataset before diving into training your model:</p>
+<ol>
+<li>What is the smallest size box I want to be able to detect?</li>
+<li>What is the largest size box I want to be able to detect?</li>
+<li>What are the shapes the box can take? For example, a car detector might have short and wide anchor boxes as long as there is no chance of the car or the camera being turned on its side.</li>
+</ol>
 <p>You can get a rough estimate of these by actually calculating the most extreme极端 sizes　and aspect ratios in the dataset.Yolo V3 uses K-means to estimate the ideal bounding boxes.Another option is to learn the anchor box configuration.</p>
 <p>Once you have thought through these questions you can start designing your anchor boxes. Be sure to test them by encoding your ground truth bounding boxes地面真值边界框 and then decoding them as though就像 they were predictions from your model.You should be able to recover the ground truth bounding boxes.</p>
 <h1 id="autonomous-self-learning-systems">Autonomous self-learning systems</h1>
@@ -1258,43 +1265,40 @@ As a general rule,you should ask yourself the following questions about your dat
 <h4 id="unsupervised-learning">Unsupervised Learning</h4>
 <p>When learning without supervision, information is not marked.This is ,the system is not told what is the image of a face and what is not.As a result, there is no correction or reward to indicate a potential solution, but the algorithm tries to identify the similarities between the images, swfor then categorize them and divide them into groups.</p>
 <h4 id="reinforcement-learning">Reinforcement Learning</h4>
-<p>In reinforcement learning,the algorithm is told when the answer it gives is incorrect, but receives no suggestions on how to correct this.It must explore and try out different solutions untill it finds out how it gets the right answers.This is a kind of middle ground of supervised learning and unsupervised learning.Examples could be learning to play a board game or a robot that is going to learn to walk.Each time an agent performs an action,he or she recieves a reward or a penalty, based on how desirable可取的 the outcome of the action is.For example.when an agent is trained to play a board game, he gets a positive reward for winning, and a negative reward for losing.All other cases give no reward.\
-<img alt="1" src="../images/show.jpg" />\
-The activity mentioned above can be represent as a sequence of state-action reward:\
-<img alt="image" src="../images/Screenshot%202021-01-16%2009:26:50.png" />\
-This means that the agent was in state s0, performed action a0,which resulted in it receiving reward r1 and ending up in state s1.Furthermore, it performed action a1, received reward r2, and ended up in state s2, and so on.\
-Ｔhis sequence is made up of experiences where experience is given as:\
-<img alt="1" src="../images/Screenshot%202021-01-16%2009:32:59.png" />\
+<p>In reinforcement learning,the algorithm is told when the answer it gives is incorrect, but receives no suggestions on how to correct this.It must explore and try out different solutions untill it finds out how it gets the right answers.This is a kind of middle ground of supervised learning and unsupervised learning.Examples could be learning to play a board game or a robot that is going to learn to walk.Each time an agent performs an action,he or she recieves a reward or a penalty, based on how desirable可取的 the outcome of the action is.For example.when an agent is trained to play a board game, he gets a positive reward for winning, and a negative reward for losing.All other cases give no reward.
+<img alt="1" src="../images/show.jpg" />
+The activity mentioned above can be represent as a sequence of state-action reward:
+<img alt="image" src="../images/Screenshot%202021-01-16%2009:26:50.png" />
+This means that the agent was in state s0, performed action a0,which resulted in it receiving reward r1 and ending up in state s1.Furthermore, it performed action a1, received reward r2, and ended up in state s2, and so on.
+Ｔhis sequence is made up of experiences where experience is given as:
+<img alt="1" src="../images/Screenshot%202021-01-16%2009:32:59.png" />
 Experience shows that the agent was in state s,performed action a,received reward r, and ended up in state s', and represented by (s,a,s',r)</p>
 <p>In order for the agent to be able to learn from the sequences mentioned and thus call it an experience.It has a table called Q-table which acts as its memory.All data points stored in this table are called Q-values and represent how desirable可取的 it is to perform a specific action in a specific state.</p>
 <p>One experience adds one data point Q(s,a) in the table that represents the agents current estimate估计 of the optimal最佳 Q value. It is this information that the agent uses to learn an optimal pattern of action.The size of the table depends on how many conditions and actions are included in the problem you are trying to solve, where the number of conditions gives the number of rows ,while the number of actions gives the number of colums.For example if you have 20 states and 3 actions, you will get a table of 20x3.</p>
 <p>Before the agent begins to experiment, it knows nothing else what actions it is capable of performing, and the Q table is consequently empty.This is, all Q values are equal to 0.</p>
 <p>The key to the method described above is to update the Q value that is applied to the agent when it performs an action in a given state in the current data point when it gains an experience.</p>
-<p>This value is given by the Q function\
-<img alt="1" src="../images/Screenshot%202021-01-16%2009:59:11.png" />\
-or more clearly:\
-<img alt="1" src="../images/Screenshot%202021-01-16%2010:01:25.png" /></p>
+<p>This value is given by the Q function<img alt="1" src="../images/Screenshot%202021-01-16%2009:59:11.png" />or more clearly:<img alt="1" src="../images/Screenshot%202021-01-16%2010:01:25.png" /></p>
 <blockquote>
-<p>α－－learning rate\
-Γ－－discount factor\
+<p>α－－learning rate
+Γ－－discount factor
 r－－reward\</p>
 </blockquote>
-<p>The learning rate dicates指示 how much of previouly先前 acquired learning should be replaced with new information. 
+<p>The learning rate dicates指示 how much of previouly先前 acquired learning should be replaced with new information.
 By α=1,previous values are replaced with new information.while α=0 ,corresponds to no update.In other words,the agent will konw by α=1,assume that the last reward and resulting state are representative of future values.</p>
 <p>The discount factor indicates the weight of all futher step rewards.If Γ=0,the agent will only consider current rewards, while it will think more long-term长期 and strive努力 for higher future rewards as Γ approaches 1.</p>
 <p>The reward is defined when you create the program in the form of reward functions奖励是在创建程序时以奖励函数的形式定义的,and can be positive or negative. What this reward value is defined as is not critical.On the other hand, It is important that there is a clear distinction区别 between the reward for good deeds行为 and the reward for bad deeds.</p>
 <p>When a new experience is added to the algorithm, a new Q value is estimated, and the old value of the Q table for the last experience is updated with the new one.</p>
-<p>Assume that the agent is a mouse that is placed in a room divded into six states, see below Figure.In state s6 there is a piece of cheese,while in state s5 there is a cat.If the agent finds the piece of cheese, it receives a reward of 10, while it receives a reward of -10 if it moves to the state where the cat is.These two states are called terminal states.The agent explores the environment untill one of the terminal states is reached,before starting a new iteration(attempt)\
+<p>Assume that the agent is a mouse that is placed in a room divded into six states, see below Figure.In state s6 there is a piece of cheese,while in state s5 there is a cat.If the agent finds the piece of cheese, it receives a reward of 10, while it receives a reward of -10 if it moves to the state where the cat is.These two states are called terminal states.The agent explores the environment untill one of the terminal states is reached,before starting a new iteration(attempt)
 <img alt="i" src="../images/Screenshot%202021-01-16%2010:48:26.png" /></p>
 <p>Ｔhe agent can perform four actions: up,down,left,right.If it moves in a direction where there is a wall, it gets a reward of -1, and it remains in the same state. All other conditions have a value equal to 0.This is implemented in the algorithm using reward functions.\</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-16%2011:04:25.png" />\
+<p><img alt="1" src="../images/Screenshot%202021-01-16%2011:04:25.png" />
 The agent has no information about his surroundings other than that there are six states and four acitons, what state he is in at any given time and any rewards it receives as actions are performed.Nor does it know what a reward or punishment is.The Q table is illustrated in Table 1.</p>
 <p>By assuming the following sequences of experiences,(s,a,r,s') one can illustrate how a sequence updates the Q-table.
 <img alt="1" src="../images/Screenshot%202021-01-16%2011:32:26.png" /></p>
-<p>For the sake of illustration, the learning rate α and the discount factor Γ set equal to 1 and all Q-values have an initial value equal to 0.\
+<p>For the sake of illustration, the learning rate α and the discount factor Γ set equal to 1 and all Q-values have an initial value equal to 0.
 <img alt="1" src="../images/Screenshot%202021-01-16%2013:50:58.png" /></p>
-<p>After this sequence of experiences, the Q table with updated values will look like this:\
-<img alt="1" src="../images/Screenshot%202021-01-16%2013:53:58.png" />\
+<p>After this sequence of experiences, the Q table with updated values will look like this:
+<img alt="1" src="../images/Screenshot%202021-01-16%2013:53:58.png" />
 opp=up ned=down venstre=left hØyre=right</p>
 <p>Each experience will update the value of the state table for the performed state and action combination, and the Q values will converge汇聚 to optimal values over time.The more experiments the agent conducts行为, the better the estimates in the Qtable.In theory, the agent will eventually achieve an optimized Q-table, and will be able to choose the shortest path to the cheese each time, regardless of the starting state.</p>
 <h4 id="exploration-or-utilize">Exploration or Utilize 勘探或开发</h4>
@@ -1304,23 +1308,23 @@ opp=up ned=down venstre=left hØyre=right</p>
 <p>The purpose of this feature is to establish a relationship between the two strategies. It is important to explore enough so that the agent builds a solid foundation of the Q-values, but it is also important to utilize the already acquired knowledge to ensure the highest possible reward.</p>
 <p>There are a number of ways to accomplish this, but two of the most popular methods are the greedy feature and the Boltzmann distribution, popularly called "softmax":</p>
 <h5 id="-greedy">ε-greedy</h5>
-<p>ε-greedy is a strategy based on always choosing the optimal action except for ε of the aisles and choosing a random action of the aisles.\
-<img alt="1" src="../images/Screenshot%202021-01-16%2014:30:31.png" />\
-there\
- a* is optimal action with probability 1-ε\
- ar is random action with probability ε\
-where\
- 0&lt; ε &lt; 1</p>
+<p>ε-greedy is a strategy based on always choosing the optimal action except for ε of the aisles and choosing a random action of the aisles.
+<img alt="1" src="../images/Screenshot%202021-01-16%2014:30:31.png" />
+there
+a* is optimal action with probability 1-ε
+ar is random action with probability ε
+where
+0&lt; ε &lt; 1</p>
 <p>It is possible to change over time. This allows the agent to choose a more random strategy at the beginning of the learning process, and then become more greedy as it acquires more knowledge.</p>
-<p>One of the challenges with greed is that it considers all actions except the optimal one as equal.它将最佳行动之外的所有行动都视为平等 If, in addition to an optimal action, there are two good actions as well as additional actions that look less promising,还有两个好的动作以及看起来不太有前途的其他动作， it will make sense有意义 for the agent to choose one of the two better ones instead of spending time exploring the bad actions. Using greed is as likely to explore a bad action as to explore one of the two better ones. One way to solve this is to use the Boltzmann distribution </p>
+<p>One of the challenges with greed is that it considers all actions except the optimal one as equal.它将最佳行动之外的所有行动都视为平等 If, in addition to an optimal action, there are two good actions as well as additional actions that look less promising,还有两个好的动作以及看起来不太有前途的其他动作， it will make sense有意义 for the agent to choose one of the two better ones instead of spending time exploring the bad actions. Using greed is as likely to explore a bad action as to explore one of the two better ones. One way to solve this is to use the Boltzmann distribution</p>
 <p>2.3.2 Boltzmann distribution
-This strategy is known as "softmax" action selection and involves selecting an action with a probability that depends on the Q value. The probability of selecting action a in state s is proportional to　<img alt="1" src="../images/Screenshot%202021-01-16%2014:55:24.png" />,which means that the agent in state s chooses action a with probability \
+This strategy is known as "softmax" action selection and involves selecting an action with a probability that depends on the Q value. The probability of selecting action a in state s is proportional to　<img alt="1" src="../images/Screenshot%202021-01-16%2014:55:24.png" />,which means that the agent in state s chooses action a with probability 
 <img alt="1" src="../images/Screenshot%202021-01-16%2014:56:53.png" /></p>
 <p>The parameter T specifies how random values are to be selected.参数T指定如何选择随机值。  When T has a high value, actions are chosen to approximately the same extent.选择的动作的程度大致相同 As T decreases, the actions with the highest Q value are more likely to be selected, while the best action is always selected when T-&gt; 0</p>
 <p>One of the advantages of the Q-learning algorithm is that it is exploration insensitive对探索不敏感. That is, the Q values will converge to optimal values regardless of the agent's behavior as long as information is collected. This is one of the reasons why Q-learning is one of the most widely used and effective methods in reinforcement learning. On the other hand, it is a prerequisite that all combinations of condition / action are tried out many enough times, which in most cases means that the exploration and exploitation aspect must be addressed as it is not always possible for an agent to experiment infinitely.</p>
 <p>There are several methods for setting up an artificial neural network.One of the most common,which is also used in this project, is called a feedforward neural network, which means that the information is always fed from the input page and supplied further through the network.In other words,output from one layer + bias is used as input in the next.</p>
 <h4 id="fuzzy-logic">Fuzzy Logic模糊理论</h4>
-<p>The theory of fuzzy logic is based on S.K.J(2007)\
+<p>The theory of fuzzy logic is based on S.K.J(2007)
 Fuzzy logic is a decision-making or management model based on diffuse　扩散，散发,and input data classified as degrees of membership in a diffuse quantity. A diffuse set has no sharp boundaries, and is a set of values that belong to the same definition, where the definition is a diffuse term often described by an adjective形容词. For example: big potatoes or tall people.A diffuse set is also called a semantically语义上 variable or set.</p>
 <p>Fuzzy logic classifies input data according to how large a membership the input data has to a set.The degree of membership is graded分级 between 0 and 1,and determined on the basis of a membership function根据隶属函数确定.Ｔhe member ship function is determined on the basis of knowledge of the field, and can be non-linear.Input data can have membership in servel different sets, but can only have full membership in one set.</p>
 <h4 id="fuzzy-logic-behavior">Fuzzy logic behavior</h4>
@@ -1344,28 +1348,28 @@ The radio-controlled car in scale 1:18 was delivered已交付 to drive with rati
 <h4 id="421-condition-space-model">4.2.1 Condition space model</h4>
 <p>All sensors can measure distances up to 400 cm. To avoid a large state table and to streamline the learning process, the sensor values are discretized down to 144 states. For the project described in this report, this also simplifies the reward function.</p>
 <p><img alt="1" src="../images/Screenshot%202021-01-19%2014:32:36.png" /></p>
-<p>Each snsor is divided into four zones based on distance in centimeters. The division is shown in Figure 4.4\
+<p>Each snsor is divided into four zones based on distance in centimeters. The division is shown in Figure 4.4
 <img alt="1" src="../images/Screenshot%202021-01-19%2014:49:54.png" />\</p>
 <p>A condition consists of four parameters. Two for the left side and two for the right side of the agent's field of view.A state
 is a combination of distance to the nearest obstacle and in which sector the obstacle is located .a sector describes the angle at which an object is located, relative to the agent.</p>
-<p>The four parameter are defined by:\
-k1:zone区 left side 区域左侧\
-k2:zone right side 区域右侧\
-k3:sector部门 left side 扇区左侧\
-k4:sector right side 扇区右侧\
-k5:observation of dynamic or static obstacle left side 观察动态或静态障碍物左侧\
-k6:observation of dynamic or static obstacle right side 观察动态或静态障碍物右侧\
-S(state space model) = k1 x k2 x k3 x k4 x (k5 x k6)\
-The agent can perceive感知 two obstacles simultaneously, but not on the same page.With two obstacles on the same side,the algorithm will prioritize优先 the obstacle that is in the zone with the lowest numbering. The division of the sectors is illustrated in Figure below\
-<img alt="1" src="../images/Screenshot%202021-01-19%2016:01:02.png" />\
-sector扇区\
+<p>The four parameter are defined by:
+k1:zone区 left side 区域左侧
+k2:zone right side 区域右侧
+k3:sector部门 left side 扇区左侧
+k4:sector right side 扇区右侧
+k5:observation of dynamic or static obstacle left side 观察动态或静态障碍物左侧
+k6:observation of dynamic or static obstacle right side 观察动态或静态障碍物右侧
+S(state space model) = k1 x k2 x k3 x k4 x (k5 x k6)
+The agent can perceive感知 two obstacles simultaneously, but not on the same page.With two obstacles on the same side,the algorithm will prioritize优先 the obstacle that is in the zone with the lowest numbering. The division of the sectors is illustrated in Figure below
+<img alt="1" src="../images/Screenshot%202021-01-19%2016:01:02.png" />
+sector扇区
 The sectors have four different values, 0,1,2,3.The sensors perceive感知 an object when the zone value is less than 2.The sectors are symmetrically对称地 distributed分布.so that the agent's right field of view is discretized in the same way as the left.Sensors 1,2 and 3 on the left side correspond to sensors 3,4 and 5 for the right side.</p>
 <h5 id="4211-discretion-for-system-with-dynamic-obstacles">4.2.11 Discretion for system with dynamic obstacles</h5>
 <p>In the simulation for a system with dynamic obstacles, the state space model is expanded with two additional parameters,k5 and k6. k5 indicates with the value 1 or 0 whether the obstacle detected on the left side is dynamic, while k6 does the same for the right side.The number 1 indicates a dynamic obstacle,while 0 indicates static.The state table has thus benn expanded to 576 states.,An object os classified as a dynamic obstacle in that the agent first, while standing still,performs two measurements in a row. Then the two measurements are compared, if the obstacle moves away from the agent, the first measurement will be positive number, and classified as a static obstacle.If on the other hand, the same calculation operation gives a negative number, the obstacle is classified as a dynamic obstacle and the agent must react accordingly.</p>
 <h5 id="4212-the-state-table">4.2.1.2 the state table</h5>
 <p>The state table is structured as a table where all combinations of states and actions are represented as a table point.The state table for the physical model has 144 rows, and three columns that present each of the possible actions(left,right, straightfoward). A section of the condition table is shown in Table 7.</p>
 <h4 id="422-reward-function">4.2.2 Reward function</h4>
-<p>The reward feature determines the agent's immmediate reward after each experience.When implementing the reward function, a distinction is made between good actions that give a positive reward value,and bad actions that give a negative reward value.The reward function used for Q-learning with the table method is inspired by and shown under equation.\
+<p>The reward feature determines the agent's immmediate reward after each experience.When implementing the reward function, a distinction is made between good actions that give a positive reward value,and bad actions that give a negative reward value.The reward function used for Q-learning with the table method is inspired by and shown under equation.
 <img alt="1" src="../images/Screenshot%202021-01-20%2009:31:49.png" /></p>
 <p>The reward function, r1 is defined to give a positive reward value when the agent drives straight ahead, while for turns a small negative reward value is given. The negative value is given to prioritize 优先 driving straight ahead.</p>
 <p>The parameter r2 gives a positve reward when the total change in the sensor values is positive. That is , the agent moves away from an obstacle. If the agent moves towards an obstacle , it becomes total the change in sensor values is negatie, and the agent recieve a negative reward.</p>
@@ -1378,63 +1382,77 @@ The exploration function determines the agent's strategy for choosing actions. I
 <p>The implementation of Q-learning with the table method is based on the same algorithm and reward function in the simulation and for the physical model.The different between the simulation and the physical agent is the exploration function and an additional extension of the state space in the simulation(see the discretization离散化 chapter).In the simulation, you have the choice between static and dynamic obstacles, and to adapt the agent to dynamic obstacle, the Q table is expanded.</p>
 <h3 id="4241-the-q-learning-algorithm-with-the-table-method">4.2.4.1 The Q-Learning algorithm with the table method</h3>
 <p>The Q-Learning algorithm with the table method
-At startup:
- - initialize state space S
- - initialize the action list A
- - initialize the Q table Q(s,a)(empty table) based on the state space S and the action list A</p>
-<p>For each attempt:
- 1) Observe initial sensor values
- 2) Discretize the sensor values and set it equal to s(initial mode)
- 3) Select an action a based on the exploration function and perform the action
- 4) Observe the agent's sensor values after the operation
- 5) Discretize the sensor values and set it equal to s'(Next mode)
- 6) Give the agent the reward r based on the reward function
- 7) Update the Q table
- 8) Set s=s'(Now state)
- 9) Keep last action, prev_a =a (Used in the reward function)
- 10) Repeat the operation from point iii)(a new step /experience ) If the agent has not reached its terminal state(collision or maximum number of steps). Start a new attempt if the agent has reached its terminal state(Restart from i).</p>
+At startup:</p>
+<ul>
+<li>initialize state space S</li>
+<li>initialize the action list A</li>
+<li>initialize the Q table Q(s,a)(empty table) based on the state space S and the action list A</li>
+</ul>
+<p>For each attempt:</p>
+<p>1) Observe initial sensor values
+2) Discretize the sensor values and set it equal to s(initial mode)
+3) Select an action a based on the exploration function and perform the action
+4) Observe the agent's sensor values after the operation
+5) Discretize the sensor values and set it equal to s'(Next mode)
+6) Give the agent the reward r based on the reward function
+7) Update the Q table
+8) Set s=s'(Now state)
+9) Keep last action, prev_a =a (Used in the reward function)
+10) Repeat the operation from point iii)(a new step /experience ) If the agent has not reached its terminal state(collision or maximum number of steps). Start a new attempt if the agent has reached its terminal state(Restart from i).</p>
 <h3 id="4242-simulated-model">4.2.4.2 Simulated model</h3>
 <p>In the simulation, a user interface is created that shows the user the simulation of the agent, two different graphs, buttons for different functions and information panel.The information panel show the user relevant相关的 values from the simulation.One graph shows an average of the number of steps for every tenth attempt, while the other shows the agent's accumulated reward.One step in the program corresponds to an experienced situation,whether it has been experienced before or is new.A new attempt is initialiated each time the agent has moved the maximum number of steps for the current attempt, or has collided with an obstacle .The maximum number of steps can be changed, but is normally 400-600.The dimensions of the simulation are scaled 1：10[cm]</p>
 <p>The ultrasonic sensors on the physical agent are limited to integer values from 1 to 120cm in the code of the agents microcontrollers.Distance less than 8 cm id defined as a collision. The initial state of the physical agent is an arbitrary position in the environment.The only requirement is that the initial state is not a terminal state(collision).</p>
-<p>The commands
-- command 1 : request sensor values
-- command 2: ask the agent to drive straight ahead
-- command 3: ask the agent to turn right
-- command 4: ask the agent to turn left
-- command 5: ask the agent to stop, sensor values &lt;8 cm(collision)</p>
+<p>The commands</p>
+<ul>
+<li>command 1 : request sensor values</li>
+<li>command 2: ask the agent to drive straight ahead</li>
+<li>command 3: ask the agent to turn right</li>
+<li>command 4: ask the agent to turn left</li>
+<li>command 5: ask the agent to stop, sensor values &lt;8 cm(collision)</li>
+</ul>
 <h3 id="43-q-learning-with-neural-network-linear-function-approximation">4.3 Q-Learning with neural network (Linear function approximation)</h3>
-<p>Q-Learning with neural network is based on approximation of one or more linear Q-functions. Unlike Q-table learning.this method stores the Q functions in a neural network. By using this method ,discretization is not necessary, and the entire continuous sensor spectrum can be used. The behavior behind an artifical neuron is described in chapter 2.3.3\
-<strong>neural network</strong>\
-<img alt="1" src="../images/Screenshot%202021-01-20%2011:18:44.png" />\
+<p>Q-Learning with neural network is based on approximation of one or more linear Q-functions. Unlike Q-table learning.this method stores the Q functions in a neural network. By using this method ,discretization is not necessary, and the entire continuous sensor spectrum can be used. The behavior behind an artifical neuron is described in chapter 2.3.3
+<strong>neural network</strong>
+<img alt="1" src="../images/Screenshot%202021-01-20%2011:18:44.png" />
 input layer---------------------------------hidden layer-------------------------------------output layer</p>
 <p>The figure above shows the neural network as it is implemented in this system. In the network, all the neurous, including the bias from one layer, are connected to each individual neuron in the next layer. The neural network has three layers.Layer One, the input layer, has five neurons (one for each sensor),layer two has fifteen neurons, and layer three has three neurons according to the number of actions in the action list.Layer 1 is the start of the network, and the sensor values are used as input.and these must be in the interval间隔[-1,1]</p>
 <p>The weight matrix w(1) is used to weight the link between layer 1 and layer 2.means w(2) for layer 2 and layer 3.The matrices have a dimension of (number of neurons in layer L)x(number of neurons in Layer (l-1) + bias)</p>
-<p>w(1) has a dimension of 15x6 and w(2) dimension of 3x16. In the output layer, there are three neurons, and each individual neuron corresponds to a Q function.The number of neurons in the output layer is equal to the number of actions of the agent, and each individual neuron estimates a Q function with respect to an action in the agent's action list Equation(21)\
+<p>w(1) has a dimension of 15x6 and w(2) dimension of 3x16. In the output layer, there are three neurons, and each individual neuron corresponds to a Q function.The number of neurons in the output layer is equal to the number of actions of the agent, and each individual neuron estimates a Q function with respect to an action in the agent's action list Equation(21)
 <img alt="1" src="../images/Screenshot%202021-01-20%2011:52:56.png" /></p>
 <p>These Q function estimate a Q value that is futher used to determine the optimal actions for the agent, where the optimal action for each condition is therefore defined as a = max(Q(s,a)). It is impossible to say which Q function are suitable for the system, since the neural network estimates the Q function based on the agent's experience. In order for the agent to achieve the highest total reward, it must therefore explore the environment long enough for the network to converge to an optimal function.</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-20%2013:54:50.png" />\
+<p><img alt="1" src="../images/Screenshot%202021-01-20%2013:54:50.png" />
 The figure shows the learning process of agent. The method needs initial values, and these are given by sensor values and the network's weight matrices.The weight matrices are initiallized with random values between 0 and 1, but not zero.If the weight matrices are initialized with a value equal to 0,all the neurons will have the same value,which means that the neural network will not be usable. This algorithm uses the agent's sensor values, as opposed to the table method which uses a discretization of values. The exploration function used is the same as for the table method, but the reward function is different. The purpose of this method is to find optimal Q functions by updating the weight machines after each experiment.</p>
 <h4 id="431-reward-function">4.3.1 Reward function</h4>
-<p>Since the agent's state space on the neural network is continuous, an equally elaborate reward function is not required as for the table method.The reward function is defined by the agent receiving a positive reward if it drives straight ahead, and a negative reward in the event of a turn and a collision. The reward value r must be in the interval [-1,1], and the function as defined for the system is shown in equation.\
+<p>Since the agent's state space on the neural network is continuous, an equally elaborate reward function is not required as for the table method.The reward function is defined by the agent receiving a positive reward if it drives straight ahead, and a negative reward in the event of a turn and a collision. The reward value r must be in the interval [-1,1], and the function as defined for the system is shown in equation.
 <img alt="1" src="../images/Screenshot%202021-01-20%2014:11:32.png" /></p>
 <h4 id="432-feedforward">4.3.2 Feedforward</h4>
 <p>As described in Chapter 2 Theory, neural network in this project is a forward-connected neural network. The neurons are activated using the function of the hyperbolic forceps双曲线钳 given in equation.
-<img alt="1" src="../images/Screenshot%202021-01-21%2016:47:58.png" />\
+<img alt="1" src="../images/Screenshot%202021-01-21%2016:47:58.png" />
 The activated values become output values in this layer, and are used as input for the next layer.The three neurons in the output layer correspond to the Q funcitons when all data is fed into the network.</p>
-<p><img alt="1" src="../images/Screenshot%202021-01-21%2016:56:51.png" />\
-<img alt="1" src="../images/Screenshot%202021-01-21%2016:57:53.png" />\
+<p><img alt="1" src="../images/Screenshot%202021-01-21%2016:56:51.png" />
+<img alt="1" src="../images/Screenshot%202021-01-21%2016:57:53.png" />
 The weight matrix w has m number of rows equal to the number of neurons,and columns n equal to the number of inputs.The matrix w(2) and the vector y are multiplied by each other and the product is used in the activation function described ealier in the chapter.The elements in both the weight matrix and the input vector are real numbers,and the value of the inputs is in the interval[-1,1].Equation(26-28) shows the Q functions of the three actions.</p>
 <p><img alt="1" src="../images/Screenshot%202021-01-21%2017:22:23.png" /></p>
-<p>The calculations in the figures above can be abbreviated缩写 and shown in equation 27 in vector form.\
-<img alt="1" src="../images/Screenshot%202021-01-21%2017:28:13.png" />\
+<p>The calculations in the figures above can be abbreviated缩写 and shown in equation 27 in vector form.
+<img alt="1" src="../images/Screenshot%202021-01-21%2017:28:13.png" />
 Activation of the hidden layer takes place in the same way as for the output layer, and the input to this layer is the sensor values.\</p>
 <h3 id="install-pytroch-gpu">Install Pytroch-Gpu</h3>
 <p>versison:1.3.0</p>
-<p><code>conda install -c anaconda pytorch-gpu</code> </p>
+<p><code>conda install -c anaconda pytorch-gpu</code></p>
 <p>version:1.8.0</p>
 <p><code>conda install -c conda-forge pytorch-gpu</code></p>
 <h3 id="_2">减少内存占用的一种方法</h3>
 <p>The projected depth values in the original depth maps are float32 and the unit is meter (m). However, we don't want to save float32 because it took too much storage. A common technique is that we can convert it to uint16 by int(depth * 256). This keeps certain degree of accuracy but takes less storage. That's why we need to divide the value by 256.</p>
+<h3 id="_3">内存占用</h3>
+<pre><code>from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+from tensorflow.compat.v1.keras import backend as K
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
+K.set_session(session)
+</code></pre>
               
             </div>
           </div>

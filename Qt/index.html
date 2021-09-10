@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -103,6 +108,9 @@
     <li class="toctree-l2"><a href="#cvmat-to-qimage">cv::Mat to QImage</a></li>
     
 
+    <li class="toctree-l2"><a href="#qimage-to-cvmat">Qimage to cv::Mat</a></li>
+    
+
     <li class="toctree-l2"><a href="#qt">qt 文件夹选择</a></li>
     
 
@@ -113,6 +121,9 @@
     
 
     <li class="toctree-l2"><a href="#_1">设置运行图标</a></li>
+    
+
+    <li class="toctree-l2"><a href="#qtqxxxxxxxxqt5">QT编译错误：对‘Qxxxx::xxxx()@Qt5’未定义的引用错误 的解决方法</a></li>
     
 
     </ul>
@@ -310,7 +321,8 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="qt-install">qt install</h3>
+                <p><a href="https://download.qt.io/archive/qt/">下载</a></p>
+<h3 id="qt-install">qt install</h3>
 <p>.bashrc</p>
 <pre><code>export QTDIR=/home/pmjd/NeDisk/Qt5.12.0/5.12.0/gcc_64
 export PATH=$QTDIR/bin:$PATH
@@ -363,6 +375,29 @@ xxuanzhuan_t-&gt;setValidator(pReg_);
     return mat;
 }
 </code></pre>
+<h3 id="qimage-to-cvmat">Qimage to cv::Mat</h3>
+<pre><code>void  ImgCvt::QImage2cvMat(QImage&amp; image, cv::Mat **pImg)
+{
+    qDebug() &lt;&lt; image.format();
+    switch(image.format())
+    {
+    case QImage::Format_ARGB32:
+    case QImage::Format_RGB32:
+    case QImage::Format_ARGB32_Premultiplied:
+        *pImg  =new cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+        break;
+    case QImage::Format_RGB888:             
+    {
+        *pImg = new cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+         cv::cvtColor(**pImg, **pImg, CV_BGR2RGB);　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　//QImage Format_RGB888是按照R,G,B排布，  Mat按照B,G,R排布， 因而，需要进行互换；
+        break;
+    }
+    case QImage::Format_Indexed8:
+        *pImg = new  cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+        break;
+    }
+}
+</code></pre>
 <h3 id="qt">qt 文件夹选择</h3>
 <pre><code class="language-cpp">void MainWindow::on_toolButton_clicked()
 {
@@ -393,6 +428,14 @@ xxuanzhuan_t-&gt;setValidator(pReg_);
 <h3 id="_1">设置运行图标</h3>
 <pre><code class="language-cpp">setWindowIcon(QIcon(&quot;:/images/camera.png&quot;)); 
 </code></pre>
+<h3 id="qtqxxxxxxxxqt5">QT编译错误：对‘Qxxxx::xxxx()@Qt5’未定义的引用错误 的解决方法</h3>
+<pre><code>target_link_libraries(ros2qt ${QT_LIBRARIES} ${catkin_LIBRARIES}
+/home/pmjd/NeDisk/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Widgets.so.5
+/home/pmjd/NeDisk/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Gui.so.5
+/home/pmjd/NeDisk/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Core.so.5
+)
+</code></pre>
+<p>起因是多版本引用冲突</p>
               
             </div>
           </div>

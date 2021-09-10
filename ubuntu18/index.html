@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -341,6 +346,24 @@
         
             <li><a class="toctree-l3" href="#find">find 查找文件</a></li>
         
+            <li><a class="toctree-l3" href="#find_1">find 查找含有指定内容的文件</a></li>
+        
+            <li><a class="toctree-l3" href="#_12">文件搜索工具</a></li>
+        
+            <li><a class="toctree-l3" href="#usrbinexpect">#!/usr/bin/expect</a></li>
+        
+            <li><a class="toctree-l3" href="#_13">循环启动</a></li>
+        
+            <li><a class="toctree-l3" href="#dpkg">查看是否安装dpkg</a></li>
+        
+            <li><a class="toctree-l3" href="#_14">串口通信</a></li>
+        
+            <li><a class="toctree-l3" href="#_15">阿里源</a></li>
+        
+            <li><a class="toctree-l3" href="#docker_2">Docker 国内代理</a></li>
+        
+            <li><a class="toctree-l3" href="#root-root">Root 执行非root指令</a></li>
+        
         </ul>
     
 
@@ -451,6 +474,8 @@
 <code>wget https://npm.taobao.org/mirrors/python/3.7.5/Python-3.7.5.tgz</code></p>
 <h2 id="pip">pip 下载东西慢</h2>
 <p><code>pip3.7.5 install -i http://mirrors.aliyun.com/pypi/simple/ psutil decorator numpy protobuf==3.11^C scipy sympy cffi grpcio grpcio-tools requests --user --trusted-host mirrors.aliyun.com</code></p>
+<pre><code>-i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+</code></pre>
 <h2 id="mkdocs">mkdocs</h2>
 <p>mkdocs build</p>
 <p>mkdocs serve</p>
@@ -649,7 +674,7 @@ newgrp docker #更新用户组
 <h3 id="bash-ssh">bash 登入ssh</h3>
 <pre><code class="language-bash">#!/usr/bin/expect   
 
-set timeout 3             
+set timeout 3   
 spawn ssh -X promote@192.168.1.2 
 expect &quot;*password*&quot; {send &quot;123456\r&quot;}
 expect &quot;$ &quot; { send &quot;bash /home/username/1.sh\r&quot; }
@@ -1114,6 +1139,155 @@ rar a FileName.rar DirName # 压缩
 </code></pre>
 <h3 id="find">find 查找文件</h3>
 <pre><code class="language-bash">sudo find / -name 文件名
+</code></pre>
+<h3 id="find_1">find 查找含有指定内容的文件</h3>
+<p><code>sudo find / -name '*' | xargs grep -r ‘undisortPoints’</code></p>
+<h3 id="_12">文件搜索工具</h3>
+<p><strong>Fsearch</strong></p>
+<pre><code>sudo add-apt-repository ppa:christian-boxdoerfer/fsearch-daily
+sudo apt update
+sudo apt install fsearch-trunk
+</code></pre>
+<p><strong>CatFish</strong></p>
+<pre><code>sudo add-apt-repository ppa:catfish-search/ppa
+sudo apt-get update
+sudo apt-get install catfish
+</code></pre>
+<h3 id="usrbinexpect">#!/usr/bin/expect</h3>
+<pre><code>#!/usr/bin/expect
+set timeout 3
+
+for {set i 1} {$ i &lt; 10} {incr i 1} {
+spawn ./run.sh
+}
+
+spawn sudo insmod /home/promote/AHD_8CH/driver/dvrs_hw.ko
+expect &quot;*password*&quot; {send &quot;123456\r&quot;}
+
+spawn sudo -i;
+expect &quot;*password*&quot; {send &quot;123456\r&quot;}
+expect &quot;#&quot; {send &quot;cd /home/promote/Documents/PanoramaCalibration\r&quot;}
+expect &quot;#&quot; {send &quot;source devel/setup.bash\r&quot;}
+expect &quot;#&quot; {send &quot;roslaunch panorama_calibration panorama_calibration.launch\r&quot;}
+
+interact
+</code></pre>
+<h3 id="_13">循环启动</h3>
+<p>run.sh</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+docker run -it \
+        --rm -d \
+        --gpus all \
+        --runtime=nvidia \
+        --name=xiaomeng \
+        -e LANG=C.UTF-8 \
+        --net=host \
+        --device /dev/snd promote/xiaomeng:v1.0 /bin/bash -c \
+        &quot;source /opt/ros/melodic/setup.bash&amp;&amp;cd home/ChineseSpeech/TensorFlowTTS&amp;&amp;python3 test_microphone.py -d 24&quot;
+
+</code></pre>
+<p>for_run.sh</p>
+<pre><code class="language-bash">#!/bin/bash  
+
+i=100  
+while [ $i -ge 1 ]  
+do  
+if ./run.sh; then
+     echo “Success”
+else
+     echo “Failure, exit status: $?”
+     break
+fi
+
+sleep 5
+echo &quot;$i&quot;  
+(( i-- ))  
+done
+
+</code></pre>
+<p>xiaomeng.sh</p>
+<pre><code class="language-bash">#!/usr/bin/expect
+set timeout 3
+set ControlC \x03
+#spawn sudo systemctl restart docker
+#expect &quot;*password*&quot; { send &quot;123456\r&quot;}
+spawn gnome-terminal -t &quot;roscore&quot; -- bash -c &quot; roscore;exec bash&quot;
+sleep 1
+spawn ./for_run.sh
+
+cd /home/promote/ChineseSpeech/TensorFlowTTS
+spawn sudo /bin/bash -c &quot;export LD_PRELOAD=/home/promote/.local/lib/python3.6/site-packages/scikit_learn.libs/libgomp-d22c30c5.so.1.0.0&amp;&amp;source /opt/ros/melodic/setup.bash&amp;&amp;python3 get_msg.py&quot;
+expect &quot;*password*&quot; { send &quot;123456\r&quot;}
+interact
+
+
+</code></pre>
+<h3 id="dpkg">查看是否安装dpkg</h3>
+<pre><code>dpkg -l | grep cudnn
+</code></pre>
+<h3 id="_14">串口通信</h3>
+<pre><code>import serial 
+#端口，GNU / Linux上的/ dev / ttyUSB0 等 或 Windows上的 COM3 等
+portx=&quot;/dev/ttyTHS0&quot;
+#波特率，标准值之一：50,75,110,134,150,200,300,600,1200,1800,2400,4800,9600,19200,38400,57600,115200
+bps=115200
+#超时设置,None：永远等待操作，0为立即返回请求结果，其他值为等待超时时间(单位为秒）
+timex=5
+# 打开串口，并得到串口对象
+ser=serial.Serial(portx,bps,timeout=timex)
+input = &quot;您好,我是小蒙&quot;
+serial_input = input.encode(&quot;gbk&quot;)
+s = b'\x5A\xA5'
+s += (len(serial_input)+5).to_bytes(1, 'big') 
+s += b'\x82\x40\x00'
+s += serial_input
+s += b'\xff\xff'
+#print(&quot;s = &quot;, s)
+#ss = b'x5a\xa5\x0d\x82\xc4\xfa\xba\xc3,\xce\xd2\xca\xc7\xd0\xa1\xc3\xc9\xff\xff'
+#sss = b'x5a\xa5\x0f\x82\x40\x00\xc8\xcb\xc1\xb3\xca\xb6\xb1\xf0\xd6\xd0\xff\xff'
+#print(&quot;sss = &quot; , sss)
+#show = bytes([0x5A,0xA5,0x0f,0x82,0x40,0x00,0xc8,0xcb,0xc1,0xb3,0xca,0xb6,0xb1,0xf0,0xd6,0xd0,0xff,0xff])
+#ssss = b'Z\xa5\x0f\x82@\x00\xc8\xcb\xc1\xb3\xca\xb6\xb1\xf0\xd6\xd0\xff\xff'
+#print(&quot;show =&quot;, show)
+show_clear = bytes([0x5A,0xA5,0x05,0x82,0x31,0x00,0xff,0xff])
+ser.write(show_clear)
+ser.write(s)
+
+show_blue = bytes([0x5A,0xA5,0x05,0x82,0x40,0xe3,0x1f,0x1f])
+ser.write(show_blue)
+ser.close()
+
+
+</code></pre>
+<h3 id="_15">阿里源</h3>
+<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+</code></pre>
+<h3 id="docker_2">Docker 国内代理</h3>
+<pre><code>sudo nano /etc/docker/daemon.json
+</code></pre>
+<pre><code>{
+     &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;],
+     &quot;runtimes&quot;: {
+         &quot;nvidia&quot;: {
+             &quot;path&quot;: &quot;nvidia-container-runtime&quot;,
+             &quot;runtimeArgs&quot;: []
+         }
+     },
+     &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;],
+     &quot;dns&quot;: [&quot;114.114.114.114&quot;,&quot;8.8.8.8&quot;]
+}
+</code></pre>
+<h3 id="root-root">Root 执行非root指令</h3>
+<pre><code>su username -c &quot;echo hello&quot;
 </code></pre>
               
             </div>

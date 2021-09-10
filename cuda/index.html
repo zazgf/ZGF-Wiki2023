@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -150,6 +155,12 @@
     
 
     <li class="toctree-l2"><a href="#cannot-find-lcuda">cannot find -lcuda</a></li>
+    
+
+    <li class="toctree-l2"><a href="#tensorrt">tensorRt 安装</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cublas_v2h-no-such-file-or-directory">cublas_v2.h: No such file or directory</a></li>
     
 
     </ul>
@@ -293,12 +304,14 @@
             <div class="section">
               
                 <h3 id="cuda">cuda 安装</h3>
+<p><a href="https://developer.nvidia.com/cuda-toolkit-archive">cuda archive</a></p>
 <p>.bashrc里添加</p>
 <pre><code class="language-bash">export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 </code></pre>
 <h3 id="cudnnh-no-such-file-or-directory">cudnn.h: No such file or directory</h3>
 <p>在 /home/promote/NeDisk/anaconda3/pkgs/cudnn-7.6.5-cuda10.0_0/include 目录下拷贝一个cudnn.h到项目目录里就可以了。</p>
+<p>安装 cudnn， cudnn developer</p>
 <h3 id="could-not-find-lcudnn">could not find -lcudnn</h3>
 <pre><code class="language-make">LDFLAGS+= -L/home/promote/NeDisk/anaconda3/pkgs/cudnn-7.6.5-cuda10.0_0/lib -lcudnn
 </code></pre>
@@ -311,6 +324,33 @@ conda install cudnn==7.6.5
 找到 /usr/lib/x86_64-linux-gnu/libcuda.so.1
 
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcuda.so.1 /usr/local/cuda/lib64/libcuda.so
+</code></pre>
+<h3 id="tensorrt">tensorRt 安装</h3>
+<p><a href="https://developer.nvidia.com/tensorrt">下载</a> tar文件</p>
+<p>解压到本地</p>
+<p>cmake使用</p>
+<pre><code>include_directories(/home/promote/TensorRT-7.0.0.11/include)
+link_directories(/home/promote/TensorRT-7.0.0.11/lib)
+</code></pre>
+<p>程序运行时</p>
+<pre><code>export LD_LIBRARY_PATH=/home/promote/TensorRT-7.0.0.11/lib:$LD_LIBRARY_PATH
+</code></pre>
+<p>python支持</p>
+<p>安装</p>
+<pre><code>cd /home/promote/TensorRT-7.0.0.11/python
+pip3 install tensorrt-7.0.0.11-cp36-none-linux_x86_64.whl
+</code></pre>
+<p>安装uff ，支持TensorFlow模型转化</p>
+<pre><code>cd /home/promote/TensorRT-7.0.0.11/uff
+pip3 install uff-0.6.5-py2.py3-none-any.whl
+</code></pre>
+<p>安装graphsurgeon，支持自定义结构</p>
+<pre><code>cd /home/promote/TensorRT-7.0.0.11/graphsurgeon
+pip3 install graphsurgeon-0.4.1-py2.py3-none-any.whl
+</code></pre>
+<h3 id="cublas_v2h-no-such-file-or-directory">cublas_v2.h: No such file or directory</h3>
+<p>在/usr/local目录下</p>
+<pre><code>sudo ln -s cuda-10.0 cuda
 </code></pre>
               
             </div>

@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -149,6 +154,8 @@
             <li><a class="toctree-l3" href="#use-eigen-in-cmake-program">Use Eigen in cmake program</a></li>
         
             <li><a class="toctree-l3" href="#double-to-string-1">double to string 保留小数点后1位</a></li>
+        
+            <li><a class="toctree-l3" href="#_9">文件头添加注释</a></li>
         
         </ul>
     
@@ -658,7 +665,7 @@ printf(&quot;\n %s \n&quot;,buf);
 
 bool get_filelist_from_dir(std::string _path, std::vector&lt;std::string&gt;&amp; _files)
 {
-    DIR* dir;   
+    DIR* dir;
     dir = opendir(_path.c_str());
     struct dirent* ptr;
     std::vector&lt;std::string&gt; file;
@@ -715,6 +722,36 @@ int main()
     }
     return 0;
 }
+</code></pre>
+<h2 id="_9">文件头添加注释</h2>
+<p>sh file</p>
+<pre><code>#!/usr/bin/env bash
+#coding=utf-8
+
+# var=$(command-name-here)
+# var=`command-name-here`
+
+# FILES=$(find . -name '*.c' -or -name '*.cpp' -or -name '*.h')
+FILES=`find . -name '*.c'  -or -name '*.cu' -or -name '*.cpp' -or -name '*.h'`
+
+for FILE in ${FILES}
+do
+    echo ${FILE}
+    ex ${FILE} &lt;&lt;eof
+1 insert
+&quot;&quot;&quot;
+ * @author zhangguangfeng
+ * @email zgf123458@163.com
+ * @create date 2020-12-29 08:56:05
+ * @modify date 2020-12-29 08:56:05
+ * @desc [description]
+&quot;&quot;&quot;
+
+.
+xit
+eof
+
+done
 </code></pre>
               
             </div>

@@ -64,6 +64,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../OpenCV/">OpenCV</a>
 	    </li>
           
@@ -230,6 +235,8 @@
             <li><a class="toctree-l3" href="#pyton-thread">pyton thread</a></li>
         
             <li><a class="toctree-l3" href="#python-wheel-arm">python wheel arm</a></li>
+        
+            <li><a class="toctree-l3" href="#npsum">np.sum</a></li>
         
         </ul>
     
@@ -1038,6 +1045,83 @@ subscribe_thread.start()
 </code></pre>
 <h2 id="python-wheel-arm">python wheel arm</h2>
 <p><a href="https://www.piwheels.org/">wheel</a></p>
+<h2 id="npsum">np.sum</h2>
+<p>numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<code>&lt;no value&gt;</code>, initial=<code>&lt;no value&gt;</code>, where=<code>&lt;no value&gt;</code> )</p>
+<p>Sum of array elements over a given axis.</p>
+<p>Parameters:</p>
+<p><strong>a</strong>: array_like</p>
+<p>Elements to sum.</p>
+<p><strong>axis</strong>: None or int or tuple of ints, optional</p>
+<p>Axis or axes along which a sum is performed. The default , axis=None, will sum all of the elements of the input array. If axis is negative it counts from the last to the first axis.</p>
+<p>If axis is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.</p>
+<p><strong>dtype</strong>:dtype, optional</p>
+<p>The type of the the returned array and of the accumulator in which the elements are summed.The dtype of $a$ is used by default, unless $a$ has an integer dtype of less precision than the default platform integer. In that case, if $a$ is signed then the platform integer is used while if $a$ is unsigned then an unsigned integer of the same precision as the platform integer is used.</p>
+<p><strong>out</strong>:ndarray, optional</p>
+<p>Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of</p>
+<h3 id="umat">UMat</h3>
+<pre><code>fmat = frame.get().astype('uint8')
+fmat = fmat[648-360:648+360, 1152 - 640:1152+640]
+frame = cv2.UMat(fmat)
+</code></pre>
+<p>等价于</p>
+<pre><code>frame = cv2.UMat(frame, [648-360,648+360], [1152 - 640,1152+640])
+</code></pre>
+<h3 id="typeerror-slice-indices-must-be-integers-or-none-or-have-an-index-method">TypeError: slice indices must be integers or None or have an <strong>index</strong> method</h3>
+<p>意思就是该为整数未为整数，由于除法/自动产生的类型是浮点型，因此出现上述错误，修正方法为，将/更改为//</p>
+<p>img=np.hstack((a[:,0:100/2],b[:,100/2,:]))</p>
+<p>改为</p>
+<p>img=np.hstack((a[:,0:100//2],b[:,100//2,:]))</p>
+<h3 id="can">Can 通信</h3>
+<pre><code class="language-bash">pip install python-can
+</code></pre>
+<pre><code class="language-python">import can
+bustype = 'socketcan'
+channel = 'can0'
+bus = can.interface.Bus(channel=channel, bustype=bustype)
+msg = can.Message(arbitration_id=0x08020102, data=[0, 0, 0, 0, 0, 0, 1, 0], is_extended_id=True)
+bus.send(msg)
+</code></pre>
+<h3 id="_8">串口通信</h3>
+<pre><code class="language-python">import serial 
+
+#端口，GNU / Linux上的/ dev / ttyUSB0 等 或 Windows上的 COM3 等
+portx=&quot;/dev/ttyTHS0&quot;
+#波特率，标准值之一：50,75,110,134,150,200,300,600,1200,1800,2400,4800,9600,19200,38400,57600,115200
+bps=115200
+#超时设置,None：永远等待操作，0为立即返回请求结果，其他值为等待超时时间(单位为秒）
+timex=5
+# 打开串口，并得到串口对象
+ser=serial.Serial(portx,bps,timeout=timex)
+input = &quot;您好,我是小蒙&quot;
+serial_input = input.encode(&quot;gbk&quot;)
+s = b'\x5A\xA5'
+s += (len(serial_input)+5).to_bytes(1, 'big') 
+s += b'\x82\x40\x00'
+s += serial_input
+s += b'\xff\xff'
+#print(&quot;s = &quot;, s)
+#ss = b'\x5a\xa5\x0d\x82\xc4\xfa\xba\xc3,\xce\xd2\xca\xc7\xd0\xa1\xc3\xc9\xff\xff'
+#sss = b'\x5a\xa5\x0f\x82\x40\x00\xc8\xcb\xc1\xb3\xca\xb6\xb1\xf0\xd6\xd0\xff\xff'
+#print(&quot;sss = &quot; , sss)
+#show = bytes([0x5A,0xA5,0x0f,0x82,0x40,0x00,0xc8,0xcb,0xc1,0xb3,0xca,0xb6,0xb1,0xf0,0xd6,0xd0,0xff,0xff])
+#ssss = b'Z\xa5\x0f\x82@\x00\xc8\xcb\xc1\xb3\xca\xb6\xb1\xf0\xd6\xd0\xff\xff'
+#print(&quot;show =&quot;, show)
+input = b'\x5A\xA5\x07\x82\x00\x84\x5A\x01\x00\x01'  # 切换到识别界面
+input2= bytes([0x5A,0xA5,0x07,0x82,0x00,0x84,0x5A,0x01,0x00,0x01])
+ser.write(input2)
+show_clear = bytes([0x5A,0xA5,0x05,0x82,0x31,0x00,0xff,0xff])
+
+#ser.write(show_clear)
+ser.write(s)
+
+show_blue = bytes([0x5A,0xA5,0x05,0x82,0x40,0xe3,0x1f,0x1f])
+#ser.write(show_blue)
+
+show_face = bytes([0x5A,0xA5,0x05,0x82,0x10,0x00,0x00,0x02])
+#ser.write(show_face)
+
+ser.close()
+</code></pre>
               
             </div>
           </div>

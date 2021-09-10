@@ -62,6 +62,11 @@
     <a class="" href="../Autoware.auto/">Autoware.auto</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../Fully convolutional networks for semantic segmentation/">Fully convolutional networks for semantic segmentation</a>
+	    </li>
+          
             <li class="toctree-l1 current">
 		
     <a class="current" href="./">OpenCV</a>
@@ -303,6 +308,7 @@
 <pre><code class="language-bash">cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/promote/NeDisk/third_part/opencv-3.4.2/install_gcc7 -D OPENCV_EXTRA_MODULES_PATH=/home/promote/NeDisk/third_part/opencv_contrib-3.4.2/modules -D WITH_GTK=ON -D WITH_CUDA=ON -D BUILD_opencv_cudacodec=OFF -D BUILD_TIFF=ON ..
 </code></pre>
 <p>如果安装过程中出现，下载失败，查看build文件夹下的CMakeDownloadLog.txt，在<a href="https://d.serctl.com/">此处</a>下载，保存至opencv文件夹下的.cache文件夹里的对应位置</p>
+<p><strong>opencv3.4.2版本，可直接复制替换掉opencv-3.4.2目录下的.cache文件夹,就不用下载了。</strong></p>
 <h3 id="cmake-opencv">CMake 指定使用OpenCV版本</h3>
 <pre><code class="language-cmake">set(OpenCV_DIR &quot;/home/promote/NeDisk/third_part/opencv-4.5.2/install/lib/cmake/opencv4&quot;) #OpenCVConfig.cmake path
 find_package(OpenCV REQUIRED)
@@ -365,7 +371,7 @@ angle     The rotation angle in a clockwise direction. When the angle is 0, 90, 
         <a href="../PCL/" class="btn btn-neutral float-right" title="PCL">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Autoware.auto/" class="btn btn-neutral" title="Autoware.auto"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Fully convolutional networks for semantic segmentation/" class="btn btn-neutral" title="Fully convolutional networks for semantic segmentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -391,7 +397,7 @@ angle     The rotation angle in a clockwise direction. When the angle is 0, 90, 
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../Autoware.auto/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Fully convolutional networks for semantic segmentation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../PCL/" style="color: #fcfcfc">Next &raquo;</a></span>
