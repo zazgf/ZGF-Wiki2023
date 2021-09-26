@@ -144,6 +144,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../deb/">Deb</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../deeplearning/">Deeplearning</a>
 	    </li>
           
@@ -155,6 +160,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../harbor/">Harbor</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -364,6 +374,14 @@
         
             <li><a class="toctree-l3" href="#root-root">Root 执行非root指令</a></li>
         
+            <li><a class="toctree-l3" href="#docker-use-camera">Docker use camera</a></li>
+        
+            <li><a class="toctree-l3" href="#cpu">查看cpu核数</a></li>
+        
+            <li><a class="toctree-l3" href="#_16">阿里镜像</a></li>
+        
+            <li><a class="toctree-l3" href="#anaconda">为anaconda配置阿里源</a></li>
+        
         </ul>
     
 
@@ -556,6 +574,7 @@ sudo tar -C bionic -c . | docker import - bionic/smart_eye
 <pre><code class="language-bash">docker cp 容器ID:/root/data.tar /home/user
 </code></pre>
 <h4 id="docker-image">更改docker image存放路径</h4>
+<p>方法一</p>
 <pre><code class="language-bash">sudo service docker stop
 sudo touch /etc/docker/daemon.json
 </code></pre>
@@ -565,6 +584,29 @@ sudo touch /etc/docker/daemon.json
 }
 </code></pre>
 <pre><code class="language-bash">sudo service docker start
+</code></pre>
+<p>方法二</p>
+<pre><code>sudo nano /lib/systemd/system/docker.service
+</code></pre>
+<pre><code> ExecStart=/usr/bin/dockerd --graph /新path/docker 
+</code></pre>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+docker info
+</code></pre>
+<p>方法三</p>
+<pre><code># 停掉Docker服务
+$ systemctl restart docker
+
+# 停掉Docker服务
+$ service docker stop
+</code></pre>
+<p>然后移动整个 /var/lib/docker 目录到空间不较大的目的路径。这时候启动 Docker 时发现存储目录依旧是 /var/lib/docker 目录，但是实际上是存储在数据盘 /data/docker 上了。</p>
+<pre><code># 移动原有的内容
+$ mv /var/lib/docker /data/docker
+
+# 进行链接
+$ ln -sf /data/docker /var/lib/docker
 </code></pre>
 <h2 id="dockerapt-sourcelist">Docker更新apt source.list</h2>
 <pre><code class="language-bash">sudo nano /etc/apt/sources.list
@@ -1288,6 +1330,40 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted univer
 </code></pre>
 <h3 id="root-root">Root 执行非root指令</h3>
 <pre><code>su username -c &quot;echo hello&quot;
+</code></pre>
+<h3 id="docker-use-camera">Docker use camera</h3>
+<pre><code>#!/usr/bin/env bash
+docker run -it \
+        --rm -d\
+        --gpus all \
+        --runtime=nvidia \
+        --name=jolly \
+        -e LANG=C.UTF-8 \
+        --net=host \
+        --privileged \
+        -v /dev/video0:/dev/video0 \
+        promote/jolly:v1.1 /bin/bash -c \
+    &quot;source /opt/ros/melodic/setup.bash;export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-10.2/targets/aarch64-linux/lib;cd /home/Smart_Cabin_v3.0&amp;&amp;python3 face_demo.py&quot;
+</code></pre>
+<h3 id="cpu">查看cpu核数</h3>
+<pre><code class="language-bash">cat /proc/cpuinfo |grep 'processor'|wc -l  逻辑cpu个数
+
+cat /proc/cpuinfo |grep 'cpu cores'| wc -l  核数
+</code></pre>
+<h3 id="_16">阿里镜像</h3>
+<p><a href="https://developer.aliyun.com/mirror/">阿里</a></p>
+<h3 id="anaconda">为anaconda配置阿里源</h3>
+<pre><code>conda config --add channels https://mirrors.aliyun.com/anaconda/pkgs/free
+
+conda config --add channels https://mirrors.aliyun.com/anaconda/pkgs/main 
+
+conda config --add channels https://mirrors.aliyun.com/anaconda/cloud/conda-forge
+
+conda config --add channels defaults
+
+conda config --remove channels defaults
+
+conda config --show channels
 </code></pre>
               
             </div>

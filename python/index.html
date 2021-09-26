@@ -144,6 +144,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../deb/">Deb</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../deeplearning/">Deeplearning</a>
 	    </li>
           
@@ -155,6 +160,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../github网页不显示图片/">Github网页不显示图片</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../harbor/">Harbor</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -594,6 +604,8 @@ A
 临时使用：
 可以在使用pip的时候加参数
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple</p>
+<pre><code>-i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+</code></pre>
 <h2 id="pilimageopencv">PIL.Image转换成OpenCV格式</h2>
 <pre><code class="language-python">import cv2
 from PIL import Image
@@ -1121,6 +1133,35 @@ show_face = bytes([0x5A,0xA5,0x05,0x82,0x10,0x00,0x00,0x02])
 #ser.write(show_face)
 
 ser.close()
+</code></pre>
+<h3 id="next-iter">next()函數 和iter() 函數</h3>
+<p>我們首先要知道什麼是可迭代對象iterable, 即可以用for循環的對象和迭代器iterator</p>
+<p>一類：list, tuple, dict, set, str</p>
+<p>二類：generator, 包含生成器和帶yield 的generate function</p>
+<p>而生成器不僅可以用於for，還可以被next（）函數不斷調用並返回下一個值，可以被next（）函數不斷返回下一個值的對象稱爲迭代器：iterator</p>
+<p>生成器都是iterator對象,但 list, dict， str是 iterable， 但不是iterator， 要把list, dict, str, 等iterable轉換爲iterator可以使用iter() 函數</p>
+<p>next() 用法</p>
+<pre><code class="language-python">next(iterator[,default])
+</code></pre>
+<ul>
+<li>iterator ——可迭代對象</li>
+<li>default ——可選，用於設置在沒有下一個元素返回時該返回的默認值</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; list = [1,2,3,4,5]
+&gt;&gt;&gt; it = iter(list)
+&gt;&gt;&gt; next(it,'-1')
+1
+&gt;&gt;&gt; next(it,'-1')
+2
+&gt;&gt;&gt; next(it,'-1')
+3
+&gt;&gt;&gt; next(it,'-1')
+4
+&gt;&gt;&gt; next(it,'-1')
+5
+&gt;&gt;&gt; next(it,'-1')
+-1
+
 </code></pre>
               
             </div>
