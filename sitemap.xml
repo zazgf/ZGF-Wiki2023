@@ -113,4 +113,36 @@
     </url>
     
 
+    
+    <url>
+     <loc>/Atlas200验收报告/</loc>
+     <lastmod>2021-09-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/激光雷达算法盒子/</loc>
+     <lastmod>2021-09-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/radar_camera_fusion/</loc>
+     <lastmod>2021-09-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/毫米波和摄像机融合/</loc>
+     <lastmod>2021-09-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
 </urlset>

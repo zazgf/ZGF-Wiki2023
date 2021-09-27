@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>激光雷达算法盒子 - ZGF Wiki</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6fc0\u5149\u96f7\u8fbe\u7b97\u6cd5\u76d2\u5b50";
+    var mkdocs_page_input_path = "\u6fc0\u5149\u96f7\u8fbe\u7b97\u6cd5\u76d2\u5b50.md";
+    var mkdocs_page_url = "/\u6fc0\u5149\u96f7\u8fbe\u7b97\u6cd5\u76d2\u5b50/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ZGF Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../c++/">C++</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python/">Python</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu18/">Ubuntu18</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros/">Ros</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Ros建模/">Ros建模</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../tf_document/">tf_document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caffe/">Caffe</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deeplearning/">deeplearning</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../voxelnet/">voxelnet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../radar_camera_fusion/">radar_camera</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../python有用的函数/">python有用的函数(一)</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../OpenCV/">OpenCV</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../harbor/">Harbor</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Atlas200验收报告/">Atlas200验收报告</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">激光雷达算法盒子</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#v10">激光雷达算法盒子封装ｖ1.0</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_1">硬件环境组成</a></li>
+        
+            <li><a class="toctree-l3" href="#_2">软件环境部署</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#cudnn-acceleration-switch-uncomment-to-build-with-cudnn">cuDNN acceleration switch (uncomment to build with cuDNN).</a></li>
+    
+
+    <li class="toctree-l2"><a href="#use_cudnn-1">USE_CUDNN := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cpu-only-switch-uncomment-to-build-without-gpu-support">CPU-only switch (uncomment to build without GPU support).</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cpu_only-1">CPU_ONLY := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-to-disable-io-dependencies-and-corresponding-data-layers">uncomment to disable IO dependencies and corresponding data layers</a></li>
+    
+
+    <li class="toctree-l2"><a href="#use_opencv-0">USE_OPENCV := 0</a></li>
+    
+
+    <li class="toctree-l2"><a href="#use_leveldb-0">USE_LEVELDB := 0</a></li>
+    
+
+    <li class="toctree-l2"><a href="#use_lmdb-0">USE_LMDB := 0</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-to-allow-mdb_nolock-when-reading-lmdb-files-only-if-necessary">uncomment to allow MDB_NOLOCK when reading LMDB files (only if necessary)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#you-should-not-set-this-flag-if-you-will-be-reading-lmdbs-with-any">You should not set this flag if you will be reading LMDBs with any</a></li>
+    
+
+    <li class="toctree-l2"><a href="#possibility-of-simultaneous-read-and-write">possibility of simultaneous read and write</a></li>
+    
+
+    <li class="toctree-l2"><a href="#allow_lmdb_nolock-1">ALLOW_LMDB_NOLOCK := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-if-youre-using-opencv-3">Uncomment if you're using OpenCV 3</a></li>
+    
+
+    <li class="toctree-l2"><a href="#to-customize-your-choice-of-compiler-uncomment-and-set-the-following">To customize your choice of compiler, uncomment and set the following.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#nb-the-default-for-linux-is-g-and-the-default-for-osx-is-clang">N.B. the default for Linux is g++ and the default for OSX is clang++</a></li>
+    
+
+    <li class="toctree-l2"><a href="#custom_cxx-g">CUSTOM_CXX := g++</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cuda-directory-contains-bin-and-lib-directories-that-we-need">CUDA directory contains bin/ and lib/ directories that we need.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#on-ubuntu-1404-if-cuda-tools-are-installed-via">On Ubuntu 14.04, if cuda tools are installed via</a></li>
+    
+
+    <li class="toctree-l2"><a href="#sudo-apt-get-install-nvidia-cuda-toolkit-then-use-this-instead">"sudo apt-get install nvidia-cuda-toolkit" then use this instead:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cuda_dir-usr">CUDA_DIR := /usr</a></li>
+    
+
+    <li class="toctree-l2"><a href="#cuda-architecture-setting-going-with-all-of-them">CUDA architecture setting: going with all of them.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#for-cuda-60-comment-the-lines-after-_35-for-compatibility">For CUDA &lt; 6.0, comment the lines after *_35 for compatibility.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas-choice">BLAS choice:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#atlas-for-atlas-default">atlas for ATLAS (default)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#mkl-for-mkl">mkl for MKL</a></li>
+    
+
+    <li class="toctree-l2"><a href="#open-for-openblas">open for OpenBlas</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas-atlas">BLAS := atlas</a></li>
+    
+
+    <li class="toctree-l2"><a href="#custom-mklatlasopenblas-include-and-lib-directories">Custom (MKL/ATLAS/OpenBLAS) include and lib directories.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#leave-commented-to-accept-the-defaults-for-your-choice-of-blas">Leave commented to accept the defaults for your choice of BLAS</a></li>
+    
+
+    <li class="toctree-l2"><a href="#which-should-work">(which should work)!</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas_include-pathtoyourblas">BLAS_INCLUDE := /path/to/your/blas</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas_lib-pathtoyourblas">BLAS_LIB := /path/to/your/blas</a></li>
+    
+
+    <li class="toctree-l2"><a href="#homebrew-puts-openblas-in-a-directory-that-is-not-on-the-standard-search-path">Homebrew puts openblas in a directory that is not on the standard search path</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas_include-shell-brew-prefix-openblasinclude">BLAS_INCLUDE := $(shell brew --prefix openblas)/include</a></li>
+    
+
+    <li class="toctree-l2"><a href="#blas_lib-shell-brew-prefix-openblaslib">BLAS_LIB := $(shell brew --prefix openblas)/lib</a></li>
+    
+
+    <li class="toctree-l2"><a href="#this-is-required-only-if-you-will-compile-the-matlab-interface">This is required only if you will compile the matlab interface.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#matlab-directory-should-contain-the-mex-binary-in-bin">MATLAB directory should contain the mex binary in /bin.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#matlab_dir-usrlocal">MATLAB_DIR := /usr/local</a></li>
+    
+
+    <li class="toctree-l2"><a href="#matlab_dir-applicationsmatlab_r2012bapp">MATLAB_DIR := /Applications/MATLAB_R2012b.app</a></li>
+    
+
+    <li class="toctree-l2"><a href="#note-this-is-required-only-if-you-will-compile-the-python-interface">NOTE: this is required only if you will compile the python interface.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#we-need-to-be-able-to-find-pythonh-and-numpyarrayobjecth">We need to be able to find Python.h and numpy/arrayobject.h.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#anaconda-python-distribution-is-quite-popular-include-path">Anaconda Python distribution is quite popular. Include path:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#verify-anaconda-location-sometimes-its-in-root">Verify anaconda location, sometimes it's in root.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#anaconda_home-homeanaconda2">ANACONDA_HOME := $(HOME)/anaconda2</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-to-use-python-3-default-is-python-2">Uncomment to use Python 3 (default is Python 2)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python_libraries-boost_python3-python35m">PYTHON_LIBRARIES := boost_python3 python3.5m</a></li>
+    
+
+    <li class="toctree-l2"><a href="#usrlibpython35dist-packagesnumpycoreinclude">/usr/lib/python3.5/dist-packages/numpy/core/include</a></li>
+    
+
+    <li class="toctree-l2"><a href="#we-need-to-be-able-to-find-libpythonxxso-or-dylib">We need to be able to find libpythonX.X.so or .dylib.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python_lib-anaconda_homelib">PYTHON_LIB := $(ANACONDA_HOME)/lib</a></li>
+    
+
+    <li class="toctree-l2"><a href="#homebrew-installs-numpy-in-a-non-standard-path-keg-only">Homebrew installs numpy in a non standard path (keg only)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python_include-dir-shell-python-c-import-numpycore-printnumpycorefileinclude">PYTHON_INCLUDE += $(dir $(shell python -c 'import numpy.core; print(numpy.core.file)'))/include</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python_lib-shell-brew-prefix-numpylib">PYTHON_LIB += $(shell brew --prefix numpy)/lib</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-to-support-layers-written-in-python-will-link-against-python-libs">Uncomment to support layers written in Python (will link against Python libs)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#with_python_layer-1">WITH_PYTHON_LAYER := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#whatever-else-you-find-you-need-goes-here">Whatever else you find you need goes here.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#if-homebrew-is-installed-at-a-non-standard-location-for-example-your-home-directory-and-you-use-it-for-general-dependencies">If Homebrew is installed at a non standard location (for example your home directory) and you use it for general dependencies</a></li>
+    
+
+    <li class="toctree-l2"><a href="#include_dirs-shell-brew-prefixinclude">INCLUDE_DIRS += $(shell brew --prefix)/include</a></li>
+    
+
+    <li class="toctree-l2"><a href="#library_dirs-shell-brew-prefixlib">LIBRARY_DIRS += $(shell brew --prefix)/lib</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-to-use-pkg-config-to-specify-opencv-library-paths">Uncomment to use pkg-config to specify OpenCV library paths.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#usually-not-necessary-opencv-libraries-are-normally-installed-in-one-of-the-above-library_dirs">(Usually not necessary -- OpenCV libraries are normally installed in one of the above $LIBRARY_DIRS.)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#use_pkg_config-1">USE_PKG_CONFIG := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#nb-both-build-and-distribute-dirs-are-cleared-on-make-clean">N.B. both build and distribute dirs are cleared on make clean</a></li>
+    
+
+    <li class="toctree-l2"><a href="#uncomment-for-debugging-does-not-work-on-osx-due-to-httpsgithubcombvlccaffeissues171">Uncomment for debugging. Does not work on OSX due to https://github.com/BVLC/caffe/issues/171</a></li>
+    
+
+    <li class="toctree-l2"><a href="#debug-1">DEBUG := 1</a></li>
+    
+
+    <li class="toctree-l2"><a href="#the-id-of-the-gpu-that-make-runtest-will-use-to-run-unit-tests">The ID of the GPU that 'make runtest' will use to run unit tests.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#enable-pretty-build-comment-to-see-full-commands">enable pretty build (comment to see full commands)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#qt">qt安装</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">算法盒子组成部分</a></li>
+        
+            <li><a class="toctree-l3" href="#_12">注意事项</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../radar_camera_fusion/">radar_camera_fusion</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../毫米波和摄像机融合/">毫米波和摄像机融合</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ZGF Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>激光雷达算法盒子</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="v10">激光雷达算法盒子封装ｖ1.0</h1>
+<hr />
+<h2 id="_1">硬件环境组成</h2>
+<p>适用于AGX控制器</p>
+<p>velodyne激光雷达，<em>注：其他品牌雷达只需更换驱动和对应的点云topic</em></p>
+<h2 id="_2">软件环境部署</h2>
+<h3 id="ubuntu1804">ubuntu18.04操作系统</h3>
+<p>根据AGX提供的系统包Jetpack安装</p>
+<h3 id="cudacudnn">Cuda和cudnn安装</h3>
+<p>通过Jetpack安装</p>
+<h3 id="ros">ROS安装</h3>
+<ul>
+<li>下载</li>
+<li>git clone https://github.com/jetsonhacks/installROSXavier.git</li>
+<li>切换目录</li>
+<li>cd installROSXavier</li>
+<li>安装</li>
+<li>./installROS.sh -p ros-melodic-desktop -p ros-melodic-rgbd-launch</li>
+<li>插件安装</li>
+<li>sudo apt-get install ros-melodic-jsk-rviz-plugins</li>
+</ul>
+<h3 id="caffe">caffe 部署</h3>
+<ul>
+<li>下载</li>
+<li>git clone https://github.com/BVLC/caffe.git</li>
+<li>安装依赖</li>
+<li>sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler</li>
+<li>sudo apt-get install --no-install-recommends libboost-all-dev</li>
+<li>sudo apt-get install libopenblas-dev</li>
+<li>sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</li>
+<li>切换目录</li>
+<li>cd caffe</li>
+<li><strong>新建Makefile.config文件</strong>,并粘贴下面的内容</li>
+<li>
+<p>```
+    ａ## Refer to http://caffe.berkeleyvision.org/installation.html
+    # Contributions simplifying and improving our build system are welcome!</p>
+<h1 id="cudnn-acceleration-switch-uncomment-to-build-with-cudnn">cuDNN acceleration switch (uncomment to build with cuDNN).</h1>
+<h1 id="use_cudnn-1">USE_CUDNN := 1</h1>
+<h1 id="cpu-only-switch-uncomment-to-build-without-gpu-support">CPU-only switch (uncomment to build without GPU support).</h1>
+<h1 id="cpu_only-1">CPU_ONLY := 1</h1>
+<h1 id="uncomment-to-disable-io-dependencies-and-corresponding-data-layers">uncomment to disable IO dependencies and corresponding data layers</h1>
+<h1 id="use_opencv-0">USE_OPENCV := 0</h1>
+<h1 id="use_leveldb-0">USE_LEVELDB := 0</h1>
+<h1 id="use_lmdb-0">USE_LMDB := 0</h1>
+<h1 id="uncomment-to-allow-mdb_nolock-when-reading-lmdb-files-only-if-necessary">uncomment to allow MDB_NOLOCK when reading LMDB files (only if necessary)</h1>
+<h1 id="you-should-not-set-this-flag-if-you-will-be-reading-lmdbs-with-any">You should not set this flag if you will be reading LMDBs with any</h1>
+<h1 id="possibility-of-simultaneous-read-and-write">possibility of simultaneous read and write</h1>
+<h1 id="allow_lmdb_nolock-1">ALLOW_LMDB_NOLOCK := 1</h1>
+<h1 id="uncomment-if-youre-using-opencv-3">Uncomment if you're using OpenCV 3</h1>
+<p>OPENCV_VERSION := 3</p>
+<h1 id="to-customize-your-choice-of-compiler-uncomment-and-set-the-following">To customize your choice of compiler, uncomment and set the following.</h1>
+<h1 id="nb-the-default-for-linux-is-g-and-the-default-for-osx-is-clang">N.B. the default for Linux is g++ and the default for OSX is clang++</h1>
+<h1 id="custom_cxx-g">CUSTOM_CXX := g++</h1>
+<h1 id="cuda-directory-contains-bin-and-lib-directories-that-we-need">CUDA directory contains bin/ and lib/ directories that we need.</h1>
+<p>CUDA_DIR := /usr/local/cuda</p>
+<h1 id="on-ubuntu-1404-if-cuda-tools-are-installed-via">On Ubuntu 14.04, if cuda tools are installed via</h1>
+<h1 id="sudo-apt-get-install-nvidia-cuda-toolkit-then-use-this-instead">"sudo apt-get install nvidia-cuda-toolkit" then use this instead:</h1>
+<h1 id="cuda_dir-usr">CUDA_DIR := /usr</h1>
+<h1 id="cuda-architecture-setting-going-with-all-of-them">CUDA architecture setting: going with all of them.</h1>
+<h1 id="for-cuda-60-comment-the-lines-after-_35-for-compatibility">For CUDA &lt; 6.0, comment the lines after *_35 for compatibility.</h1>
+<p>CUDA_ARCH := -gencode arch=compute_30,code=sm_30 \
+             -gencode arch=compute_35,code=sm_35 \
+             -gencode arch=compute_50,code=sm_50 \
+             -gencode arch=compute_52,code=sm_52 \
+             -gencode arch=compute_61,code=sm_61 \
+             -gencode arch=compute_61,code=compute_61</p>
+<pre><code>         # -gencode arch=compute_20,code=sm_20 \
+         # -gencode arch=compute_20,code=sm_21 \
+</code></pre>
+<h1 id="blas-choice">BLAS choice:</h1>
+<h1 id="atlas-for-atlas-default">atlas for ATLAS (default)</h1>
+<h1 id="mkl-for-mkl">mkl for MKL</h1>
+<h1 id="open-for-openblas">open for OpenBlas</h1>
+<h1 id="blas-atlas">BLAS := atlas</h1>
+<p>BLAS := open</p>
+<h1 id="custom-mklatlasopenblas-include-and-lib-directories">Custom (MKL/ATLAS/OpenBLAS) include and lib directories.</h1>
+<h1 id="leave-commented-to-accept-the-defaults-for-your-choice-of-blas">Leave commented to accept the defaults for your choice of BLAS</h1>
+<h1 id="which-should-work">(which should work)!</h1>
+<h1 id="blas_include-pathtoyourblas">BLAS_INCLUDE := /path/to/your/blas</h1>
+<h1 id="blas_lib-pathtoyourblas">BLAS_LIB := /path/to/your/blas</h1>
+<h1 id="homebrew-puts-openblas-in-a-directory-that-is-not-on-the-standard-search-path">Homebrew puts openblas in a directory that is not on the standard search path</h1>
+<h1 id="blas_include-shell-brew-prefix-openblasinclude">BLAS_INCLUDE := $(shell brew --prefix openblas)/include</h1>
+<h1 id="blas_lib-shell-brew-prefix-openblaslib">BLAS_LIB := $(shell brew --prefix openblas)/lib</h1>
+<h1 id="this-is-required-only-if-you-will-compile-the-matlab-interface">This is required only if you will compile the matlab interface.</h1>
+<h1 id="matlab-directory-should-contain-the-mex-binary-in-bin">MATLAB directory should contain the mex binary in /bin.</h1>
+<h1 id="matlab_dir-usrlocal">MATLAB_DIR := /usr/local</h1>
+<h1 id="matlab_dir-applicationsmatlab_r2012bapp">MATLAB_DIR := /Applications/MATLAB_R2012b.app</h1>
+<h1 id="note-this-is-required-only-if-you-will-compile-the-python-interface">NOTE: this is required only if you will compile the python interface.</h1>
+<h1 id="we-need-to-be-able-to-find-pythonh-and-numpyarrayobjecth">We need to be able to find Python.h and numpy/arrayobject.h.</h1>
+<p>PYTHON_INCLUDE := /usr/include/python2.7 \
+        /usr/lib/python2.7/dist-packages/numpy/core/include</p>
+<h1 id="anaconda-python-distribution-is-quite-popular-include-path">Anaconda Python distribution is quite popular. Include path:</h1>
+<h1 id="verify-anaconda-location-sometimes-its-in-root">Verify anaconda location, sometimes it's in root.</h1>
+<h1 id="anaconda_home-homeanaconda2">ANACONDA_HOME := $(HOME)/anaconda2</h1>
+<p># PYTHON_INCLUDE := $(ANACONDA_HOME)/include \
+        $(ANACONDA_HOME)/include/python2.7 \
+        $(ANACONDA_HOME)/lib/python2.7/site-packages/numpy/core/include \</p>
+<h1 id="uncomment-to-use-python-3-default-is-python-2">Uncomment to use Python 3 (default is Python 2)</h1>
+<h1 id="python_libraries-boost_python3-python35m">PYTHON_LIBRARIES := boost_python3 python3.5m</h1>
+<p># PYTHON_INCLUDE := /usr/include/python3.5m \</p>
+<h1 id="usrlibpython35dist-packagesnumpycoreinclude">/usr/lib/python3.5/dist-packages/numpy/core/include</h1>
+<h1 id="we-need-to-be-able-to-find-libpythonxxso-or-dylib">We need to be able to find libpythonX.X.so or .dylib.</h1>
+<p>PYTHON_LIB := /usr/lib</p>
+<h1 id="python_lib-anaconda_homelib">PYTHON_LIB := $(ANACONDA_HOME)/lib</h1>
+<h1 id="homebrew-installs-numpy-in-a-non-standard-path-keg-only">Homebrew installs numpy in a non standard path (keg only)</h1>
+<h1 id="python_include-dir-shell-python-c-import-numpycore-printnumpycorefileinclude">PYTHON_INCLUDE += $(dir $(shell python -c 'import numpy.core; print(numpy.core.<strong>file</strong>)'))/include</h1>
+<h1 id="python_lib-shell-brew-prefix-numpylib">PYTHON_LIB += $(shell brew --prefix numpy)/lib</h1>
+<h1 id="uncomment-to-support-layers-written-in-python-will-link-against-python-libs">Uncomment to support layers written in Python (will link against Python libs)</h1>
+<h1 id="with_python_layer-1">WITH_PYTHON_LAYER := 1</h1>
+<h1 id="whatever-else-you-find-you-need-goes-here">Whatever else you find you need goes here.</h1>
+<p>INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib  /usr/lib/aarch64-linux-gnu/hdf5/serial</p>
+<h1 id="if-homebrew-is-installed-at-a-non-standard-location-for-example-your-home-directory-and-you-use-it-for-general-dependencies">If Homebrew is installed at a non standard location (for example your home directory) and you use it for general dependencies</h1>
+<h1 id="include_dirs-shell-brew-prefixinclude">INCLUDE_DIRS += $(shell brew --prefix)/include</h1>
+<h1 id="library_dirs-shell-brew-prefixlib">LIBRARY_DIRS += $(shell brew --prefix)/lib</h1>
+<h1 id="uncomment-to-use-pkg-config-to-specify-opencv-library-paths">Uncomment to use <code>pkg-config</code> to specify OpenCV library paths.</h1>
+<h1 id="usually-not-necessary-opencv-libraries-are-normally-installed-in-one-of-the-above-library_dirs">(Usually not necessary -- OpenCV libraries are normally installed in one of the above $LIBRARY_DIRS.)</h1>
+<h1 id="use_pkg_config-1">USE_PKG_CONFIG := 1</h1>
+<h1 id="nb-both-build-and-distribute-dirs-are-cleared-on-make-clean">N.B. both build and distribute dirs are cleared on <code>make clean</code></h1>
+<p>BUILD_DIR := build
+DISTRIBUTE_DIR := distribute</p>
+<h1 id="uncomment-for-debugging-does-not-work-on-osx-due-to-httpsgithubcombvlccaffeissues171">Uncomment for debugging. Does not work on OSX due to https://github.com/BVLC/caffe/issues/171</h1>
+<h1 id="debug-1">DEBUG := 1</h1>
+<h1 id="the-id-of-the-gpu-that-make-runtest-will-use-to-run-unit-tests">The ID of the GPU that 'make runtest' will use to run unit tests.</h1>
+<p>TEST_GPUID := 0</p>
+<h1 id="enable-pretty-build-comment-to-see-full-commands">enable pretty build (comment to see full commands)</h1>
+<p>Q ?= @
+```
+* 编译
+  * make -j 8
+  * sudo make distribute</p>
+</li>
+</ul>
+<h3 id="qt">qt安装</h3>
+<ul>
+<li>sudo apt-get install qttools5-dev-tools libqt5svg5-dev qtmultimedia5-dev</li>
+</ul>
+<h2 id="_3">算法盒子组成部分</h2>
+<ol>
+<li>点云标定功能</li>
+<li>点云建图功能</li>
+<li>点云聚类功能</li>
+<li>点云智能识别功能</li>
+</ol>
+<p>程序文件夹目录结构</p>
+<ul>
+<li>程序</li>
+<li>catkin_ws<ul>
+<li>src</li>
+<li>common</li>
+<li>detected_objects_visualizer</li>
+<li>lidar_cnn_seg_detect</li>
+<li>lidar_demo</li>
+<li>ndt_mapping</li>
+<li>rockauto_msgs</li>
+<li>ros2qt</li>
+<li>velodyne</li>
+<li>CMakeLists.txt</li>
+</ul>
+</li>
+</ul>
+<p>我们需要把catkin_ws文件夹拷贝到工控机的home目录下。</p>
+<h3 id="_4">编译程序</h3>
+<ul>
+<li>切换目录</li>
+<li>cd catkin_ws</li>
+<li>编译</li>
+<li>catkin_make</li>
+<li>source 环境</li>
+<li>source devel/setup.bash</li>
+</ul>
+<h3 id="_5"><strong>程序启动</strong></h3>
+<ul>
+<li>rosrun ros2qt ros2qt</li>
+</ul>
+<h3 id="_6">应用讲解</h3>
+<ul>
+<li>程序启动后弹出下图界面</li>
+</ul>
+<p><img alt="" src="../images/Screenshot2021-02-26-08:35:20.png" /></p>
+<ul>
+<li>如下图配置<code>Fixed Frame</code> 为<code>velodyne</code>,勾选<code>pointCloud2</code>复选框，设置其<code>Topic</code>为<code>point_raw</code>可观看雷达数据</li>
+</ul>
+<p><img alt="" src="../images/Screenshot2021-02-26-08:38:28.png" /></p>
+<ul>
+<li>启用ＳＬＡＭ功能，则勾选<code>SLAM</code>复选框,将其<code>Topic</code>设置为<code>point_raw</code>，同时将<code>pointCloud2</code>的<code>Topic</code>设置为<code>cloud</code>。</li>
+</ul>
+<p><img alt="" src="../images/屏幕截图2020-12-28-16:31:57.png" /></p>
+<ul>
+<li>Slam提供了可调参数：
+  Topic:设置构图主题
+  Size:设置点云地图中点的显示大小
+  Color:点云地图的颜色
+  Res:分辨率
+  Step_size:步幅
+  Trans_epsilon:收敛均方差
+  Max_iter:最大迭代次数
+  Voxel_leaf_size:Voxel尺寸
+  Min_scan_range:最小扫描范围
+  Max_scan_range:最大扫描范围
+  Scan_rate:扫描周期</li>
+</ul>
+<p><img alt="" src="../images/Screenshotfrom2020-12-07-15-12-01.png" /></p>
+<ul>
+<li>显示障碍物，则取消<code>SLAM</code>勾选，将<code>pointCloud2</code>的<code>Topic</code>更改回<code>point_raw</code>.勾选<code>ＢoundingBox</code>复选框。</li>
+</ul>
+<p><img alt="" src="../images/屏幕截图2020-12-28-16:42:41.png" /></p>
+<p>显示位置，速度，加速度和路径
+显示聚类障碍物，则勾选'BoundingBox2'复选框。</p>
+<p><img alt="" src="../images/屏幕截图2020-12-28-16:46:44.png" /></p>
+<p>这里有3个参数:
+Cluster_D:聚类直径
+Cluster_Min:最小聚类点数
+Cluster_Max:最大聚类点数</p>
+<ul>
+<li>点云标定
+  首先要勾选<code>PointCloud2</code>显示点云，再勾选<code>标定</code>可移动xyz三轴，也可绕三轴旋转。</li>
+</ul>
+<p><img alt="" src="../images/屏幕截图2020-12-28-16:52:26.png" /></p>
+<h3 id="_7">程序讲解</h3>
+<h4 id="_8">点云标定功能</h4>
+<p>标定程序功能代码段位于"ros2qt\src\qnode.cpp"文件</p>
+<pre><code class="language-cpp">void QNode::biaodingCallback(const PointCloud::ConstPtr&amp; msg)
+{
+    //点云旋转
+    Eigen::Affine3f transform_2 = Eigen::Affine3f::Identity();
+    transform_2.translation() &lt;&lt; x_pianyi, y_pianyi, z_pianyi;
+    float theta_2 = 0*M_PI/180;
+    transform_2.rotate (Eigen::AngleAxisf (theta_2, Eigen::Vector3f::UnitY()));
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr transformed_cloud_2 (new pcl::PointCloud&lt;pcl::PointXYZ&gt; ());
+    pcl::transformPointCloud (*msg, *transformed_cloud_2, transform_2);
+
+    Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+    transform.translation() &lt;&lt; 0.0, 0.0, 0.0;
+    float theta = x_xuanzhuan*M_PI/180;
+    transform.rotate (Eigen::AngleAxisf (theta, Eigen::Vector3f::UnitX()));
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr transformed_cloud (new pcl::PointCloud&lt;pcl::PointXYZ&gt; ());
+    pcl::transformPointCloud (*transformed_cloud_2, *transformed_cloud, transform);
+
+    Eigen::Affine3f transform_3 = Eigen::Affine3f::Identity();
+    transform_3.translation() &lt;&lt; 0.0, 0.0, 0.0;
+    float theta_3 = z_xuanzhuan*M_PI/180;
+    transform_3.rotate (Eigen::AngleAxisf (theta_3, Eigen::Vector3f::UnitZ()));
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr transformed_cloud_3 (new pcl::PointCloud&lt;pcl::PointXYZ&gt; ());
+    pcl::transformPointCloud (*transformed_cloud, *transformed_cloud_3, transform_3);
+
+    Eigen::Affine3f transform_4 = Eigen::Affine3f::Identity();
+    transform_4.translation() &lt;&lt; 0.0, 0.0, 0.0;
+    float theta_4 = y_xuanzhuan*M_PI/180;
+    transform_4.rotate (Eigen::AngleAxisf (theta_4, Eigen::Vector3f::UnitY()));
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr transformed_cloud_4 (new pcl::PointCloud&lt;pcl::PointXYZ&gt; ());
+    pcl::transformPointCloud (*transformed_cloud_3, *transformed_cloud_4, transform_4);
+    transformed_cloud_4-&gt;header.frame_id = frame_id;
+    pub.publish(transformed_cloud_4);
+}
+
+</code></pre>
+<p>点云的标定，主要是点云的旋转和平移功能，可以参考pcl，这里简单讲解一下旋转平移功能</p>
+<ul>
+<li>首先定义一个Affine3f结构体，用来存储点云旋转和平移信息</li>
+</ul>
+<p><code>Eigen::Affine3f transform_2 = Eigen::Affine3f::Identity();</code></p>
+<ul>
+<li>再把ｘ，ｙ，ｚ轴的平移量x_pianyi, y_pianyi, z_pianyi传递进Affine3f结构体</li>
+</ul>
+<p><code>transform_2.translation() &lt;&lt; x_pianyi, y_pianyi, z_pianyi;</code></p>
+<ul>
+<li>定义一个旋转角度</li>
+</ul>
+<p><code>float theta_2 = 0*M_PI/180;</code></p>
+<ul>
+<li>把绕Ｙ轴旋转角度，传入Affin3f结构体，旋转轴Eigen::Vector3f::UnitY()</li>
+</ul>
+<p><code>transform_2.rotate (Eigen::AngleAxisf (theta_2, Eigen::Vector3f::UnitY()));</code></p>
+<ul>
+<li>定义旋转后的点云</li>
+</ul>
+<p><code>pcl::PointCloudpcl::pointxyz::Ptr transformed_cloud_2 (new pcl::PointCloudpcl::pointxyz ());</code></p>
+<ul>
+<li>执行点云的平移和旋转，并把结果存入<code>transformed_cloud_2</code></li>
+</ul>
+<p><code>pcl::transformPointCloud (*msg, *transformed_cloud_2, transform_2);</code></p>
+<h4 id="_9">点云建图功能</h4>
+<p>建图程序包即ndt_mapping文件夹,重点运算逻辑在ndt_mapping.cpp文件内，这里解析一下</p>
+<pre><code class="language-cpp">ndt_mapping::ndt_mapping() 
+{
+  transform_pub = nh_.advertise&lt;sensor_msgs::PointCloud2&gt; (&quot;/cloud&quot;, 1, false);
+  points_sub_ = nh_.subscribe(slam_topic, 100000, &amp;ndt_mapping::points_callback,this);
+  ndt_map_pub_ = nh_.advertise&lt;sensor_msgs::PointCloud2&gt;(&quot;/ndt_map&quot;, 1000);
+  current_pose_pub_ = nh_.advertise&lt;geometry_msgs::PoseStamped&gt;(&quot;/current_pose&quot;, 1000);
+
+  max_iter_ = max_iter_1;
+  ndt_res_ = ndt_res_1;
+  step_size_ = step_size_1;
+  trans_eps_ = trans_eps_1;
+  voxel_leaf_size_ = voxel_leaf_size_1;
+  scan_rate_ = scan_rate_1;
+  min_scan_range_ = min_scan_range_1;
+  max_scan_range_ = max_scan_range_1;
+  min_add_scan_shift_ = min_add_scan_shift_1;
+
+
+  initial_scan_loaded = 0;
+  min_add_scan_shift_ = 1.0;
+
+  _tf_x=0.0, _tf_y=0.0, _tf_z=0.0, _tf_roll=0.0, _tf_pitch=0.0, _tf_yaw=0.0;
+
+  Eigen::Translation3f tl_btol(_tf_x, _tf_y, _tf_z);        
+  Eigen::AngleAxisf rot_x_btol(_tf_roll, Eigen::Vector3f::UnitX());  
+  Eigen::AngleAxisf rot_y_btol(_tf_pitch, Eigen::Vector3f::UnitY());
+  Eigen::AngleAxisf rot_z_btol(_tf_yaw, Eigen::Vector3f::UnitZ());
+  tf_btol_ = (tl_btol * rot_z_btol * rot_y_btol * rot_x_btol).matrix();
+  tf_ltob_ = tf_btol_.inverse();
+
+  map_.header.frame_id = &quot;velodyne&quot;;
+
+  current_pose_.x = current_pose_.y = current_pose_.z = 0.0;current_pose_.roll = current_pose_.pitch = current_pose_.yaw = 0.0;
+  previous_pose_.x = previous_pose_.y = previous_pose_.z = 0.0;previous_pose_.roll = previous_pose_.pitch = previous_pose_.yaw = 0.0;
+
+  voxel_grid_filter_.setLeafSize(voxel_leaf_size_, voxel_leaf_size_, voxel_leaf_size_);  
+
+  ndt.setTransformationEpsilon(trans_eps_);
+  ndt.setStepSize(step_size_);
+  ndt.setResolution(ndt_res_);
+  ndt.setMaximumIterations(max_iter_);
+
+  is_first_map_ = true;
+}; 
+</code></pre>
+<p>ndt_mapping::ndt_mapping()函数，主要进行了一些参数设定，和topic设定。</p>
+<pre><code class="language-cpp">void ndt_mapping::points_callback(const sensor_msgs::PointCloud2::ConstPtr&amp; input)
+{
+  pcl::PointCloud&lt;pcl::PointXYZI&gt; tmp, scan;
+  pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr filtered_scan_ptr(new pcl::PointCloud&lt;pcl::PointXYZI&gt;());
+  pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr transformed_scan_ptr(new pcl::PointCloud&lt;pcl::PointXYZI&gt;());
+
+  tf::Quaternion q;
+
+  Eigen::Matrix4f t_localizer(Eigen::Matrix4f::Identity());
+  Eigen::Matrix4f t_base_link(Eigen::Matrix4f::Identity());
+  static tf::TransformBroadcaster br_;
+  tf::Transform transform;
+
+  pcl::fromROSMsg(*input, tmp);
+  double r;
+  Eigen::Vector3d point_pos;
+  pcl::PointXYZI p;
+  for (pcl::PointCloud&lt;pcl::PointXYZI&gt;::const_iterator item = tmp.begin(); item != tmp.end(); item++)
+  {
+    use_imu_ = false;
+    if(use_imu_){
+      // deskew(TODO:inplement of predicting pose by imu)
+      point_pos.x() = (double)item-&gt;x;
+      point_pos.y() = (double)item-&gt;y;
+      point_pos.z() = (double)item-&gt;z;
+      double s = scan_rate_ * (double(item-&gt;intensity) - int(item-&gt;intensity));
+
+      point_pos.x() -= s * current_pose_msg_.pose.position.x;//current_pose_imu_
+      point_pos.y() -= s * current_pose_msg_.pose.position.y;
+      point_pos.z() -= s * current_pose_msg_.pose.position.z;
+
+      Eigen::Quaterniond start_quat, end_quat, mid_quat;
+      mid_quat.setIdentity();
+      end_quat = Eigen::Quaterniond(
+        current_pose_msg_.pose.orientation.w,
+        current_pose_msg_.pose.orientation.x,
+        current_pose_msg_.pose.orientation.y,
+        current_pose_msg_.pose.orientation.z);
+      start_quat = mid_quat.slerp(s, end_quat);
+
+      point_pos = start_quat.conjugate() * start_quat * point_pos;
+
+      point_pos.x() += current_pose_msg_.pose.position.x;
+      point_pos.y() += current_pose_msg_.pose.position.y;
+      point_pos.z() += current_pose_msg_.pose.position.z;
+
+      p.x = point_pos.x();
+      p.y = point_pos.y();
+      p.z = point_pos.z();
+    }
+    else{
+      p.x = (double)item-&gt;x;
+      p.y = (double)item-&gt;y;
+      p.z = (double)item-&gt;z;
+    }
+    p.intensity = (double)item-&gt;intensity;
+    r = sqrt(pow(p.x, 2.0) + pow(p.y, 2.0));
+    if (min_scan_range_ &lt; r &amp;&amp; r &lt; max_scan_range_)
+    {
+      scan.push_back(p);
+    }
+  }
+
+  pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr scan_ptr(new pcl::PointCloud&lt;pcl::PointXYZI&gt;(scan));
+  if (initial_scan_loaded == 0)
+  {
+    pcl::transformPointCloud(*scan_ptr, *transformed_scan_ptr, tf_btol_);
+    map_ += *transformed_scan_ptr;
+    initial_scan_loaded = 1;
+  }
+
+  voxel_grid_filter_.setInputCloud(scan_ptr);
+  voxel_grid_filter_.filter(*filtered_scan_ptr);
+  ndt.setInputSource(filtered_scan_ptr);
+
+  pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr map_ptr(new pcl::PointCloud&lt;pcl::PointXYZI&gt;(map_));
+  if (is_first_map_ == true){
+    ndt.setInputTarget(map_ptr);
+    is_first_map_ = false;
+  }
+
+  Eigen::Translation3f init_translation(current_pose_.x, current_pose_.y, current_pose_.z);
+  Eigen::AngleAxisf init_rotation_x(current_pose_.roll, Eigen::Vector3f::UnitX());
+  Eigen::AngleAxisf init_rotation_y(current_pose_.pitch, Eigen::Vector3f::UnitY());
+  Eigen::AngleAxisf init_rotation_z(current_pose_.yaw, Eigen::Vector3f::UnitZ());
+
+  Eigen::Matrix4f init_guess =
+      (init_translation * init_rotation_z * init_rotation_y * init_rotation_x).matrix() * tf_btol_;
+
+  pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr output_cloud(new pcl::PointCloud&lt;pcl::PointXYZI&gt;);
+
+  ndt.align(*output_cloud, init_guess);
+  t_localizer = ndt.getFinalTransformation();
+
+  t_base_link = t_localizer * tf_ltob_;
+
+  pcl::transformPointCloud(*scan_ptr, *transformed_scan_ptr, t_localizer);
+  sensor_msgs::PointCloud2::Ptr tt(new sensor_msgs::PointCloud2);
+  pcl::toROSMsg(*transformed_scan_ptr, *tt);
+  tt-&gt;header.frame_id = &quot;velodyne&quot;;
+  transform_pub.publish(tt);
+  tf::Matrix3x3 mat_b;
+  mat_b.setValue(static_cast&lt;double&gt;(t_base_link(0, 0)), static_cast&lt;double&gt;(t_base_link(0, 1)),
+                 static_cast&lt;double&gt;(t_base_link(0, 2)), static_cast&lt;double&gt;(t_base_link(1, 0)),
+                 static_cast&lt;double&gt;(t_base_link(1, 1)), static_cast&lt;double&gt;(t_base_link(1, 2)),
+                 static_cast&lt;double&gt;(t_base_link(2, 0)), static_cast&lt;double&gt;(t_base_link(2, 1)),
+                 static_cast&lt;double&gt;(t_base_link(2, 2)));
+
+  current_pose_.x = t_base_link(0, 3);current_pose_.y = t_base_link(1, 3);current_pose_.z = t_base_link(2, 3);
+  mat_b.getRPY(current_pose_.roll, current_pose_.pitch, current_pose_.yaw, 1);
+
+  transform.setOrigin(tf::Vector3(current_pose_.x, current_pose_.y, current_pose_.z));
+  q.setRPY(current_pose_.roll, current_pose_.pitch, current_pose_.yaw);
+  transform.setRotation(q);
+
+  br_.sendTransform(tf::StampedTransform(transform, input-&gt;header.stamp, &quot;velodyne&quot;, &quot;base_link&quot;));
+
+  double shift = sqrt(pow(current_pose_.x - previous_pose_.x, 2.0) + pow(current_pose_.y - previous_pose_.y, 2.0));
+  if (shift &gt;= min_add_scan_shift_)
+  {
+    map_ += *transformed_scan_ptr;
+    previous_pose_.x = current_pose_.x;previous_pose_.y = current_pose_.y;previous_pose_.z = current_pose_.z;
+    previous_pose_.roll = current_pose_.roll;previous_pose_.pitch = current_pose_.pitch;previous_pose_.yaw = current_pose_.yaw;
+    ndt.setInputTarget(map_ptr);
+
+    sensor_msgs::PointCloud2::Ptr map_msg_ptr(new sensor_msgs::PointCloud2);
+    pcl::toROSMsg(*map_ptr, *map_msg_ptr);
+    ndt_map_pub_.publish(*map_msg_ptr);
+  }
+
+  current_pose_msg_.header.frame_id = &quot;velodyne&quot;;
+  current_pose_msg_.header.stamp = input-&gt;header.stamp;
+  current_pose_msg_.pose.position.x = current_pose_.x;current_pose_msg_.pose.position.y = current_pose_.y;current_pose_msg_.pose.position.z = current_pose_.z;
+  current_pose_msg_.pose.orientation.x = q.x();current_pose_msg_.pose.orientation.y = q.y();current_pose_msg_.pose.orientation.z = q.z();current_pose_msg_.pose.orientation.w = q.w();
+
+  current_pose_pub_.publish(current_pose_msg_);
+
+  std::cout &lt;&lt; &quot;-----------------------------------------------------------------&quot; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &quot;构建地图&quot; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &quot;-----------------------------------------------------------------&quot; &lt;&lt; std::endl;
+}
+</code></pre>
+<p>ndt_mapping::points_callback函数即进行构图，将初始化点云加入至地图，若点云地图没有初始化载入，则将第一帧图像作为初始图像，然后将配准之后的图像逐帧加入map。通过tf_btol变换矩阵将原始点云进行转化。tf_btol是车辆在起始位置是不在全局地图原点时的变换矩阵。然后对原始输入点云进行体素过滤，选择不同的方法进行参数设置</p>
+<p>init_guess是ndt配准时候的初始位置，该位置一般由前一帧位置加上微小时间段内的变化，当采用imu或odom时可以利用其进行辅助精确定位初始位置。如果未使用imu以及odom则使用原来的init_guess</p>
+<h4 id="_10">点云聚类功能</h4>
+<p>点云聚类功能在"lidar_demo/src/lidar_demo.cpp"文件</p>
+<pre><code class="language-cpp">void callback(const boost::shared_ptr&lt;const sensor_msgs::PointCloud2&gt;&amp; msg)
+{
+    ros::NodeHandle n;
+    n.getParam(&quot;Cluster_D&quot;, Cluster_D);
+    n.getParam(&quot;Cluster_Max&quot;, Cluster_Max);
+    n.getParam(&quot;Cluster_Min&quot;, Cluster_Min);
+    pcl::PCLPointCloud2 pcl_pc2;
+    pcl_conversions::toPCL(*msg,pcl_pc2);
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr temp_cloud(new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+    pcl::fromPCLPointCloud2(pcl_pc2,*temp_cloud);
+
+    std::vector&lt;int&gt; mapping;
+    pcl::removeNaNFromPointCloud(*temp_cloud, *temp_cloud, mapping);
+    pub2.publish(temp_cloud);
+    pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+    pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud_plane (new pcl::PointCloud&lt;pcl::PointXYZ&gt; ());
+    pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud_f (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+
+    if (temp_cloud-&gt;points.size() == 0)
+    {
+        std::cout &lt;&lt; &quot;cloud in ROI is empty&quot; &lt;&lt; std::endl;
+        return;
+    }
+    pcl::search::KdTree&lt;pcl::PointXYZ&gt;::Ptr tree (new pcl::search::KdTree&lt;pcl::PointXYZ&gt;);
+    tree-&gt;setInputCloud (temp_cloud);
+
+    std::vector&lt;pcl::PointIndices&gt; cluster_indices;
+    pcl::EuclideanClusterExtraction&lt;pcl::PointXYZ&gt; ec;
+    cout &lt;&lt; Cluster_D &lt;&lt; &quot;:&quot; &lt;&lt; Cluster_Min &lt;&lt; &quot;:&quot; &lt;&lt; Cluster_Max&lt;&lt;endl;
+    ec.setClusterTolerance (Cluster_D);
+
+    ec.setMinClusterSize (Cluster_Min);
+
+    ec.setMaxClusterSize (Cluster_Max);
+
+    ec.setSearchMethod (tree);
+    ec.setInputCloud (temp_cloud);
+    ec.extract (cluster_indices);
+
+    jsk_recognition_msgs::BoundingBoxArray BOXS;
+    int j = 0;
+    vector&lt;Eigen::Vector3f&gt; center;
+    for (std::vector&lt;pcl::PointIndices&gt;::const_iterator it = cluster_indices.begin (); it != cluster_indices.end (); ++it)
+    {
+        pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud_cluster (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+        for (std::vector&lt;int&gt;::const_iterator pit = it-&gt;indices.begin (); pit != it-&gt;indices.end (); ++pit)
+            cloud_cluster-&gt;push_back ((*temp_cloud)[*pit]); 
+        cloud_cluster-&gt;width = cloud_cluster-&gt;size ();
+        cloud_cluster-&gt;height = 1;
+        cloud_cluster-&gt;is_dense = true;
+
+        std::cout &lt;&lt; &quot;Cluster has : &quot; &lt;&lt; cloud_cluster-&gt;size () &lt;&lt; &quot; data points.&quot; &lt;&lt; std::endl;
+        j++;
+        jsk_recognition_msgs::BoundingBox box2;
+
+        Eigen::Vector3f mass_center;
+        pcl::MomentOfInertiaEstimation&lt;pcl::PointXYZ&gt; feature_extractor;
+        feature_extractor.setInputCloud(cloud_cluster);
+        feature_extractor.compute();
+        pcl::PointXYZ min_point_OBB;
+        pcl::PointXYZ max_point_OBB;
+        pcl::PointXYZ position_OBB;
+        Eigen::Matrix3f rotational_matrix_OBB;
+        feature_extractor.getOBB(min_point_OBB, max_point_OBB, position_OBB, rotational_matrix_OBB);
+        Eigen::Quaternionf quat (rotational_matrix_OBB);
+        feature_extractor.getMassCenter (mass_center);
+        center.push_back(mass_center);
+
+        pcl::PointXYZ min;
+        pcl::PointXYZ max;
+        pcl::getMinMax3D(*cloud_cluster,min,max);
+        max.x = max.x;
+
+        box2.label = j+1;
+        box2.pose.position.x = (max.x + min.x)  / 2;
+        box2.pose.position.y = (max.y + min.y)  / 2;
+        box2.pose.position.z = (max.z + min.z)  / 2;
+        box2.dimensions.x = (max.x - min.x);
+        box2.dimensions.y = (max.y - min.y);
+        box2.dimensions.z = (max.z - min.z);
+        box2.header.frame_id = frame_id;
+
+        BOXS.boxes.push_back(box2);   
+    }
+    BOXS.header.frame_id = frame_id;
+    pub.publish(BOXS);
+}
+
+</code></pre>
+<p>点云聚类主要使用pcl库聚类算法</p>
+<p><code>pcl::EuclideanClusterExtractionpcl::pointxyz ec;</code></p>
+<p>只需设定参数：</p>
+<p>Cluster_D:聚类直径
+Cluster_Min:最小聚类点数
+Cluster_Max:最大聚类点数</p>
+<h4 id="_11">点云智能识别功能</h4>
+<p>主要代码分布位于lidar_cnn_seg_detect，detected_objects_visualizer，common，rockauto_msgs文件夹内</p>
+<p>点云智能识别功能，采用的是apolo的神经网络识别算法，可到该算法的<a href="https://gitee.com/rgbitx/cnn_seg_lidar">维护平台</a>进行深入研究，该算法与voxelnet网络相似，也可参考<a href="https://github.com/steph1793/Voxelnet">github</a></p>
+<p>我们在智能识别的基础上添加了速度和加速度显示</p>
+<pre><code class="language-cpp">VisualizeDetectedObjects::ObjectsToLabels(const rockauto_msgs::DetectedObjectArray &amp;in_objects)
+{
+  visualization_msgs::MarkerArray label_markers;
+  for (auto const &amp;object: in_objects.objects)
+  {
+    if (IsObjectValid(object))
+    {
+      visualization_msgs::Marker label_marker;
+
+      label_marker.lifetime = ros::Duration(marker_display_duration_);
+      label_marker.header = in_objects.header;
+      label_marker.ns = ros_namespace_ + &quot;/label_markers&quot;;
+      label_marker.action = visualization_msgs::Marker::ADD;
+      label_marker.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
+      label_marker.scale.x = 1.5;
+      label_marker.scale.y = 1.5;
+      label_marker.scale.z = 1.5;
+
+      label_marker.color = label_color_;
+
+      label_marker.id = marker_id_++;
+
+      if(!object.label.empty() &amp;&amp; object.label != &quot;unknown&quot;)
+        label_marker.text = object.label + &quot; &quot;; //Object Class if available
+      float velocity_x = 0.0, velocity_y = 0.0, a_x =0.0, a_y = 0.0;
+      if(past_x.size() ==0)
+      {
+        velocity_x = 0.0;
+        velocity_y = 0.0;
+      }
+      else{
+        int  before = 0;
+        float past_d =100.0;
+        for(int i=0;i&lt;past_x.size();i++)
+        {
+          float d = sqrt(pow((past_x[i] - object.pose.position.x),2)+pow((past_y[i] - object.pose.position.y),2));
+          if(d &lt; past_d)
+          {
+            past_d = d;
+            before = i;
+          }
+        }
+        velocity_x = (-past_x[before] + object.pose.position.x)/(0.1);
+        velocity_y = (-past_y[before] + object.pose.position.y)/(0.1);
+        a_x = (-past_vx[before] + velocity_x)/(0.1);
+        a_y = (-past_vy[before] + velocity_y)/(0.1);
+      }
+      std::stringstream distance_stream;
+      distance_stream &lt;&lt; std::fixed &lt;&lt; std::setprecision(1)
+                      &lt;&lt; sqrt((object.pose.position.x * object.pose.position.x) +
+                                (object.pose.position.y * object.pose.position.y));
+
+      std::stringstream velocity_stream;
+      velocity_stream &lt;&lt;std::fixed&lt;&lt;std::setprecision(2)&lt;&lt;&quot;v_x:&quot;&lt;&lt;velocity_x &lt;&lt;&quot;m/s a_x:&quot;&lt;&lt;a_x&lt;&lt;&quot;m/s2\n&quot; &lt;&lt;&quot;v_y:&quot;&lt;&lt;velocity_y&lt;&lt;&quot;m/s a_y:&quot;&lt;&lt;a_y&lt;&lt;&quot;m/s2&quot;;
+      std::string distance_str = distance_stream.str() + &quot; m\n&quot; + velocity_stream.str();
+      label_marker.text += distance_str;
+
+      if (object.velocity_reliable)
+      {
+        double velocity = object.velocity.linear.x;
+        if (velocity &lt; -0.1)
+        {
+          velocity *= -1;
+        }
+
+        if (abs(velocity) &lt; object_speed_threshold_)
+        {
+          velocity = 0.0;
+        }
+
+        tf::Quaternion q(object.pose.orientation.x, object.pose.orientation.y,
+                         object.pose.orientation.z, object.pose.orientation.w);
+
+        double roll, pitch, yaw;
+        tf::Matrix3x3(q).getRPY(roll, pitch, yaw);
+
+        // convert m/s to km/h
+        std::stringstream kmh_velocity_stream;
+        kmh_velocity_stream &lt;&lt; std::fixed &lt;&lt; std::setprecision(1) &lt;&lt; (velocity * 3.6);
+        std::string text = &quot;\n&lt;&quot; + std::to_string(object.id) + &quot;&gt; &quot; + kmh_velocity_stream.str() + &quot; km/h&quot;;
+        label_marker.text += text;
+      }
+
+      label_marker.pose.position.x = object.pose.position.x;
+      label_marker.pose.position.y = object.pose.position.y;
+      label_marker.pose.position.z = label_height_;
+      label_marker.scale.z = 1.0;
+      if (!label_marker.text.empty())
+        label_markers.markers.push_back(label_marker);
+      past_x.push_back(object.pose.position.x);
+      past_y.push_back(object.pose.position.y);
+      past_vx.push_back(velocity_x);
+      past_vy.push_back(velocity_y);
+    }
+  }  // end in_objects.objects loop
+
+  return label_markers;
+}//ObjectsToLabels
+</code></pre>
+<h2 id="_12">注意事项</h2>
+<ul>
+<li>程序要放在英文路径下，最好不要放在中文目录下，因为容易出现中文乱码问题而影响程序运行</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../radar_camera_fusion/" class="btn btn-neutral float-right" title="radar_camera_fusion">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Atlas200验收报告/" class="btn btn-neutral" title="Atlas200验收报告"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Atlas200验收报告/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../radar_camera_fusion/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../mathjaxhelper.js"></script>
+
+</body>
+</html>
