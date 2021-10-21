@@ -119,6 +119,16 @@
             
     <li class="toctree-l2"><a href="#harbor">harbor 安装部署</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l3" href="#install-nvidia-docker2">Install nvidia-docker2</a></li>
+        
+            <li><a class="toctree-l3" href="#docker-sudo">docker 运行去除sudo</a></li>
+        
+            <li><a class="toctree-l3" href="#sensor">Sensor 容器启动</a></li>
+        
+        </ul>
+    
 
     </ul>
 	    </li>
@@ -364,23 +374,43 @@
   # metric:
   #   enabled: false
   #   port: 9090
-  #   path: /metrics</code></p>
-<ul>
-<li>cp harbor.yaml.tmp harbor.yaml</li>
-<li>sudo ./install.sh</li>
-<li>打开浏览器访问 192.168.2.100:8086</li>
-<li>用户 admin 密码 promote12345</li>
-<li>在本机 sudo nano /etc/docker/daemon.json 添加</li>
-<li><code>"insecure-registries":["192.168.2.100:8086"]</code></li>
-<li>sudo systemctl restart docker</li>
-<li>docker login 192.168.2.100:8086</li>
-<li>输入自己的用户名和密码</li>
-<li>推送image</li>
-<li>先login  <code>docker login 192.168.2.100:8086</code></li>
-<li>在harbor（192.168.2.100:8086） 上新建项目</li>
-<li><code>docker tag ubuntu:14.04 &lt;harbor_address&gt;/demo/ubuntu:14.04</code></li>
-<li><code>docker push &lt;harbor_address&gt;/demo/ubuntu:14.04</code></li>
-</ul>
+  #   path: /metrics</code>
+* cp harbor.yaml.tmp harbor.yaml
+* sudo ./install.sh
+* 打开浏览器访问 192.168.2.100:8086
+* 用户 admin 密码 promote12345
+* 在本机 sudo nano /etc/docker/daemon.json 添加
+* <code>"insecure-registries":["192.168.2.100:8086"]</code>
+* sudo systemctl restart docker
+* docker login 192.168.2.100:8086
+* 输入自己的用户名和密码
+* 推送image
+* 先login  <code>docker login 192.168.2.100:8086</code>
+* 在harbor（192.168.2.100:8086） 上新建项目
+* <code>docker tag ubuntu:14.04 &lt;harbor_address&gt;/demo/ubuntu:14.04</code>
+* <code>docker push &lt;harbor_address&gt;/demo/ubuntu:14.04</code></p>
+<h3 id="install-nvidia-docker2">Install nvidia-docker2</h3>
+<pre><code>distribution=(. /etc/os-release;echo (./etc/os−release;echoID$VERSION_ID)
+&amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+&amp;&amp; curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+</code></pre>
+<pre><code>sudo apt-get update
+</code></pre>
+<pre><code>sudo apt-get install -y nvidia-docker2
+</code></pre>
+<pre><code>sudo systemctl restart docker
+</code></pre>
+<h3 id="docker-sudo">docker 运行去除sudo</h3>
+<p>通过将用户添加到docker用户组可以将sudo去掉，命令如下</p>
+<p>sudo groupadd docker #添加docker用户组</p>
+<p>sudo gpasswd -a $USER docker #将登陆用户加入到docker用户组中</p>
+<p>newgrp docker #更新用户组</p>
+<h3 id="sensor">Sensor 容器启动</h3>
+<pre><code>docker run -it --rm --net host -e LANG=C.UTF-8 -e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X11-unix --env=&quot;QT_X11_NO_MITSHM=1&quot; --name sensor --gpus all --runtime nvidia --device /dev/snd --privileged 192.168.2.100:8086/sensor/sensor:v1.1 /bin/bash
+</code></pre>
+<pre><code>docker run -it --net host -e LANG=C.UTF-8 -e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X11-unix -v /home/promote/图片:/home/Pictures -v /home/promote/视频:/home/Videos --env=&quot;QT_X11_NO_MITSHM=1&quot; --name sensor --gpus all --runtime nvidia --device /dev/snd --privileged 192.168.2.100:8086/sensor/sensor:v1.2 /bin/bash
+
+</code></pre>
               
             </div>
           </div>

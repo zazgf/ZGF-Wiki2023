@@ -129,6 +129,8 @@
         
             <li><a class="toctree-l3" href="#ros-topic">Ros 查看Topic</a></li>
         
+            <li><a class="toctree-l3" href="#rosparam">rosparam</a></li>
+        
         </ul>
     
 
@@ -635,6 +637,44 @@ if __name__ == '__main__':
     return res;
 }
 
+</code></pre>
+<h3 id="rosparam">rosparam</h3>
+<p>有时会看到 <code>ros::NodeHandle n;</code> 和 <code>ros::NodeHandle nh("~");</code> 两种用法。</p>
+<p><code>ros::NodeHandle n;</code>是全局命名空间。</p>
+<p><code>ros::NodeHandle nh("~");</code>是局部命名空间</p>
+<p>如下一个lauch文件，有两个 <code>serial</code>参数，一个全局的，一个局部</p>
+<pre><code>&lt;launch&gt;
+    &lt;!-- global serial --&gt;
+    &lt;param name=&quot;serial&quot; value=&quot;5&quot; /&gt;
+    &lt;node name=&quot;name_demo&quot; pkg=&quot;name_demo&quot; type=&quot;name_demo&quot; output=&quot;screen&quot;&gt;
+        &lt;!-- local serial --&gt;
+        &lt;param name=&quot;serial&quot; value=&quot;10&quot; /&gt;
+    &lt;/node&gt;
+&lt;/launch&gt;
+</code></pre>
+<p>使用两种命名空间句柄获取全局和局部参数的用法如下：</p>
+<pre><code>#include &lt;ros/ros.h&gt;
+
+int main(int argc, char* argv[])
+{
+    int serial_number = -1;
+    ros::init(argc, argv, &quot;name_demo&quot;);
+
+    ros::NodeHandle nh_global;
+    ros::NodeHandle nh_local(&quot;~&quot;);
+
+    // global namespace
+    nh_global.getParam(&quot;serial&quot;, serial_number);                // get global serial  
+    nh_global.getParam(&quot;name_demo/serial&quot;, serial_number);      // get local serial. add &quot;name_demo/&quot;
+
+
+    // local namespace
+    nh_local.getParam(&quot;serial&quot;, serial_number);                 // get local serial
+    nh_local.getParam(&quot;/serial&quot;, serial_number);                // get global serial. add &quot;/&quot;
+
+    ros::spin();
+    return 0;
+}
 </code></pre>
               
             </div>

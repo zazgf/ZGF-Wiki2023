@@ -87,6 +87,8 @@
         
             <li><a class="toctree-l3" href="#_9">文件头添加注释</a></li>
         
+            <li><a class="toctree-l3" href="#_10">获取程序运行时间</a></li>
+        
         </ul>
     
 
@@ -642,6 +644,27 @@ xit
 eof
 
 done
+</code></pre>
+<h2 id="_10">获取程序运行时间</h2>
+<pre><code class="language-cpp">#include &lt;time.h&gt;
+clock_t start, finish;
+start = clock();
+
+# do something
+
+printf(&quot;%fms\n&quot;, (double)(finish - start) / CLOCKS_PER_SEC * 1000);
+ROS_WARN_STREAM_THROTTLE(1, &quot;Used &quot; &lt;&lt; (double)(finish - start) / CLOCKS_PER_SEC * 1000 &lt;&lt; &quot;ms&quot;);
+</code></pre>
+<p>while 循环</p>
+<pre><code class="language-cpp">clock_t tt, last_tt
+while(1)
+{
+      tt=clock();
+      ROS_WARN_STREAM_THROTTLE(
+          1, &quot;Pulish time &quot; &lt;&lt; (double)(tt - last_tt) / CLOCKS_PER_SEC * 1000 &lt;&lt; &quot;ms&quot;);
+      last_tt = tt;
+      # do something
+}
 </code></pre>
               
             </div>
